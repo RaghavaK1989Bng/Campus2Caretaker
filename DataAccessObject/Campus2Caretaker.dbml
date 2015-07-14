@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_9CBDC5_campus2caretaker" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SQL5009.myASP.NET;Initial Catalog=DB_9CBDC5_campus2caretaker;Persist Security Info=True;User ID=DB_9CBDC5_campus2caretaker_admin" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblSuperAdminLogin" Member="tblSuperAdminLogins">
+    <Type Name="tblSuperAdminLogin">
+      <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="colPassword" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblInstituteLogin" Member="tblInstituteLogins">
+    <Type Name="tblInstituteLogin">
+      <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="colPassword" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="colUserType" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblInstituteDetails" Member="tblInstituteDetails">
+    <Type Name="tblInstituteDetail">
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colInstituteName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="colPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colLogoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="colInstituteType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="colState" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colSecondLineAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteLogins" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteLogin" />
+      <Association Name="tblInstituteDetail_tblClassDetail" Member="tblClassDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblClassDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblClassDetails" Member="tblClassDetails">
+    <Type Name="tblClassDetail">
+      <Column Name="colClassId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colClassName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="colHeadofClass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colHeadofClassContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblInstituteDetail_tblClassDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetInstituteDetailsResult">
+      <Column Name="colInstitutename" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="colPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colLogoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="colInstituteType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colState" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

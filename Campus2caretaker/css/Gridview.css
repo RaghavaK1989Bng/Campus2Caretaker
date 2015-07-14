@@ -1,0 +1,11 @@
+﻿
+.GridviewDiv {font-size: 100%; font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif; color: #303933;}
+Table.Gridview{border:solid 0.025px #df5015;}
+.GridviewTable{border:none}
+.GridviewTable td{margin-top:0;padding: 0; vertical-align:middle; }
+.GridviewTable tr{color: White; background-color: #df5015; height: 0.05px; text-align:center}
+.Gridview th{color:#FFFFFF;border-right-color:#abb079;border-bottom-color:#abb079;padding:0em 0em 0em 0em;text-align:center}  
+.Gridview td{border-bottom-color:#f0f2da;border-right-color:#f0f2da;padding:0em 0em 0em 0em;}
+.Gridview tr{color: Black; background-color: White;}
+:link,:visited { color: #DF4F13; text-decoration:none }
+

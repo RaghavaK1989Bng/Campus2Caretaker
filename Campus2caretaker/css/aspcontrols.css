@@ -1,0 +1,344 @@
+﻿* { padding:0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+html {
+background:#333333; 
+border: 0;
+padding: 0;
+margin: 0;
+} 
+body {
+  background:#333333;
+  font-family:'Hoefler Text', Georgia, 'Times New Roman', serif;
+  font-size:12px;
+  font-style:normal;
+      width:1150px;
+    height:650px;
+}
+
+.headertext
+        {
+            font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
+	font-weight: bold;
+	font-style:italic;
+        font-size: 1.45em;
+	letter-spacing: .15em;
+	line-height: 1.1em;
+	margin:0px;
+	text-align: center;
+	text-transform: capitalize;
+	color:Maroon;
+        }
+.button {
+   border-top: 0px solid #4b687c;
+   background: #EBECE4;
+   padding: 4px 4px;
+   color: #000000;
+   font-size: 12px;
+   font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
+   text-decoration: none;
+   font-style:normal;
+   vertical-align: middle;
+   width:75px;
+   height:25px;
+   }
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   cursor:pointer;
+   }
+.button:active {
+   border-top-color: #ffffff;
+   background: #ffffff;
+}
+.button[disabled]
+{
+        color: Gray;
+}
+.textbox
+{
+    height:22px;
+    width:180px;
+    background-color:White;
+    font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
+    font-size:14px;
+    color:WindowText;
+}
+.textbox:focus
+{
+    border: 2px solid green;
+}
+.textbox:invalid
+{
+    border: 2px solid red;
+}
+
+.label {
+color: Black;
+font-weight: 500;
+display: block;
+float: left;
+}
+
+#container {
+    width: 700px;
+    margin: 10px auto;
+}
+
+.popUpClassValue
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpClassNumber
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpClassImage
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpClassDdl
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpClassEmail
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpClassWebsite
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpClassDate
+{
+	color:Red;
+ 	font-size:11px;
+}
+
+.popUpDeleteImage
+{
+}
+
+.popUpMaxLimit
+{
+	color:Red;
+	font-size:11px;
+}
+
+#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px; 
+	max-width: 600px; 
+	background: #FFF;
+	border: solid 5px #999;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-border-radius: 5px;
+}
+
+#popup_title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.75em;
+	color: #666;
+	background: #CCC url(../images/title.gif) top repeat-x;
+	border: solid 1px #FFF;
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(../images/info.gif);
+	padding: 1em 1.75em;
+	margin: 0em;
+}
+
+#popup_content.alert {
+	background-image: url(../images/info.gif);
+}
+
+#popup_content.confirm {
+	background-image: url(../images/important.gif);
+}
+
+#popup_content.prompt {
+	background-image: url(../images/help.gif);
+}
+
+#popup_message {
+	padding-left: 48px;
+}
+
+#popup_panel {
+	text-align: center;
+	margin: 1em 0em 0em 1em;
+}
+
+#popup_prompt {
+	margin: .5em 0em;
+}
+
+.CustomComboBoxStyle .ajax__combobox_textboxcontainer input {
+    border: solid 1px #B7D3FC;
+    border-right: 0px none;
+    width:120px;
+}
+
+.CustomComboBoxStyle .ajax__combobox_buttoncontainer button {
+    background-color: #B7D3FC;
+    border: solid 1px #B7D3FC;
+}
+
+.tdLeftAlignWithBottomMargin
+{
+	text-align:left;
+	margin-left: 80px;
+	margin-bottom:10px;
+	padding-bottom:8px;
+}
+
+.numeric
+{}
+.digits
+{}
+.popUpClassXls
+{}
+.LableHeading
+{
+ color:Black;	
+  font-weight:bold;
+  font-family:Arial;
+  font-size:12px;
+}
+ 
+.leftMargin
+{
+ 	margin-left:50px;
+}
+
+.wrapper
+{
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+ .DivBorder
+ {
+ 	border:red solid 1px;
+ 	margin-left:auto;
+ 	margin-right:auto;
+ }
+ 
+ .TextboxPadding
+ {
+ 	padding-bottom:5px;
+ }
+ 
+  .Border{
+ border: #CFCECE solid 1px;
+ background-color: #F0F7FF;
+ }
+ 
+ .logoMargin
+{
+    margin-top:80px;
+    margin-bottom:80px;
+}
+.hiddencol
+{
+    display:none;
+}
+.visiblecol
+{
+   display:block;
+}
+    
+.ddlHour
+{
+	width:45px;
+}
+.ddlMin
+{
+	width:45px;
+}
+.ddlTimeType
+{
+	width:45px;
+}
+
+.textarea
+{
+    height:50px;
+    width:180px;
+    background-color:White;
+    font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
+    font-size:14px;
+    color:WindowText;
+    resize: none; 
+}
+
+.checkbox, .radio {
+  padding: 0 5px 0 0;
+  background: url(checkbox.png) no-repeat;
+  display: block;
+  clear: left;
+  float: left;
+}
+
+/* style for ajax dropdown */
+.CustomComboBoxStyle .ajax__combobox_textboxcontainer input {
+    border: solid 1px #B7D3FC;
+    border-right: 0px none;
+    width:120px;
+}
+
+.CustomComboBoxStyle .ajax__combobox_buttoncontainer button {
+    background-color: #B7D3FC;
+    border: solid 1px #B7D3FC;
+}
+
+.divMainContainer
+{
+	width:400px;
+	height:300px;
+	border:1px solid lightblue;	
+	padding-top:20px;
+	text-align:center;
+}
+
+.divSameLine
+{
+	
+	float:left;
+	width:48%;
+	margin:2px;
+	font-size:11;
+
+}
+.divClearFloat
+{
+	clear:both;
+	visibility:hidden;
+}

@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Institute.master.cs" Inherits="Campus2caretaker.Institute.Institute" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head runat="server">
+
+    <title></title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link href="../css/Gridview.css" rel="stylesheet" type="text/css" />
+    <link href="../css/aspcontrols.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <link href="../css/confirm.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-ui.js" type="text/javascript"></script>
+    <link href="../css/defaultstyle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/custom-form-elements.js"></script>
+    <link href="../css/jquery.ptTimeSelect.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery.ptTimeSelect.js"></script>
+    <script src="../js/insmenu.js" type="text/javascript"></script>
+    <link href="../css/insmenu.css" rel="stylesheet" />
+
+    <link type="text/css" href="../css/menu.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/menu.js"></script>
+
+</head>
+<body style="width: 100%;">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div style="width:100%;text-align:center;">
+        <img id="imgInstituteLogo" alt="" runat="server" style="height: 150px; width: 150px;" />
+            </div>
+        <br />
+        <br />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder_Menu" runat="server"></asp:ContentPlaceHolder>
+
+        <div id="ddcolortabs">
+            <ul>
+                <li id="menu_1"><a href="<%= Page.ResolveUrl("~/Institute/InstituteDefault.aspx")%>" title="Dashboard"><span>Dashboard</span></a></li>
+                <li id="menu_2"><a href="<%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? Page.ResolveUrl("~/Institute/PersonlizeApplicationSchool.aspx") : Page.ResolveUrl("~/Institute/PersonalizeApplicationCollege.aspx")%>" title="Personalize Application"><span>Personalize Application</span></a></li>
+                <li id="menu_3"><a href="<%= Page.ResolveUrl("~/Institute/StudentRegistration.aspx")%>" title="Student Registration"><span>Student Registration</span></a></li>
+                <li id="menu_4"><a href="<%= Page.ResolveUrl("~/Institute/UpdateMarksAttendance.aspx")%>" title="Update Marks and Attendance"><span>Update Marks and Attendance</span></a></li>
+                <li id="menu_5"><a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>" title="SMS"><span>SMS</span></a></li>
+            </ul>
+        </div>
+        <div id="ddcolortabsline">&nbsp;</div>
+        <br />
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            <script src="<%= ResolveUrl("~/validator/jquery.validator-0.3.6.min.js") %>" type="text/javascript"></script>
+            <link href="<%= ResolveUrl("~/validator/validator.css") %>" rel="stylesheet" type="text/css" />
+        </asp:ContentPlaceHolder>
+
+        
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
