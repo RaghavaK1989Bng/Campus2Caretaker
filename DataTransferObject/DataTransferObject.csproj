@@ -42,6 +42,7 @@
     <Compile Include="DTOInstituteDetails.cs" />
     <Compile Include="DTOLogin.cs" />
     <Compile Include="DTOPersonalizeApplication.cs" />
+    <Compile Include="DTOStudentRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

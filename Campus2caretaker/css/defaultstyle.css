@@ -93,3 +93,9 @@ overflow:scroll;
     display: inline !important;
     width: auto;
 }
+
+.required {
+color:red;
+font-weight:bolder;
+font-size:smaller;
+}

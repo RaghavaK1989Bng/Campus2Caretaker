@@ -42,6 +42,7 @@
     <Compile Include="BOInstituteDetails.cs" />
     <Compile Include="BOLogin.cs" />
     <Compile Include="BOPersonalizeApplication.cs" />
+    <Compile Include="BOStudentRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

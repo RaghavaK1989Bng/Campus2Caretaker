@@ -12,9 +12,9 @@
     <div style="text-align:center;">
         <div style="width:100%; margin: 0 auto; text-align:center;"  class="defaultPagetable">
     <table border="2">
-    <tr>
+    <%--<tr style="visibility:hidden;">
     <td><a href="AdminLogin.aspx">Administrator Login</a></td>
-    </tr>
+    </tr>--%>
         <tr>
     <td><a href="Institute/InstituteLogin.aspx">Institute Login</a></td>
     </tr>

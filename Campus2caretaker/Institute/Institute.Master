@@ -34,8 +34,8 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <div style="width:100%;text-align:center;">
-        <img id="imgInstituteLogo" alt="" runat="server" style="height: 150px; width: 150px;" />
-            </div>
+        <img  alt=""  src="../images/logo.png" style="height: 150px; width: 150px;background-color:white;" />
+        <img id="imgInstituteLogo" alt="" runat="server" style="height: 150px; width: 150px;background-color:white;" /></div>
         <br />
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder_Menu" runat="server"></asp:ContentPlaceHolder>
