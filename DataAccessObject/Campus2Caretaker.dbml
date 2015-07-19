@@ -69,6 +69,7 @@
       <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colParentsMobileNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="tblInstituteDetail_tblStudentDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
     </Type>
   </Table>

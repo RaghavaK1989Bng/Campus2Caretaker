@@ -13,6 +13,25 @@
             });
          </script>
 
+    <script type="text/javascript">
+        function pageLoad(sender, args) {
+            $(document).ready(function () {
+                $("#<%=txtDOB.ClientID %>").datepicker(
+                {
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'd MM, yy',
+                    showAnim: 'fadeIn',
+                    showButtonPanel: true,
+                    yearRange: "-30:+0",
+                }
+             );
+            $("#<%=txtDOB.ClientID %>").attr('readonly', true);
+        });
+        //     window.location.reload();
+    }
+</script>
+
     <div style="background-color:White;height:100%;">
 
     <table border="0" align="center" cellpadding="0" cellspacing="1" 

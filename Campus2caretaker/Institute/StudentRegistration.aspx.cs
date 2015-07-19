@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
+using DataTransferObject;
 
 namespace Campus2caretaker.Institute
 {
@@ -82,7 +83,46 @@ namespace Campus2caretaker.Institute
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                try
+                {
+                    DTOStudentRegistration tostud = new DTOStudentRegistration();
+                    tostud.Address = txtStudentAddress.Text;
+                    tostud.BranchId = int.Parse(ddlClass.SelectedValue);
+                    tostud.DOB = DateTime.Parse(txtDOB.Text);
+                    tostud.FatherName = txtFatherName.Text;
+                    tostud.InstituteId = int.Parse(Session["InstituteID"].ToString());
+                    tostud.MotherName = txtMotherName.Text;
+                    tostud.ParentsMobileNo = txtParentsContactNumber.Text;
+                    tostud.RollNo = txtRollNo.Text;
+                    if (Session["InstituteType"].ToString() == "S")
+                    {
+                        tostud.SemesterId = 0;
+                    }
+                    else
+                    {
+                        tostud.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                    }
 
+                    tostud.StudentName = txtStudentName.Text;
+
+                    if (new BOStudentRegistration().SaveStudentDetails(tostud))
+                    {
+                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record inserted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                        clear();
+                        RefreshGridView();
+                    }
+                    else
+                    {
+                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    }
+                }
+                catch { }
+            }
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)

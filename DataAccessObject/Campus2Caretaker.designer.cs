@@ -1263,6 +1263,8 @@ namespace DataAccessObject
 		
 		private int _colInstituteId;
 		
+		private string _colAddress;
+		
 		private EntityRef<tblInstituteDetail> _tblInstituteDetail;
 		
     #region Extensibility Method Definitions
@@ -1293,6 +1295,8 @@ namespace DataAccessObject
     partial void OncolParentsMobileNoChanged();
     partial void OncolInstituteIdChanging(int value);
     partial void OncolInstituteIdChanged();
+    partial void OncolAddressChanging(string value);
+    partial void OncolAddressChanged();
     #endregion
 		
 		public tblStudentDetail()
@@ -1541,6 +1545,26 @@ namespace DataAccessObject
 					this._colInstituteId = value;
 					this.SendPropertyChanged("colInstituteId");
 					this.OncolInstituteIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string colAddress
+		{
+			get
+			{
+				return this._colAddress;
+			}
+			set
+			{
+				if ((this._colAddress != value))
+				{
+					this.OncolAddressChanging(value);
+					this.SendPropertyChanging();
+					this._colAddress = value;
+					this.SendPropertyChanged("colAddress");
+					this.OncolAddressChanged();
 				}
 			}
 		}
