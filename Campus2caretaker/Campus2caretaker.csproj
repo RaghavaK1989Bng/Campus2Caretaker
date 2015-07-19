@@ -169,12 +169,13 @@
     <Content Include="images\slider_bg.jpg" />
     <Content Include="images\social-icons.png" />
     <Content Include="index.html" />
+    <Content Include="Institute\cross.jpg" />
     <Content Include="Institute\InstituteDefault.aspx" />
     <Content Include="Institute\InstituteLogin.aspx" />
-    <Content Include="Institute\PersonalizeApplicationCollege.aspx" />
-    <Content Include="Institute\PersonlizeApplicationSchool.aspx" />
+    <Content Include="Institute\PersonlizeApplication.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
     <Content Include="Institute\StudentRegistration.aspx" />
+    <Content Include="Institute\tick.jpg" />
     <Content Include="Institute\UpdateMarksAttendance.aspx" />
     <Content Include="js\Account.js" />
     <Content Include="js\bootstrap.js" />
@@ -291,19 +292,12 @@
     <Compile Include="Institute\InstituteDefault.aspx.designer.cs">
       <DependentUpon>InstituteDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Institute\PersonalizeApplicationCollege.aspx.cs">
-      <DependentUpon>PersonalizeApplicationCollege.aspx</DependentUpon>
+    <Compile Include="Institute\PersonlizeApplication.aspx.cs">
+      <DependentUpon>PersonlizeApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Institute\PersonalizeApplicationCollege.aspx.designer.cs">
-      <DependentUpon>PersonalizeApplicationCollege.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Institute\PersonlizeApplicationSchool.aspx.cs">
-      <DependentUpon>PersonlizeApplicationSchool.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Institute\PersonlizeApplicationSchool.aspx.designer.cs">
-      <DependentUpon>PersonlizeApplicationSchool.aspx</DependentUpon>
+    <Compile Include="Institute\PersonlizeApplication.aspx.designer.cs">
+      <DependentUpon>PersonlizeApplication.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\SendSMS.aspx.cs">
       <DependentUpon>SendSMS.aspx</DependentUpon>

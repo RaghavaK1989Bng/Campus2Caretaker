@@ -47,3 +47,49 @@ overflow:scroll;
   margin: 1px;
   padding: 4px 4px 4px 4px;
 }
+
+.lstClassContianer {
+    overflow: auto;
+    width: 180px;
+    height: 180px;
+    border: solid grey 1px;
+    -moz-border-radius: 0%;
+    border-radius: 0%;
+}
+
+.lstClass {
+    display: inline-block;
+    vertical-align: top;
+    overflow: auto;
+    width: 180px;
+}
+
+.listbox {
+    height:180px;
+    overflow: auto;
+    width: 180px;
+}
+
+.lstClassContianerView {
+    overflow: auto;
+    width: 307px;
+    height: 145px;
+    border: solid grey 1px;
+    -moz-border-radius: 3%;
+    border-radius: 3%;
+}
+
+.listboxView {
+    min-width: 307px;
+    min-height: 100%;
+    background-repeat: repeat-x;
+    border: 1px solid #d1c7ac;
+    color: #333333;
+    padding: 3px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline !important;
+    width: auto;
+}

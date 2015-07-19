@@ -30,7 +30,7 @@ text-transform:uppercase;
 #ddcolortabs a{
 float:left;
 color: white;
-background: #708FC0 url(Images/color_tabs_left.gif) no-repeat left top;
+background: #DCDCDC url(Images/color_tabs_left.gif) no-repeat left top;
 margin:0 3px 0 0;
 padding:0 0 1px 3px;
 text-decoration:none;

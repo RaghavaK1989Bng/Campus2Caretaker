@@ -29,17 +29,29 @@
       <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colSecondLineAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteLogins" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteLogin" />
-      <Association Name="tblInstituteDetail_tblClassDetail" Member="tblClassDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblClassDetail" />
+      <Association Name="tblInstituteDetail_tblBranchDetail" Member="tblBranchDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblBranchDetail" />
+      <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblSubjectDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblSubjectDetail" />
     </Type>
   </Table>
-  <Table Name="dbo.tblClassDetails" Member="tblClassDetails">
-    <Type Name="tblClassDetail">
-      <Column Name="colClassId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="colClassName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.tblBranchDetails" Member="tblBranchDetails">
+    <Type Name="tblBranchDetail">
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colBranchName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="colHeadofClass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colHeadofClassContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="tblInstituteDetail_tblClassDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
+      <Column Name="colHeadofBranch" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colHeadofBranchContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblInstituteDetail_tblBranchDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSubjectDetails" Member="tblSubjectDetails">
+    <Type Name="tblSubjectDetail">
+      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colSemester" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSubjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colIsTheory" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">

@@ -43,7 +43,7 @@
         <div id="ddcolortabs">
             <ul>
                 <li id="menu_1"><a href="<%= Page.ResolveUrl("~/Institute/InstituteDefault.aspx")%>" title="Dashboard"><span>Dashboard</span></a></li>
-                <li id="menu_2"><a href="<%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? Page.ResolveUrl("~/Institute/PersonlizeApplicationSchool.aspx") : Page.ResolveUrl("~/Institute/PersonalizeApplicationCollege.aspx")%>" title="Personalize Application"><span>Personalize Application</span></a></li>
+                <li id="menu_2"><a href="<%= Page.ResolveUrl("~/Institute/PersonlizeApplication.aspx")%>" title="Personalize Application"><span>Personalize Application</span></a></li>
                 <li id="menu_3"><a href="<%= Page.ResolveUrl("~/Institute/StudentRegistration.aspx")%>" title="Student Registration"><span>Student Registration</span></a></li>
                 <li id="menu_4"><a href="<%= Page.ResolveUrl("~/Institute/UpdateMarksAttendance.aspx")%>" title="Update Marks and Attendance"><span>Update Marks and Attendance</span></a></li>
                 <li id="menu_5"><a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>" title="SMS"><span>SMS</span></a></li>

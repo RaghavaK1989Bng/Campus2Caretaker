@@ -42,8 +42,6 @@ body {
    text-decoration: none;
    font-style:normal;
    vertical-align: middle;
-   width:75px;
-   height:25px;
    }
 .button:hover {
    border-top-color: #28597a;

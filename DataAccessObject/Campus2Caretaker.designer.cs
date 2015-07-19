@@ -39,9 +39,12 @@ namespace DataAccessObject
     partial void InserttblInstituteDetail(tblInstituteDetail instance);
     partial void UpdatetblInstituteDetail(tblInstituteDetail instance);
     partial void DeletetblInstituteDetail(tblInstituteDetail instance);
-    partial void InserttblClassDetail(tblClassDetail instance);
-    partial void UpdatetblClassDetail(tblClassDetail instance);
-    partial void DeletetblClassDetail(tblClassDetail instance);
+    partial void InserttblBranchDetail(tblBranchDetail instance);
+    partial void UpdatetblBranchDetail(tblBranchDetail instance);
+    partial void DeletetblBranchDetail(tblBranchDetail instance);
+    partial void InserttblSubjectDetail(tblSubjectDetail instance);
+    partial void UpdatetblSubjectDetail(tblSubjectDetail instance);
+    partial void DeletetblSubjectDetail(tblSubjectDetail instance);
     #endregion
 		
 		public Campus2CaretakerDataContext() : 
@@ -98,11 +101,19 @@ namespace DataAccessObject
 			}
 		}
 		
-		public System.Data.Linq.Table<tblClassDetail> tblClassDetails
+		public System.Data.Linq.Table<tblBranchDetail> tblBranchDetails
 		{
 			get
 			{
-				return this.GetTable<tblClassDetail>();
+				return this.GetTable<tblBranchDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblSubjectDetail> tblSubjectDetails
+		{
+			get
+			{
+				return this.GetTable<tblSubjectDetail>();
 			}
 		}
 		
@@ -405,7 +416,9 @@ namespace DataAccessObject
 		
 		private EntitySet<tblInstituteLogin> _tblInstituteLogins;
 		
-		private EntitySet<tblClassDetail> _tblClassDetails;
+		private EntitySet<tblBranchDetail> _tblBranchDetails;
+		
+		private EntitySet<tblSubjectDetail> _tblSubjectDetails;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -438,7 +451,8 @@ namespace DataAccessObject
 		public tblInstituteDetail()
 		{
 			this._tblInstituteLogins = new EntitySet<tblInstituteLogin>(new Action<tblInstituteLogin>(this.attach_tblInstituteLogins), new Action<tblInstituteLogin>(this.detach_tblInstituteLogins));
-			this._tblClassDetails = new EntitySet<tblClassDetail>(new Action<tblClassDetail>(this.attach_tblClassDetails), new Action<tblClassDetail>(this.detach_tblClassDetails));
+			this._tblBranchDetails = new EntitySet<tblBranchDetail>(new Action<tblBranchDetail>(this.attach_tblBranchDetails), new Action<tblBranchDetail>(this.detach_tblBranchDetails));
+			this._tblSubjectDetails = new EntitySet<tblSubjectDetail>(new Action<tblSubjectDetail>(this.attach_tblSubjectDetails), new Action<tblSubjectDetail>(this.detach_tblSubjectDetails));
 			OnCreated();
 		}
 		
@@ -675,16 +689,29 @@ namespace DataAccessObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblClassDetail", Storage="_tblClassDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
-		public EntitySet<tblClassDetail> tblClassDetails
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblBranchDetail", Storage="_tblBranchDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblBranchDetail> tblBranchDetails
 		{
 			get
 			{
-				return this._tblClassDetails;
+				return this._tblBranchDetails;
 			}
 			set
 			{
-				this._tblClassDetails.Assign(value);
+				this._tblBranchDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblSubjectDetail", Storage="_tblSubjectDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblSubjectDetail> tblSubjectDetails
+		{
+			get
+			{
+				return this._tblSubjectDetails;
+			}
+			set
+			{
+				this._tblSubjectDetails.Assign(value);
 			}
 		}
 		
@@ -720,34 +747,46 @@ namespace DataAccessObject
 			entity.tblInstituteDetail = null;
 		}
 		
-		private void attach_tblClassDetails(tblClassDetail entity)
+		private void attach_tblBranchDetails(tblBranchDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblInstituteDetail = this;
 		}
 		
-		private void detach_tblClassDetails(tblClassDetail entity)
+		private void detach_tblBranchDetails(tblBranchDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = null;
+		}
+		
+		private void attach_tblSubjectDetails(tblSubjectDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = this;
+		}
+		
+		private void detach_tblSubjectDetails(tblSubjectDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblInstituteDetail = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblClassDetails")]
-	public partial class tblClassDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblBranchDetails")]
+	public partial class tblBranchDetail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _colClassId;
+		private int _colBranchId;
 		
-		private string _colClassName;
+		private string _colBranchName;
 		
 		private int _colInstituteId;
 		
-		private string _colHeadofClass;
+		private string _colHeadofBranch;
 		
-		private string _colHeadofClassContact;
+		private string _colHeadofBranchContact;
 		
 		private EntityRef<tblInstituteDetail> _tblInstituteDetail;
 		
@@ -755,60 +794,60 @@ namespace DataAccessObject
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OncolClassIdChanging(int value);
-    partial void OncolClassIdChanged();
-    partial void OncolClassNameChanging(string value);
-    partial void OncolClassNameChanged();
+    partial void OncolBranchIdChanging(int value);
+    partial void OncolBranchIdChanged();
+    partial void OncolBranchNameChanging(string value);
+    partial void OncolBranchNameChanged();
     partial void OncolInstituteIdChanging(int value);
     partial void OncolInstituteIdChanged();
-    partial void OncolHeadofClassChanging(string value);
-    partial void OncolHeadofClassChanged();
-    partial void OncolHeadofClassContactChanging(string value);
-    partial void OncolHeadofClassContactChanged();
+    partial void OncolHeadofBranchChanging(string value);
+    partial void OncolHeadofBranchChanged();
+    partial void OncolHeadofBranchContactChanging(string value);
+    partial void OncolHeadofBranchContactChanged();
     #endregion
 		
-		public tblClassDetail()
+		public tblBranchDetail()
 		{
 			this._tblInstituteDetail = default(EntityRef<tblInstituteDetail>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colClassId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int colClassId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int colBranchId
 		{
 			get
 			{
-				return this._colClassId;
+				return this._colBranchId;
 			}
 			set
 			{
-				if ((this._colClassId != value))
+				if ((this._colBranchId != value))
 				{
-					this.OncolClassIdChanging(value);
+					this.OncolBranchIdChanging(value);
 					this.SendPropertyChanging();
-					this._colClassId = value;
-					this.SendPropertyChanged("colClassId");
-					this.OncolClassIdChanged();
+					this._colBranchId = value;
+					this.SendPropertyChanged("colBranchId");
+					this.OncolBranchIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colClassName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colClassName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colBranchName
 		{
 			get
 			{
-				return this._colClassName;
+				return this._colBranchName;
 			}
 			set
 			{
-				if ((this._colClassName != value))
+				if ((this._colBranchName != value))
 				{
-					this.OncolClassNameChanging(value);
+					this.OncolBranchNameChanging(value);
 					this.SendPropertyChanging();
-					this._colClassName = value;
-					this.SendPropertyChanged("colClassName");
-					this.OncolClassNameChanged();
+					this._colBranchName = value;
+					this.SendPropertyChanged("colBranchName");
+					this.OncolBranchNameChanged();
 				}
 			}
 		}
@@ -837,47 +876,47 @@ namespace DataAccessObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colHeadofClass", DbType="VarChar(50)")]
-		public string colHeadofClass
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colHeadofBranch", DbType="VarChar(50)")]
+		public string colHeadofBranch
 		{
 			get
 			{
-				return this._colHeadofClass;
+				return this._colHeadofBranch;
 			}
 			set
 			{
-				if ((this._colHeadofClass != value))
+				if ((this._colHeadofBranch != value))
 				{
-					this.OncolHeadofClassChanging(value);
+					this.OncolHeadofBranchChanging(value);
 					this.SendPropertyChanging();
-					this._colHeadofClass = value;
-					this.SendPropertyChanged("colHeadofClass");
-					this.OncolHeadofClassChanged();
+					this._colHeadofBranch = value;
+					this.SendPropertyChanged("colHeadofBranch");
+					this.OncolHeadofBranchChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colHeadofClassContact", DbType="NVarChar(50)")]
-		public string colHeadofClassContact
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colHeadofBranchContact", DbType="NVarChar(50)")]
+		public string colHeadofBranchContact
 		{
 			get
 			{
-				return this._colHeadofClassContact;
+				return this._colHeadofBranchContact;
 			}
 			set
 			{
-				if ((this._colHeadofClassContact != value))
+				if ((this._colHeadofBranchContact != value))
 				{
-					this.OncolHeadofClassContactChanging(value);
+					this.OncolHeadofBranchContactChanging(value);
 					this.SendPropertyChanging();
-					this._colHeadofClassContact = value;
-					this.SendPropertyChanged("colHeadofClassContact");
-					this.OncolHeadofClassContactChanged();
+					this._colHeadofBranchContact = value;
+					this.SendPropertyChanged("colHeadofBranchContact");
+					this.OncolHeadofBranchContactChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblClassDetail", Storage="_tblInstituteDetail", ThisKey="colInstituteId", OtherKey="colInstituteId", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblBranchDetail", Storage="_tblInstituteDetail", ThisKey="colInstituteId", OtherKey="colInstituteId", IsForeignKey=true)]
 		public tblInstituteDetail tblInstituteDetail
 		{
 			get
@@ -894,12 +933,235 @@ namespace DataAccessObject
 					if ((previousValue != null))
 					{
 						this._tblInstituteDetail.Entity = null;
-						previousValue.tblClassDetails.Remove(this);
+						previousValue.tblBranchDetails.Remove(this);
 					}
 					this._tblInstituteDetail.Entity = value;
 					if ((value != null))
 					{
-						value.tblClassDetails.Add(this);
+						value.tblBranchDetails.Add(this);
+						this._colInstituteId = value.colInstituteId;
+					}
+					else
+					{
+						this._colInstituteId = default(int);
+					}
+					this.SendPropertyChanged("tblInstituteDetail");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblSubjectDetails")]
+	public partial class tblSubjectDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _colSubjectId;
+		
+		private string _colSemester;
+		
+		private int _colBranchId;
+		
+		private string _colSubjectName;
+		
+		private string _colIsTheory;
+		
+		private int _colInstituteId;
+		
+		private EntityRef<tblInstituteDetail> _tblInstituteDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OncolSubjectIdChanging(int value);
+    partial void OncolSubjectIdChanged();
+    partial void OncolSemesterChanging(string value);
+    partial void OncolSemesterChanged();
+    partial void OncolBranchIdChanging(int value);
+    partial void OncolBranchIdChanged();
+    partial void OncolSubjectNameChanging(string value);
+    partial void OncolSubjectNameChanged();
+    partial void OncolIsTheoryChanging(string value);
+    partial void OncolIsTheoryChanged();
+    partial void OncolInstituteIdChanging(int value);
+    partial void OncolInstituteIdChanged();
+    #endregion
+		
+		public tblSubjectDetail()
+		{
+			this._tblInstituteDetail = default(EntityRef<tblInstituteDetail>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSubjectId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int colSubjectId
+		{
+			get
+			{
+				return this._colSubjectId;
+			}
+			set
+			{
+				if ((this._colSubjectId != value))
+				{
+					this.OncolSubjectIdChanging(value);
+					this.SendPropertyChanging();
+					this._colSubjectId = value;
+					this.SendPropertyChanged("colSubjectId");
+					this.OncolSubjectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemester", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colSemester
+		{
+			get
+			{
+				return this._colSemester;
+			}
+			set
+			{
+				if ((this._colSemester != value))
+				{
+					this.OncolSemesterChanging(value);
+					this.SendPropertyChanging();
+					this._colSemester = value;
+					this.SendPropertyChanged("colSemester");
+					this.OncolSemesterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
+		public int colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this.OncolBranchIdChanging(value);
+					this.SendPropertyChanging();
+					this._colBranchId = value;
+					this.SendPropertyChanged("colBranchId");
+					this.OncolBranchIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSubjectName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colSubjectName
+		{
+			get
+			{
+				return this._colSubjectName;
+			}
+			set
+			{
+				if ((this._colSubjectName != value))
+				{
+					this.OncolSubjectNameChanging(value);
+					this.SendPropertyChanging();
+					this._colSubjectName = value;
+					this.SendPropertyChanged("colSubjectName");
+					this.OncolSubjectNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colIsTheory", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string colIsTheory
+		{
+			get
+			{
+				return this._colIsTheory;
+			}
+			set
+			{
+				if ((this._colIsTheory != value))
+				{
+					this.OncolIsTheoryChanging(value);
+					this.SendPropertyChanging();
+					this._colIsTheory = value;
+					this.SendPropertyChanged("colIsTheory");
+					this.OncolIsTheoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", DbType="Int NOT NULL")]
+		public int colInstituteId
+		{
+			get
+			{
+				return this._colInstituteId;
+			}
+			set
+			{
+				if ((this._colInstituteId != value))
+				{
+					if (this._tblInstituteDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncolInstituteIdChanging(value);
+					this.SendPropertyChanging();
+					this._colInstituteId = value;
+					this.SendPropertyChanged("colInstituteId");
+					this.OncolInstituteIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblSubjectDetail", Storage="_tblInstituteDetail", ThisKey="colInstituteId", OtherKey="colInstituteId", IsForeignKey=true)]
+		public tblInstituteDetail tblInstituteDetail
+		{
+			get
+			{
+				return this._tblInstituteDetail.Entity;
+			}
+			set
+			{
+				tblInstituteDetail previousValue = this._tblInstituteDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._tblInstituteDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblInstituteDetail.Entity = null;
+						previousValue.tblSubjectDetails.Remove(this);
+					}
+					this._tblInstituteDetail.Entity = value;
+					if ((value != null))
+					{
+						value.tblSubjectDetails.Add(this);
 						this._colInstituteId = value.colInstituteId;
 					}
 					else
