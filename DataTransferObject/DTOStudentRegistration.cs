@@ -66,12 +66,12 @@ namespace DataTransferObject
             set { _branchId = value; }
         }
 
-        private int _sectionId;
+        private string _section;
 
-        public int SectionId
+        public string Section
         {
-            get { return _sectionId; }
-            set { _sectionId = value; }
+            get { return _section; }
+            set { _section = value; }
         }
 
         private string _rollNo;

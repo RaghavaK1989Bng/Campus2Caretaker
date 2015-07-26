@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="StudentRegistration.aspx.cs" Inherits="Campus2caretaker.Institute.StudentRegistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="StudentRegistration.aspx.cs" Inherits="Campus2caretaker.Institute.StudentRegistration" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
     <span id="tabid" style="display: none">menu_3</span>
 </asp:Content>
@@ -523,8 +523,9 @@
        
         <td>
           <asp:FileUpload ID="FlUploadcsv" runat="server" />  </td>
-        <td>
-            &nbsp;</td>
+        <td style="text-align:center;vertical-align:middle;">
+            <br />
+            <a href="../Template/StudentRegistrationSample.xlsx"  id="studentRegistration" class="gridLink" target="_blank">Download sample file</a><br /><br /></td>
         <td>
             &nbsp;</td>
         <td>
@@ -559,7 +560,7 @@
        
         <td align="left">
             <asp:Button ID="btnUpload" runat="server" CssClass="button" Text="Upload" 
-                onclick="btnSave_Click" />
+                onclick="btnUpload_Click" />
             </td>
         <td>
             &nbsp;</td>

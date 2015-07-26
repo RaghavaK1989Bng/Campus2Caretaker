@@ -99,3 +99,9 @@ color:red;
 font-weight:bolder;
 font-size:smaller;
 }
+
+.gridLink {
+    color: #4D4D4D;
+    cursor: pointer;
+    text-decoration: underline;
+}

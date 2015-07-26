@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 8.5" name="Campus2Caretaker">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 9.375" name="Campus2Caretaker">
   <DataContextMoniker Name="/Campus2CaretakerDataContext" />
   <nestedChildShapes>
     <classShape Id="f14bfa37-6bc9-4bc2-a499-af411c4a561e" absoluteBounds="0.5, 0.875, 2, 1.1939925130208333">
@@ -53,18 +53,11 @@
         <classShapeMoniker Id="449721c0-eb5d-449a-934d-1cb47aac9216" />
       </nodes>
     </associationConnector>
-    <classShape Id="b0257389-cb8a-477f-85af-83e51164319a" absoluteBounds="4.125, 5, 2, 3.3093082682291666">
+    <classShape Id="e3b0c536-d43a-4f7c-a2c7-3bf5df12595e" absoluteBounds="2.5, 5.875, 2, 3.3093082682291666">
       <DataClassMoniker Name="/Campus2CaretakerDataContext/tblStudentDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="dc5d5cd6-2d64-4abf-afed-435911954e0e" absoluteBounds="4.14, 5.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="03a6988e-4098-4271-8839-1c7261ea638e" absoluteBounds="2.515, 6.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 4.42470540364583); (5.125 : 5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblStudentDetail" />
-      <nodes>
-        <classShapeMoniker Id="9b15c738-749a-49e2-abe3-61b04b4a3e12" />
-        <classShapeMoniker Id="b0257389-cb8a-477f-85af-83e51164319a" />
-      </nodes>
-    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

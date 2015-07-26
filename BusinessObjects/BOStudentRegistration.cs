@@ -24,5 +24,37 @@ namespace BusinessObjects
         {
             return new DAOStudentRegistration().SaveStudentDetails(tostudentreg);
         }
+
+        public string GetBranchId(string BranchName)
+        {
+            try
+            {
+                return new DAOStudentRegistration().GetBranchId(BranchName);
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+
+        public bool SaveStudentRegistrationExcel(DataTable dt, string instituteId)
+        {
+            return new DAOStudentRegistration().SaveStudentRegistrationExcel(dt, instituteId);
+        }
+
+        public DataTable GetStudentDetails(DTOStudentRegistration tostu)
+        {
+            return new DAOStudentRegistration().GetStudentDetails(tostu);
+        }
+
+        public bool UpdateStudentDetails(DTOStudentRegistration tostud)
+        {
+            return new DAOStudentRegistration().UpdateStudentDetails(tostud);
+        }
+
+        public bool DeleteStudentDetails(DTOStudentRegistration tostu)
+        {
+            return new DAOStudentRegistration().DeleteStudentDetails(tostu);
+        }
     }
 }

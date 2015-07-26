@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="PersonlizeApplication.aspx.cs" Inherits="Campus2caretaker.Institute.PersonlizeApplication" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="PersonlizeApplication.aspx.cs" Inherits="Campus2caretaker.Institute.PersonlizeApplication" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
     <span id="tabid" style="display: none">menu_2</span>
 </asp:Content>
