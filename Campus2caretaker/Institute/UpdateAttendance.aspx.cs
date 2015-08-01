@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Campus2caretaker.Institute
 {
-    public partial class UpdateMarksAttendance : System.Web.UI.Page
+    public partial class UpdateAttendance : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

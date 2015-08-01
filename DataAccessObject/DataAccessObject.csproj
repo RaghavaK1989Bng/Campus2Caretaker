@@ -46,6 +46,7 @@
       <DependentUpon>Campus2Caretaker.dbml</DependentUpon>
     </Compile>
     <Compile Include="DAOInstituteDetails.cs" />
+    <Compile Include="DAOInternals.cs" />
     <Compile Include="DAOLogin.cs" />
     <Compile Include="DAOPersonalizeApplication.cs" />
     <Compile Include="DAOStudentRegistration.cs" />

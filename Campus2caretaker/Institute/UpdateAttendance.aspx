@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateMarksAttendance.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateMarksAttendance" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateAttendance.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateAttendance" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
     <span id="tabid" style="display: none">menu_4</span>
 </asp:Content>
@@ -10,7 +10,7 @@
             <tr>
                 <td align="left" colspan="8">
                     <asp:Label ID="Label11" runat="server" CssClass="headertext"
-                        Text="Update Attendance & Internal Details" meta:resourcekey="Label11Resource1"></asp:Label>
+                        Text="Update Attendance Details" meta:resourcekey="Label11Resource1"></asp:Label>
                 </td>
                 <td align="left">&nbsp;</td>
                 <td>&nbsp;</td>

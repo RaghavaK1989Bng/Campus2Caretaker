@@ -10,7 +10,7 @@
 namespace Campus2caretaker.Institute {
     
     
-    public partial class UpdateMarksAttendance {
+    public partial class UpdateAttendance {
         
         /// <summary>
         /// Label11 control.

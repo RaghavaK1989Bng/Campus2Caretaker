@@ -179,7 +179,8 @@
     <Content Include="Institute\SendSMS.aspx" />
     <Content Include="Institute\StudentRegistration.aspx" />
     <Content Include="Institute\tick.jpg" />
-    <Content Include="Institute\UpdateMarksAttendance.aspx" />
+    <Content Include="Institute\UpdateInternals.aspx" />
+    <Content Include="Institute\UpdateAttendance.aspx" />
     <Content Include="js\Account.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -317,12 +318,19 @@
     <Compile Include="Institute\StudentRegistration.aspx.designer.cs">
       <DependentUpon>StudentRegistration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Institute\UpdateMarksAttendance.aspx.cs">
-      <DependentUpon>UpdateMarksAttendance.aspx</DependentUpon>
+    <Compile Include="Institute\UpdateInternals.aspx.cs">
+      <DependentUpon>UpdateInternals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Institute\UpdateMarksAttendance.aspx.designer.cs">
-      <DependentUpon>UpdateMarksAttendance.aspx</DependentUpon>
+    <Compile Include="Institute\UpdateInternals.aspx.designer.cs">
+      <DependentUpon>UpdateInternals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\UpdateAttendance.aspx.cs">
+      <DependentUpon>UpdateAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\UpdateAttendance.aspx.designer.cs">
+      <DependentUpon>UpdateAttendance.aspx</DependentUpon>
     </Compile>
     <Compile Include="RandomStringGenerator.cs" />
     <Content Include="App_Code\Util.cs" />

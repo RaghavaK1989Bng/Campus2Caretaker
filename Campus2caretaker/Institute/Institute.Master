@@ -45,7 +45,8 @@
                 <li id="menu_1"><a href="<%= Page.ResolveUrl("~/Institute/InstituteDefault.aspx")%>" title="Dashboard"><span>Dashboard</span></a></li>
                 <li id="menu_2"><a href="<%= Page.ResolveUrl("~/Institute/PersonlizeApplication.aspx")%>" title="Personalize Application"><span>Personalize Application</span></a></li>
                 <li id="menu_3"><a href="<%= Page.ResolveUrl("~/Institute/StudentRegistration.aspx")%>" title="Student Registration"><span>Student Registration</span></a></li>
-                <li id="menu_4"><a href="<%= Page.ResolveUrl("~/Institute/UpdateMarksAttendance.aspx")%>" title="Update Marks and Attendance"><span>Update Marks and Attendance</span></a></li>
+                <li id="menu_4"><a href="<%= Page.ResolveUrl("~/Institute/UpdateAttendance.aspx")%>" title="Update Attendance"><span>Update Attendance</span></a></li>
+                <li id="menu_6"><a href="<%= Page.ResolveUrl("~/Institute/UpdateInternals.aspx")%>" title="Update Internals"><span>Update Internals</span></a></li>
                 <li id="menu_5"><a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>" title="SMS"><span>SMS</span></a></li>
             </ul>
         </div>
