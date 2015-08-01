@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
 using DataTransferObject;
+using System.Drawing;
 
 namespace Campus2caretaker.Institute
 {
@@ -114,6 +115,7 @@ namespace Campus2caretaker.Institute
 
         private void AddRowsToGrid(DataTable dtStudents)
         {
+
             for (int p = 0; p < dtStudents.Rows.Count; p++)
             {
                 int rowIndex = 0;
@@ -209,6 +211,8 @@ namespace Campus2caretaker.Institute
             toInt.BranchId = int.Parse(ddlClass.SelectedValue);
             toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
             toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+            ViewState["CurrentTable"] = null;
+            SetInitialRow();
             AddRowsToGrid(new BOInternals().GetStudentsList(toInt));
         }
 
@@ -252,6 +256,8 @@ namespace Campus2caretaker.Institute
             toInt.Month = ddlMonth.SelectedValue;
             toInt.Year = ddlYear.SelectedValue;
             toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+            ViewState["CurrentTable"] = null;
+            SetInitialRow();
             AddRowsToGrid(new BOInternals().GetStudentsListEdit(toInt));
         }
 
@@ -271,6 +277,16 @@ namespace Campus2caretaker.Institute
                 btnGetStudentsList.Visible = false;
                 btnGetStudentsListEdit.Visible = true;
             }
+        }
+
+        protected void gvInternals_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvInternals_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            
         }
     }
 }

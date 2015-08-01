@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOInstituteDetails.cs" />
+    <Compile Include="DTOAttendance.cs" />
     <Compile Include="DTOInternals.cs" />
     <Compile Include="DTOLogin.cs" />
     <Compile Include="DTOPersonalizeApplication.cs" />

@@ -17,18 +17,18 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td colspan="2" align="left">
+                <td align="left" style="width: 121px; height: 35px;"></td>
+                <td colspan="2" align="left" style="height: 35px">
                     <asp:RadioButton ID="rbNew" runat="server" AutoPostBack="True" Checked="True" GroupName="rbNewEdit" OnCheckedChanged="rbNew_CheckedChanged" Text="New Entry" />
                     <asp:RadioButton ID="rbEdit" runat="server" AutoPostBack="True" GroupName="rbNewEdit" OnCheckedChanged="rbEdit_CheckedChanged" Text="Edit Entry" />
                 </td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
+                <td align="left" style="width: 238px; height: 35px;"></td>
+                <td align="left" style="height: 35px"></td>
+                <td align="left" style="height: 35px"></td>
+                <td align="left" style="height: 35px"></td>
+                <td align="left" style="height: 35px"></td>
+                <td align="left" style="height: 35px"></td>
+                <td style="height: 35px"></td>
             </tr>
             <tr>
                 <td align="left" style="width: 121px">&nbsp;</td>
@@ -171,8 +171,9 @@
                         </asp:DropDownList>
                     </div>
                 </td>
-                <td align="center" style="width: 238px">&nbsp;<asp:Button ID="btnGetStudentsList" runat="server" CssClass="button" onclick="btnGetStudentsList_Click" Text="Get Details" />
-                    <asp:Button ID="btnGetStudentsListEdit" runat="server" CssClass="button" onclick="btnGetStudentsListEdit_Click" Text="Get Details" />
+                <td align="center" style="width: 238px">&nbsp;
+                    <asp:Button ID="btnGetStudentsList" runat="server" CssClass="button" onclick="btnGetStudentsList_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
+                    <asp:Button ID="btnGetStudentsListEdit" runat="server" CssClass="button" onclick="btnGetStudentsListEdit_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
                 </td>
                 <td align="center" colspan="2">&nbsp;
                 </td>
@@ -207,7 +208,7 @@
 
                                         <asp:GridView ID="gvInternals" runat="server" AutoGenerateColumns="False" AllowPaging="false"
                                             ShowHeaderWhenEmpty="True" EmptyDataText="No records Found" OnRowCommand="gvInternals_RowCommand"
-                                            AllowSorting="True" Width="100%"
+                                            AllowSorting="True" Width="100%" OnDataBound="gvInternals_DataBound" OnRowCreated="gvInternals_RowCreated"
                                             CssClass="Gridview">
                                             <Columns>
                                                 <asp:BoundField DataField="RowNumber" HeaderText="Row Number" HeaderStyle-ForeColor="Black" ItemStyle-Width="60px" />
