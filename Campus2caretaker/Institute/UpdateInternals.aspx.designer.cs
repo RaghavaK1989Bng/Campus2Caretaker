@@ -94,6 +94,24 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlSemester;
         
         /// <summary>
+        /// Label14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label14;
+        
+        /// <summary>
+        /// ddlSubjects control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubjects;
+        
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>

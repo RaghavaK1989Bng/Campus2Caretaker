@@ -22,22 +22,77 @@
     <script type="text/javascript" src="../js/custom-form-elements.js"></script>
     <link href="../css/jquery.ptTimeSelect.css" rel="stylesheet" />
     <script type="text/javascript" src="../js/jquery.ptTimeSelect.js"></script>
-    <script src="../js/insmenu.js" type="text/javascript"></script>
-    <link href="../css/insmenu.css" rel="stylesheet" />
+    <%--<script src="../js/insmenu.js" type="text/javascript"></script>
+    <link href="../css/insmenu.css" rel="stylesheet" />--%>
 
     <link type="text/css" href="../css/menu.css" rel="stylesheet" />
     <script type="text/javascript" src="../js/menu.js"></script>
+    <style type="text/css">
 
+        img {
+            cursor: pointer;
+        }
+
+        /*Add a simple ccs3 animation effect in here.
+        *If you want to increase/decrease blink time you can change it easily.
+        *add any interval amount instead of 2s.
+        */
+        .blinking {
+            -webkit-animation: blink 6s infinite;
+            -moz-animation: blink 6s infinite;
+            animation: blink 6s infinite;
+        }
+
+        @-webkit-keyframes blink {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @-moz-keyframes blink {
+
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+
+            /*Here post_title is a h2 tag Id.*/
+
+            $("#imgInstituteLogo").addClass("blinking");
+        });
+    </script>
 </head>
 <body style="width: 100%;">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <div style="width:100%;text-align:center;">
-        <img  alt=""  src="../images/logo.png" style="height: 150px; width: 150px;background-color:white;" />
-        <img id="imgInstituteLogo" alt="" runat="server" style="height: 150px; width: 150px;background-color:white;" /></div>
+        <div style="width: 100%; text-align: center;">
+            <blink>  <img id="imgInstituteLogo" alt="" runat="server" style="background-color:white;" /></blink>
+        </div>
         <br />
-        <br />
+        <%--        <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder_Menu" runat="server"></asp:ContentPlaceHolder>
 
         <div id="ddcolortabs">
@@ -51,16 +106,41 @@
             </ul>
         </div>
         <div id="ddcolortabsline">&nbsp;</div>
-        <br />
+        <br />--%>
+        <div id="menu">
+            <ul class="menu">
+                <li><a href="#" class="parent"><span>Transactions</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="<%= Page.ResolveUrl("~/Institute/PersonlizeApplication.aspx")%>"><span>Personalize Application</span></a></li>
+                            <li><a href="<%= Page.ResolveUrl("~/Institute/StudentRegistration.aspx")%>"><span>Student Registration</span></a></li>
+                            <li><a href="<%= Page.ResolveUrl("~/Institute/UpdateAttendance.aspx")%>"><span>Update Attendance</span></a></li>
+                            <li><a href="<%= Page.ResolveUrl("~/Institute/UpdateInternals.aspx")%>"><span>Update Internals</span></a></li>
+                            <li><a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>"><span>SMS</span></a></li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#" class="parent"><span>Settings</span></a>
+                    <div>
+                        <ul>
+                            <li><span id="spnLogout">Logout</span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="last"><a href="#"><span>Help</span></a></li>
+            </ul>
+
+        </div>
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
             <script src="<%= ResolveUrl("~/validator/jquery.validator-0.3.6.min.js") %>" type="text/javascript"></script>
             <link href="<%= ResolveUrl("~/validator/validator.css") %>" rel="stylesheet" type="text/css" />
         </asp:ContentPlaceHolder>
 
-        
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

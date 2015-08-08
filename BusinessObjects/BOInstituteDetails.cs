@@ -54,5 +54,20 @@ namespace BusinessObjects
        {
            return new DAOInstituteDetails().GetInstituteId(email);
        }
+
+       public List<DTOInstituteDetails> GetAutoCompleteInstitutes(string reqString)
+       {
+           return new DAOInstituteDetails().GetAutoCompleteInstitutes(reqString);
+       }
+
+       public List<DTOInstituteDetails> GetAutoCompleteDistricts(string reqString)
+       {
+           return new DAOInstituteDetails().GetAutoCompleteInstituteDistricts(reqString);
+       }
+
+       public List<DTOInstituteDetails> GetAutoCompleteStates(string reqString)
+       {
+           return new DAOInstituteDetails().GetAutoCompleteStates(reqString);
+       }
     }
 }

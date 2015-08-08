@@ -48,12 +48,8 @@ namespace Campus2caretaker.Institute
         public void clear()
         {
             //Clears all the fields and gets the form to initial state
-            // Call Bind Model Codes and Model Description
 
             BindClassList();
-
-            //dsCommissionNo.DataBind();
-            //cmbComissionNo.DataBind();
 
             ListItem selectItem = new ListItem();
             selectItem.Text = "Select";
@@ -111,6 +107,17 @@ namespace Campus2caretaker.Institute
             ListItem Item = new ListItem("Select", "");
             ddlClass.Items.Insert(0, Item);
             ddlClass.SelectedIndex = 0;
+        }
+
+        private void BindSubjectsList()
+        {
+            DataTable dt = new BOPersonalizeApplication().GetSubjectsList(Session["InstituteID"].ToString(), int.Parse(ddlClass.SelectedValue));
+            ddlSubjects.DataSource = dt;
+            ddlSubjects.DataBind();
+
+            ListItem Item = new ListItem("Select", "");
+            ddlSubjects.Items.Insert(0, Item);
+            ddlSubjects.SelectedIndex = 0;
         }
 
         private void AddRowsToGrid(DataTable dtStudents)
@@ -230,6 +237,7 @@ namespace Campus2caretaker.Institute
                 toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
                 toInt.Month = ddlMonth.SelectedValue;
                 toInt.Year = ddlYear.SelectedValue;
+                toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
 
                 int index = Convert.ToInt32(e.CommandArgument.ToString());
                 Label lblStudentID = (Label)gvInternals.Rows[index].FindControl("lblStudentID");
@@ -255,6 +263,7 @@ namespace Campus2caretaker.Institute
             toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
             toInt.Month = ddlMonth.SelectedValue;
             toInt.Year = ddlYear.SelectedValue;
+            toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
             toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
             ViewState["CurrentTable"] = null;
             SetInitialRow();
@@ -286,7 +295,13 @@ namespace Campus2caretaker.Institute
 
         protected void gvInternals_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            
+
+        }
+
+        protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindSubjectsList();
+            ddlSubjects.SelectedIndex = 0;
         }
     }
 }

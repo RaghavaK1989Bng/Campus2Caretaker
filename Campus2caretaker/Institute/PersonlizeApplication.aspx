@@ -1,7 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="PersonlizeApplication.aspx.cs" Inherits="Campus2caretaker.Institute.PersonlizeApplication" EnableEventValidation="false" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
-    <span id="tabid" style="display: none">menu_2</span>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="background-color:White;height:100%;">
 
@@ -161,26 +158,26 @@
                 <td align="left" style="width: 121px">&nbsp;</td>
                 <td align="left" style="width: 178px">&nbsp;</td>
                 <td align="center">
-                    <asp:Button ID="btnAddClass" runat="server" CssClass="button" Text="Add Class"
-                        OnClick="btnAddClass_Click" ValidationGroup="saveclass" OnClientClick="return validate('classname');" Width="114px" height="30px" />
+                    <asp:Button ID="btnAddClass" runat="server" CssClass="button orange" Text="Add Class"
+                        OnClick="btnAddClass_Click" ValidationGroup="saveclass" OnClientClick="return validate('classname');"/>
                     <br />
                     <br />
-                    <asp:Button ID="btnRemoveClass" runat="server" CssClass="button" Text="Remove Class"
-                        OnClick="btnRemoveClass_Click" Width="114px" height="30px" />
+                    <asp:Button ID="btnRemoveClass" runat="server" CssClass="button orange" Text="Remove Class"
+                        OnClick="btnRemoveClass_Click" />
                     </td>
                 <td align="left" style="width: 238px">&nbsp;</td>
                 <td align="left" style="width: 178px">&nbsp;</td>
                 <td align="center">
-                    <asp:Button ID="btnAddSubjectTheory" runat="server" CssClass="button" Text="Add Subject (Theory)"
+                    <asp:Button ID="btnAddSubjectTheory" runat="server" CssClass="button orange" Text="Add Subject (Theory)"
                         OnClick="btnAddSubjectTheory_Click" ValidationGroup="saveSubject" OnClientClick="return validate('form');" height="30px" width="135px" />
                     <br />
                     <br />
-                    <asp:Button ID="btnAddSubjectLab" runat="server" CssClass="button" Text="Add Subject (Lab)"
+                    <asp:Button ID="btnAddSubjectLab" runat="server" CssClass="button orange" Text="Add Subject (Lab)"
                         OnClick="btnAddSubjectLab_Click" ValidationGroup="saveSubject" OnClientClick="return validate('form');" height="30px" width="135px" />
                     <br />
                     <br />
-                    <asp:Button ID="btnRemoveClass0" runat="server" CssClass="button" Text="Remove Subject"
-                        OnClick="btnRemoveClass_Click" Width="114px" height="30px" />
+                    <asp:Button ID="btnRemoveClass0" runat="server" CssClass="button orange" Text="Remove Subject"
+                        OnClick="btnRemoveClass_Click"/>
                     </td>
                 <td align="left">&nbsp;</td>
                 <td align="left">&nbsp;</td>
@@ -241,23 +238,23 @@
                 <td align="left" style="width: 121px">
                     &nbsp;</td>
                 <td align="center" colspan="2">
-                    <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save"
-                        OnClick="btnSave_Click" height="30px" width="114px" />
+                    <asp:Button ID="btnSave" runat="server" CssClass="button orange" Text="Save"
+                        OnClick="btnSave_Click"/>
                     &nbsp;
-                    <asp:Button ID="btnClear" runat="server" CssClass="button"
+                    <asp:Button ID="btnClear" runat="server" CssClass="button orange"
                         Text="Clear" OnClick="btnClear_Click"
-                        meta:resourcekey="btnClearResource1" height="30px" width="114px" />
+                        meta:resourcekey="btnClearResource1" />
                     </td>
                 <td align="center" style="width: 238px">
                     &nbsp;
                     </td>
                 <td align="center" colspan="2">
-                    <asp:Button ID="btnSaveSubjects" runat="server" CssClass="button" Text="Save"
-                        OnClick="btnSaveSubjects_Click"  height="30px" width="114px" />
+                    <asp:Button ID="btnSaveSubjects" runat="server" CssClass="button orange" Text="Save"
+                        OnClick="btnSaveSubjects_Click"/>
                     &nbsp;
-                    <asp:Button ID="btnClearSubjects" runat="server" CssClass="button"
+                    <asp:Button ID="btnClearSubjects" runat="server" CssClass="button orange"
                         Text="Clear" OnClick="btnClearSubjects_Click"
-                        meta:resourcekey="btnClearResource1" height="30px" width="114px" />
+                        meta:resourcekey="btnClearResource1"/>
                     </td>
                 <td align="left">&nbsp;</td>
                 <td align="left">&nbsp;</td>

@@ -28,6 +28,18 @@ namespace DataAccessObject
 
         }
 
+        public DataTable GetSubjectsList(string _pInstituteId, int classId)
+        {
+            int InstituteId = int.Parse(_pInstituteId);
+            Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
+            var res = (from s in dbContext.tblSubjectDetails
+                       join c in dbContext.tblBranchDetails on s.colBranchId equals c.colBranchId
+                       where s.colInstituteId == InstituteId && s.colBranchId == classId
+                       select s);
+            return res.ToDataTable();
+
+        }
+
         public bool SaveClasses(DTOPersonalizeApplication DTOPApplication)
         {
             try

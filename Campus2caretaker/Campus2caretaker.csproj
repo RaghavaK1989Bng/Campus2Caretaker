@@ -38,10 +38,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="Excel">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -110,6 +113,9 @@
     <Content Include="AddNewInstitute.aspx" />
     <Content Include="AdminDefault.aspx" />
     <Content Include="AdminLogin.aspx" />
+    <Content Include="Auto\GetInstituteStates.aspx" />
+    <Content Include="Auto\GetInstituteDistricts.aspx" />
+    <Content Include="Auto\GetInstituteNames.aspx" />
     <Content Include="css\Images\color_tabs_left.gif" />
     <Content Include="css\Images\color_tabs_right.gif" />
     <Content Include="css\insmenu.css" />
@@ -282,6 +288,27 @@
     </Compile>
     <Compile Include="AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Auto\GetInstituteStates.aspx.cs">
+      <DependentUpon>GetInstituteStates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auto\GetInstituteStates.aspx.designer.cs">
+      <DependentUpon>GetInstituteStates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Auto\GetInstituteDistricts.aspx.cs">
+      <DependentUpon>GetInstituteDistricts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auto\GetInstituteDistricts.aspx.designer.cs">
+      <DependentUpon>GetInstituteDistricts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Auto\GetInstituteNames.aspx.cs">
+      <DependentUpon>GetInstituteNames.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auto\GetInstituteNames.aspx.designer.cs">
+      <DependentUpon>GetInstituteNames.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\Institute.Master.cs">
       <DependentUpon>Institute.Master</DependentUpon>

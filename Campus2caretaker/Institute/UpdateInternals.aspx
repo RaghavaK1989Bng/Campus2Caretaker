@@ -1,8 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateInternals.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateInternals" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
-    <span id="tabid" style="display: none">menu_6</span>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="background-color: White; height: 100%;">
 
@@ -37,7 +33,7 @@
                 <td align="left" style="width: 195px">
                     <div class="dropdown">
                         <asp:DropDownList ID="ddlClass" runat="server" class="dropdown-select" validate="form" require="Required Field Missing."
-                            DataTextField="colBranchName" DataValueField="colBranchId">
+                            DataTextField="colBranchName" DataValueField="colBranchId" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
                 </td>
@@ -78,6 +74,38 @@
                             <asp:ListItem Text="6" Value="6"></asp:ListItem>
                             <asp:ListItem Text="7" Value="7"></asp:ListItem>
                             <asp:ListItem Text="8" Value="8"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </td>
+                <td align="left" style="width: 238px">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left" style="width: 121px">&nbsp;</td>
+                <td align="left" style="width: 178px">&nbsp;</td>
+                <td align="left" style="width: 195px">&nbsp;</td>
+                <td align="left" style="width: 238px">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left" style="width: 121px">&nbsp;</td>
+                <td align="left" style="width: 178px">
+                    <asp:Label ID="Label14" runat="server" class="label" Text="Subject :"></asp:Label>
+                </td>
+                <td align="left" style="width: 195px">
+                    <div class="dropdown">
+                        <asp:DropDownList ID="ddlSubjects" runat="server" class="dropdown-select" 
+                            validate="form" require="Required Field Missing." DataTextField="colSubjectName" DataValueField="colSubjectId">
                         </asp:DropDownList>
                     </div>
                 </td>
@@ -172,8 +200,8 @@
                     </div>
                 </td>
                 <td align="center" style="width: 238px">&nbsp;
-                    <asp:Button ID="btnGetStudentsList" runat="server" CssClass="button" onclick="btnGetStudentsList_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
-                    <asp:Button ID="btnGetStudentsListEdit" runat="server" CssClass="button" onclick="btnGetStudentsListEdit_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
+                    <asp:Button ID="btnGetStudentsList" runat="server" CssClass="button orange" onclick="btnGetStudentsList_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
+                    <asp:Button ID="btnGetStudentsListEdit" runat="server" CssClass="button orange" onclick="btnGetStudentsListEdit_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
                 </td>
                 <td align="center" colspan="2">&nbsp;
                 </td>
@@ -327,7 +355,7 @@
                     &nbsp;</td>
 
                 <td>
-                    <asp:Button ID="btnUpload" runat="server" CssClass="button" onclick="btnUpload_Click" Text="Upload" />
+                    <asp:Button ID="btnUpload" runat="server" CssClass="button orange" onclick="btnUpload_Click" Text="Upload" />
                 </td>
                 <td style="width: 238px">&nbsp;</td>
                 <td>&nbsp;</td>

@@ -82,5 +82,13 @@ namespace DataTransferObject
             get { return marksScored; }
             set { marksScored = value; }
         }
+
+        private int _subjectId;
+
+        public int SubjectId
+        {
+            get { return _subjectId; }
+            set { _subjectId = value; }
+        }
     }
 }

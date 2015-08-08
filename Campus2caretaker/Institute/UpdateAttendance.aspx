@@ -1,7 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateAttendance.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateAttendance" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
-    <span id="tabid" style="display: none">menu_4</span>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="background-color:White;height:100%;">
 
@@ -170,9 +167,9 @@
                         </asp:DropDownList>
                     </div>
                 </td>
-                <td align="center" style="width: 238px">&nbsp;
-                    <asp:Button ID="btnGetStudentsList" runat="server" CssClass="button" onclick="btnGetStudentsList_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
-                    <asp:Button ID="btnGetStudentsListEdit" runat="server" CssClass="button" onclick="btnGetStudentsListEdit_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');" />
+                <td align="center" style="width: 238px">
+                    <asp:Button ID="btnGetStudentsList" runat="server" CssClass="button orange" onclick="btnGetStudentsList_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');"/>
+                    <asp:Button ID="btnGetStudentsListEdit" runat="server" CssClass="button orange" onclick="btnGetStudentsListEdit_Click" Text="Get Details" ValidationGroup="save" OnClientClick="return validate('form');" />
                 </td>
                 <td align="center" colspan="2">&nbsp;
                 </td>
@@ -221,32 +218,32 @@
                                                         <asp:Label ID="lblRollNo" runat="server" Width="150px" Text='<%# Bind("Column2") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Classes Held" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
+                                                <asp:TemplateField HeaderText="Classes Held (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtClassesHeld" runat="server"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Classes Attended" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
+                                                <asp:TemplateField HeaderText="Classes Attended (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtClassesAttended" runat="server"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Percentage" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
+                                                <asp:TemplateField HeaderText="Percentage (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtPercentage" runat="server"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Classes Held" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
+                                                <asp:TemplateField HeaderText="Classes Held (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtCumClassesHeld" runat="server"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Classes Attended" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
+                                                <asp:TemplateField HeaderText="Classes Attended (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtCumClassesAttended" runat="server"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Percentage" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
+                                                <asp:TemplateField HeaderText="Percentage (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtCumPercentage" runat="server"></asp:TextBox>
                                                     </ItemTemplate>
@@ -341,7 +338,7 @@
                     &nbsp;</td>
 
                 <td>
-                    <asp:Button ID="btnUpload" runat="server" CssClass="button" onclick="btnUpload_Click" Text="Upload" />
+                    <asp:Button ID="btnUpload" runat="server" CssClass="button orange" onclick="btnUpload_Click" Text="Upload" />
                 </td>
                 <td style="width: 238px">&nbsp;</td>
                 <td>&nbsp;</td>

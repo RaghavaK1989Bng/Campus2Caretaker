@@ -40,15 +40,6 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.HtmlControls.HtmlImage imgInstituteLogo;
         
         /// <summary>
-        /// ContentPlaceHolder_Menu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_Menu;
-        
-        /// <summary>
         /// ContentPlaceHolder2 control.
         /// </summary>
         /// <remarks>

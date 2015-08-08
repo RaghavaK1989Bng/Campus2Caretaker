@@ -175,5 +175,73 @@ namespace DataAccessObject
             return res.First().colInstituteId;
         }
 
+
+        public List<DTOInstituteDetails> GetAutoCompleteInstitutes(string reqString)
+        {
+            Campus2CaretakerDataContext dbcontext = new Campus2CaretakerDataContext();
+            if (!string.IsNullOrEmpty(reqString))
+            {
+                return (from v in dbcontext.tblInstituteDetails
+                        where v.colInstituteName.Contains(reqString)
+                        select new DTOInstituteDetails
+                        {
+                            InstituteName = v.colInstituteName,
+                            InstituteID = v.colInstituteId
+                        }).ToList();
+            }
+            else
+            {
+                return (from v in dbcontext.tblInstituteDetails
+                        select new DTOInstituteDetails
+                        {
+                            InstituteName = v.colInstituteName,
+                            InstituteID = v.colInstituteId
+                        }).ToList();
+            }
+        }
+
+        public List<DTOInstituteDetails> GetAutoCompleteInstituteDistricts(string reqString)
+        {
+            Campus2CaretakerDataContext dbcontext = new Campus2CaretakerDataContext();
+            if (!string.IsNullOrEmpty(reqString))
+            {
+                return (from v in dbcontext.tblInstituteDetails
+                        where v.colDistrict.Contains(reqString)
+                        select new DTOInstituteDetails
+                        {
+                            District = v.colDistrict
+                        }).ToList();
+            }
+            else
+            {
+                return (from v in dbcontext.tblInstituteDetails
+                        select new DTOInstituteDetails
+                        {
+                            District = v.colDistrict
+                        }).ToList();
+            }
+        }
+
+        public List<DTOInstituteDetails> GetAutoCompleteStates(string reqString)
+        {
+            Campus2CaretakerDataContext dbcontext = new Campus2CaretakerDataContext();
+            if (!string.IsNullOrEmpty(reqString))
+            {
+                return (from v in dbcontext.tblInstituteDetails
+                        where v.colState.Contains(reqString)
+                        select new DTOInstituteDetails
+                        {
+                            State = v.colState
+                        }).ToList();
+            }
+            else
+            {
+                return (from v in dbcontext.tblInstituteDetails
+                        select new DTOInstituteDetails
+                        {
+                            State = v.colState
+                        }).ToList();
+            }
+        }
     }
 }

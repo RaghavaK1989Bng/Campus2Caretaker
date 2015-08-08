@@ -29,5 +29,10 @@ namespace BusinessObjects
         {
             return new DAOPersonalizeApplication().SaveSubjects(DTOPApplication);
         }
+
+        public DataTable GetSubjectsList(string _pInstituteId, int classId)
+        {
+            return new DAOPersonalizeApplication().GetSubjectsList(_pInstituteId, classId);
+        }
     }
 }

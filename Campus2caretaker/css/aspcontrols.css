@@ -1,38 +1,39 @@
-﻿* { padding:0;
+﻿* {
+    padding: 0;
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
 }
 
 html {
-background:#333333; 
-border: 0;
-padding: 0;
-margin: 0;
-} 
-body {
-  background:#333333;
-  font-family:'Hoefler Text', Georgia, 'Times New Roman', serif;
-  font-size:12px;
-  font-style:normal;
-      width:1150px;
-    height:650px;
+    background: #333333;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
-.headertext
-        {
-            font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
-	font-weight: bold;
-	font-style:italic;
-        font-size: 1.45em;
-	letter-spacing: .15em;
-	line-height: 1.1em;
-	margin:0px;
-	text-align: center;
-	text-transform: capitalize;
-	color:Maroon;
-        }
-.button {
+body {
+    background: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    width: 1150px;
+    height: 650px;
+}
+
+.headertext {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.45em;
+    letter-spacing: .15em;
+    line-height: 1.1em;
+    margin: 0px;
+    text-align: center;
+    text-transform: capitalize;
+    color: Maroon;
+}
+/*.button {
    border-top: 0px solid #4b687c;
    background: #EBECE4;
    padding: 4px 4px;
@@ -52,34 +53,64 @@ body {
 .button:active {
    border-top-color: #ffffff;
    background: #ffffff;
-}
-.button[disabled]
-{
-        color: Gray;
-}
-.textbox
-{
-    height:22px;
-    width:180px;
-    background-color:White;
-    font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
-    font-size:14px;
-    color:WindowText;
-}
-.textbox:focus
-{
-    border: 2px solid green;
-}
-.textbox:invalid
-{
-    border: 2px solid red;
+}*/
+
+.orange {
+    color: #fef4e9;
+    border: solid 1px #da7c0c;
+    background: #f78d1d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+    background: -moz-linear-gradient(top, #faa51a, #f47a20);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
 }
 
+.button {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 12px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+    .button[disabled] {
+        color: Gray;
+    }
+
+.textbox {
+    height: 22px;
+    width: 180px;
+    background-color: White;
+    /*font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: WindowText;
+}
+
+    .textbox:focus {
+        border: 2px solid green;
+    }
+
+    .textbox:invalid {
+        border: 2px solid red;
+    }
+
 .label {
-color: Black;
-font-weight: 500;
-display: block;
-float: left;
+    color: Black;
+    font-weight: 500;
+    display: block;
+    float: left;
 }
 
 #container {
@@ -87,120 +118,111 @@ float: left;
     margin: 10px auto;
 }
 
-.popUpClassValue
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassValue {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpClassNumber
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassNumber {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpClassImage
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassImage {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpClassDdl
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassDdl {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpClassEmail
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassEmail {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpClassWebsite
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassWebsite {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpClassDate
-{
-	color:Red;
- 	font-size:11px;
+.popUpClassDate {
+    color: Red;
+    font-size: 11px;
 }
 
-.popUpDeleteImage
-{
+.popUpDeleteImage {
 }
 
-.popUpMaxLimit
-{
-	color:Red;
-	font-size:11px;
+.popUpMaxLimit {
+    color: Red;
+    font-size: 11px;
 }
 
 #popup_container {
-	font-family: Arial, sans-serif;
-	font-size: 12px;
-	min-width: 300px; 
-	max-width: 600px; 
-	background: #FFF;
-	border: solid 5px #999;
-	color: #000;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    min-width: 300px;
+    max-width: 600px;
+    background: #FFF;
+    border: solid 5px #999;
+    color: #000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -border-radius: 5px;
 }
 
 #popup_title {
-	font-size: 14px;
-	font-weight: bold;
-	text-align: center;
-	line-height: 1.75em;
-	color: #666;
-	background: #CCC url(../images/title.gif) top repeat-x;
-	border: solid 1px #FFF;
-	border-bottom: solid 1px #999;
-	cursor: default;
-	padding: 0em;
-	margin: 0em;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.75em;
+    color: #666;
+    background: #CCC url(../images/title.gif) top repeat-x;
+    border: solid 1px #FFF;
+    border-bottom: solid 1px #999;
+    cursor: default;
+    padding: 0em;
+    margin: 0em;
 }
 
 #popup_content {
-	background: 16px 16px no-repeat url(../images/info.gif);
-	padding: 1em 1.75em;
-	margin: 0em;
+    background: 16px 16px no-repeat url(../images/info.gif);
+    padding: 1em 1.75em;
+    margin: 0em;
 }
 
-#popup_content.alert {
-	background-image: url(../images/info.gif);
-}
+    #popup_content.alert {
+        background-image: url(../images/info.gif);
+    }
 
-#popup_content.confirm {
-	background-image: url(../images/important.gif);
-}
+    #popup_content.confirm {
+        background-image: url(../images/important.gif);
+    }
 
-#popup_content.prompt {
-	background-image: url(../images/help.gif);
-}
+    #popup_content.prompt {
+        background-image: url(../images/help.gif);
+    }
 
 #popup_message {
-	padding-left: 48px;
+    padding-left: 48px;
 }
 
 #popup_panel {
-	text-align: center;
-	margin: 1em 0em 0em 1em;
+    text-align: center;
+    margin: 1em 0em 0em 1em;
 }
 
 #popup_prompt {
-	margin: .5em 0em;
+    margin: .5em 0em;
 }
 
 .CustomComboBoxStyle .ajax__combobox_textboxcontainer input {
     border: solid 1px #B7D3FC;
     border-right: 0px none;
-    width:120px;
+    width: 120px;
 }
 
 .CustomComboBoxStyle .ajax__combobox_buttoncontainer button {
@@ -208,108 +230,103 @@ float: left;
     border: solid 1px #B7D3FC;
 }
 
-.tdLeftAlignWithBottomMargin
-{
-	text-align:left;
-	margin-left: 80px;
-	margin-bottom:10px;
-	padding-bottom:8px;
+.tdLeftAlignWithBottomMargin {
+    text-align: left;
+    margin-left: 80px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
 }
 
-.numeric
-{}
-.digits
-{}
-.popUpClassXls
-{}
-.LableHeading
-{
- color:Black;	
-  font-weight:bold;
-  font-family:Arial;
-  font-size:12px;
-}
- 
-.leftMargin
-{
- 	margin-left:50px;
+.numeric {
 }
 
-.wrapper
-{
-	width:900px;
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
-}
- .DivBorder
- {
- 	border:red solid 1px;
- 	margin-left:auto;
- 	margin-right:auto;
- }
- 
- .TextboxPadding
- {
- 	padding-bottom:5px;
- }
- 
-  .Border{
- border: #CFCECE solid 1px;
- background-color: #F0F7FF;
- }
- 
- .logoMargin
-{
-    margin-top:80px;
-    margin-bottom:80px;
-}
-.hiddencol
-{
-    display:none;
-}
-.visiblecol
-{
-   display:block;
-}
-    
-.ddlHour
-{
-	width:45px;
-}
-.ddlMin
-{
-	width:45px;
-}
-.ddlTimeType
-{
-	width:45px;
+.digits {
 }
 
-.textarea
-{
-    height:50px;
-    width:180px;
-    background-color:White;
-    font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
-    font-size:14px;
-    color:WindowText;
-    resize: none; 
+.popUpClassXls {
+}
+
+.LableHeading {
+    color: Black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.leftMargin {
+    margin-left: 50px;
+}
+
+.wrapper {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.DivBorder {
+    border: red solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.TextboxPadding {
+    padding-bottom: 5px;
+}
+
+.Border {
+    border: #CFCECE solid 1px;
+    background-color: #F0F7FF;
+}
+
+.logoMargin {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.hiddencol {
+    display: none;
+}
+
+.visiblecol {
+    display: block;
+}
+
+.ddlHour {
+    width: 45px;
+}
+
+.ddlMin {
+    width: 45px;
+}
+
+.ddlTimeType {
+    width: 45px;
+}
+
+.textarea {
+    height: 50px;
+    width: 180px;
+    background-color: White;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: WindowText;
+    resize: none;
 }
 
 .checkbox, .radio {
-  padding: 0 5px 0 0;
-  background: url(checkbox.png) no-repeat;
-  display: block;
-  clear: left;
-  float: left;
+    padding: 0 5px 0 0;
+    background: url(checkbox.png) no-repeat;
+    display: block;
+    clear: left;
+    float: left;
 }
 
 /* style for ajax dropdown */
 .CustomComboBoxStyle .ajax__combobox_textboxcontainer input {
     border: solid 1px #B7D3FC;
     border-right: 0px none;
-    width:120px;
+    width: 120px;
 }
 
 .CustomComboBoxStyle .ajax__combobox_buttoncontainer button {
@@ -317,26 +334,22 @@ float: left;
     border: solid 1px #B7D3FC;
 }
 
-.divMainContainer
-{
-	width:400px;
-	height:300px;
-	border:1px solid lightblue;	
-	padding-top:20px;
-	text-align:center;
+.divMainContainer {
+    width: 400px;
+    height: 300px;
+    border: 1px solid lightblue;
+    padding-top: 20px;
+    text-align: center;
 }
 
-.divSameLine
-{
-	
-	float:left;
-	width:48%;
-	margin:2px;
-	font-size:11;
-
+.divSameLine {
+    float: left;
+    width: 48%;
+    margin: 2px;
+    font-size: 11;
 }
-.divClearFloat
-{
-	clear:both;
-	visibility:hidden;
+
+.divClearFloat {
+    clear: both;
+    visibility: hidden;
 }

@@ -1,7 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="StudentRegistration.aspx.cs" Inherits="Campus2caretaker.Institute.StudentRegistration" EnableEventValidation="false" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Menu" runat="server">
-    <span id="tabid" style="display: none">menu_3</span>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <script type="text/javascript" language="javascript">
 
@@ -410,15 +407,15 @@
         <td style="width: 178px">&nbsp;            </td>
        
         <td colspan="3">
-            <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" 
+            <asp:Button ID="btnSave" runat="server" CssClass="button orange" Text="Save" 
                 onclick="btnSave_Click" ValidationGroup="save" OnClientClick="return validate('form');" />
-            <asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="Update" 
+            <asp:Button ID="btnUpdate" runat="server" CssClass="button orange" Text="Update" 
                 onclick="btnUpdate_Click" meta:resourcekey="btnUpdateResource1" 
                  OnClientClick="return validate('form');" />
-            <asp:Button ID="btnDelete" runat="server" CssClass="button" Text="Delete" 
+            <asp:Button ID="btnDelete" runat="server" CssClass="button orange" Text="Delete" 
                 onclick="btnDelete_Click" meta:resourcekey="btnDeleteResource1" 
                 OnClientClick="return validate('form');" />
-            <asp:Button ID="btnClear" runat="server" CssClass="button" 
+            <asp:Button ID="btnClear" runat="server" CssClass="button orange" 
                 Text="Clear" onclick="btnClear_Click" 
                 meta:resourcekey="btnClearResource1" />
         </td>
@@ -559,7 +556,7 @@
         <td style="width: 178px">&nbsp;</td>
        
         <td align="left">
-            <asp:Button ID="btnUpload" runat="server" CssClass="button" Text="Upload" 
+            <asp:Button ID="btnUpload" runat="server" CssClass="button orange" Text="Upload" 
                 onclick="btnUpload_Click" />
             </td>
         <td>

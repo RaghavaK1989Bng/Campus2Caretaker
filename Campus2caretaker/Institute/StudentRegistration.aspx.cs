@@ -7,7 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
 using DataTransferObject;
-using System.Data.OleDb;
+using System.IO;
+using Excel;
 
 namespace Campus2caretaker.Institute
 {
@@ -286,7 +287,7 @@ namespace Campus2caretaker.Institute
                 txtMotherName.Text = dt.Rows[0][3].ToString();
                 txtDOB.Text = DateTime.Parse(dt.Rows[0][4].ToString()).ToString("dd MMMM, yyyy");
                 if (Session["InstituteType"].ToString() != "S")
-                ddlSemester.SelectedValue = dt.Rows[0][5].ToString();
+                    ddlSemester.SelectedValue = dt.Rows[0][5].ToString();
                 ddlClass.SelectedValue = dt.Rows[0][6].ToString();
                 txtRollNo.Text = dt.Rows[0][8].ToString();
                 txtParentsContactNumber.Text = dt.Rows[0][9].ToString();
@@ -397,13 +398,6 @@ namespace Campus2caretaker.Institute
             {
                 #region local variables for processing
 
-                string path = string.Concat(Server.MapPath("~/Documents/" + FileName));
-
-                OleDbConnection OleDbcon = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + path + ";" + "Extended Properties=Excel 8.0;");
-
-                OleDbCommand ocmd = new OleDbCommand("select * from [Sheet1$]", OleDbcon);
-                OleDbcon.Open();
-                OleDbDataReader odr = ocmd.ExecuteReader();
                 string StudentName = "";
                 string LastName = "";
                 string FatherName = "";
@@ -416,27 +410,45 @@ namespace Campus2caretaker.Institute
                 string ParentsMobileNo = "";
                 string StudentAddress = "";
 
-                //int counter = 0;
-
                 #endregion
 
-                while (odr.Read())
+                string path = string.Concat(Server.MapPath("~/Documents/" + FileName));
+
+
+                FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read);
+                IExcelDataReader excelReader;
+
+                switch (Path.GetExtension(path).ToLower())
                 {
-                    //if (counter == 0)
-                    //{
-                    //    transactionHistory = valid(odr, 0); //Here we are calling the valid method
-                    //    counter++;
-                    //    continue;
-                    //}
-                    //else if (counter > 0)
-                    //{
+                    case ".xls":
+                        //1. Reading from a binary Excel file ('97-2003 format; *.xls)
+                        excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+                        break;
+                    //...
+                    case ".xlsx":
+                        //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
+                        excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                        break;
+                    //...
+                    default:
+                        return false;
+                }
+                //3. DataSet - Create column names from first row
+                excelReader.IsFirstRowAsColumnNames = true;
+                DataSet result = excelReader.AsDataSet();
+
+                //5. Data Reader methods
+
+                for (int i = 0; i < result.Tables[0].Rows.Count; i++)
+                {
+                    //excelReader.GetInt32(0);
                     try
                     {
-                        StudentName = valid(odr, 0);
-                        LastName = valid(odr, 1);
-                        FatherName = valid(odr, 2);
-                        MotherName = valid(odr, 3);
-                        DateOfBirth = DateTime.Parse(valid(odr, 4));
+                        StudentName = valid(result.Tables[0].Rows[i], 0);
+                        LastName = valid(result.Tables[0].Rows[i], 1);
+                        FatherName = valid(result.Tables[0].Rows[i], 2);
+                        MotherName = valid(result.Tables[0].Rows[i], 3);
+                        DateOfBirth = DateTime.Parse(valid(result.Tables[0].Rows[i], 4));
 
                         if (Session["InstituteType"].ToString() == "S")
                         {
@@ -444,18 +456,18 @@ namespace Campus2caretaker.Institute
                         }
                         else
                         {
-                            Semester = int.Parse(valid(odr, 5));
+                            Semester = int.Parse(valid(result.Tables[0].Rows[i], 5));
                         }
 
-                        Branch = valid(odr, 6);
-                        Section = valid(odr, 7);
-                        RollNo = valid(odr, 8);
-                        ParentsMobileNo = valid(odr, 9);
-                        StudentAddress = valid(odr, 10);
+                        Branch = valid(result.Tables[0].Rows[i], 6);
+                        Section = valid(result.Tables[0].Rows[i], 7);
+                        RollNo = valid(result.Tables[0].Rows[i], 8);
+                        ParentsMobileNo = valid(result.Tables[0].Rows[i], 9);
+                        StudentAddress = valid(result.Tables[0].Rows[i], 10);
 
-                        if (odr[0] == DBNull.Value)
+                        if (excelReader[0] == DBNull.Value)
                             break;
-                        string BranchId = new BOStudentRegistration().GetBranchId(valid(odr, 6));
+                        string BranchId = new BOStudentRegistration().GetBranchId(valid(result.Tables[0].Rows[i], 6));
                         if (BranchId == string.Empty)
                         {
                             string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Invalid Branch Name found in Branch column!!; it should be number!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
@@ -484,6 +496,7 @@ namespace Campus2caretaker.Institute
                         //Here using this method we are inserting the data into a temporary DataTable
                         dt.Rows.Add(StudentName, LastName, FatherName, MotherName, DateOfBirth, Semester, BranchId, Section, RollNo, ParentsMobileNo, StudentAddress);
                     }
+                   
                     catch (Exception err)
                     {
                         string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Invalid data found in uploaded excel!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
@@ -491,17 +504,16 @@ namespace Campus2caretaker.Institute
                         isValidExcelSheet = false;
                         break;
                     }
-                    //}
-                    //counter++;
                 }
-                OleDbcon.Close();
+                //6. Free resources (IExcelDataReader is IDisposable)
+                excelReader.Close();
+
             }
             catch (DataException ee)
             {
                 string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='" + ee.Message + "';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
                 isValidExcelSheet = false;
-
             }
             finally
             {
@@ -511,10 +523,10 @@ namespace Campus2caretaker.Institute
             return isValidExcelSheet;
         }
 
-        protected string valid(OleDbDataReader myreader, int stval)
+        protected string valid( DataRow row, int stval)
         {
             //if any columns are found null then they are replaced by zero
-            object val = myreader[stval];
+            object val = row[stval];
             if (val != DBNull.Value)
                 return val.ToString();
             else

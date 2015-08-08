@@ -199,7 +199,7 @@
                 <asp:Label ID="Label4" class="label" runat="server" Text="Institute Logo :" ></asp:Label></td>
             <td align="left" style="width: 195px">
               <asp:FileUpload ID="FileUpPhoto" runat="server" />
-                <asp:Button ID="btnUpload" CssClass="button" runat="server" Text="Upload" 
+                <asp:Button ID="btnUpload" CssClass="button orange" runat="server" Text="Upload" 
                     onclick="btnUpload_Click" />
               <br />
               <br />
@@ -432,15 +432,15 @@
         <td style="width: 178px">&nbsp;            </td>
        
         <td colspan="3">
-            <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" 
+            <asp:Button ID="btnSave" runat="server" CssClass="button orange" Text="Save" 
                 onclick="btnSave_Click" ValidationGroup="save" OnClientClick="return validate('form');" />
-            <asp:Button ID="btnUpdate" runat="server" CssClass="button" Text="Update" 
+            <asp:Button ID="btnUpdate" runat="server" CssClass="button orange" Text="Update" 
                 onclick="btnUpdate_Click" meta:resourcekey="btnUpdateResource1" 
                  OnClientClick="return validate('form');" />
-            <asp:Button ID="btnDelete" runat="server" CssClass="button" Text="Delete" 
+            <asp:Button ID="btnDelete" runat="server" CssClass="button orange" Text="Delete" 
                 onclick="btnDelete_Click" meta:resourcekey="btnDeleteResource1" 
                 OnClientClick="return validate('form');" />
-            <asp:Button ID="btnClear" runat="server" CssClass="button" 
+            <asp:Button ID="btnClear" runat="server" CssClass="button orange" 
                 Text="Clear" onclick="btnClear_Click" 
                 meta:resourcekey="btnClearResource1" />
         </td>
