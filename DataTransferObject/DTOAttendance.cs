@@ -91,6 +91,7 @@ namespace DataTransferObject
             get { return cumClassesHeld; }
             set { cumClassesHeld = value; }
         }
+
         private decimal cumClassesAttended;
 
         public decimal CumClassesAttended
@@ -98,12 +99,21 @@ namespace DataTransferObject
             get { return cumClassesAttended; }
             set { cumClassesAttended = value; }
         }
+
         private decimal cumClassesPercentage;
 
         public decimal CumClassesPercentage
         {
             get { return cumClassesPercentage; }
             set { cumClassesPercentage = value; }
+        }
+
+        private int _subjectId;
+
+        public int SubjectId
+        {
+            get { return _subjectId; }
+            set { _subjectId = value; }
         }
     }
 }

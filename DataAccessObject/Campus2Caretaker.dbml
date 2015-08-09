@@ -31,8 +31,8 @@
       <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteLogins" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteLogin" />
       <Association Name="tblInstituteDetail_tblBranchDetail" Member="tblBranchDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblBranchDetail" />
       <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblSubjectDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblSubjectDetail" />
-      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblAttendanceDetail" />
       <Association Name="tblInstituteDetail_tblInternalMark" Member="tblInternalMarks" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInternalMark" />
+      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblAttendanceDetail" />
     </Type>
   </Table>
   <Table Name="dbo.tblBranchDetails" Member="tblBranchDetails">
@@ -74,26 +74,6 @@
       <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblAttendanceDetail" />
     </Type>
   </Table>
-  <Table Name="dbo.tblAttendanceDetails" Member="tblAttendanceDetails">
-    <Type Name="tblAttendanceDetail">
-      <Column Name="colAttendanceEntryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colClassesHeldMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colClassesAttendedMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colClassesAttendedMonthPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colAccumulatedClassesHeld" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colAccumulatedClassesAttended" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colAccumulatedClassesAttendedPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
-      <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblStudentDetail" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblStudentDetail" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblInternalMarks" Member="tblInternalMarks">
     <Type Name="tblInternalMark">
       <Column Name="colInternalsEntryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -110,6 +90,27 @@
       <Column Name="colMarksScored" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="colSubjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblInstituteDetail_tblInternalMark" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblAttendanceDetails" Member="tblAttendanceDetails">
+    <Type Name="tblAttendanceDetail">
+      <Column Name="colAttendanceEntryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesHeldMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesAttendedMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesAttendedMonthPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesHeld" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesAttended" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesAttendedPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
+      <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblStudentDetail" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblStudentDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">
@@ -144,6 +145,24 @@
       <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetStudentsInternalsDetails" Method="GetStudentsInternalsDetails">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentsInternalsDetailsResult">
+      <Column Name="colInternals" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colYear" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colMaxMarks" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colMinMarks" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colMarksScored" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.GetStudentsAttendanceDetails" Method="GetStudentsAttendanceDetails">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <ElementType Name="GetStudentsAttendanceDetailsResult">
@@ -155,23 +174,6 @@
       <Column Name="colAccumulatedClassesHeld" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="colAccumulatedClassesAttended" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="colAccumulatedClassesAttendedPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colStudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetStudentsInternalsDetails" Method="GetStudentsInternalsDetails">
-    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetStudentsInternalsDetailsResult">
-      <Column Name="colInternals" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colYear" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colMaxMarks" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colMinMarks" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colMarksScored" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="colStudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="colStudentName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />

@@ -216,7 +216,14 @@ namespace Campus2caretaker.Institute
         {
             DTOInternals toInt = new DTOInternals();
             toInt.BranchId = int.Parse(ddlClass.SelectedValue);
-            toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            if (Session["InstituteType"].ToString() == "S")
+            {
+                toInt.SemesterId = 0;
+            }
+            else
+            {
+                toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            }
             toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
             ViewState["CurrentTable"] = null;
             SetInitialRow();
@@ -234,7 +241,14 @@ namespace Campus2caretaker.Institute
             {
                 DTOInternals toInt = new DTOInternals();
                 toInt.BranchId = int.Parse(ddlClass.SelectedValue);
-                toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                if (Session["InstituteType"].ToString() == "S")
+                {
+                    toInt.SemesterId = 0;
+                }
+                else
+                {
+                    toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                }
                 toInt.Month = ddlMonth.SelectedValue;
                 toInt.Year = ddlYear.SelectedValue;
                 toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
@@ -260,7 +274,14 @@ namespace Campus2caretaker.Institute
         {
             DTOInternals toInt = new DTOInternals();
             toInt.BranchId = int.Parse(ddlClass.SelectedValue);
-            toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            if (Session["InstituteType"].ToString() == "S")
+            {
+                toInt.SemesterId = 0;
+            }
+            else
+            {
+                toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            }
             toInt.Month = ddlMonth.SelectedValue;
             toInt.Year = ddlYear.SelectedValue;
             toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);

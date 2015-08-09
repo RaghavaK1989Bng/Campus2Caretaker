@@ -14,9 +14,9 @@ namespace DataAccessObject
            Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
            if(toAtt.SemesterId > 0)
            {
-               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId).ToDataTable();
+               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colClassesAttendedMonth <= 0).ToDataTable();
            }
-           return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId).ToDataTable();
+           return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colClassesAttendedMonth <= 0).ToDataTable();
        }
 
        public DataTable GetStudentsListEdit(DTOAttendance toAtt)
@@ -24,13 +24,13 @@ namespace DataAccessObject
            Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
            if (toAtt.Year != 0 && !string.IsNullOrEmpty(toAtt.Month))
            {
-               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year).ToDataTable();
+               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year && x.colClassesAttendedMonth > 0 && x.colSubjectId == toAtt.SubjectId).ToDataTable();
            }
            if (toAtt.SemesterId > 0)
            {
-               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId).ToDataTable();
+               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colClassesAttendedMonth > 0 && x.colSubjectId == toAtt.SubjectId).ToDataTable();
            }
-           return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId).ToDataTable();
+           return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colClassesAttendedMonth > 0 && x.colSubjectId == toAtt.SubjectId).ToDataTable();
        }
 
        public void SaveUpdateAttendance(DTOAttendance toAtt)
@@ -51,6 +51,7 @@ namespace DataAccessObject
               Attendance.colAccumulatedClassesHeld = toAtt.CumClassesHeld;
               Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
               Attendance.colStudentId = toAtt.StudentId;
+              Attendance.colSubjectId = toAtt.SubjectId;
 
               dbContext.SubmitChanges();
           }
@@ -69,6 +70,7 @@ namespace DataAccessObject
               Attendance.colAccumulatedClassesHeld = toAtt.CumClassesHeld;
               Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
               Attendance.colStudentId = toAtt.StudentId;
+              Attendance.colSubjectId = toAtt.SubjectId;
 
               dbContext.tblAttendanceDetails.InsertOnSubmit(Attendance);
               dbContext.SubmitChanges();

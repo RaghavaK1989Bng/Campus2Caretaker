@@ -36,11 +36,17 @@ namespace Campus2caretaker.Institute
             {
                 trSemester.Visible = false;
                 trSemesterLineBreak.Visible = false;
+
+                trSubject.Visible = false;
+                trSubjectLineBreak.Visible = false;
             }
             else
             {
                 trSemester.Visible = true;
                 trSemesterLineBreak.Visible = true;
+
+                trSubject.Visible = true;
+                trSubjectLineBreak.Visible = true;
             }
         }
 
@@ -147,15 +153,15 @@ namespace Campus2caretaker.Institute
                         drCurrentRow = dtCurrentTable.NewRow();
                         drCurrentRow["RowNumber"] = dtCurrentTable.Rows.Count + 1;
 
-                        lbl1.Text = dtStudents.Rows[p][7].ToString();
-                        lbl2.Text = dtStudents.Rows[p][11].ToString();
-                        txt1.Text = dtStudents.Rows[p][3].ToString();
-                        txt2.Text = dtStudents.Rows[p][4].ToString();
-                        txt3.Text = dtStudents.Rows[p][5].ToString();
-                        txt4.Text = dtStudents.Rows[p][6].ToString();
-                        txt5.Text = dtStudents.Rows[p][7].ToString();
-                        txt6.Text = dtStudents.Rows[p][8].ToString();
-                        lbl3.Text = dtStudents.Rows[p][9].ToString();
+                        lbl1.Text = dtStudents.Rows[p][9].ToString();
+                        lbl2.Text = dtStudents.Rows[p][13].ToString();
+                        txt1.Text = dtStudents.Rows[p][2].ToString();
+                        txt2.Text = dtStudents.Rows[p][3].ToString();
+                        txt3.Text = dtStudents.Rows[p][4].ToString();
+                        txt4.Text = dtStudents.Rows[p][5].ToString();
+                        txt5.Text = dtStudents.Rows[p][6].ToString();
+                        txt6.Text = dtStudents.Rows[p][7].ToString();
+                        lbl3.Text = dtStudents.Rows[p][8].ToString();
 
                         dtCurrentTable.Rows[i]["Column1"] = lbl1.Text;
                         dtCurrentTable.Rows[i]["Column2"] = lbl2.Text;
@@ -231,7 +237,24 @@ namespace Campus2caretaker.Institute
             {
                 DTOAttendance toAtt = new DTOAttendance();
                 toAtt.BranchId = int.Parse(ddlClass.SelectedValue);
-                toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                if (Session["InstituteType"].ToString() == "S")
+                {
+                    toAtt.SemesterId = 0;
+                }
+                else
+                {
+                    toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                }
+
+                if (Session["InstituteType"].ToString() == "S")
+                {
+                    toAtt.SubjectId = 0;
+                }
+                else
+                {
+                    toAtt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+                }
+
                 toAtt.Month = ddlMonth.SelectedValue;
                 toAtt.Year = int.Parse(ddlYear.SelectedValue);
 
@@ -271,20 +294,42 @@ namespace Campus2caretaker.Institute
 
         protected void btnGetStudentsList_Click(object sender, EventArgs e)
         {
-            DTOAttendance toInt = new DTOAttendance();
-            toInt.BranchId = int.Parse(ddlClass.SelectedValue);
-            toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
-            toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+            DTOAttendance toAtt = new DTOAttendance();
+            toAtt.BranchId = int.Parse(ddlClass.SelectedValue);
+            if (Session["InstituteType"].ToString() == "S")
+            {
+                toAtt.SemesterId = 0;
+            }
+            else
+            {
+                toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            }
+            toAtt.InstituteId = int.Parse(Session["InstituteID"].ToString());
             ViewState["CurrentTable"] = null;
             SetInitialRow();
-            AddRowsToGrid(new BOAttendance().GetStudentsList(toInt));
+            AddRowsToGrid(new BOAttendance().GetStudentsList(toAtt));
         }
 
         protected void btnGetStudentsListEdit_Click(object sender, EventArgs e)
         {
             DTOAttendance toAtt = new DTOAttendance();
             toAtt.BranchId = int.Parse(ddlClass.SelectedValue);
-            toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            if (Session["InstituteType"].ToString() == "S")
+            {
+                toAtt.SemesterId = 0;
+            }
+            else
+            {
+                toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+            }
+            if (Session["InstituteType"].ToString() == "S")
+            {
+                toAtt.SubjectId = 0;
+            }
+            else
+            {
+                toAtt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+            }
             toAtt.Month = ddlMonth.SelectedValue;
             toAtt.Year = int.Parse(ddlYear.SelectedValue);
             toAtt.InstituteId = int.Parse(Session["InstituteID"].ToString());
@@ -309,6 +354,23 @@ namespace Campus2caretaker.Institute
                 btnGetStudentsList.Visible = false;
                 btnGetStudentsListEdit.Visible = true;
             }
+        }
+
+        private void BindSubjectsList()
+        {
+            DataTable dt = new BOPersonalizeApplication().GetSubjectsList(Session["InstituteID"].ToString(), int.Parse(ddlClass.SelectedValue));
+            ddlSubjects.DataSource = dt;
+            ddlSubjects.DataBind();
+
+            ListItem Item = new ListItem("Select", "");
+            ddlSubjects.Items.Insert(0, Item);
+            ddlSubjects.SelectedIndex = 0;
+        }
+
+        protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindSubjectsList();
+            ddlSubjects.SelectedIndex = 0;
         }
     }
 }

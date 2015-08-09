@@ -33,7 +33,7 @@
                 <td align="left" style="width: 195px">
                     <div class="dropdown">
                         <asp:DropDownList ID="ddlClass" runat="server" class="dropdown-select" validate="form" require="Required Field Missing."
-                            DataTextField="colBranchName" DataValueField="colBranchId">
+                            DataTextField="colBranchName" DataValueField="colBranchId" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
                 </td>
@@ -74,6 +74,38 @@
                             <asp:ListItem Text="6" Value="6"></asp:ListItem>
                             <asp:ListItem Text="7" Value="7"></asp:ListItem>
                             <asp:ListItem Text="8" Value="8"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </td>
+                <td align="left" style="width: 238px">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr runat="server" id="trSubjectLineBreak">
+                <td align="left" style="width: 121px">&nbsp;</td>
+                <td align="left" style="width: 178px">&nbsp;</td>
+                <td align="left" style="width: 195px">&nbsp;</td>
+                <td align="left" style="width: 238px">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr runat="server" id="trSubject">
+                <td align="left" style="width: 121px">&nbsp;</td>
+                <td align="left" style="width: 178px">
+                    <asp:Label ID="Label14" runat="server" class="label" Text="Subject :"></asp:Label>
+                </td>
+                <td align="left" style="width: 195px">
+                    <div class="dropdown">
+                        <asp:DropDownList ID="ddlSubjects" runat="server" class="dropdown-select" 
+                            validate="form" require="Required Field Missing." DataTextField="colSubjectName" DataValueField="colSubjectId">
                         </asp:DropDownList>
                     </div>
                 </td>
