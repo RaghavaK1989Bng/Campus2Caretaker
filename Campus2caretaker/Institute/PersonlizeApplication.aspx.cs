@@ -364,5 +364,13 @@ namespace Campus2caretaker.Institute
         {
             lstSubjectsTheory.Items.Add(txtSubjectName.Text);
         }
+
+        protected void btnRemoveSubject_Click(object sender, EventArgs e)
+        {
+            if (lstSubjectsTheory.SelectedIndex > -1)
+            {
+                lstSubjectsTheory.Items.Remove(txtSubjectName.Text);
+            }
+        }
     }
 }

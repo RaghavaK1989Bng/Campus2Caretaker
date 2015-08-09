@@ -137,8 +137,10 @@
     <Content Include="css\jquery.timepicker.css" />
     <Content Include="css\menu.css" />
     <Content Include="css\owl.carousel.css" />
+    <Content Include="css\reset.css" />
     <Content Include="css\slider.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\tabstyle.css" />
     <Content Include="faq.html" />
     <Content Include="fonts\css\font-awesome.css" />
     <Content Include="fonts\css\font-awesome.min.css" />
@@ -177,6 +179,7 @@
     <Content Include="images\pic1.jpg" />
     <Content Include="images\slider_bg.jpg" />
     <Content Include="images\social-icons.png" />
+    <Content Include="img\vicons.svg" />
     <Content Include="index.html" />
     <Content Include="Institute\cross.jpg" />
     <Content Include="Institute\InstituteDefault.aspx" />
@@ -203,7 +206,9 @@
     <Content Include="js\jquery.ptTimeSelect.js" />
     <Content Include="js\menu.js" />
     <Content Include="js\modernizr.custom.28468.js" />
+    <Content Include="js\modernizr.js" />
     <Content Include="js\owl.carousel.js" />
+    <Content Include="js\tabs.js" />
     <Content Include="packages.config" />
     <Content Include="tick.jpg" />
     <Content Include="validator\arrowv.png" />
@@ -251,8 +256,13 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="AdminMaster.Master" />
     <Content Include="Institute\Institute.Master" />
+    <Content Include="img\Vicons License 1.0.pdf" />
+    <Content Include="partials\_layout.scss" />
+    <Content Include="partials\_mixins.scss" />
+    <Content Include="partials\_variables.scss" />
     <None Include="Properties\PublishProfiles\Campus2Caretaker.pubxml" />
     <Content Include="Template\StudentRegistrationSample.xlsx" />
+    <Content Include="scss\style.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
