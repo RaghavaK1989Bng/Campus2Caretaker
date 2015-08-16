@@ -76,7 +76,7 @@ namespace Campus2caretaker
                 //CCDaemon.Properties.Resources.CC_Logo.Save(imgContent, System.Drawing.Imaging.ImageFormat.Png);
                 //System.IO.File.AppendAllText(@"E:\sam.txt", "adding FILE " + DateTime.Now.ToString() + Environment.NewLine);            
 
-                var inlineLogo = new LinkedResource(HttpContext.Current.Server.MapPath(@"images\logo.png"));
+                var inlineLogo = new LinkedResource(HttpContext.Current.Server.MapPath(@"images\newlogo.png"));
                 inlineLogo.ContentId = Guid.NewGuid().ToString();
 
                 sbBody.Append(string.Format("<img src='cid:{0}' /><br/><br/>", inlineLogo.ContentId));

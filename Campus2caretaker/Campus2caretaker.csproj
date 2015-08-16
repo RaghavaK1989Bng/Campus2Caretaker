@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -116,9 +117,16 @@
     <Content Include="Auto\GetInstituteStates.aspx" />
     <Content Include="Auto\GetInstituteDistricts.aspx" />
     <Content Include="Auto\GetInstituteNames.aspx" />
-    <Content Include="css\Images\color_tabs_left.gif" />
-    <Content Include="css\Images\color_tabs_right.gif" />
-    <Content Include="css\insmenu.css" />
+    <Content Include="css\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap\css\bootstrap.css" />
+    <Content Include="css\bootstrap\css\bootstrap.min.css" />
+    <Content Include="css\bootstrap\css\todc-bootstrap.min.css" />
+    <Content Include="css\chosen.min.css" />
+    <Content Include="css\datepicker.css" />
+    <Content Include="css\oldCSS\Images\color_tabs_left.gif" />
+    <Content Include="css\oldCSS\Images\color_tabs_right.gif" />
+    <Content Include="css\oldCSS\insmenu.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -126,25 +134,29 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="contact.html" />
     <Content Include="cross.jpg" />
-    <Content Include="css\aspcontrols.css" />
-    <Content Include="css\bootstrap.css" />
-    <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\checkbox.png" />
-    <Content Include="css\confirm.css" />
-    <Content Include="css\defaultstyle.css" />
-    <Content Include="css\Gridview.css" />
-    <Content Include="css\jquery.ptTimeSelect.css" />
-    <Content Include="css\jquery.timepicker.css" />
-    <Content Include="css\menu.css" />
-    <Content Include="css\owl.carousel.css" />
-    <Content Include="css\reset.css" />
-    <Content Include="css\slider.css" />
-    <Content Include="css\style.css" />
-    <Content Include="css\tabstyle.css" />
+    <Content Include="css\oldCSS\aspcontrols.css" />
+    <Content Include="css\oldCSS\bootstrap.css" />
+    <Content Include="css\oldCSS\bootstrap.min.css" />
+    <Content Include="css\oldCSS\Images\checkbox.png" />
+    <Content Include="css\oldCSS\confirm.css" />
+    <Content Include="css\oldCSS\defaultstyle.css" />
+    <Content Include="css\oldCSS\Gridview.css" />
+    <Content Include="css\oldCSS\jquery.ptTimeSelect.css" />
+    <Content Include="css\oldCSS\jquery.timepicker.css" />
+    <Content Include="css\oldCSS\menu.css" />
+    <Content Include="css\oldCSS\owl.carousel.css" />
+    <Content Include="css\oldCSS\reset.css" />
+    <Content Include="css\oldCSS\slider.css" />
+    <Content Include="css\oldCSS\style.css" />
+    <Content Include="css\oldCSS\tabstyle.css" />
+    <Content Include="css\styles.css" />
+    <Content Include="css\uniform.default.css" />
+    <Content Include="css\wysiwyg\bootstrap-wysihtml5.css" />
     <Content Include="faq.html" />
     <Content Include="fonts\css\font-awesome.css" />
     <Content Include="fonts\css\font-awesome.min.css" />
     <Content Include="fonts\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\Login\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\about.jpg" />
     <Content Include="images\ads_pic.jpg" />
@@ -175,40 +187,58 @@
     <Content Include="images\c4.jpg" />
     <Content Include="images\det_pic.jpg" />
     <Content Include="images\emptycups.png" />
-    <Content Include="images\logo.png" />
+    <Content Include="images\newlogo.png" />
+    <Content Include="images\newlogosmall.png" />
     <Content Include="images\pic1.jpg" />
     <Content Include="images\slider_bg.jpg" />
     <Content Include="images\social-icons.png" />
-    <Content Include="img\vicons.svg" />
+    <Content Include="css\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="css\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="index.html" />
+    <Content Include="Institute\AddSubjects.aspx" />
     <Content Include="Institute\cross.jpg" />
     <Content Include="Institute\InstituteDefault.aspx" />
     <Content Include="Institute\InstituteLogin.aspx" />
-    <Content Include="Institute\PersonlizeApplication.aspx" />
+    <Content Include="Institute\AddClass.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
     <Content Include="Institute\StudentRegistration.aspx" />
     <Content Include="Institute\tick.jpg" />
     <Content Include="Institute\UpdateInternals.aspx" />
     <Content Include="Institute\UpdateAttendance.aspx" />
-    <Content Include="js\Account.js" />
+    <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\custom-form-elements.js" />
-    <Content Include="js\FixFocus.js" />
-    <Content Include="js\insmenu.js" />
-    <Content Include="js\jquery-1.10.2.min.js" />
-    <Content Include="js\jquery-1.8.3.js" />
-    <Content Include="js\jquery-1.8.3.min.js" />
-    <Content Include="js\jquery-ui.js" />
-    <Content Include="js\jquery.cslider.js" />
-    <Content Include="js\jquery.js" />
-    <Content Include="js\jquery.min.js" />
-    <Content Include="js\jquery.ptTimeSelect.js" />
-    <Content Include="js\menu.js" />
-    <Content Include="js\modernizr.custom.28468.js" />
-    <Content Include="js\modernizr.js" />
-    <Content Include="js\owl.carousel.js" />
-    <Content Include="js\tabs.js" />
+    <Content Include="js\chosen-sprite%402x.png" />
+    <Content Include="js\chosen-sprite.png" />
+    <Content Include="js\chosen.jquery.min.js" />
+    <Content Include="js\jquery-1.9.1.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\jquery.uniform.min.js" />
+    <Content Include="js\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Content Include="js\oldjs\Account.js" />
+    <Content Include="js\oldjs\bootstrap.js" />
+    <Content Include="js\oldjs\bootstrap.min.js" />
+    <Content Include="js\oldjs\custom-form-elements.js" />
+    <Content Include="js\oldjs\FixFocus.js" />
+    <Content Include="js\oldjs\insmenu.js" />
+    <Content Include="js\oldjs\jquery-1.10.2.min.js" />
+    <Content Include="js\oldjs\jquery-1.8.3.js" />
+    <Content Include="js\oldjs\jquery-1.8.3.min.js" />
+    <Content Include="js\oldjs\jquery-ui.js" />
+    <Content Include="js\oldjs\jquery.cslider.js" />
+    <Content Include="js\oldjs\jquery.js" />
+    <Content Include="js\oldjs\jquery.min.js" />
+    <Content Include="js\oldjs\jquery.ptTimeSelect.js" />
+    <Content Include="js\oldjs\menu.js" />
+    <Content Include="js\oldjs\modernizr.custom.28468.js" />
+    <Content Include="js\oldjs\modernizr.js" />
+    <Content Include="js\oldjs\owl.carousel.js" />
+    <Content Include="js\oldjs\tabs.js" />
+    <Content Include="js\scripts.js" />
+    <Content Include="js\wizard\jquery.bootstrap.wizard.js" />
+    <Content Include="js\wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="js\wysiwyg\bootstrap-wysihtml5.js" />
+    <Content Include="js\wysiwyg\wysihtml5-0.3.0.js" />
     <Content Include="packages.config" />
     <Content Include="tick.jpg" />
     <Content Include="validator\arrowv.png" />
@@ -256,10 +286,12 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="AdminMaster.Master" />
     <Content Include="Institute\Institute.Master" />
-    <Content Include="img\Vicons License 1.0.pdf" />
     <Content Include="partials\_layout.scss" />
     <Content Include="partials\_mixins.scss" />
     <Content Include="partials\_variables.scss" />
+    <Content Include="fonts\Login\fontawesome-webfont.eot" />
+    <Content Include="fonts\Login\fontawesome-webfont.ttf" />
+    <Content Include="fonts\Login\fontawesome-webfont.woff" />
     <None Include="Properties\PublishProfiles\Campus2Caretaker.pubxml" />
     <Content Include="Template\StudentRegistrationSample.xlsx" />
     <Content Include="scss\style.scss" />
@@ -320,6 +352,13 @@
     <Compile Include="Auto\GetInstituteNames.aspx.designer.cs">
       <DependentUpon>GetInstituteNames.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Institute\AddSubjects.aspx.cs">
+      <DependentUpon>AddSubjects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\AddSubjects.aspx.designer.cs">
+      <DependentUpon>AddSubjects.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Institute\Institute.Master.cs">
       <DependentUpon>Institute.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -334,12 +373,12 @@
     <Compile Include="Institute\InstituteDefault.aspx.designer.cs">
       <DependentUpon>InstituteDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Institute\PersonlizeApplication.aspx.cs">
-      <DependentUpon>PersonlizeApplication.aspx</DependentUpon>
+    <Compile Include="Institute\AddClass.aspx.cs">
+      <DependentUpon>AddClass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Institute\PersonlizeApplication.aspx.designer.cs">
-      <DependentUpon>PersonlizeApplication.aspx</DependentUpon>
+    <Compile Include="Institute\AddClass.aspx.designer.cs">
+      <DependentUpon>AddClass.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\SendSMS.aspx.cs">
       <DependentUpon>SendSMS.aspx</DependentUpon>

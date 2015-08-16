@@ -14,9 +14,9 @@ namespace DataAccessObject
             Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
             if (toint.SemesterId > 0)
             {
-                return dbContext.GetStudentsInternalsDetails(toint.InstituteId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMarksScored <= 0).ToDataTable();
+                return dbContext.GetStudentsInternalsDetailsNewEntry(toint.InstituteId,toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMarksScored <= 0).ToDataTable();
             }
-            return dbContext.GetStudentsInternalsDetails(toint.InstituteId).Where(x => x.colBranchId == toint.BranchId && x.colMarksScored <= 0).ToDataTable();
+            return dbContext.GetStudentsInternalsDetailsNewEntry(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colMarksScored <= 0).ToDataTable();
         }
 
         public DataTable GetStudentsListEdit(DTOInternals toint)
@@ -24,21 +24,21 @@ namespace DataAccessObject
             Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
             if (!string.IsNullOrEmpty(toint.Year) && !string.IsNullOrEmpty(toint.Month))
             {
-                return dbContext.GetStudentsInternalsDetails(toint.InstituteId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMonth == toint.Month && x.colYear == toint.Year && x.colMarksScored > 0 && x.colSubjectId == toint.SubjectId).ToDataTable();
+                return dbContext.GetStudentsInternalsDetails(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMonth == toint.Month && x.colYear == toint.Year && x.colMarksScored > 0).ToDataTable();
             }
             if (toint.SemesterId > 0)
             {
-                return dbContext.GetStudentsInternalsDetails(toint.InstituteId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMarksScored > 0 && x.colSubjectId == toint.SubjectId).ToDataTable();
+                return dbContext.GetStudentsInternalsDetails(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMarksScored > 0).ToDataTable();
             }
-            return dbContext.GetStudentsInternalsDetails(toint.InstituteId).Where(x => x.colBranchId == toint.BranchId && x.colMarksScored > 0 && x.colSubjectId == toint.SubjectId).ToDataTable();
+            return dbContext.GetStudentsInternalsDetails(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colMarksScored > 0).ToDataTable();
         }
 
         public void SaveUpdateInternals(DTOInternals toInt)
         {
             Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
-            if (dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year).ToList().Count > 0)
+            if (dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year && x.colSubjectId == toInt.SubjectId).ToList().Count > 0)
             {
-                tblInternalMark InternalMarks = dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year).FirstOrDefault();
+                tblInternalMark InternalMarks = dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year && x.colSubjectId == toInt.SubjectId).FirstOrDefault();
                 InternalMarks.colBranchId = toInt.BranchId;
                 InternalMarks.colSemesterId = toInt.SemesterId;
                 InternalMarks.colMonth = toInt.Month;
@@ -70,6 +70,15 @@ namespace DataAccessObject
                 dbContext.SubmitChanges();
             }
 
+        }
+
+        public DataTable GetInternalsChartDetails(DTOInternals toint)
+        {
+            using (Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext())
+            {
+                int _year = int.Parse(toint.Year);
+                return dbContext.GetBarChartInternalsDetails(toint.InstituteId, toint.Month, _year).ToDataTable();
+            }
         }
     }
 }

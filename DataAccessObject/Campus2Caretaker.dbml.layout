@@ -46,7 +46,7 @@
         <elementListCompartment Id="be29a889-8159-4e79-a935-7355534ad8f4" absoluteBounds="9.765, 2.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.125 : 3.92714680989583); (9.16666666666667 : 3.92714680989583 : JumpStart); (9.33333333333333 : 3.92714680989583 : JumpEnd); (9.75 : 3.92714680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.125 : 3.92714680989583); (9.75 : 3.92714680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblSubjectDetail" />
       <nodes>
         <classShapeMoniker Id="9b15c738-749a-49e2-abe3-61b04b4a3e12" />

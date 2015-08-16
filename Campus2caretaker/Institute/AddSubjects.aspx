@@ -1,226 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="PersonlizeApplication.aspx.cs" Inherits="Campus2caretaker.Institute.PersonlizeApplication" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="AddSubjects.aspx.cs" Inherits="Campus2caretaker.Institute.AddSubjects" EnableEventValidation="false" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="background-color:White;height:100%;">
 
-        <div class="cd-tabs">
-	<nav>
-		<ul class="cd-tabs-navigation">
-        <li><a data-content="ClassDetails" class="selected" href="#0">Add Class</a></li>
-			<li><a data-content="SubjectDetails" href="#0">Add Subject</a></li>
-   </ul> <!-- cd-tabs-navigation -->
-	</nav>
-            <ul class="cd-tabs-content">
-                <li data-content="ClassDetails" class="selected">
-                <table border="0" align="center" cellpadding="0" cellspacing="1"
-            style="width: 100%; height: 100%;">
-            <tr>
-                <td align="center" colspan="10">
-                    <asp:Label ID="Label6" runat="server" CssClass="headertext"
-                        Text="Add Class Details" meta:resourcekey="Label11Resource1"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td colspan="2" align="left"></td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 195px">
-                    &nbsp;</td>
-                <td align="center">
-                    <asp:Label ID="Label8" class="label" runat="server" Text="Class :"></asp:Label></td>
-                <td align="left" style="visibility:">
-                    <asp:TextBox ID="txtClassName" runat="server" CssClass="textbox"
-                        validate="classname" require="Please enter the class name."></asp:TextBox>
-                </td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
 
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td></td>
-            </tr>
-            <tr runat="server" id="tr1">
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 195px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
 
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="center" colspan="10">
-                    <asp:Button ID="btnAddClass" runat="server" CssClass="button orange" Text="Add Class"
-                        OnClick="btnAddClass_Click" ValidationGroup="saveclass" OnClientClick="return validate('classname');"/>
-                    <br />
-                    <br />
-                    <asp:Button ID="btnRemoveClass" runat="server" CssClass="button orange" Text="Remove Class"
-                        OnClick="btnRemoveClass_Click" />
-                    <br />
-                    <br />
-                    </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="10">
-                        
-                                            <div class="lstClassContianer">
-                                                <div class="lstClass">
-                    <asp:ListBox ID="lstClasses" runat="server" SelectionMode="Single" CssClass="listbox" Height="350px" Width="175px"></asp:ListBox>
-                            </div>
-                                                </div>
-                    <br />
-                    <br />
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">
-                    <div id="divStatus" runat="server"></div>
-                </td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="center" colspan="10">
-                    <asp:Button ID="btnSave" runat="server" CssClass="button orange" Text="Save"
-                        OnClick="btnSave_Click"/>
-                    &nbsp;
-                    <asp:Button ID="btnClear" runat="server" CssClass="button orange"
-                        Text="Clear" OnClick="btnClear_Click"
-                        meta:resourcekey="btnClearResource1" />
-                    &nbsp;
-                    &nbsp;
-                    </td>
-            </tr>
 
-            <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left" style="width: 195px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td align="left" colspan="10">
-        <div align="center">
-            <div class="GridviewDiv">
-            <table style="width: 380px" border="0" cellpadding="0" cellspacing="1" 
-                    class="GridviewTable">
-                <tr>
-                    <td>
-
-                        <asp:GridView ID="gvClasses" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                            ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
-                            AllowSorting="True" Width="100%" 
-                            CssClass="Gridview" 
-                            EnableModelValidation="True" OnRowCreated="gvClasses_RowCreated" onsorting="gvClasses_Sorting">
-                            <Columns>
-                                <asp:BoundField DataField="colBranchId" 
-                                                HeaderText="Class / Branch Id"
-                                                SortExpression="colBranchId"
-                                                ReadOnly="True" >
-                                </asp:BoundField>
-                                <asp:BoundField DataField="colBranchName" 
-                                                HeaderText="Class / Branch Name" 
-                                                SortExpression="colBranchName">
-                                </asp:BoundField>
-                            </Columns>
-                        </asp:GridView>
-                    </td>
-                </tr>
-            </table>
-            </div>
-            </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td valign="top" colspan="2">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" colspan="2">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-
-                <td style="width: 121px">&nbsp;</td>
-
-                <td style="width: 178px">&nbsp;            </td>
-
-                <td>
-                    &nbsp;</td>
-                <td style="width: 238px">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td></td>
-            </tr>
-
-            <tr>
-
-                <td style="width: 121px">&nbsp;</td>
-
-                <td style="width: 178px">&nbsp;</td>
-
-                <td>
-                    &nbsp;</td>
-                <td style="width: 238px">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-        </table>
-                    </li>
-                <li data-content="SubjectDetails"> 
                     <table border="0" align="center" cellpadding="0" cellspacing="1"
             style="width: 100%; height: 100%;">
             <tr>
@@ -447,21 +231,9 @@
                 <td></td>
             </tr>
             <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">
-                    <div id="div2" runat="server"></div>
+                <td align="center" colspan="10">
+                    <div id="divStatus" runat="server"></div>
                 </td>
-                <td align="left" style="width: 238px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td align="center" colspan="11">
@@ -560,7 +332,7 @@
                 <td style="width: 178px">&nbsp;</td>
 
                 <td style="width: 238px">&nbsp;</td>
-                <td style="width: 238px">&nbsp;</td>
+                <td style="width: 238px"></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -570,9 +342,5 @@
             </tr>
 
         </table>
-                 </li>
-</ul>
-</div>
-
     </div>
 </asp:Content>

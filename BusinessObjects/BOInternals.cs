@@ -24,5 +24,10 @@ namespace BusinessObjects
         {
             return new DAOInternals().GetStudentsListEdit(toInt);
         }
+
+        public DataTable GetInternalsChartDetails(DTOInternals toint)
+        {
+            return new DAOInternals().GetInternalsChartDetails(toint);
+        }
     }
 }

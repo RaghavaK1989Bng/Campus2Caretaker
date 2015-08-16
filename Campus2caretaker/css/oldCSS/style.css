@@ -6,13 +6,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 */
 @font-face {
     font-family: 'texgyreadventorregular';
-    src: url('../fonts/texgyreadventor-regular-webfont.ttf') format('truetype');
+    src: url('../../fonts/texgyreadventor-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
      font-family: 'open_sansregular';
-      src:url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+      src:url('../../fonts/OpenSans-Regular-webfont.ttf') format('truetype');
 }
 body {
 	  /* font-family: 'open_sansregular'; */
@@ -26,7 +26,7 @@ body {
 }
 .header_bg1 {
 	border-top:8px groove #3b3b3b;
-	background: url('../images/slider_bg.jpg') no-repeat  left;
+	background: url('../../images/slider_bg.jpg') no-repeat  left;
 	background-size: 100%;
 }
 .header{
@@ -54,7 +54,7 @@ a.LoginLink:hover, a.LoginLink:active {
 	color: #3B3B3B;
 	text-decoration: none;
 	font-family: 'texgyreadventorregular';
-    background: url('../images/logo.png') 0 0 no-repeat;
+    background: url('../../images/newlogo.png') 0 0 no-repeat;
     display:block;
     width:187px;
     height:130px;
@@ -68,7 +68,7 @@ a.LoginLink:hover, a.LoginLink:active {
 	color: #3B3B3B;
 	text-decoration: none;
 	font-family: 'texgyreadventorregular';
-    background: url('../images/emptycups.png') 0 0 no-repeat;
+    background: url('../../images/emptycups.png') 0 0 no-repeat;
     display:block;
     width:162px;
     height:38px;
@@ -184,7 +184,7 @@ a.LoginLink:hover, a.LoginLink:active {
 }
 /* start slider */
 .slider_bg{
-	background: url('../images/slider_bg.jpg') no-repeat;
+	background: url('../../images/slider_bg.jpg') no-repeat;
 	background-size: 100%;
 }
 .slider{
@@ -780,12 +780,12 @@ a.LoginLink:hover, a.LoginLink:active {
 @media only screen and (max-width: 768px) {
 	.logo{
 		text-align:center;
-        background: url('../images/logo.png');
+        background: url('../../images/newlogo.png');
 	}
 
     .logo1{
 		text-align:center;
-        background: url('../images/emptycups.png');
+        background: url('../../images/emptycups.png');
 	}
 
 	.h_search {

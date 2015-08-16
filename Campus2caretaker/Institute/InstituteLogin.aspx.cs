@@ -20,18 +20,18 @@ namespace Campus2caretaker.Institute
             }
         }
 
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        protected void LoginButton_Click(object sender, EventArgs e)
         {
             try
             {
                 DTOLogin tologin = new DTOLogin();
-                tologin.UserID = Login1.UserName;
-                tologin.Password = PasswordEncDec.EncodePasswordToBase64(Login1.Password);
-                e.Authenticated = new BOLogin().CheckInstituteUser(tologin);
-                if (e.Authenticated)
+                tologin.UserID = UserName.Text;
+                tologin.Password = PasswordEncDec.EncodePasswordToBase64(Password.Text);
+                bool authenticated = new BOLogin().CheckInstituteUser(tologin);
+                if (authenticated)
                 {
-                    Session["InstituteID"] = new BOInstituteDetails().GetInstituteId(Login1.UserName);
-                    Session["UserName"] = Login1.UserName;
+                    Session["InstituteID"] = new BOInstituteDetails().GetInstituteId(UserName.Text);
+                    Session["UserName"] = UserName.Text;
 
                     DTOInstituteDetails toins = new DTOInstituteDetails();
                     toins.InstituteEmail = Session["UserName"].ToString();

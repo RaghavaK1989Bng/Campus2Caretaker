@@ -225,6 +225,7 @@ namespace Campus2caretaker.Institute
                 toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
             }
             toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+            toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
             ViewState["CurrentTable"] = null;
             SetInitialRow();
             AddRowsToGrid(new BOInternals().GetStudentsList(toInt));

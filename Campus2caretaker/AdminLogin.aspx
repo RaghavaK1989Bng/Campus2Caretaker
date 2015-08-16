@@ -57,7 +57,7 @@
     <br />
     <div style="text-align: center;">
     <div style="text-align: center;">
-        <img src="images/logo.png" />
+        <img src="images/newlogo.png" />
     </div>
     <br />
     <div style="text-align: center;" class="titletext">
