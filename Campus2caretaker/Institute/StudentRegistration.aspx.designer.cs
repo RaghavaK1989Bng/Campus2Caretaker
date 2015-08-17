@@ -13,24 +13,6 @@ namespace Campus2caretaker.Institute {
     public partial class StudentRegistration {
         
         /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// txtStudentName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +22,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtStudentName;
         
         /// <summary>
-        /// Label9 control.
+        /// StudentNameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StudentNameRequired;
         
         /// <summary>
         /// txtStudentAddress control.
@@ -58,13 +40,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtStudentAddress;
         
         /// <summary>
-        /// Label6 control.
+        /// AddressRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator AddressRequired;
         
         /// <summary>
         /// txtFatherName control.
@@ -76,13 +58,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtFatherName;
         
         /// <summary>
-        /// Label8 control.
+        /// FatherNameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator FatherNameRequired;
         
         /// <summary>
         /// txtMotherName control.
@@ -94,13 +76,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtMotherName;
         
         /// <summary>
-        /// Label7 control.
+        /// MotherNameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MotherNameRequired;
         
         /// <summary>
         /// txtDOB control.
@@ -112,13 +94,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtDOB;
         
         /// <summary>
-        /// Label2 control.
+        /// DOBRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DOBRequired;
         
         /// <summary>
         /// ddlClass control.
@@ -130,22 +112,22 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlClass;
         
         /// <summary>
-        /// trSemester control.
+        /// ClassNameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trSemester;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClassNameRequired;
         
         /// <summary>
-        /// Label3 control.
+        /// dvSemester control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSemester;
         
         /// <summary>
         /// ddlSemester control.
@@ -157,24 +139,6 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlSemester;
         
         /// <summary>
-        /// trSemesterLineBreak control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trSemesterLineBreak;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
         /// txtRollNo control.
         /// </summary>
         /// <remarks>
@@ -184,13 +148,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtRollNo;
         
         /// <summary>
-        /// Label14 control.
+        /// RollNoRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RollNoRequired;
         
         /// <summary>
         /// txtParentsContactNumber control.
@@ -200,6 +164,42 @@ namespace Campus2caretaker.Institute {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtParentsContactNumber;
+        
+        /// <summary>
+        /// ParentsContactNumberRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ParentsContactNumberRequired;
+        
+        /// <summary>
+        /// FlUploadcsv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FlUploadcsv;
+        
+        /// <summary>
+        /// btnUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpload;
+        
+        /// <summary>
+        /// divStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
         
         /// <summary>
         /// btnSave control.
@@ -238,49 +238,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
-        /// divStatus control.
+        /// ValidationSummary1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
-        /// <summary>
-        /// FlUploadcsv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FlUploadcsv;
-        
-        /// <summary>
-        /// btnUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// gvStudents control.

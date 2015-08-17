@@ -14,16 +14,16 @@ namespace Campus2caretaker.Institute
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DTOInternals toint = new DTOInternals();
-            toint.InstituteId = int.Parse(Session["InstituteID"].ToString());
-            toint.Month = "January";
-            toint.Year = "2015";
-            //(InternalsChartDS.Select() as DataView).Table = ;
+            //DTOInternals toint = new DTOInternals();
+            //toint.InstituteId = int.Parse(Session["InstituteID"].ToString());
+            //toint.Month = "January";
+            //toint.Year = "2015";
+            ////(InternalsChartDS.Select() as DataView).Table = ;
 
-            chartInternals.Series["seriesChartInternals"].XValueMember = "colSubjectName";
-            chartInternals.Series["seriesChartInternals"].YValueMembers = "colMarksScored";
-            chartInternals.DataSource = new BOInternals().GetInternalsChartDetails(toint);
-            chartInternals.DataBind();
+            //chartInternals.Series["seriesChartInternals"].XValueMember = "colSubjectName";
+            //chartInternals.Series["seriesChartInternals"].YValueMembers = "colMarksScored";
+            //chartInternals.DataSource = new BOInternals().GetInternalsChartDetails(toint);
+            //chartInternals.DataBind();
         }
     }
 }

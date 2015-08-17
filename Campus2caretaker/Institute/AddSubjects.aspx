@@ -1,281 +1,112 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="AddSubjects.aspx.cs" Inherits="Campus2caretaker.Institute.AddSubjects" EnableEventValidation="false" %>
+﻿<%@ Page Title="Subject Details" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="AddSubjects.aspx.cs" Inherits="Campus2caretaker.Institute.AddSubjects" EnableEventValidation="false" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="background-color:White;height:100%;">
-
-
-
-
-                    <table border="0" align="center" cellpadding="0" cellspacing="1"
-            style="width: 100%; height: 100%;">
-            <tr>
-                <td align="center" colspan="11">
-                    <asp:Label ID="Label7" runat="server" CssClass="headertext"
-                        Text="Add Subject Details" meta:resourcekey="Label11Resource1"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td colspan="2" align="left"></td>
-                <td align="left">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">
-                    <asp:Label ID="Label9" class="label" runat="server" Text="Class :"></asp:Label></td>
-                <td align="left" style="width: 238px">
-                    <div class="dropdown">
-                        <asp:DropDownList ID="ddlClass" runat="server" class="dropdown-select" validate="form"  require="Required Field Missing." 
-                            DataSourceID="dsClasses" DataTextField="colBranchName" DataValueField="colBranchId">
-                        </asp:DropDownList>
-                        </div></td>
-                <td align="left" style="visibility:">
-                    <asp:SqlDataSource ID="dsClasses" runat="server" 
+   <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Subject Details</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                     <form class="form-horizontal">
+                                      <fieldset>
+                                        <legend>Add Subjects</legend>
+                                        <div class="control-group">
+                                          <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass">Class <span class="required">*</span></asp:Label>
+                                          <div class="controls">
+                        
+                                              <asp:DropDownList ID="ddlClass" ValidationGroup="Subject" runat="server" class="chzn-select" DataSourceID="dsClasses" DataTextField="colBranchName" DataValueField="colBranchId">
+                                            </asp:DropDownList>
+                                                                <asp:SqlDataSource ID="dsClasses" runat="server" 
                                         ConnectionString="<%$ ConnectionStrings:C2CConnectionString %>" 
                                         SelectCommand="SELECT * FROM [tblBranchDetails]"></asp:SqlDataSource>
-                    </td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
 
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td></td>
-            </tr>
-            <tr runat="server" id="trSemesterLineBreak">
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
+                                              <asp:RequiredFieldValidator ID="ClassNameRequired" runat="server" 
+                        ControlToValidate="ddlClass" ErrorMessage="Class Selection is required." 
+                        ToolTip="Class Selection is required." ValidationGroup="Subject" InitialValue="Select"
+                         ForeColor="#FF3300">*</asp:RequiredFieldValidator>
 
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr runat="server" id="trSemester">
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">
-                                        <asp:Label ID="Label10" class="label" runat="server" Text="Semester :"></asp:Label></td>
-                <td align="left" style="width: 238px">
-                    <div class="dropdown">                                          
-                     <asp:DropDownList ID="ddlSemester" runat="server" class="dropdown-select" validate="form"  require="Required Field Missing.">
-                            <asp:ListItem Text="Select" Value="" Selected="True"></asp:ListItem>
-                            <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                            <asp:ListItem Text="5" Value="5"></asp:ListItem>
-                            <asp:ListItem Text="6" Value="6"></asp:ListItem>
-                            <asp:ListItem Text="7" Value="7"></asp:ListItem>
-                            <asp:ListItem Text="8" Value="8"></asp:ListItem>
-                </asp:DropDownList> 
-                        </div>
-                </td>
-                <td align="left">
-                                        &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">
-                    <asp:Label ID="Label12" runat="server" class="label" Text="Subject Name :"></asp:Label>
-                </td>
-                <td align="left" style="width: 238px">
-
-                    <asp:TextBox ID="txtSubjectName" runat="server" CssClass="textbox"
-                        validate="form" require="Please enter the subject name."></asp:TextBox>
-                </td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-
-                    &nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-                        <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="center" colspan="11">
-                    <br />
-                    <asp:Button ID="btnAddSubjectTheory" runat="server" CssClass="button orange" Text="Add Subject (Theory)"
-                        OnClick="btnAddSubjectTheory_Click" ValidationGroup="saveSubject" OnClientClick="return validate('form');"/>
-                    <br />
-                    <br />
-                    <asp:Button ID="btnAddSubjectLab" runat="server" CssClass="button orange" Text="Add Subject (Lab)"
-                        OnClick="btnAddSubjectLab_Click" ValidationGroup="saveSubject" OnClientClick="return validate('form');"/>
-                    <br />
-                    <br />
-                    <asp:Button ID="btnRemoveSubject" runat="server" CssClass="button orange" Text="Remove Subject"
-                        OnClick="btnRemoveSubject_Click"/>
-                    </td>
-            </tr>
-                        <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;</td>
-                <td align="left" style="width: 178px">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">
-
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left" style="width: 121px">
-                    &nbsp;<td align="left" style="width: 178px">
-                    &nbsp;<td align="center">
-                        
-                                            &nbsp;</td>
-                <td align="center">
-                        
-                                            <div class="lstClassContianer">
-                                                <div class="lstClass">
-                    <asp:ListBox ID="lstSubjectsTheory" runat="server" SelectionMode="Single" CssClass="listbox" Height="350px" Width="175px"></asp:ListBox>
-                        </div>
+                                          </div>
+                                            <div id="dvSemester" runat="server">
+                                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlSemester">Semester<span class="required">*</span></asp:Label>
+                                            <div class="controls">
+                                                <asp:DropDownList ID="ddlSemester" runat="server" class="chzn-select" ValidationGroup="Subject">
+                                                    <asp:ListItem Text="Select" Value="Select" Selected="True"></asp:ListItem>
+                                                    <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                                    <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                                    <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                                                    <asp:ListItem Text="5" Value="5"></asp:ListItem>
+                                                    <asp:ListItem Text="6" Value="6"></asp:ListItem>
+                                                    <asp:ListItem Text="7" Value="7"></asp:ListItem>
+                                                    <asp:ListItem Text="8" Value="8"></asp:ListItem>
+                                                </asp:DropDownList>
+                                                
+                                            </div>
                                                 </div>
-                </td>
-                <td align="center">    
-                    <div class="lstClassContianer">
-                                                <div class="lstClass">
-                    <asp:ListBox ID="lstSubjectsLab" runat="server" SelectionMode="Single" CssClass="listbox" Height="350px" Width="175px"></asp:ListBox>
-                        </div>
-                                                </div>
-                </td>
-                <td align="center">
-                    &nbsp;</td>
-                <td align="center">
-                    <br />
-                    <br />
-                    </td>
-                <td align="left">
-                    &nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td align="center" colspan="10">
-                    <div id="divStatus" runat="server"></div>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="11">
-                    &nbsp;
-                    &nbsp;
-                    <asp:Button ID="btnSaveSubjects" runat="server" CssClass="button orange" Text="Save"
+                                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtSubjectName">Subject Name<span class="required">*</span></asp:Label>
+                                            <div class="controls">
+                                                <asp:TextBox ID="txtSubjectName" runat="server" CssClass="input-xlarge focused"
+                        ></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="SubjectNameRequired" runat="server" 
+                        ControlToValidate="txtSubjectName" ErrorMessage="Subject Name is required." 
+                        ToolTip="Subject Name is required." ValidationGroup="Subject" 
+                         ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+                                            </div>
+                                            <label class="control-label"></label>
+                                            <div class="controls">
+                                                <asp:Button ID="btnAddSubjectTheory" runat="server" CssClass="btn btn-info" Text="Add Subject (Theory)"
+                        OnClick="btnAddSubjectTheory_Click" ValidationGroup="Subject"/>
+                                                &nbsp;
+                    <asp:Button ID="btnAddSubjectLab" runat="server" CssClass="btn btn-info" Text="Add Subject (Lab)"
+                        OnClick="btnAddSubjectLab_Click" ValidationGroup="Subject"/>
+                                                &nbsp;
+                    <asp:Button ID="btnRemoveSubject" runat="server" CssClass="btn btn-info" Text="Remove Subject"
+                        OnClick="btnRemoveSubject_Click" />
+                                            </div> 
+                                            <br />
+                                            <label class="control-label" for="focusedInput"></label>
+                                            <div class="controls">
+
+                    <asp:ListBox ID="lstSubjectsTheory" runat="server" SelectionMode="Single" CssClass="listbox"></asp:ListBox>
+                                                <asp:ListBox ID="lstSubjectsLab" runat="server" SelectionMode="Single" CssClass="listbox"></asp:ListBox>
+                            </div>
+
+                                        </div>
+                                        <div class="form-actions">
+                                                                <div id="divStatus" runat="server"></div>
+                                          <asp:Button ID="btnSaveSubjects" runat="server" Cssclass="btn btn-info" Text="Save"
                         OnClick="btnSaveSubjects_Click"/>
-                    &nbsp;
-                    <asp:Button ID="btnClearSubjects" runat="server" CssClass="button orange"
-                        Text="Clear" OnClick="btnClearSubjects_Click"
-                        meta:resourcekey="btnClearResource1"/>
-                    </td>
-            </tr>
+                                          &nbsp;
+                                          <asp:Button ID="btnClearSubjects" runat="server" Cssclass="btn btn-info"
+                        Text="Cancel" OnClick="btnClearSubjects_Click"
+                         />
+                                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
+            ShowMessageBox="false" ValidationGroup="Subject" ForeColor="Red"
+                ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
+                                        </div>
+                                      </fieldset>
+                                    </form>
 
-            <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left" style="width: 178px">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td align="left" colspan="11">
-        <div align="center">
-            <div class="GridviewDiv">
-            <table style="width: 380px" border="0" cellpadding="0" cellspacing="1" 
-                    class="GridviewTable">
-                <tr>
-                    <td>
-
+                                </div>
+                                </div>
+                            <div class="block-content collapse in">
+                            <div class="span12">
+                            <div class="table-toolbar">
+                                      <div class="btn-group pull-right">
+                                         <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
+                                         <ul class="dropdown-menu">
+                                            <li><a href="#">Print</a></li>
+                                            <li><a href="#">Save as PDF</a></li>
+                                            <li><a href="#">Export to Excel</a></li>
+                                         </ul>
+                                      </div>
+                                   </div>
+                                <br />
+                                <br />
                         <asp:GridView ID="gvSubjects" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                             ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
                             AllowSorting="True" Width="100%" 
-                            CssClass="Gridview" 
-                            EnableModelValidation="True" OnRowCreated="gvSubjects_RowCreated" onsorting="gvSubjects_Sorting"
-                            >
+                            CssClass="table table-hover" 
+                            EnableModelValidation="True" OnRowCreated="gvSubjects_RowCreated" onsorting="gvSubjects_Sorting" OnPageIndexChanging="gvSubjects_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="colBranchId" 
                                                 HeaderText="Class / Branch" 
@@ -288,59 +119,12 @@
                                 </asp:BoundField>
                             </Columns>
                         </asp:GridView>
-                    </td>
-                </tr>
-            </table>
+
             </div>
-            </div>
-                </td>
-            </tr>
+                            </div>
 
-            <tr>
-                <td align="left" style="width: 121px">&nbsp;</td>
-                <td valign="top" colspan="2">
-                    &nbsp;</td>
-                <td valign="top">
-                    &nbsp;</td>
-                <td align="left" style="width: 238px">&nbsp;</td>
-                <td align="left" colspan="2">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
+                            
 
-                <td style="width: 121px">&nbsp;</td>
-
-                <td style="width: 178px">&nbsp;            </td>
-
-                <td style="width: 238px">&nbsp;</td>
-                <td style="width: 238px">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td></td>
-            </tr>
-
-            <tr>
-
-                <td style="width: 121px">&nbsp;</td>
-
-                <td style="width: 178px">&nbsp;</td>
-
-                <td style="width: 238px">&nbsp;</td>
-                <td style="width: 238px"></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-
-        </table>
-    </div>
+                        </div>
+                        <!-- /block -->
 </asp:Content>

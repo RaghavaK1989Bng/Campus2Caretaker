@@ -41,13 +41,24 @@ namespace Campus2caretaker.Institute
 
             if (Session["InstituteType"].ToString() == "S")
             {
-                trSemester.Visible = false;
-                trSemesterLineBreak.Visible = false;
+                dvSemester.Visible = false;
             }
             else
             {
-                trSemester.Visible = true;
-                trSemesterLineBreak.Visible = true;
+                dvSemester.Visible = true;
+
+                RequiredFieldValidator validator = new RequiredFieldValidator();
+                validator.ID = "SemesterRequired";
+                validator.ControlToValidate = ((DropDownList)this.Form.FindControl("ContentPlaceHolder1").FindControl("ddlSemester")).ID;
+                validator.EnableClientScript = true;
+                validator.ErrorMessage = "Semester Selection is required.";
+                validator.Text = "*";
+                validator.ValidationGroup = "Subject";
+                validator.ForeColor = System.Drawing.Color.Red;
+                validator.InitialValue = "Select";
+                validator.ToolTip = "Semester Selection is required.";
+
+                this.Form.FindControl("ContentPlaceHolder1").Controls.Add(validator);
             }
         }
 
@@ -217,6 +228,12 @@ namespace Campus2caretaker.Institute
             {
                 lstSubjectsTheory.Items.Remove(txtSubjectName.Text);
             }
+        }
+
+        protected void gvSubjects_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvSubjects.PageIndex = e.NewPageIndex;
+            RefreshGridView_();
         }
     }
 }
