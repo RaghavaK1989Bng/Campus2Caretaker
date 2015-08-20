@@ -14,23 +14,33 @@ namespace DataAccessObject
            Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
            if(toAtt.SemesterId > 0)
            {
-               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colClassesAttendedMonth <= 0).ToDataTable();
+               string _year = toAtt.Year.ToString();
+               return dbContext.GetStudentsAttendanceDetailsNewEntry(toAtt.InstituteId,
+                                                                     toAtt.SubjectId,
+                                                                     toAtt.Month,
+                                                                     _year,
+                                                                     toAtt.SemesterId,
+                                                                     toAtt.BranchId).ToDataTable();
+
            }
-           return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colClassesAttendedMonth <= 0).ToDataTable();
+           throw new NotImplementedException();
        }
 
        public DataTable GetStudentsListEdit(DTOAttendance toAtt)
        {
            Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
-           if (toAtt.Year != 0 && !string.IsNullOrEmpty(toAtt.Month))
-           {
-               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year && x.colClassesAttendedMonth > 0 && x.colSubjectId == toAtt.SubjectId).ToDataTable();
-           }
+           
            if (toAtt.SemesterId > 0)
            {
-               return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colSemesterId == toAtt.SemesterId && x.colClassesAttendedMonth > 0 && x.colSubjectId == toAtt.SubjectId).ToDataTable();
+               string _year = toAtt.Year.ToString();
+               return dbContext.GetStudentsAttendanceDetailsEdit(toAtt.InstituteId,
+                                                                     toAtt.SubjectId,
+                                                                     toAtt.Month,
+                                                                     _year,
+                                                                     toAtt.SemesterId,
+                                                                     toAtt.BranchId).ToDataTable();
            }
-           return dbContext.GetStudentsAttendanceDetails(toAtt.InstituteId).Where(x => x.colBranchId == toAtt.BranchId && x.colClassesAttendedMonth > 0 && x.colSubjectId == toAtt.SubjectId).ToDataTable();
+           throw new NotImplementedException();
        }
 
        public void SaveUpdateAttendance(DTOAttendance toAtt)

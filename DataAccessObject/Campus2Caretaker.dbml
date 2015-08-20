@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_9CBDC5_campus2caretaker" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SQL5009.myASP.NET;Initial Catalog=DB_9CBDC5_campus2caretaker;Persist Security Info=True;User ID=DB_9CBDC5_campus2caretaker_admin" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="c2c" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=wp.cronnet.co.in;Initial Catalog=c2c;Persist Security Info=True;User ID=raghavak" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblSuperAdminLogin" Member="tblSuperAdminLogins">
     <Type Name="tblSuperAdminLogin">
       <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -145,26 +145,6 @@
       <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.GetStudentsAttendanceDetails" Method="GetStudentsAttendanceDetails">
-    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetStudentsAttendanceDetailsResult">
-      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colClassesHeldMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colClassesAttendedMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colClassesAttendedMonthPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colAccumulatedClassesHeld" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colAccumulatedClassesAttended" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colAccumulatedClassesAttendedPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colStudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetBarChartInternalsDetails" Method="GetBarChartInternalsDetails">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <Parameter Name="month" Type="System.String" DbType="VarChar(50)" />
@@ -177,42 +157,92 @@
       <Column Name="colBranchName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.GetStudentsInternalsDetails" Method="GetStudentsInternalsDetails">
+  <Function Name="dbo.GetStudentsAttendanceDetailsEdit" Method="GetStudentsAttendanceDetailsEdit">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <Parameter Name="colSubjectId" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetStudentsInternalsDetailsResult">
-      <Column Name="colInternals" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    <Parameter Name="colMonth" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colYear" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colSemester" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colBranchId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentsAttendanceDetailsEditResult">
+      <Column Name="colClassesHeldMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesAttendedMonth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesAttendedMonthPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesHeld" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesAttended" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesAttendedPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colYear" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentsAttendanceDetailsNewEntry" Method="GetStudentsAttendanceDetailsNewEntry">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colSubjectId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colMonth" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colYear" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colSemester" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colBranchId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentsAttendanceDetailsNewEntryResult">
+      <Column Name="colClassesHeldMonth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesAttendedMonth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colClassesAttendedMonthPercent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesHeld" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesAttended" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colAccumulatedClassesAttendedPercent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentsInternalsDetailsEdit" Method="GetStudentsInternalsDetailsEdit">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colSubjectId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colMonth" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colYear" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colSemester" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colBranchId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentsInternalsDetailsEditResult">
       <Column Name="colMaxMarks" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="colMinMarks" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="colMarksScored" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="colStudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colSubjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colYear" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.GetStudentsInternalsDetailsNewEntry" Method="GetStudentsInternalsDetailsNewEntry">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <Parameter Name="colSubjectId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colMonth" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colYear" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colSemester" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colBranchId" Type="System.Int32" DbType="Int" />
     <ElementType Name="GetStudentsInternalsDetailsNewEntryResult">
-      <Column Name="colInternals" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colMonth" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colYear" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colMaxMarks" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colMinMarks" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colMarksScored" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colStudentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

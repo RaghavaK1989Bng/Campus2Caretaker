@@ -14,23 +14,31 @@ namespace DataAccessObject
             Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
             if (toint.SemesterId > 0)
             {
-                return dbContext.GetStudentsInternalsDetailsNewEntry(toint.InstituteId,toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMarksScored <= 0).ToDataTable();
+                return dbContext.GetStudentsInternalsDetailsNewEntry(toint.InstituteId,
+                                                                     toint.SubjectId,
+                                                                     toint.Month,
+                                                                     toint.Year,
+                                                                     toint.SemesterId,
+                                                                     toint.BranchId).ToDataTable();
             }
-            return dbContext.GetStudentsInternalsDetailsNewEntry(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colMarksScored <= 0).ToDataTable();
+            // create stored procedure for schools without semester
+            throw new NotImplementedException();
         }
 
         public DataTable GetStudentsListEdit(DTOInternals toint)
         {
             Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
-            if (!string.IsNullOrEmpty(toint.Year) && !string.IsNullOrEmpty(toint.Month))
-            {
-                return dbContext.GetStudentsInternalsDetails(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMonth == toint.Month && x.colYear == toint.Year && x.colMarksScored > 0).ToDataTable();
-            }
             if (toint.SemesterId > 0)
             {
-                return dbContext.GetStudentsInternalsDetails(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colSemesterId == toint.SemesterId && x.colMarksScored > 0).ToDataTable();
+                return dbContext.GetStudentsInternalsDetailsEdit(toint.InstituteId,
+                                                                 toint.SubjectId,
+                                                                 toint.Month,
+                                                                 toint.Year,
+                                                                 toint.SemesterId,
+                                                                 toint.BranchId).ToDataTable();
             }
-            return dbContext.GetStudentsInternalsDetails(toint.InstituteId, toint.SubjectId).Where(x => x.colBranchId == toint.BranchId && x.colMarksScored > 0).ToDataTable();
+            // create stored procedure for schools without semester
+            throw new NotImplementedException();
         }
 
         public void SaveUpdateInternals(DTOInternals toInt)

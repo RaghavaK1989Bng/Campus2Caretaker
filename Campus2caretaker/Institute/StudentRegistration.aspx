@@ -114,7 +114,7 @@
                             <div id="dvSemester" runat="server">
                                 <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlSemester">Semester<span class="required">*</span></asp:Label>
                                 <div class="controls">
-                                    <asp:DropDownList ID="ddlSemester" runat="server" class="chzn-select">
+                                    <asp:DropDownList ID="ddlSemester" runat="server" CssClass="chzn-select">
                                         <asp:ListItem Text="Select" Value="Select" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="1" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="2" Value="2"></asp:ListItem>

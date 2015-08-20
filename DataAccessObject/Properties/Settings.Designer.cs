@@ -26,9 +26,8 @@ namespace DataAccessObject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SQL5009.myASP.NET;Initial Catalog=DB_9CBDC5_campus2caretaker;Persist " +
-            "Security Info=True;User ID=DB_9CBDC5_campus2caretaker_admin;Password=campus2care" +
-            "taker")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=wp.cronnet.co.in;Initial Catalog=c2c;Persist Security Info=True;User " +
+            "ID=raghavak;Password=raghavak_1989")]
         public string DB_9CBDC5_campus2caretakerConnectionString {
             get {
                 return ((string)(this["DB_9CBDC5_campus2caretakerConnectionString"]));

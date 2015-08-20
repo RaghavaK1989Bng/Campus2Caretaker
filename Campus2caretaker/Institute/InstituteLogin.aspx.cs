@@ -45,6 +45,10 @@ namespace Campus2caretaker.Institute
 
                     Response.Redirect("InstituteDefault.aspx");
                 }
+                else
+                {
+                    FailureText.Text = "Username or Password is incorrect.";
+                }
 
             }
             catch (Exception ex)

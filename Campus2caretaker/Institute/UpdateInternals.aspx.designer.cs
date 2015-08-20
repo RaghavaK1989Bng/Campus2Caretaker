@@ -13,15 +13,6 @@ namespace Campus2caretaker.Institute {
     public partial class UpdateInternals {
         
         /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
-        
-        /// <summary>
         /// rbNew control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.RadioButton rbEdit;
         
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
         /// ddlClass control.
         /// </summary>
         /// <remarks>
@@ -58,31 +40,22 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlClass;
         
         /// <summary>
-        /// trSemesterLineBreak control.
+        /// ClassNameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trSemesterLineBreak;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClassNameRequired;
         
         /// <summary>
-        /// trSemester control.
+        /// dvSemester control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trSemester;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSemester;
         
         /// <summary>
         /// ddlSemester control.
@@ -94,13 +67,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlSemester;
         
         /// <summary>
-        /// Label14 control.
+        /// dvSubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSubjects;
         
         /// <summary>
         /// ddlSubjects control.
@@ -112,15 +85,6 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlSubjects;
         
         /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
         /// ddlMonth control.
         /// </summary>
         /// <remarks>
@@ -130,22 +94,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
         
         /// <summary>
-        /// divStatus control.
+        /// MonthSelectionRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MonthSelectionRequired;
         
         /// <summary>
         /// ddlYear control.
@@ -155,6 +110,15 @@ namespace Campus2caretaker.Institute {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
+        
+        /// <summary>
+        /// YearSelectionRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator YearSelectionRequired;
         
         /// <summary>
         /// btnGetStudentsList control.
@@ -175,6 +139,42 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.Button btnGetStudentsListEdit;
         
         /// <summary>
+        /// divStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
+        
+        /// <summary>
+        /// btnSaveInternals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveInternals;
+        
+        /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
         /// gvInternals control.
         /// </summary>
         /// <remarks>
@@ -182,41 +182,5 @@ namespace Campus2caretaker.Institute {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvInternals;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
-        /// <summary>
-        /// FlUploadcsv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FlUploadcsv;
-        
-        /// <summary>
-        /// btnUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
     }
 }

@@ -13,7 +13,7 @@
                                           <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass">Class <span class="required">*</span></asp:Label>
                                           <div class="controls">
                         
-                                              <asp:DropDownList ID="ddlClass" ValidationGroup="Subject" runat="server" class="chzn-select" DataSourceID="dsClasses" DataTextField="colBranchName" DataValueField="colBranchId">
+                                              <asp:DropDownList ID="ddlClass" ValidationGroup="Subject" runat="server" CssClass="chzn-select" DataSourceID="dsClasses" DataTextField="colBranchName" DataValueField="colBranchId">
                                             </asp:DropDownList>
                                                                 <asp:SqlDataSource ID="dsClasses" runat="server" 
                                         ConnectionString="<%$ ConnectionStrings:C2CConnectionString %>" 
@@ -28,7 +28,7 @@
                                             <div id="dvSemester" runat="server">
                                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlSemester">Semester<span class="required">*</span></asp:Label>
                                             <div class="controls">
-                                                <asp:DropDownList ID="ddlSemester" runat="server" class="chzn-select" ValidationGroup="Subject">
+                                                <asp:DropDownList ID="ddlSemester" runat="server" CssClass="chzn-select" ValidationGroup="Subject">
                                                     <asp:ListItem Text="Select" Value="Select" Selected="True"></asp:ListItem>
                                                     <asp:ListItem Text="1" Value="1"></asp:ListItem>
                                                     <asp:ListItem Text="2" Value="2"></asp:ListItem>

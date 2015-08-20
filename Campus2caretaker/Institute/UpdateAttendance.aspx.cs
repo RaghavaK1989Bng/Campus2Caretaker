@@ -34,19 +34,39 @@ namespace Campus2caretaker.Institute
 
             if (Session["InstituteType"].ToString() == "S")
             {
-                trSemester.Visible = false;
-                trSemesterLineBreak.Visible = false;
-
-                trSubject.Visible = false;
-                trSubjectLineBreak.Visible = false;
+                dvSemester.Visible = false;
+                dvSubjects.Visible = false;
             }
             else
             {
-                trSemester.Visible = true;
-                trSemesterLineBreak.Visible = true;
+                dvSemester.Visible = true;
+                dvSubjects.Visible = true;
 
-                trSubject.Visible = true;
-                trSubjectLineBreak.Visible = true;
+                RequiredFieldValidator validator = new RequiredFieldValidator();
+                validator.ID = "SemesterRequired";
+                validator.ControlToValidate = ((DropDownList)this.Form.FindControl("ContentPlaceHolder1").FindControl("ddlSemester")).ID;
+                validator.EnableClientScript = true;
+                validator.ErrorMessage = "Semester Selection is required.";
+                validator.Text = "*";
+                validator.ValidationGroup = "Attendance";
+                validator.ForeColor = System.Drawing.Color.Red;
+                validator.InitialValue = "Select";
+                validator.ToolTip = "Semester Selection is required.";
+
+                this.Form.FindControl("ContentPlaceHolder1").Controls.Add(validator);
+
+                RequiredFieldValidator validatorsubjects = new RequiredFieldValidator();
+                validatorsubjects.ID = "SubjectRequired";
+                validatorsubjects.ControlToValidate = ((DropDownList)this.Form.FindControl("ContentPlaceHolder1").FindControl("ddlSubjects")).ID;
+                validatorsubjects.EnableClientScript = true;
+                validatorsubjects.ErrorMessage = "Subject Selection is required.";
+                validatorsubjects.Text = "*";
+                validatorsubjects.ValidationGroup = "Attendance";
+                validatorsubjects.ForeColor = System.Drawing.Color.Red;
+                validatorsubjects.InitialValue = "Select";
+                validatorsubjects.ToolTip = "Subject Selection is required.";
+
+                this.Form.FindControl("ContentPlaceHolder1").Controls.Add(validatorsubjects);
             }
         }
 
@@ -62,12 +82,12 @@ namespace Campus2caretaker.Institute
 
             ListItem selectItem = new ListItem();
             selectItem.Text = "Select";
-            selectItem.Value = "";
+            selectItem.Value = "Select";
             //cmbComissionNo.Items.Insert(0, selectItem);
             // ddlClass.Items.Insert(0, selectItem);
             ddlMonth.Items.Insert(0, selectItem);
             ddlYear.Items.Insert(0, selectItem);
-            ddlSemester.Items.Insert(0, selectItem);
+            //ddlSemester.Items.Insert(0, selectItem);
 
             ddlClass.SelectedIndex = 0;
             ddlMonth.SelectedIndex = 0;
@@ -119,7 +139,7 @@ namespace Campus2caretaker.Institute
             ddlClass.DataSource = dt;
             ddlClass.DataBind();
 
-            ListItem Item = new ListItem("Select", "");
+            ListItem Item = new ListItem("Select", "Select");
             ddlClass.Items.Insert(0, Item);
             ddlClass.SelectedIndex = 0;
         }
@@ -153,15 +173,15 @@ namespace Campus2caretaker.Institute
                         drCurrentRow = dtCurrentTable.NewRow();
                         drCurrentRow["RowNumber"] = dtCurrentTable.Rows.Count + 1;
 
-                        lbl1.Text = dtStudents.Rows[p][9].ToString();
-                        lbl2.Text = dtStudents.Rows[p][13].ToString();
-                        txt1.Text = dtStudents.Rows[p][2].ToString();
-                        txt2.Text = dtStudents.Rows[p][3].ToString();
-                        txt3.Text = dtStudents.Rows[p][4].ToString();
-                        txt4.Text = dtStudents.Rows[p][5].ToString();
-                        txt5.Text = dtStudents.Rows[p][6].ToString();
-                        txt6.Text = dtStudents.Rows[p][7].ToString();
-                        lbl3.Text = dtStudents.Rows[p][8].ToString();
+                        lbl1.Text = dtStudents.Rows[p]["colStudentName"].ToString();
+                        lbl2.Text = dtStudents.Rows[p]["colRollNo"].ToString();
+                        txt1.Text = dtStudents.Rows[p]["colClassesHeldMonth"].ToString();
+                        txt2.Text = dtStudents.Rows[p]["colClassesAttendedMonth"].ToString();
+                        txt3.Text = dtStudents.Rows[p]["colClassesAttendedMonthPercent"].ToString();
+                        txt4.Text = dtStudents.Rows[p]["colAccumulatedClassesHeld"].ToString();
+                        txt5.Text = dtStudents.Rows[p]["colAccumulatedClassesAttended"].ToString();
+                        txt6.Text = dtStudents.Rows[p]["colAccumulatedClassesAttendedPercent"].ToString();
+                        lbl3.Text = dtStudents.Rows[p]["colStudentId"].ToString();
 
                         dtCurrentTable.Rows[i]["Column1"] = lbl1.Text;
                         dtCurrentTable.Rows[i]["Column2"] = lbl2.Text;
@@ -304,6 +324,16 @@ namespace Campus2caretaker.Institute
             {
                 toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
             }
+            if (Session["InstituteType"].ToString() == "S")
+            {
+                toAtt.SubjectId = 0;
+            }
+            else
+            {
+                toAtt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+            }
+            toAtt.Month = ddlMonth.SelectedValue;
+            toAtt.Year = int.Parse(ddlYear.SelectedValue);
             toAtt.InstituteId = int.Parse(Session["InstituteID"].ToString());
             ViewState["CurrentTable"] = null;
             SetInitialRow();
@@ -362,7 +392,7 @@ namespace Campus2caretaker.Institute
             ddlSubjects.DataSource = dt;
             ddlSubjects.DataBind();
 
-            ListItem Item = new ListItem("Select", "");
+            ListItem Item = new ListItem("Select", "Select");
             ddlSubjects.Items.Insert(0, Item);
             ddlSubjects.SelectedIndex = 0;
         }
@@ -371,6 +401,16 @@ namespace Campus2caretaker.Institute
         {
             BindSubjectsList();
             ddlSubjects.SelectedIndex = 0;
+        }
+
+        protected void btnSaveAttendance_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
