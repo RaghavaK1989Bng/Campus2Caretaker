@@ -22,7 +22,12 @@ namespace DataAccessObject
                                                                      toint.BranchId).ToDataTable();
             }
             // create stored procedure for schools without semester
-            throw new NotImplementedException();
+            return dbContext.GetStudentsInternalsDetailsNewEntry(toint.InstituteId,
+                                                                     toint.SubjectId,
+                                                                     toint.Month,
+                                                                     toint.Year,
+                                                                     0,
+                                                                     toint.BranchId).ToDataTable();
         }
 
         public DataTable GetStudentsListEdit(DTOInternals toint)
@@ -38,7 +43,12 @@ namespace DataAccessObject
                                                                  toint.BranchId).ToDataTable();
             }
             // create stored procedure for schools without semester
-            throw new NotImplementedException();
+            return dbContext.GetStudentsInternalsDetailsEdit(toint.InstituteId,
+                                                                 toint.SubjectId,
+                                                                 toint.Month,
+                                                                 toint.Year,
+                                                                 0,
+                                                                 toint.BranchId).ToDataTable();
         }
 
         public void SaveUpdateInternals(DTOInternals toInt)

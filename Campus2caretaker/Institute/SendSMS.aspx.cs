@@ -11,6 +11,14 @@ namespace Campus2caretaker.Institute
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+
+            }
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
 
         }
     }

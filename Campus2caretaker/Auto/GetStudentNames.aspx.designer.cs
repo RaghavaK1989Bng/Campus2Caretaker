@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Campus2caretaker.Institute {
+namespace Campus2caretaker.Auto {
     
     
-    public partial class SendSMS {
+    public partial class GetStudentNames {
         
         /// <summary>
-        /// btnSend control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSend;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }

@@ -44,6 +44,12 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.6\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -114,6 +120,7 @@
     <Content Include="AddNewInstitute.aspx" />
     <Content Include="AdminDefault.aspx" />
     <Content Include="AdminLogin.aspx" />
+    <Content Include="Auto\GetStudentNames.aspx" />
     <Content Include="Auto\GetInstituteStates.aspx" />
     <Content Include="Auto\GetInstituteDistricts.aspx" />
     <Content Include="Auto\GetInstituteNames.aspx" />
@@ -195,13 +202,14 @@
     <Content Include="css\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="css\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="index.html" />
+    <Content Include="Institute\AddNewStudent.aspx" />
     <Content Include="Institute\AddSubjects.aspx" />
     <Content Include="Institute\cross.jpg" />
     <Content Include="Institute\InstituteDefault.aspx" />
     <Content Include="Institute\InstituteLogin.aspx" />
     <Content Include="Institute\AddClass.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
-    <Content Include="Institute\StudentRegistration.aspx" />
+    <Content Include="Institute\ImportStudents.aspx" />
     <Content Include="Institute\tick.jpg" />
     <Content Include="Institute\UpdateInternals.aspx" />
     <Content Include="Institute\UpdateAttendance.aspx" />
@@ -331,6 +339,13 @@
     <Compile Include="AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Auto\GetStudentNames.aspx.cs">
+      <DependentUpon>GetStudentNames.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auto\GetStudentNames.aspx.designer.cs">
+      <DependentUpon>GetStudentNames.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Auto\GetInstituteStates.aspx.cs">
       <DependentUpon>GetInstituteStates.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -351,6 +366,13 @@
     </Compile>
     <Compile Include="Auto\GetInstituteNames.aspx.designer.cs">
       <DependentUpon>GetInstituteNames.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\AddNewStudent.aspx.cs">
+      <DependentUpon>AddNewStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\AddNewStudent.aspx.designer.cs">
+      <DependentUpon>AddNewStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\AddSubjects.aspx.cs">
       <DependentUpon>AddSubjects.aspx</DependentUpon>
@@ -387,12 +409,12 @@
     <Compile Include="Institute\SendSMS.aspx.designer.cs">
       <DependentUpon>SendSMS.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Institute\StudentRegistration.aspx.cs">
-      <DependentUpon>StudentRegistration.aspx</DependentUpon>
+    <Compile Include="Institute\ImportStudents.aspx.cs">
+      <DependentUpon>ImportStudents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Institute\StudentRegistration.aspx.designer.cs">
-      <DependentUpon>StudentRegistration.aspx</DependentUpon>
+    <Compile Include="Institute\ImportStudents.aspx.designer.cs">
+      <DependentUpon>ImportStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\UpdateInternals.aspx.cs">
       <DependentUpon>UpdateInternals.aspx</DependentUpon>

@@ -90,6 +90,14 @@ namespace DataTransferObject
             set { _parentsMobileNo = value; }
         }
 
+        private string _parentsEmail;
+
+        public string ParentsEmail
+        {
+            get { return _parentsEmail; }
+            set { _parentsEmail = value; }
+        }
+
         private int _studentId;
 
         public int StudentId

@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using DataTransferObject;
 using System.Drawing;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace Campus2caretaker.Institute
 {
@@ -67,6 +71,59 @@ namespace Campus2caretaker.Institute
             validatorsubjects.ToolTip = "Subject Selection is required.";
 
             this.Form.FindControl("ContentPlaceHolder1").Controls.Add(validatorsubjects);
+
+
+            lnkpdfdownload.ServerClick += new EventHandler(lnkpdfdownload_Click);
+            lnkexceldownload.ServerClick += new EventHandler(lnkexceldownload_Click);
+        }
+
+        private void lnkexceldownload_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.xls", String.Concat("InternalDetails", DateTime.Now.Ticks)));
+            gvInternals.GridLines = GridLines.Both;
+            gvInternals.HeaderStyle.Font.Bold = true;
+            gvInternals.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+        }
+
+        //override the VerifyRenderingInServerForm() to verify the control
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //Required to verify that the control is rendered properly on page
+        }
+
+        private void lnkpdfdownload_Click(object sender, EventArgs e)
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    gvInternals.RenderControl(hw);
+                    StringReader sr = new StringReader(sw.ToString());
+                    Document pdfDoc = new Document(PageSize.A4, 5f, 5f, 5f, 0f);
+                    HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                    PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                    pdfDoc.Open();
+                    htmlparser.Parse(sr);
+                    pdfDoc.Close();
+
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.pdf", String.Concat("InternalDetails", DateTime.Now.Ticks)));
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                    Response.Write(pdfDoc);
+                    Response.End();
+                }
+            }
         }
 
         public void clear()
@@ -75,7 +132,7 @@ namespace Campus2caretaker.Institute
 
             BindClassList();
 
-            ListItem selectItem = new ListItem();
+            System.Web.UI.WebControls.ListItem selectItem = new System.Web.UI.WebControls.ListItem();
             selectItem.Text = "Select";
             selectItem.Value = "Select";
             //cmbComissionNo.Items.Insert(0, selectItem);
@@ -128,7 +185,7 @@ namespace Campus2caretaker.Institute
             ddlClass.DataSource = dt;
             ddlClass.DataBind();
 
-            ListItem Item = new ListItem("Select", "Select");
+            System.Web.UI.WebControls.ListItem Item = new System.Web.UI.WebControls.ListItem("Select", "Select");
             ddlClass.Items.Insert(0, Item);
             ddlClass.SelectedIndex = 0;
         }
@@ -139,7 +196,7 @@ namespace Campus2caretaker.Institute
             ddlSubjects.DataSource = dt;
             ddlSubjects.DataBind();
 
-            ListItem Item = new ListItem("Select", "Select");
+            System.Web.UI.WebControls.ListItem Item = new System.Web.UI.WebControls.ListItem("Select", "Select");
             ddlSubjects.Items.Insert(0, Item);
             ddlSubjects.SelectedIndex = 0;
         }

@@ -10,7 +10,7 @@
 namespace Campus2caretaker.Institute {
     
     
-    public partial class StudentRegistration {
+    public partial class AddNewStudent {
         
         /// <summary>
         /// txtStudentName control.
@@ -22,6 +22,15 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.TextBox txtStudentName;
         
         /// <summary>
+        /// hfStudentID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfStudentID;
+        
+        /// <summary>
         /// StudentNameRequired control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Campus2caretaker.Institute {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator StudentNameRequired;
+        
+        /// <summary>
+        /// btnGetStudentInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGetStudentInfo;
         
         /// <summary>
         /// txtStudentAddress control.
@@ -157,6 +175,24 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RollNoRequired;
         
         /// <summary>
+        /// txtParentsEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtParentsEmail;
+        
+        /// <summary>
+        /// ParentsEmailInvalid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ParentsEmailInvalid;
+        
+        /// <summary>
         /// txtParentsContactNumber control.
         /// </summary>
         /// <remarks>
@@ -175,22 +211,13 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ParentsContactNumberRequired;
         
         /// <summary>
-        /// FlUploadcsv control.
+        /// ParentsContactNumberInvalid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FlUploadcsv;
-        
-        /// <summary>
-        /// btnUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpload;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ParentsContactNumberInvalid;
         
         /// <summary>
         /// divStatus control.
@@ -245,6 +272,24 @@ namespace Campus2caretaker.Institute {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
+        /// lnkpdfdownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkpdfdownload;
+        
+        /// <summary>
+        /// lnkexceldownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkexceldownload;
         
         /// <summary>
         /// gvStudents control.

@@ -41,6 +41,7 @@ namespace DataAccessObject
                 studDetail.colSection = tostudentreg.Section;
                 studDetail.colRollNo = tostudentreg.RollNo;
                 studDetail.colParentsMobileNo = tostudentreg.ParentsMobileNo;
+                studDetail.colParentsEmail = tostudentreg.ParentsEmail;
                 studDetail.colInstituteId = tostudentreg.InstituteId;
 
                 dbContext.tblStudentDetails.InsertOnSubmit(studDetail);
@@ -133,7 +134,7 @@ namespace DataAccessObject
             {
                 Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
 
-                // Institute Details
+                // Student Details
 
                 tblStudentDetail studDetail = dbContext.tblStudentDetails.Where(x => x.colStudentId == tostud.StudentId).FirstOrDefault();
                 studDetail.colStudentName = tostud.StudentName;
@@ -147,6 +148,7 @@ namespace DataAccessObject
                 studDetail.colSection = tostud.Section;
                 studDetail.colRollNo = tostud.RollNo;
                 studDetail.colParentsMobileNo = tostud.ParentsMobileNo;
+                studDetail.colParentsEmail = tostud.ParentsEmail;
                 studDetail.colInstituteId = tostud.InstituteId;
 
                 dbContext.SubmitChanges();
@@ -172,6 +174,30 @@ namespace DataAccessObject
             catch
             {
                 return false;
+            }
+        }
+
+        public List<DTOStudentRegistration> GetAutoCompleteStudentNames(string reqString)
+        {
+            Campus2CaretakerDataContext dbcontext = new Campus2CaretakerDataContext();
+            if (!string.IsNullOrEmpty(reqString))
+            {
+                return (from v in dbcontext.tblStudentDetails
+                        where v.colStudentName.ToLower().Contains(reqString.ToLower())
+                        select new DTOStudentRegistration
+                        {
+                            StudentName = v.colStudentName,
+                            StudentId = v.colStudentId
+                        }).ToList();
+            }
+            else
+            {
+                return (from v in dbcontext.tblStudentDetails
+                        select new DTOStudentRegistration
+                        {
+                            StudentName = v.colStudentName,
+                            StudentId = v.colStudentId
+                        }).ToList();
             }
         }
     }

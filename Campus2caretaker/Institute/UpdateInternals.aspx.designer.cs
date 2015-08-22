@@ -175,6 +175,24 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
+        /// lnkpdfdownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkpdfdownload;
+        
+        /// <summary>
+        /// lnkexceldownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkexceldownload;
+        
+        /// <summary>
         /// gvInternals control.
         /// </summary>
         /// <remarks>

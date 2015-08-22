@@ -3,6 +3,7 @@ using DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -67,6 +68,58 @@ namespace Campus2caretaker.Institute
                 validatorsubjects.ToolTip = "Subject Selection is required.";
 
                 this.Form.FindControl("ContentPlaceHolder1").Controls.Add(validatorsubjects);
+            }
+
+            lnkpdfdownload.ServerClick += new EventHandler(lnkpdfdownload_Click);
+            lnkexceldownload.ServerClick += new EventHandler(lnkexceldownload_Click);
+        }
+
+        private void lnkexceldownload_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.xls", String.Concat("AttendanceDetails", DateTime.Now.Ticks)));
+            gvAttendance.GridLines = GridLines.Both;
+            gvAttendance.HeaderStyle.Font.Bold = true;
+            gvAttendance.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+        }
+
+        //override the VerifyRenderingInServerForm() to verify the control
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //Required to verify that the control is rendered properly on page
+        }
+
+        private void lnkpdfdownload_Click(object sender, EventArgs e)
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    gvAttendance.RenderControl(hw);
+                    StringReader sr = new StringReader(sw.ToString());
+                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 5f, 5f, 5f, 0f);
+                    iTextSharp.text.html.simpleparser.HTMLWorker htmlparser = new iTextSharp.text.html.simpleparser.HTMLWorker(pdfDoc);
+                    iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                    pdfDoc.Open();
+                    htmlparser.Parse(sr);
+                    pdfDoc.Close();
+
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.pdf", String.Concat("AttendanceDetails", DateTime.Now.Ticks)));
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                    Response.Write(pdfDoc);
+                    Response.End();
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Attendance Details" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateAttendance.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateAttendance" EnableEventValidation="false" %>
+﻿<%@ Page Title="Attendance Details" Language="C#"  MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateAttendance.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateAttendance" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="block">
@@ -161,9 +161,8 @@
                     <div class="btn-group pull-right">
                         <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Print</a></li>
-                            <li><a href="#">Save as PDF</a></li>
-                            <li><a href="#">Export to Excel</a></li>
+                             <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                             <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -171,7 +170,7 @@
                 <br />
                 <asp:GridView ID="gvAttendance" runat="server" AutoGenerateColumns="False" AllowPaging="false"
                     ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
-                    AllowSorting="True" Width="100%"
+                    AllowSorting="false" Width="100%"
                     CssClass="table table-hover"
                     EnableModelValidation="True" OnRowCommand="gvAttendance_RowCommand"
                     OnDataBound="gvAttendance_DataBound">

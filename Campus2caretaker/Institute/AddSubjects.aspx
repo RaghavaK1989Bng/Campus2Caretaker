@@ -94,9 +94,8 @@
                                       <div class="btn-group pull-right">
                                          <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
                                          <ul class="dropdown-menu">
-                                            <li><a href="#">Print</a></li>
-                                            <li><a href="#">Save as PDF</a></li>
-                                            <li><a href="#">Export to Excel</a></li>
+                                             <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                                            <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
                                          </ul>
                                       </div>
                                    </div>
@@ -104,7 +103,7 @@
                                 <br />
                         <asp:GridView ID="gvSubjects" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                             ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
-                            AllowSorting="True" Width="100%" 
+                            AllowSorting="false" Width="100%" 
                             CssClass="table table-hover" 
                             EnableModelValidation="True" OnRowCreated="gvSubjects_RowCreated" onsorting="gvSubjects_Sorting" OnPageIndexChanging="gvSubjects_PageIndexChanging">
                             <Columns>

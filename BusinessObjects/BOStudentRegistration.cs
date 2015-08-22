@@ -56,5 +56,10 @@ namespace BusinessObjects
         {
             return new DAOStudentRegistration().DeleteStudentDetails(tostu);
         }
+
+        public List<DTOStudentRegistration> GetAutoCompleteStudentNames(string reqString)
+        {
+            return new DAOStudentRegistration().GetAutoCompleteStudentNames(reqString);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="Student Details" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="StudentRegistration.aspx.cs" Inherits="Campus2caretaker.Institute.StudentRegistration" EnableEventValidation="false" EnableViewState="true" %>
+﻿<%@ Page Title="Student Details" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="AddNewStudent.aspx.cs" Inherits="Campus2caretaker.Institute.AddNewStudent" EnableEventValidation="false" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 <script type="text/javascript" language="javascript">
@@ -14,19 +15,45 @@
                                         yearRange: "-30:+0",
                                     }
                                 );
-    						    $("#<%=txtDOB.ClientID %>").attr('readonly', true);
-    						    $("#<%=txtParentsContactNumber.ClientID %>").bind('copy paste cut', function (e) {
-    						        e.preventDefault(); //disable cut,copy,paste
-    						        alert('cut,copy & paste options are disabled !!');
-    						    });
-    						});
+            $("#<%=txtDOB.ClientID %>").attr('readonly', true);
+
+            $("[name*='txtStudentName']").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Auto/GetStudentNames.aspx",
+                        dataType: "json",
+                        data: {
+                            startsWith: request.term
                         }
+                        , success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.value,
+                                    value: item.value,
+                                    id: item.id
+                                }
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    $("[name*='txtStudentName']").val(ui.item.label);
+                    $("[name*='hfStudentID']").val(ui.item.id);
+                }
+            });
+
+            $("#<%=txtParentsContactNumber.ClientID %>").bind('copy paste cut', function (e) {
+                e.preventDefault(); //disable cut,copy,paste
+                alert('cut,copy & paste options are disabled !!');
+            });
+        });
+    }
     </script>
   </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-
     <div class="block">
         <div class="navbar navbar-inner block-header">
             <div class="muted pull-left">Student Details</div>
@@ -41,14 +68,18 @@
                             <div class="controls">
 
                                 <asp:TextBox ID="txtStudentName" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
-
+                                <asp:HiddenField ID="hfStudentID" runat="server" />
                                 <asp:RequiredFieldValidator ID="StudentNameRequired" runat="server"
                                     ControlToValidate="txtStudentName" ErrorMessage="Student Name is required."
                                     ToolTip="Student Name is required." ValidationGroup="Student"
                                     ForeColor="#FF3300">*</asp:RequiredFieldValidator>
-
+                               
                             </div>
-
+                            <asp:Label runat="server" CssClass="control-label"></asp:Label>
+                            <div class="controls">
+                                 <asp:Button ID="btnGetStudentInfo" runat="server" CssClass="btn btn-info" Text="Get"
+                                OnClick="btnGetStudentInfo_Click" />
+                                </div>
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtStudentAddress">Address <span class="required">*</span></asp:Label>
                             <div class="controls">
 
@@ -137,6 +168,15 @@
                                     ForeColor="#FF3300">*</asp:RequiredFieldValidator>
                             </div>
 
+                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtParentsEmail">Parents Email ID</asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtParentsEmail" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+                                                                <asp:RegularExpressionValidator ID="ParentsEmailInvalid" runat="server"
+                                    ControlToValidate="txtParentsEmail" ErrorMessage="Students Email is not valid."
+                                    ToolTip="Students Email is not valid." ValidationGroup="Student"
+                                    ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+                            </div>
+
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtParentsContactNumber">Parents Contact Number<span class="required">*</span></asp:Label>
                             <div class="controls">
                                 <asp:TextBox ID="txtParentsContactNumber" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
@@ -144,34 +184,16 @@
                                     ControlToValidate="txtParentsContactNumber" ErrorMessage="Students Parents Contact Number is required."
                                     ToolTip="Students Parents Contact Number is required." ValidationGroup="Student"
                                     ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="ParentsContactNumberInvalid" runat="server"
+                                    ControlToValidate="txtParentsContactNumber" ErrorMessage="Students Parents Contact Number is not valid."
+                                    ToolTip="Students Parents Contact Number is not valid." ValidationGroup="Student"
+                                    ForeColor="#FF3300" ValidationExpression="[0-9]{10}">*</asp:RegularExpressionValidator>
                             </div>
 
-                            <label class="control-label" for="focusedInput"></label>
-                                            <div class="controls">
-                                                </div>
-
-                            <h4>OR</h4>
-                                            <div class="controls">
-                                                </div>
-
-                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="FlUploadcsv">Import From File <span class="required">*</span></asp:Label>
-                            <div class="controls">
-                                <asp:FileUpload ID="FlUploadcsv" runat="server" CssClass="input-file uniform_on" />
-                                   
-                              <a href="../Template/StudentRegistrationSample.xlsx"  id="LinkstudentRegistrationSample" target="_blank">Download sample file</a>
-                            
-                                
                             </div>
-                            
-                            <label class="control-label" for="focusedInput"></label>
-                                            <div class="controls">
-                                                <asp:Button ID="btnUpload" runat="server" CssClass="btn btn-info" Text="Upload" 
-                onclick="btnUpload_Click" />
-                                                </div>
-                        </div>
-                        <div class="form-actions">
+                            <div class="form-actions">
                             <div id="divStatus" runat="server"></div>
-                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info" Text="Save"
+                                 <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info" Text="Save"
                                 OnClick="btnSave_Click" ValidationGroup="Student" />
                             &nbsp;
                                           <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-info" Text="Update"
@@ -180,27 +202,29 @@
                             <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-info" Text="Delete"
                                 OnClick="btnDelete_Click" ValidationGroup="Student" />
                             &nbsp;
-                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-info" Text="Clear"
+
+                               <asp:Button ID="btnClear" runat="server" CssClass="btn btn-info" Text="Clear"
                                 OnClick="btnClear_Click" />
 
                             <asp:ValidationSummary ID="ValidationSummary1" runat="server"
                                 ShowMessageBox="false" ValidationGroup="Student" ForeColor="Red"
                                 ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
-                        </div>
+                        
+                            </div>
                     </fieldset>
                 </form>
 
             </div>
             </div>
+
         <div class="block-content collapse in">
             <div class="span12">
                 <div class="table-toolbar">
                     <div class="btn-group pull-right">
                         <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Print</a></li>
-                            <li><a href="#">Save as PDF</a></li>
-                            <li><a href="#">Export to Excel</a></li>
+                             <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                             <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -208,16 +232,15 @@
                 <br />
                 <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                     ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
-                    AllowSorting="True" Width="100%"
-                    CssClass="table table-hover" DataKeyNames="colStudentId"
-                    EnableModelValidation="True" OnRowCreated="gvStudents_RowCreated" onsorting="gvStudents_Sorting"
-                            onrowdatabound="gvStudents_RowDataBound" 
-                            onselectedindexchanged="gvStudents_SelectedIndexChanged">
+                    AllowSorting="false" Width="100%"
+                    CssClass="table table-hover" OnRowCreated="gvStudents_RowCreated" 
+                    onsorting="gvStudents_Sorting" OnPageIndexChanging="gvStudents_PageIndexChanging"
+                    EnableModelValidation="True" >
+
                     <Columns>
                         <asp:BoundField DataField="colStudentId" 
                                                 HeaderText="Student ID" 
-                                                SortExpression="colStudentId"
-                                                ReadOnly="True" >
+                                                SortExpression="colStudentId">
                                 </asp:BoundField>
                                 <asp:BoundField DataField="colStudentName" 
                                                 HeaderText="Student Name" 
@@ -234,10 +257,7 @@
 
             </div>
         </div>
-
-
-
-    
-        </div>
+        
+      </div>
     <!-- /block -->
 </asp:Content>
