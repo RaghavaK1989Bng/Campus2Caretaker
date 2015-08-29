@@ -13,24 +13,6 @@ namespace Campus2caretaker {
     public partial class AddNewInstitute {
         
         /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// txtInstituteName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +22,31 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtInstituteName;
         
         /// <summary>
-        /// Label9 control.
+        /// hfInstituteID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.HiddenField hfInstituteID;
+        
+        /// <summary>
+        /// InstituteNameRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator InstituteNameRequired;
+        
+        /// <summary>
+        /// btnGetInstituteInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGetInstituteInfo;
         
         /// <summary>
         /// txtInstituteAddress control.
@@ -58,13 +58,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtInstituteAddress;
         
         /// <summary>
-        /// Label6 control.
+        /// InstituteAddressRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator InstituteAddressRequired;
         
         /// <summary>
         /// txtDistrict control.
@@ -76,13 +76,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtDistrict;
         
         /// <summary>
-        /// Label8 control.
+        /// DistrictRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DistrictRequired;
         
         /// <summary>
         /// txtState control.
@@ -94,13 +94,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtState;
         
         /// <summary>
-        /// Label4 control.
+        /// StateRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StateRequired;
         
         /// <summary>
         /// FileUpPhoto control.
@@ -130,15 +130,6 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.HtmlControls.HtmlImage imgInstituteLogo;
         
         /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
-        /// <summary>
         /// txtInstitutePhoneNumber control.
         /// </summary>
         /// <remarks>
@@ -148,13 +139,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtInstitutePhoneNumber;
         
         /// <summary>
-        /// Label2 control.
+        /// InstitutePhoneNumberRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator InstitutePhoneNumberRequired;
         
         /// <summary>
         /// ddlInstituteType control.
@@ -166,13 +157,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.DropDownList ddlInstituteType;
         
         /// <summary>
-        /// Label13 control.
+        /// InstituteTypeRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator InstituteTypeRequired;
         
         /// <summary>
         /// txtInstituteEmail control.
@@ -184,13 +175,22 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtInstituteEmail;
         
         /// <summary>
-        /// Label5 control.
+        /// InstituteEmailRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator InstituteEmailRequired;
+        
+        /// <summary>
+        /// InstituteEmailInvalid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator InstituteEmailInvalid;
         
         /// <summary>
         /// txtPrincipalName control.
@@ -202,13 +202,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.TextBox txtPrincipalName;
         
         /// <summary>
-        /// Label14 control.
+        /// PrincipalNameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PrincipalNameRequired;
         
         /// <summary>
         /// txtPrincipalContactNumber control.
@@ -218,6 +218,24 @@ namespace Campus2caretaker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrincipalContactNumber;
+        
+        /// <summary>
+        /// PrincipalContactNumberRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PrincipalContactNumberRequired;
+        
+        /// <summary>
+        /// divStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
         
         /// <summary>
         /// btnSave control.
@@ -256,13 +274,31 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
-        /// divStatus control.
+        /// ValidationSummary1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
+        /// lnkpdfdownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkpdfdownload;
+        
+        /// <summary>
+        /// lnkexceldownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkexceldownload;
         
         /// <summary>
         /// gvInstitutes control.

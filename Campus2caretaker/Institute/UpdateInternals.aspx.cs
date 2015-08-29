@@ -131,6 +131,7 @@ namespace Campus2caretaker.Institute
             //Clears all the fields and gets the form to initial state
 
             BindClassList();
+            RefreshSemesters();
 
             System.Web.UI.WebControls.ListItem selectItem = new System.Web.UI.WebControls.ListItem();
             selectItem.Text = "Select";
@@ -148,6 +149,22 @@ namespace Campus2caretaker.Institute
 
             ViewState["CurrentTable"] = null;
             SetInitialRow();
+        }
+
+        private void RefreshSemesters()
+        {
+            ddlSemester.Items.Clear();
+            List<System.Web.UI.WebControls.ListItem> items = GetSemesters.GetSemester(Session["InstituteType"].ToString());
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                System.Web.UI.WebControls.ListItem Item = new System.Web.UI.WebControls.ListItem(items[i].Text, items[i].Value);
+                ddlSemester.Items.Add(Item);
+            }
+
+            System.Web.UI.WebControls.ListItem SelectItem = new System.Web.UI.WebControls.ListItem("Select", "Select");
+            ddlSemester.Items.Insert(0, SelectItem);
+            ddlSemester.SelectedIndex = 0;
         }
 
         private void SetInitialRow()

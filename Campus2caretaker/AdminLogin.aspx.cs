@@ -20,20 +20,23 @@ namespace Campus2caretaker
             }
         }
 
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        protected void LoginButton_Click(object sender, EventArgs e)
         {
             try
             {
                 DTOLogin tologin = new DTOLogin();
-                tologin.UserID = Login1.UserName;
-                tologin.Password = PasswordEncDec.EncodePasswordToBase64(Login1.Password);
-                e.Authenticated = new BOLogin().CheckAdminUser(tologin);
-                if (e.Authenticated)
+                tologin.UserID = UserName.Text;
+                tologin.Password = PasswordEncDec.EncodePasswordToBase64(Password.Text);
+                bool authenticated = new BOLogin().CheckAdminUser(tologin);
+                if (authenticated)
                 {
-                    Session["UserName"] = Login1.UserName;
+                    Session["UserName"] = UserName.Text;
                     Response.Redirect("AdminDefault.aspx");
                 }
-
+                else
+                {
+                    FailureText.Text = "Username or Password is incorrect.";
+                }
             }
             catch (Exception ex)
             {

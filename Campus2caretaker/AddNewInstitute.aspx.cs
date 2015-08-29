@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using DataTransferObject;
 using System.Data;
+using System.IO;
 
 namespace Campus2caretaker
 {
@@ -23,8 +24,8 @@ namespace Campus2caretaker
                 Response.Cache.SetNoStore();
                 m_strSortExp = String.Empty;
                 clear();
+                RefreshGridView();
             }
-            RefreshGridView();
             if (null != ViewState["_SortExp_"])
             {
                 m_strSortExp = ViewState["_SortExp_"] as String;
@@ -33,6 +34,64 @@ namespace Campus2caretaker
             if (null != ViewState["_Direction_"])
             {
                 m_SortDirection = (SortDirection)ViewState["_Direction_"];
+            }
+            lnkpdfdownload.ServerClick += new EventHandler(lnkpdfdownload_Click);
+            lnkexceldownload.ServerClick += new EventHandler(lnkexceldownload_Click);
+        }
+
+        protected void lnkexceldownload_Click(object sender, EventArgs e)
+        {
+            gvInstitutes.AllowPaging = false;
+            this.RefreshGridView();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.xls", String.Concat("InstituteDetails", DateTime.Now.Ticks)));
+            gvInstitutes.GridLines = GridLines.Both;
+            gvInstitutes.HeaderStyle.Font.Bold = true;
+            gvInstitutes.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+        }
+
+        //override the VerifyRenderingInServerForm() to verify the control
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //Required to verify that the control is rendered properly on page
+        }
+
+        protected void lnkpdfdownload_Click(object sender, EventArgs e)
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    //To Export all pages
+                    gvInstitutes.AllowPaging = false;
+                    this.RefreshGridView();
+
+                    gvInstitutes.RenderControl(hw);
+                    StringReader sr = new StringReader(sw.ToString());
+                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 5f, 5f, 5f, 0f);
+                    iTextSharp.text.html.simpleparser.HTMLWorker htmlparser = new iTextSharp.text.html.simpleparser.HTMLWorker(pdfDoc);
+                    iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                    pdfDoc.Open();
+                    htmlparser.Parse(sr);
+                    pdfDoc.Close();
+
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.pdf", String.Concat("InstituteDetails", DateTime.Now.Ticks)));
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                    Response.Write(pdfDoc);
+                    Response.End();
+                }
             }
         }
 
@@ -177,7 +236,7 @@ namespace Campus2caretaker
                 try
                 {
                     DTOInstituteDetails toinst = new DTOInstituteDetails();
-                    toinst.InstituteID = int.Parse(gvInstitutes.SelectedDataKey.Value.ToString());
+                    toinst.InstituteID = int.Parse(hfInstituteID.Value.ToString());
                     toinst.InstituteName = txtInstituteName.Text;
                     toinst.InstituteEmail = txtInstituteEmail.Text;
 
@@ -218,7 +277,7 @@ namespace Campus2caretaker
                 try
                 {
                     DTOInstituteDetails toins = new DTOInstituteDetails();
-                    toins.InstituteID = int.Parse(gvInstitutes.SelectedDataKey.Value.ToString()); ;
+                    toins.InstituteID = int.Parse(hfInstituteID.Value.ToString()); ;
 
                     if (new BOInstituteDetails().DeleteInstituteDetails(toins))
                     {
@@ -266,58 +325,6 @@ namespace Campus2caretaker
             headerRow.Cells[iCol].Controls.Add(sortImage);
         }
 
-        protected void gvInstitutes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DTOInstituteDetails toins = new DTOInstituteDetails();
-            toins.InstituteID = int.Parse(gvInstitutes.SelectedDataKey.Value.ToString());
-            txtInstituteEmail.Enabled = false;
-            btnSave.Enabled = false;
-            btnUpdate.Enabled = true;
-            btnDelete.Enabled = true;
-            DataTable dt = new DataTable();
-            dt = new BOInstituteDetails().GetInstituteDetails(toins);
-            try
-            {
-                txtInstituteName.Text = dt.Rows[0][0].ToString();
-                txtInstituteEmail.Text = dt.Rows[0][7].ToString();
-                Session["LogoPhoto"] = dt.Rows[0][3].ToString();
-                imgInstituteLogo.Src = "~/uploaded/" + Session["LogoPhoto"].ToString();
-                txtInstituteAddress.Text = dt.Rows[0][1].ToString();
-                txtInstitutePhoneNumber.Text = dt.Rows[0][2].ToString();
-                txtState.Text = dt.Rows[0][9].ToString();
-                txtDistrict.Text = dt.Rows[0][8].ToString();
-                
-                if (dt.Rows[0][6].ToString().Equals("S"))
-                {
-                    ddlInstituteType.SelectedIndex = 1;
-                }
-                else if (dt.Rows[0][6].ToString().Equals("C"))
-                {
-                    ddlInstituteType.SelectedIndex = 2;
-                }
-                else if (dt.Rows[0][6].ToString().Equals("D"))
-                {
-                    ddlInstituteType.SelectedIndex = 3;
-                }
-                txtPrincipalContactNumber.Text = dt.Rows[0][5].ToString();
-                txtPrincipalName.Text = dt.Rows[0][4].ToString();
-            }
-            catch
-            {
-
-            }
-        }
-
-        protected void gvInstitutes_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onmouseover"] = "this.style.cursor='pointer';";
-                e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';";
-                e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.gvInstitutes, "Select$" + e.Row.RowIndex);
-            }
-        }
-
         protected void gvInstitutes_RowCreated(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
@@ -345,6 +352,54 @@ namespace Campus2caretaker
             ViewState["_Direction_"] = m_SortDirection;
             ViewState["_SortExp_"] = m_strSortExp = e.SortExpression;
             this.RefreshGridView();
+        }
+
+        protected void gvInstitutes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //gvInstitutes.PageIndex = e.NewPageIndex;
+            //RefreshGridView();
+        }
+
+        protected void btnGetInstituteInfo_Click(object sender, EventArgs e)
+        {
+            DTOInstituteDetails toins = new DTOInstituteDetails();
+            toins.InstituteID = int.Parse(hfInstituteID.Value);
+            txtInstituteEmail.Enabled = false;
+            btnSave.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+            DataTable dt = new DataTable();
+            dt = new BOInstituteDetails().GetInstituteDetails(toins);
+            try
+            {
+                txtInstituteName.Text = dt.Rows[0][0].ToString();
+                txtInstituteEmail.Text = dt.Rows[0][7].ToString();
+                Session["LogoPhoto"] = dt.Rows[0][3].ToString();
+                imgInstituteLogo.Src = "~/uploaded/" + Session["LogoPhoto"].ToString();
+                txtInstituteAddress.Text = dt.Rows[0][1].ToString();
+                txtInstitutePhoneNumber.Text = dt.Rows[0][2].ToString();
+                txtState.Text = dt.Rows[0][9].ToString();
+                txtDistrict.Text = dt.Rows[0][8].ToString();
+
+                if (dt.Rows[0][6].ToString().Equals("S"))
+                {
+                    ddlInstituteType.SelectedIndex = 1;
+                }
+                else if (dt.Rows[0][6].ToString().Equals("C"))
+                {
+                    ddlInstituteType.SelectedIndex = 2;
+                }
+                else if (dt.Rows[0][6].ToString().Equals("D"))
+                {
+                    ddlInstituteType.SelectedIndex = 3;
+                }
+                txtPrincipalContactNumber.Text = dt.Rows[0][5].ToString();
+                txtPrincipalName.Text = dt.Rows[0][4].ToString();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

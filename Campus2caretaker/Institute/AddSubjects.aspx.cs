@@ -206,6 +206,7 @@ namespace Campus2caretaker.Institute
         private void clearSubjects()
         {
             RefreshClasses();
+            RefreshSemesters();
             txtSubjectName.Text = "";
             lstSubjectsLab.Items.Clear();
             lstSubjectsTheory.Items.Clear();
@@ -219,6 +220,22 @@ namespace Campus2caretaker.Institute
             ddlClass.Items.Insert(0, "Select");
 
             ddlClass.SelectedIndex = 0;
+        }
+
+        private void RefreshSemesters()
+        {
+            ddlSemester.Items.Clear();
+            List<ListItem> items = GetSemesters.GetSemester(Session["InstituteType"].ToString());
+
+            for(int i=0;i < items.Count;i++)
+            {
+                ListItem Item = new ListItem(items[i].Text, items[i].Value);
+                ddlSemester.Items.Add(Item);
+            }
+
+            ListItem SelectItem = new ListItem("Select", "Select");
+            ddlSemester.Items.Insert(0, SelectItem);
+            ddlSemester.SelectedIndex = 0;
         }
 
         protected void btnSaveSubjects_Click(object sender, EventArgs e)

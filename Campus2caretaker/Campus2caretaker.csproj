@@ -166,6 +166,7 @@
     <Content Include="fonts\Login\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\about.jpg" />
+    <Content Include="images\addinstitute.png" />
     <Content Include="images\ads_pic.jpg" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\app\arrow.gif" />
@@ -375,6 +376,7 @@
     <Compile Include="Auto\GetInstituteNames.aspx.designer.cs">
       <DependentUpon>GetInstituteNames.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GetSemesters.cs" />
     <Compile Include="Institute\AddNewStudent.aspx.cs">
       <DependentUpon>AddNewStudent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

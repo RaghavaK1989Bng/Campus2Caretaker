@@ -129,7 +129,7 @@ namespace Campus2caretaker.Institute
             // Call Bind Model Codes and Model Description
 
             BindClassList();
-
+            RefreshSemesters();
             //dsCommissionNo.DataBind();
             //cmbComissionNo.DataBind();
 
@@ -149,6 +149,22 @@ namespace Campus2caretaker.Institute
 
             ViewState["CurrentTable"] = null;
             SetInitialRow();
+        }
+
+        private void RefreshSemesters()
+        {
+            ddlSemester.Items.Clear();
+            List<ListItem> items = GetSemesters.GetSemester(Session["InstituteType"].ToString());
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                ListItem Item = new ListItem(items[i].Text, items[i].Value);
+                ddlSemester.Items.Add(Item);
+            }
+
+            ListItem SelectItem = new ListItem("Select", "Select");
+            ddlSemester.Items.Insert(0, SelectItem);
+            ddlSemester.SelectedIndex = 0;
         }
 
         private void SetInitialRow()

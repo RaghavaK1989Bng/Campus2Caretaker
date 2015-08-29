@@ -39,17 +39,7 @@
                                     <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlSemester">Semester</asp:Label>
                                     <div class="controls">
                                         <asp:DropDownList ID="ddlSemester" runat="server" CssClass="chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlSemester_SelectedIndexChanged">
-                                            <asp:ListItem Text="Select" Value="Select" Selected="True"></asp:ListItem>
-                                            <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                                            <asp:ListItem Text="5" Value="5"></asp:ListItem>
-                                            <asp:ListItem Text="6" Value="6"></asp:ListItem>
-                                            <asp:ListItem Text="7" Value="7"></asp:ListItem>
-                                            <asp:ListItem Text="8" Value="8"></asp:ListItem>
                                         </asp:DropDownList>
-
                                     </div>
                                 </div>
 

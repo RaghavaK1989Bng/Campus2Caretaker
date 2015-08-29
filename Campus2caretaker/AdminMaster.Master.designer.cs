@@ -31,13 +31,13 @@ namespace Campus2caretaker {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// ContentPlaceHolder2 control.
+        /// lnkLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkLogout;
         
         /// <summary>
         /// ContentPlaceHolder1 control.
@@ -47,5 +47,14 @@ namespace Campus2caretaker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        
+        /// <summary>
+        /// ContentPlaceHolder2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
     }
 }

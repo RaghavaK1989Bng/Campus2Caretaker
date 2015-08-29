@@ -95,6 +95,7 @@ namespace Campus2caretaker.Institute
         {
             ddlClass.Items.Clear();
             RefreshClasses();
+            RefreshSemesters();
             ListItem selectItem = new ListItem();
             selectItem.Text = "Select";
             selectItem.Value = "Select";
@@ -106,7 +107,6 @@ namespace Campus2caretaker.Institute
             ddlYear.SelectedIndex = 0;
             ddlSemester.SelectedIndex = 0;
 
-
             dvBranch.Visible = false;
             dvIndividualStudent.Visible = false;
             dvSemester.Visible = false;
@@ -114,6 +114,22 @@ namespace Campus2caretaker.Institute
 
             txtSendTo.ReadOnly = true;
             txtMessage.ReadOnly = true;
+        }
+
+        private void RefreshSemesters()
+        {
+            ddlSemester.Items.Clear();
+            List<ListItem> items = GetSemesters.GetSemester(Session["InstituteType"].ToString());
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                ListItem Item = new ListItem(items[i].Text, items[i].Value);
+                ddlSemester.Items.Add(Item);
+            }
+
+            ListItem SelectItem = new ListItem("Select", "Select");
+            ddlSemester.Items.Insert(0, SelectItem);
+            ddlSemester.SelectedIndex = 0;
         }
 
         private void RefreshClasses()

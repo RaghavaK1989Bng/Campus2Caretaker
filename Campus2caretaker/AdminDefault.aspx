@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AdminDefault.aspx.cs" Inherits="Campus2caretaker.AdminDefault" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AdminDefault.aspx.cs" Inherits="Campus2caretaker.AdminDefault" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <script type="text/javascript">
@@ -80,114 +80,117 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="background-color: White; height: 100%;">
-        <table border="0" align="center" cellpadding="0" cellspacing="1"
-            style="width: 100%; height: 100%;">
-            <tr>
-                <td colspan="6" align="left">
-                    <asp:Label ID="Label11" runat="server" CssClass="headertext"
-                        Text="Registered Institutes" meta:resourcekey="Label11Resource1"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td align="center">&nbsp;</td>
-                <td align="center">&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="left"></td>
-                <td align="left">
-                    <asp:Label ID="Label1" class="label" runat="server" Text="Institute Name :"></asp:Label></td>
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Dashboard</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend>Dashboard</legend>
+                        <div class="control-group">
+                            <div class="controls">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtInstituteName">Institute Name</asp:Label>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtDistrict">District</asp:Label>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtState">State</asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:TextBox ID="txtInstituteName" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+                                            <asp:HiddenField ID="hfInstituteID" runat="server" />
 
-                <td align="left">
-                    <asp:TextBox ID="txtInstituteName" runat="server" CssClass="textbox"></asp:TextBox>
-                    <asp:HiddenField ID="hfInstituteID" runat="server" />
-                </td>
-                <td align="left">
-                    <asp:Label ID="Label2" class="label" runat="server" Text="District :"></asp:Label></td>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <asp:TextBox ID="txtDistrict" runat="server" CssClass="input-xlarge focused"></asp:TextBox></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <asp:TextBox ID="txtState" runat="server" CssClass="input-xlarge focused"></asp:TextBox></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="form-actions">
+                                <asp:Button ID="btnApplyFilter" runat="server" CssClass="btn btn-info" Text="Apply Filter"
+                                    OnClick="btnApplyFilter_Click" />
+                                &nbsp;
+                                          <asp:Button ID="btnClearFilter" runat="server" CssClass="btn btn-info"
+                                              Text="Clear Filter" OnClick="btnClearFilter_Click"
+                                              meta:resourcekey="btnClearResource1" />
 
-                <td align="left">
-                    <asp:TextBox ID="txtDistrict" runat="server" CssClass="textbox"></asp:TextBox>                </td>
-                <td align="left">
-                    <asp:Label ID="Label3" class="label" runat="server" Text="State :"></asp:Label></td>
+                            </div>
 
-                <td align="left">
-                    <asp:TextBox ID="txtState" runat="server" CssClass="textbox"></asp:TextBox>
-                </td>
-                <td>
-                    <asp:Button ID="btnApplyFilter" runat="server" CssClass="button orange" Text="Apply Filter" OnClick="btnApplyFilter_Click" /></td>
-                <td>
-                    <asp:Button ID="btnClearFilter" runat="server" CssClass="button orange" Text="Clear Filter" OnClick="btnClearFilter_Click" /></td>
-
-            </tr>
-            <tr>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="left">&nbsp;</td>
-                <td align="center">&nbsp;</td>
-                <td></td>
-                <td align="center">&nbsp;</td>
-            </tr>
-        </table>
-        <table align="center" cellpadding="0" cellspacing="1"
-            style="width: 100%; height: 100%;">
-            <tr>
-                <td style="width: 1px" valign="top">&nbsp;</td>
-
-                <td valign="top">
-                    <div align="center">
-                        <div class="GridviewDiv">
-                            <table style="width: 538px" border="0" cellpadding="0" cellspacing="1"
-                                class="GridviewTable">
-                                <tr>
-                                    <td>
-
-                                        <asp:GridView ID="gvInstitutes" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                                            ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
-                                            AllowSorting="True" Width="100%"
-                                            CssClass="Gridview"
-                                            EnableModelValidation="True" OnRowCreated="gvInstitutes_RowCreated" OnSorting="gvInstitutes_Sorting">
-                                            <Columns>
-                                                <asp:BoundField DataField="colInstituteId"
-                                                    HeaderText="Institute ID"
-                                                    SortExpression="colInstituteId"
-                                                    ReadOnly="True"></asp:BoundField>
-                                                <asp:BoundField DataField="colInstituteName"
-                                                    HeaderText="Institute Name"
-                                                    SortExpression="colInstituteName"></asp:BoundField>
-                                                <asp:BoundField DataField="colPhone"
-                                                    HeaderText="Phone No"
-                                                    SortExpression="colPhone" />
-                                                <asp:BoundField DataField="colDistrict"
-                                                    HeaderText="District"
-                                                    SortExpression="colDistrict" />
-                                                <asp:BoundField DataField="colState"
-                                                    HeaderText="State"
-                                                    SortExpression="colState" />
-                                                <asp:BoundField DataField="colInstituteType"
-                                                    HeaderText="Institute Type"
-                                                    SortExpression="colInstituteType" />
-                                            </Columns>
-                                        </asp:GridView>
-                                    </td>
-                                </tr>
-                            </table>
                         </div>
-                    </div>
-                </td>
-                <td valign="top">&nbsp;</td>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
 
-            </tr>
-        </table>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <div class="table-toolbar">
+                    <div class="btn-group pull-right">
+                        <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                            <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <asp:GridView ID="gvInstitutes" runat="server" AutoGenerateColumns="False" AllowPaging="true"
+                    ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
+                    AllowSorting="false" Width="100%"
+                    CssClass="table table-hover"
+                    EnableModelValidation="True" OnRowCreated="gvInstitutes_RowCreated" OnSorting="gvInstitutes_Sorting" OnPageIndexChanging="gvInstitutes_PageIndexChanging">
+                    <Columns>
+                        <asp:BoundField DataField="colInstituteId"
+                            HeaderText="Institute ID"
+                            SortExpression="colInstituteId"
+                            ReadOnly="True"></asp:BoundField>
+                        <asp:BoundField DataField="colInstituteName"
+                            HeaderText="Institute Name"
+                            SortExpression="colInstituteName"></asp:BoundField>
+                        <asp:BoundField DataField="colPhone"
+                            HeaderText="Phone No"
+                            SortExpression="colPhone" />
+                        <asp:BoundField DataField="colDistrict"
+                            HeaderText="District"
+                            SortExpression="colDistrict" />
+                        <asp:BoundField DataField="colState"
+                            HeaderText="State"
+                            SortExpression="colState" />
+                        <asp:BoundField DataField="colInstituteType"
+                            HeaderText="Institute Type"
+                            SortExpression="colInstituteType" />
+                    </Columns>
+                </asp:GridView>
+
+            </div>
+        </div>
     </div>
+
 </asp:Content>

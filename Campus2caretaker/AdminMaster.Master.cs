@@ -12,9 +12,14 @@ namespace Campus2caretaker
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Header.DataBind();
+
+            lnkLogout.ServerClick += new EventHandler(lnkLogout_Click);
         }
 
-          //  Session.Abandon();
-         //   Response.Redirect("AdminLogin.aspx");
+        private void lnkLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("AdminLogin.aspx");
+        }
     }
 }

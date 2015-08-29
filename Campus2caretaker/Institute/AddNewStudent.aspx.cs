@@ -115,6 +115,7 @@ namespace Campus2caretaker.Institute
             ddlClass.Items.Clear();
 
             RefreshClasses();
+            RefreshSemesters();
 
             ddlClass.SelectedIndex = 0;
             ddlSemester.SelectedIndex = 0;
@@ -130,6 +131,22 @@ namespace Campus2caretaker.Institute
             btnSave.Enabled = true;
             btnUpdate.Enabled = true;
             btnDelete.Enabled = true;
+        }
+
+        private void RefreshSemesters()
+        {
+            ddlSemester.Items.Clear();
+            List<ListItem> items = GetSemesters.GetSemester(Session["InstituteType"].ToString());
+
+            for(int i=0;i < items.Count;i++)
+            {
+                ListItem Item = new ListItem(items[i].Text, items[i].Value);
+                ddlSemester.Items.Add(Item);
+            }
+
+            ListItem SelectItem = new ListItem("Select", "Select");
+            ddlSemester.Items.Insert(0, SelectItem);
+            ddlSemester.SelectedIndex = 0;
         }
 
         int GetSortColumnIndex(String strCol)

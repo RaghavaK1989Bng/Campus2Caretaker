@@ -1,511 +1,231 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AddNewInstitute.aspx.cs" Inherits="Campus2caretaker.AddNewInstitute" EnableEventValidation="false"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.Master" AutoEventWireup="true" CodeBehind="AddNewInstitute.aspx.cs" Inherits="Campus2caretaker.AddNewInstitute" EnableEventValidation="false" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <script type="text/javascript" language="javascript">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <script type="text/javascript" language="javascript">
 
-            $(document).ready(function () {
-                $("#<%=txtInstitutePhoneNumber.ClientID %>").bind('copy paste cut', function (e) {
+        $(document).ready(function () {
+            $("#<%=txtInstitutePhoneNumber.ClientID %>").bind('copy paste cut', function (e) {
                     e.preventDefault(); //disable cut,copy,paste
                     alert('cut,copy & paste options are disabled !!');
-                    });
+                });
 
                 $("#<%=txtPrincipalContactNumber.ClientID %>").keypress(function (event) {
                     if (event.which > 31 && (event.which < 48 || event.which > 57)) {
                         event.preventDefault();
                     }
+                });
+
+            $("[name*='txtInstituteName']").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Auto/GetInstituteNames.aspx",
+                        dataType: "json",
+                        data: {
+                            startsWith: request.term
+                        }
+                        , success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.value,
+                                    value: item.value,
+                                    id: item.id
+                                }
+                            }));
+                        }
                     });
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    $("[name*='txtInstituteName']").val(ui.item.label);
+                    $("[name*='hfInstituteID']").val(ui.item.id);
+                }
             });
-         </script>
+            });
+    </script>
+</asp:Content>
 
-    <div style="background-color:White;height:100%;">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Institute Details</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend>Add / Edit Institute Details</legend>
+                        <div class="control-group">
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtInstituteName">Institute Name <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtInstituteName" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+                                <asp:HiddenField ID="hfInstituteID" runat="server" />
+                                <asp:RequiredFieldValidator ID="InstituteNameRequired" runat="server"
+                                    ControlToValidate="txtInstituteName" ErrorMessage="Institute Name is required."
+                                    ToolTip="Institute Name is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
 
-    <table border="0" align="center" cellpadding="0" cellspacing="1" 
-            style="width:100%;height:100%;">
-    <tr>
-      <td colspan="2" align="left">
-          <asp:Label ID="Label11" runat="server" CssClass="headertext" 
-              Text="Add / Edit Institute Details" meta:resourcekey="Label11Resource1"></asp:Label>
-        </td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="2" align="left">
-                      </td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            <asp:Label ID="Label1" class="label" runat="server" Text="Institute Name :" ></asp:Label></td>
-        <td align="left" style="width: 195px">
-        
-            <asp:TextBox ID="txtInstituteName" runat="server" CssClass="textbox" 
-                 validate="form" require="Please enter the institute name."></asp:TextBox>
-</td>
-        <td align="left">
-                
-        </td>
-        <td align="left">
-           
-        </td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-            <td>        </td>
-</tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            <asp:Label ID="Label9" runat="server" class="label"  Text="Address :"></asp:Label>
-        <td align="left" style="width: 195px">
-        
-            <asp:TextBox ID="txtInstituteAddress" runat="server" CssClass="textarea" 
-                 require="Please enter the institute address." 
-                validate="form" TextMode="MultiLine"></asp:TextBox>
-</td>
-        <td align="left">
-                
-        </td>
-        <td align="left">
-            
-        </td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-            <td>        </td>
-</tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-    <td align="left" style="width: 178px">
-        <asp:Label ID="Label6" class="label" runat="server" Text="District :" ></asp:Label></td>
-    <td align="left" style="width: 195px">
-        
-        <asp:TextBox ID="txtDistrict" runat="server" CssClass="textbox" 
-            validate="form" require="Please enter the district."></asp:TextBox>
-</td>
-    <td align="left">
-                
-    </td>
-    <td align="left">
-            
-    </td>
-    <td align="left">
-        &nbsp;</td>
-    <td align="left">
-        &nbsp;</td>
-        <td>        </td>
-</tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-    <td align="left" style="width: 178px">
-        <asp:Label ID="Label8" runat="server" class="label"  Text="State :"></asp:Label>
-    <td align="left" style="width: 195px">
-        
-        <asp:TextBox ID="txtState" runat="server" CssClass="textbox" 
-            validate="form" require="Please enter the state."></asp:TextBox>
-</td>
-    <td align="left">
-                
-    </td>
-    <td align="left">
-            
-    </td>
-    <td align="left">
-        &nbsp;</td>
-    <td align="left">
-        &nbsp;</td>
-        <td>        </td>
-</tr>
-    <tr>
-            <td align="left" style="width: 178px">
-                &nbsp;</td>
-            <td align="left" style="width: 195px">
-                &nbsp;</td>
-            <td align="left" style="width: 178px">
-                &nbsp;</td>
-            <td align="left" style="width: 195px">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-        </tr>
-    <tr>
-            <td align="left" style="width: 178px">
-                <asp:Label ID="Label4" class="label" runat="server" Text="Institute Logo :" ></asp:Label></td>
-            <td align="left" style="width: 195px">
-              <asp:FileUpload ID="FileUpPhoto" runat="server" />
-                <asp:Button ID="btnUpload" CssClass="button orange" runat="server" Text="Upload" 
-                    onclick="btnUpload_Click" />
-              <br />
-              <br />
-              <img id="imgInstituteLogo" alt="" runat="server" style="height: 150px; width: 150px;" />
-    </td>
+                            </div>
+                            <asp:Label runat="server" CssClass="control-label"></asp:Label>
+                            <div class="controls">
+                                 <asp:Button ID="btnGetInstituteInfo" runat="server" CssClass="btn btn-info" Text="Get"
+                                OnClick="btnGetInstituteInfo_Click" />
+                                </div>
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtInstituteAddress">Institute Address <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtInstituteAddress" runat="server" CssClass="input-xlarge focused" TextMode="MultiLine"></asp:TextBox>
 
-        <td align="left" style="width: 178px">
-                
-                </td>
-                <td align="left" style="width: 195px">
-              
-           
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-                <td>        </td>
-        </tr>   
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            <asp:Label ID="Label7" runat="server" class="label" 
-                     Text="Institute Phone Number :" ></asp:Label>
-            </td>
-        <td align="left" style="width: 195px">
-          <asp:TextBox ID="txtInstitutePhoneNumber" runat="server" CssClass="textbox" require="Please enter the institute phone number." 
-                validate="form"></asp:TextBox>
-</td>
+                                <asp:RequiredFieldValidator ID="InstituteAddressRequired" runat="server"
+                                    ControlToValidate="txtInstituteAddress" ErrorMessage="Institute Address is required."
+                                    ToolTip="Institute Address is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
 
-    <td align="left" style="width: 178px">
-                
-            </td>
-            <td align="left" style="width: 195px">
-                </td>
-           
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-            <td>        </td>
-    </tr>
-    <tr>
-            <td style="width: 178px">&nbsp;            </td>
-       
-            <td align="left" style="width: 195px">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td>        </td>
+                            </div>
 
-    </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            <asp:label ID="Label2" class="label" runat="server" Text="Institute Type :" ></asp:label></td>
-        <td align="left" style="width: 195px">
-        <div class="dropdown">
-                        <asp:DropDownList ID="ddlInstituteType" runat="server" class="dropdown-select" validate="form"  require="Required Field Missing.">
-                            <asp:ListItem Text="Select" Value="" Selected="True"></asp:ListItem>
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtDistrict">District <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtDistrict" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="DistrictRequired" runat="server"
+                                    ControlToValidate="txtDistrict" ErrorMessage="District is required."
+                                    ToolTip="District is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtState">State <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtState" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="StateRequired" runat="server"
+                                    ControlToValidate="txtState" ErrorMessage="State is required."
+                                    ToolTip="State is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtState">Institute Logo</asp:Label>
+                            <div class="controls">
+
+                                <asp:FileUpload ID="FileUpPhoto" runat="server" CssClass="input-file uniform_on" />
+
+                                <asp:Button ID="btnUpload" runat="server" CssClass="btn btn-info" Text="Upload"
+                                    OnClick="btnUpload_Click" />
+                            </div>
+                            <label class="control-label"></label>
+                            <div class="controls">
+                                <img id="imgInstituteLogo" alt="" runat="server"/>
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtInstitutePhoneNumber">Institute Phone Number <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtInstitutePhoneNumber" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="InstitutePhoneNumberRequired" runat="server"
+                                    ControlToValidate="txtInstitutePhoneNumber" ErrorMessage="Institute Phone Number is required."
+                                    ToolTip="Institute Phone Number is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlInstituteType">Institute Type <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                 <asp:DropDownList ID="ddlInstituteType" ValidationGroup="Institute" runat="server" CssClass="chzn-select">
+                                     <asp:ListItem Text="Select" Value="" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="School" Value="S"></asp:ListItem>
-                            <asp:ListItem Text="College" Value="C"></asp:ListItem>
+                            <asp:ListItem Text="PU College" Value="C"></asp:ListItem>
                             <asp:ListItem Text="Degree College" Value="D"></asp:ListItem>
+                            <asp:ListItem Text="Engineering College" Value="E"></asp:ListItem>
+                                            </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="InstituteTypeRequired" runat="server"
+                                    ControlToValidate="ddlInstituteType" ErrorMessage="Institute Type Selection is required."
+                                    ToolTip="Institute Type Selection is required." ValidationGroup="Institute" InitialValue="Select"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
 
-                </asp:DropDownList>
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtInstituteEmail">Institute Email ID <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtInstituteEmail" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="InstituteEmailRequired" runat="server"
+                                    ControlToValidate="txtInstituteEmail" ErrorMessage="Institute Email is required."
+                                    ToolTip="Institute Email is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+                                                                <asp:RegularExpressionValidator ID="InstituteEmailInvalid" runat="server"
+                                    ControlToValidate="txtInstituteEmail" ErrorMessage="Institute Email is not valid."
+                                    ToolTip="Institute Email is not valid." ValidationGroup="Institute"
+                                    ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtPrincipalName">Principal Name <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtPrincipalName" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="PrincipalNameRequired" runat="server"
+                                    ControlToValidate="txtPrincipalName" ErrorMessage="Principal Name is required."
+                                    ToolTip="Principal Name is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtPrincipalContactNumber">Principal Contact Number <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtPrincipalContactNumber" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="PrincipalContactNumberRequired" runat="server"
+                                    ControlToValidate="txtPrincipalContactNumber" ErrorMessage="Principal Contact Number is required."
+                                    ToolTip="Principal Contact Number is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <div id="divStatus" runat="server"></div>
+                                 <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info" Text="Save"
+                                OnClick="btnSave_Click" ValidationGroup="Institute" />
+                            &nbsp;
+                                          <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-info" Text="Update"
+                                OnClick="btnUpdate_Click" ValidationGroup="Institute" />
+                            &nbsp;
+                            <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-info" Text="Delete"
+                                OnClick="btnDelete_Click" ValidationGroup="Institute" />
+                            &nbsp;
+
+                               <asp:Button ID="btnClear" runat="server" CssClass="btn btn-info" Text="Clear"
+                                OnClick="btnClear_Click" />
+
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+                                ShowMessageBox="false" ValidationGroup="Institute" ForeColor="Red"
+                                ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
+                        
+                            </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <div class="block-content collapse in">
+            <div class="span12">
+                <div class="table-toolbar">
+                    <div class="btn-group pull-right">
+                        <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                             <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                             <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
+                        </ul>
+                    </div>
                 </div>
-</td>
-                    <td align="left" style="width: 178px">
-                        &nbsp;</td>
-        <td align="left" style="width: 195px">
-        
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-            <td>        </td>
-    </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-            <td align="left" style="width: 178px">
-            <asp:Label ID="Label13" class="label" runat="server" Text="Institute Email ID:" ></asp:Label></td>
-            <td align="left" style="width: 195px">
-        
-            <asp:TextBox ID="txtInstituteEmail" runat="server" CssClass="textbox" 
-                 validate="form" require="Please enter the institute email id." 
-                regular="<p>Please check the email address entered in the form</p><p>example@address.com</p>"
-                validexpress="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?">
-            </asp:TextBox>
-            </td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-        </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-            <td align="left" style="width: 178px">
-            <asp:Label ID="Label5" class="label" runat="server" Text="Principal Name :" ></asp:Label></td>
-        <td align="left" style="width: 195px">
-        
-            <asp:TextBox ID="txtPrincipalName" runat="server" CssClass="textbox" 
-                 validate="form" require="Please enter the principal name."></asp:TextBox>
-</td>
-            <td align="left" style="width: 178px">
-                
-            </td>
-            <td align="left" style="width: 195px">
-                </td>
-           
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-        </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-            <td align="left" style="width: 178px">
-            <asp:Label ID="Label14" runat="server" class="label" 
-                    Text="Principal Contact Number :" ></asp:Label></td>
-        <td align="left" style="width: 195px">
-        
-           <asp:TextBox ID="txtPrincipalContactNumber" runat="server" CssClass="textbox" 
-                 require="Please enter principal contact number." 
-                validate="form"></asp:TextBox>
-            </td>
-            <td align="left" style="width: 178px">
-                
-            </td>
-            <td align="left" style="width: 195px">
-               </td>
-           
-            <td align="left">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-        </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        
-        <td style="width: 178px">&nbsp;            </td>
-       
-        <td colspan="3">
-            <asp:Button ID="btnSave" runat="server" CssClass="button orange" Text="Save" 
-                onclick="btnSave_Click" ValidationGroup="save" OnClientClick="return validate('form');" />
-            <asp:Button ID="btnUpdate" runat="server" CssClass="button orange" Text="Update" 
-                onclick="btnUpdate_Click" meta:resourcekey="btnUpdateResource1" 
-                 OnClientClick="return validate('form');" />
-            <asp:Button ID="btnDelete" runat="server" CssClass="button orange" Text="Delete" 
-                onclick="btnDelete_Click" meta:resourcekey="btnDeleteResource1" 
-                OnClientClick="return validate('form');" />
-            <asp:Button ID="btnClear" runat="server" CssClass="button orange" 
-                Text="Clear" onclick="btnClear_Click" 
-                meta:resourcekey="btnClearResource1" />
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>        </td>
-    </tr>
-    <tr>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left" style="width: 178px">
-            &nbsp;</td>
-        <td align="left" style="width: 195px">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td align="left">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-       
-        <td style="width: 178px">&nbsp;            </td>
-       
-        <td>
-<div id="divStatus" runat="server"></div>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>        
-        </td>
-    </tr>
+                <br />
+                <br />
+                <asp:GridView ID="gvInstitutes" runat="server" AutoGenerateColumns="False" AllowPaging="True"
+                    ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
+                    AllowSorting="false" Width="100%"
+                    CssClass="table table-hover" OnRowCreated="gvInstitutes_RowCreated" 
+                    onsorting="gvInstitutes_Sorting" OnPageIndexChanging="gvInstitutes_PageIndexChanging"
+                    EnableModelValidation="True"  DataSourceID="dsGridview" >
 
-</table>
-    <table>
-            <tr><td style="width: 178px" valign="top">&nbsp;</td>
-       
-        <td valign="top">
-        <div align="left">
-            <div class="GridviewDiv">
-            <table style="width: 538px" border="0" cellpadding="0" cellspacing="1" 
-                    class="GridviewTable">
-                <tr>
-                    <td>
-
-                        <asp:GridView ID="gvInstitutes" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                            ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
-                            AllowSorting="True" DataSourceID="dsGridview" Width="100%" 
-                            CssClass="Gridview" DataKeyNames="colInstituteId" 
-                            EnableModelValidation="True" OnRowCreated="gvInstitutes_RowCreated" onsorting="gvInstitutes_Sorting"
-                            onrowdatabound="gvInstitutes_RowDataBound" 
-                            onselectedindexchanged="gvInstitutes_SelectedIndexChanged" 
-                            >
-                            <Columns>
+                    <Columns>
                                 <asp:BoundField DataField="colInstituteId" 
                                                 HeaderText="Institute ID" 
                                                 SortExpression="colInstituteId"
@@ -522,21 +242,11 @@
                                                 HeaderText="Institute Type" 
                                                 SortExpression="colInstituteType" />
                             </Columns>
-                        </asp:GridView>
-                    </td>
-                </tr>
-            </table>
+                </asp:GridView>
             </div>
-            <asp:SqlDataSource ID="dsGridview" runat="server" ConnectionString="<%$ ConnectionStrings:C2CConnectionString %>"
+             <asp:SqlDataSource ID="dsGridview" runat="server" ConnectionString="<%$ ConnectionStrings:C2CConnectionString %>"
                 SelectCommand="SELECT [colInstituteId], [colInstituteName], [colPhone],[colInstituteType] FROM [tblInstituteDetails]">
             </asp:SqlDataSource>
-            </div>
-    </td>
-        <td valign="top">        
-            &nbsp;</td>
-    
-    </tr>
-        </table>
-
+        </div>
     </div>
 </asp:Content>
