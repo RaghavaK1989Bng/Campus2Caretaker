@@ -150,6 +150,14 @@ namespace DataAccessObject
 			}
 		}
 		
+		public System.Data.Linq.Table<tblSMSTemplate> tblSMSTemplates
+		{
+			get
+			{
+				return this.GetTable<tblSMSTemplate>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetInstituteDetails")]
 		public ISingleResult<GetInstituteDetailsResult> GetInstituteDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid)
 		{
@@ -2595,6 +2603,51 @@ namespace DataAccessObject
 		{
 			this.SendPropertyChanging();
 			entity.tblStudentDetail = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblSMSTemplates")]
+	public partial class tblSMSTemplate
+	{
+		
+		private string _TemplateType;
+		
+		private string _Template;
+		
+		public tblSMSTemplate()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TemplateType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string TemplateType
+		{
+			get
+			{
+				return this._TemplateType;
+			}
+			set
+			{
+				if ((this._TemplateType != value))
+				{
+					this._TemplateType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Template", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Template
+		{
+			get
+			{
+				return this._Template;
+			}
+			set
+			{
+				if ((this._Template != value))
+				{
+					this._Template = value;
+				}
+			}
 		}
 	}
 	

@@ -46,7 +46,7 @@
         <elementListCompartment Id="be29a889-8159-4e79-a935-7355534ad8f4" absoluteBounds="9.765, 2.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.125 : 3.92714680989583); (9.16666666666667 : 3.92714680989583 : JumpStart); (9.33333333333333 : 3.92714680989583 : JumpEnd); (9.75 : 3.92714680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.125 : 3.92714680989583); (9.75 : 3.92714680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblSubjectDetail" />
       <nodes>
         <classShapeMoniker Id="9b15c738-749a-49e2-abe3-61b04b4a3e12" />
@@ -72,7 +72,7 @@
         <elementListCompartment Id="ecd2a625-bb64-4aa0-86a3-264e408d7504" absoluteBounds="8.015, 5.835, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.125 : 1.78125); (9.25 : 1.78125); (9.25 : 5.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.34375 : 4.42470540364583); (4.34375 : 8.702331484375); (8 : 8.702331484375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblAttendanceDetail" />
       <nodes>
         <classShapeMoniker Id="9b15c738-749a-49e2-abe3-61b04b4a3e12" />
@@ -92,5 +92,11 @@
         <classShapeMoniker Id="eb254864-5634-4896-acd8-ef3623d2a935" />
       </nodes>
     </associationConnector>
+    <classShape Id="d989fef8-b1b6-4907-813c-77cdeb221ffa" absoluteBounds="6.625, 4.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/Campus2CaretakerDataContext/tblSMSTemplate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7472a498-ff96-472d-9874-3b58f3c440fc" absoluteBounds="6.64, 5.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

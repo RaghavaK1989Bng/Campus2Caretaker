@@ -114,6 +114,12 @@
       <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblAttendanceDetail" />
     </Type>
   </Table>
+  <Table Name="dbo.tblSMSTemplates" Member="tblSMSTemplates">
+    <Type Name="tblSMSTemplate">
+      <Column Name="TemplateType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Template" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <ElementType Name="GetInstituteDetailsResult">

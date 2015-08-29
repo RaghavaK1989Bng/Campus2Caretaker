@@ -188,32 +188,32 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Classes Held (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtClassesHeld" CssClass="input-large focused" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtClassesHeld" CssClass="input-large focused" runat="server" AutoPostBack="true" OnTextChanged="txtClassesHeld_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Classes Attended (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtClassesAttended" CssClass="input-large focused" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtClassesAttended" CssClass="input-large focused" runat="server" AutoPostBack="true" OnTextChanged="txtClassesAttended_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Percentage (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtPercentage" CssClass="uneditable-input focused" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtPercentage" CssClass="uneditable-input focused" runat="server" ReadOnly="true"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Classes Held (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtCumClassesHeld" CssClass="uneditable-input focused" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtCumClassesHeld" CssClass="uneditable-input focused" runat="server" AutoPostBack="true" OnTextChanged="txtCumClassesHeld_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Classes Attended (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtCumClassesAttended" CssClass="uneditable-input focused" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtCumClassesAttended" CssClass="uneditable-input focused" runat="server" AutoPostBack="true" OnTextChanged="txtCumClassesAttended_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Percentage (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtCumPercentage" CssClass="uneditable-input focused" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtCumPercentage" CssClass="uneditable-input focused" runat="server" ReadOnly="true"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Student ID" HeaderStyle-ForeColor="Black" Visible="false">

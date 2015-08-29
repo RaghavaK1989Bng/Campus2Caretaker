@@ -203,7 +203,6 @@ namespace Campus2caretaker.Institute
 
         private void AddRowsToGrid(DataTable dtStudents)
         {
-
             for (int p = 0; p < dtStudents.Rows.Count; p++)
             {
                 int rowIndex = 0;
@@ -416,7 +415,29 @@ namespace Campus2caretaker.Institute
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            clear();
+        }
 
+        protected void txtMaxMarks_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtRow1 = (TextBox)gvInternals.Rows[0].Cells[3].FindControl("txtMaxMarks");
+            for (int p = 1; p < gvInternals.Rows.Count - 1; p++)
+            {
+                TextBox txt1 = (TextBox)gvInternals.Rows[p].Cells[3].FindControl("txtMaxMarks");
+                txt1.Text = txtRow1.Text;
+                p++;
+            }
+        }
+
+        protected void txtMinMarks_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtRow1 = (TextBox)gvInternals.Rows[0].Cells[4].FindControl("txtMinMarks");
+            for (int p = 1; p < gvInternals.Rows.Count - 1; p++)
+            {
+                TextBox txt1 = (TextBox)gvInternals.Rows[p].Cells[4].FindControl("txtMinMarks");
+                txt1.Text = txtRow1.Text;
+                p++;
+            }
         }
     }
 }

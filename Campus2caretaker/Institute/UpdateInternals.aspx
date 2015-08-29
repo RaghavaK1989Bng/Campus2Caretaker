@@ -188,17 +188,17 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Max Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtMaxMarks" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtMaxMarks" runat="server" CssClass="input-large focused" AutoPostBack="true" OnTextChanged="txtMaxMarks_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Min Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtMinMarks" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtMinMarks" runat="server" AutoPostBack="true" CssClass="input-large focused" OnTextChanged="txtMinMarks_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Marks Scored" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtMarksScored" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtMarksScored" CssClass="input-large focused" runat="server"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Student ID" HeaderStyle-ForeColor="Black" Visible="false">

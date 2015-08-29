@@ -348,7 +348,7 @@ namespace Campus2caretaker.Institute
                 toAtt.CumClassesHeld = decimal.Parse(txtCumClassesHeld.Text);
                 toAtt.CumClassesAttended = decimal.Parse(txtCumClassesAttended.Text);
                 toAtt.CumClassesPercentage = decimal.Parse(txtCumPercentage.Text);
-                
+
                 toAtt.StudentId = int.Parse(lblStudentID.Text);
 
                 new BOAttendance().SaveUpdateAttendance(toAtt);
@@ -463,7 +463,55 @@ namespace Campus2caretaker.Institute
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            clear();
+        }
 
+        protected void txtClassesHeld_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtRow1 = (TextBox)gvAttendance.Rows[0].Cells[3].FindControl("txtClassesHeld");
+            for (int p = 1; p < gvAttendance.Rows.Count - 1; p++)
+            {
+                TextBox txt1 = (TextBox)gvAttendance.Rows[p].Cells[3].FindControl("txtClassesHeld");
+                txt1.Text = txtRow1.Text;
+                p++;
+            }
+        }
+
+        protected void txtCumClassesHeld_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtRow1 = (TextBox)gvAttendance.Rows[0].Cells[6].FindControl("txtCumClassesHeld");
+            for (int p = 1; p < gvAttendance.Rows.Count - 1; p++)
+            {
+                TextBox txt1 = (TextBox)gvAttendance.Rows[p].Cells[6].FindControl("txtCumClassesHeld");
+                txt1.Text = txtRow1.Text;
+                p++;
+            }
+        }
+
+        protected void txtClassesAttended_TextChanged(object sender, EventArgs e)
+        {
+            for (int p = 0; p < gvAttendance.Rows.Count - 1; p++)
+            {
+                GridViewRow row = gvAttendance.Rows[p];
+                TextBox txtClassesHeld = (TextBox)row.Cells[3].FindControl("txtClassesHeld");
+                TextBox txtClassesAttended = (TextBox)row.Cells[4].FindControl("txtClassesAttended");
+                TextBox txtClassesPercentage = (TextBox)row.Cells[5].FindControl("txtPercentage");
+
+                txtClassesPercentage.Text = ((Convert.ToDouble(txtClassesAttended.Text) * 100) / (Convert.ToDouble(txtClassesHeld.Text))).ToString("0.00");
+            }
+        }
+
+        protected void txtCumClassesAttended_TextChanged(object sender, EventArgs e)
+        {
+            for (int p = 0; p < gvAttendance.Rows.Count - 1; p++)
+            {
+                GridViewRow row = gvAttendance.Rows[p];
+                TextBox txtCumClassesHeld = (TextBox)row.Cells[3].FindControl("txtCumClassesHeld");
+                TextBox txtCumClassesAttended = (TextBox)row.Cells[4].FindControl("txtCumClassesAttended");
+                TextBox txtCumClassesPercentage = (TextBox)row.Cells[5].FindControl("txtCumPercentage");
+
+                txtCumClassesPercentage.Text = ((Convert.ToDouble(txtCumClassesAttended.Text) * 100) / (Convert.ToDouble(txtCumClassesHeld.Text))).ToString("0.00");
+            }
         }
     }
 }

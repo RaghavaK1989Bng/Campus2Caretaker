@@ -12,7 +12,10 @@ namespace Campus2caretaker.Institute
         protected void Page_Load(object sender, EventArgs e)
         {
             string url = "~/uploaded/" + Session["LogoPath"].ToString();
-           // imgInstituteLogo.Src = url;
+            imgInstituteLogo.Src = url;
+
+            InstituteName.InnerText = Session["InstituteName"].ToString();
+
         }
     }
 }
