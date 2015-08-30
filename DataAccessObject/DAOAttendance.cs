@@ -62,6 +62,8 @@ namespace DataAccessObject
               Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
               Attendance.colStudentId = toAtt.StudentId;
               Attendance.colSubjectId = toAtt.SubjectId;
+              Attendance.colRemarks = toAtt.Remarks;
+              Attendance.colDescription = toAtt.Description;
 
               dbContext.SubmitChanges();
           }
@@ -81,6 +83,8 @@ namespace DataAccessObject
               Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
               Attendance.colStudentId = toAtt.StudentId;
               Attendance.colSubjectId = toAtt.SubjectId;
+              Attendance.colRemarks = toAtt.Remarks;
+              Attendance.colDescription = toAtt.Description;
 
               dbContext.tblAttendanceDetails.InsertOnSubmit(Attendance);
               dbContext.SubmitChanges();

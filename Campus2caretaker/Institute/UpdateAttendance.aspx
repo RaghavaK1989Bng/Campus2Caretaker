@@ -28,7 +28,10 @@
                                     </tr>
                                 </table>
                             </div>
-
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtDescription">Description</asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtDescription" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+                            </div>
                             <table>
                                 <tr>
                                     <td>
@@ -166,10 +169,10 @@
                     EnableModelValidation="True" OnRowCommand="gvAttendance_RowCommand"
                     OnDataBound="gvAttendance_DataBound">
                     <Columns>
-                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="30px" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="25px" />
                         <asp:TemplateField HeaderText="Student Name" HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
-                                <asp:Label ID="lblStudentName" runat="server" CssClass="text" Width="110px" Text='<%# Bind("Column1") %>'></asp:Label>
+                                <asp:Label ID="lblStudentName" runat="server" CssClass="text" Width="90px" Text='<%# Bind("Column1") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Roll No" HeaderStyle-ForeColor="Black">
@@ -177,32 +180,32 @@
                                 <asp:Label ID="lblRollNo" runat="server" Width="90px" CssClass="text" Text='<%# Bind("Column2") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Classes Held (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Classes Held (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtClassesHeld" CssClass="input-large focused" runat="server" AutoPostBack="true" OnTextChanged="txtClassesHeld_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Classes Attended (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Classes Attended (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtClassesAttended" CssClass="input-large focused" runat="server" AutoPostBack="true" OnTextChanged="txtClassesAttended_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Percentage (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Percentage (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtPercentage" CssClass="uneditable-input focused" runat="server" ReadOnly="true"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Classes Held (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Classes Held (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtCumClassesHeld" CssClass="uneditable-input focused" runat="server" AutoPostBack="true" OnTextChanged="txtCumClassesHeld_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Classes Attended (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Classes Attended (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtCumClassesAttended" CssClass="uneditable-input focused" runat="server" AutoPostBack="true" OnTextChanged="txtCumClassesAttended_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Percentage (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Percentage (Cumulative)" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtCumPercentage" CssClass="uneditable-input focused" runat="server" ReadOnly="true"></asp:TextBox>
                             </ItemTemplate>
@@ -212,7 +215,12 @@
                                 <asp:Label ID="lblStudentID" runat="server" CssClass="text" Width="20px" Text='<%# Bind("Column6") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ControlStyle-Width="40px">
+                        <asp:TemplateField HeaderText="Remarks" HeaderStyle-ForeColor="Black" ControlStyle-Width="60px">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtRemarks" CssClass="input-large focused" runat="server"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ControlStyle-Width="35px">
                             <ItemTemplate>
                                 <asp:LinkButton runat="server" ID="Save"
                                     CommandName="Save" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" Text="Save" CssClass="btn btn-info btn-mini" />

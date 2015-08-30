@@ -115,5 +115,21 @@ namespace DataTransferObject
             get { return _subjectId; }
             set { _subjectId = value; }
         }
+
+        private string _remarks;
+
+        public string Remarks
+        {
+            get { return _remarks; }
+            set { _remarks = value; }
+        }
+
+        private string _description;
+
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
     }
 }

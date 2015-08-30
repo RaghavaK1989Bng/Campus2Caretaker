@@ -146,12 +146,12 @@ namespace Campus2caretaker.Institute
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            connect();
             foreach (string mobno in txtSendTo.Text.Split(';'))
             {
                 if (!string.IsNullOrEmpty(mobno))
                 {
-                    sendSms(mobno, txtMessage.Text);
+
+                    sendSms("8970978907", "98445380680", txtMessage.Text, mobno);
                 }
             }
         }
@@ -176,75 +176,14 @@ namespace Campus2caretaker.Institute
             }
         }
 
-        public void connect()
+        public void sendSms(string uid, string password, string message, string no)
         {
-            ckuser = "8970978907";
-            ckpass = "98445380680";
-
-            try
-            {
-                this.req = (HttpWebRequest)WebRequest.Create("http://wwwd.way2sms.com/auth.cl");
-
-                this.req.CookieContainer = new CookieContainer();
-                this.req.AllowAutoRedirect = false;
-                this.req.Method = "POST";
-                this.req.ContentType = "application/x-www-form-urlencoded";
-                this.strNewValue = "username=" + ckuser + "&password=" + ckpass;
-                this.req.ContentLength = this.strNewValue.Length;
-                StreamWriter writer = new StreamWriter(this.req.GetRequestStream(), Encoding.ASCII);
-                writer.Write(this.strNewValue);
-                writer.Close();
-                this.response = (HttpWebResponse)this.req.GetResponse();
-                this.cookieCntr = this.req.CookieContainer;
-                this.response.Close();
-                this.req = (HttpWebRequest)WebRequest.Create("http://wwwd.way2sms.com//jsp/InstantSMS.jsp?val=0");
-                this.req.CookieContainer = this.cookieCntr;
-                this.req.Method = "GET";
-                this.response = (HttpWebResponse)this.req.GetResponse();
-                responseee = new StreamReader(this.response.GetResponseStream()).ReadToEnd();
-                int index = Regex.Match(responseee, "custf").Index;
-                responseee = responseee.Substring(index, 0x12);
-                responseee = responseee.Replace("\"", "").Replace(">", "").Trim();
-                this.response.Close();
-                divStatus.InnerText = "connected";
-            }
-            catch (Exception)
-            {
-                divStatus.InnerText = "Error connecting to the server...";
-            }
-        }
-
-        public void sendSms(string mbno, string mseg)
-        {
-            if ((mbno != "") && (mseg != ""))
-            {
-                try
-                {
-                    this.req = (HttpWebRequest)WebRequest.Create("http://wwwd.way2sms.com//FirstServletsms?custid=");
-                    this.req.AllowAutoRedirect = false;
-                    this.req.CookieContainer = this.cookieCntr;
-                    this.req.Method = "POST";
-                    this.req.ContentType = "application/x-www-form-urlencoded";
-                    this.strNewValue = "custid=undefined&HiddenAction=instantsms&Action=" + responseee + "&login=&pass=&MobNo=" + mbno + "&textArea=" + mseg;
-
-                    this.req.ContentLength = this.strNewValue.Length;
-                    StreamWriter writer = new StreamWriter(this.req.GetRequestStream(), Encoding.ASCII);
-                    writer.Write(this.strNewValue);
-                    writer.Close();
-                    this.response = (HttpWebResponse)this.req.GetResponse();
-
-                    this.response.Close();
-                    divStatus.InnerText = "Message Sent..... ";
-                }
-                catch (Exception)
-                {
-                    divStatus.InnerText = "Error Sending msg....check your connection...";
-                }
-            }
-            else
-            {
-                divStatus.InnerText = "Mob no or msg missing";
-            }
+            HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create("http://ubaid.tk/sms/sms.aspx?uid=" + uid + "&pwd=" + password + "&msg=" + message + "&phone=" + no + "&provider=way2sms");
+            HttpWebResponse myResp = (HttpWebResponse)myReq.GetResponse();
+            System.IO.StreamReader respStreamReader = new System.IO.StreamReader(myResp.GetResponseStream());
+            string responseString = respStreamReader.ReadToEnd();
+            respStreamReader.Close();
+            myResp.Close();
         }
     }
 }

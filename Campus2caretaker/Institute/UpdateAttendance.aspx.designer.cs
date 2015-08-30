@@ -31,6 +31,15 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.RadioButton rbEdit;
         
         /// <summary>
+        /// txtDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        
+        /// <summary>
         /// ddlClass control.
         /// </summary>
         /// <remarks>

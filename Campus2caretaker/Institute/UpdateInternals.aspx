@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Internals Details" Language="C#"  MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateInternals.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateInternals" EnableEventValidation="false" %>
+﻿<%@ Page Title="Internals Details" Language="C#" MasterPageFile="~/Institute/Institute.Master" AutoEventWireup="true" CodeBehind="UpdateInternals.aspx.cs" Inherits="Campus2caretaker.Institute.UpdateInternals" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="block">
@@ -28,7 +28,10 @@
                                     </tr>
                                 </table>
                             </div>
-
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtDescription">Description</asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtDescription" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+                            </div>
                             <table>
                                 <tr>
                                     <td>
@@ -127,8 +130,6 @@
                                     </td>
                                 </tr>
                             </table>
-
-
                         </div>
                         <div class="form-actions">
                             <div id="divStatus" runat="server"></div>
@@ -152,8 +153,8 @@
                     <div class="btn-group pull-right">
                         <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                             <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
-                             <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
+                            <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                            <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -166,10 +167,10 @@
                     EnableModelValidation="True" OnRowCommand="gvInternals_RowCommand"
                     OnDataBound="gvInternals_DataBound">
                     <Columns>
-                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="30px" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="25px" />
                         <asp:TemplateField HeaderText="Student Name" HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
-                                <asp:Label ID="lblStudentName" runat="server" CssClass="text" Width="110px" Text='<%# Bind("Column1") %>'></asp:Label>
+                                <asp:Label ID="lblStudentName" runat="server" CssClass="text" Width="90px" Text='<%# Bind("Column1") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Roll No" HeaderStyle-ForeColor="Black">
@@ -177,17 +178,17 @@
                                 <asp:Label ID="lblRollNo" runat="server" Width="90px" CssClass="text" Text='<%# Bind("Column2") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Max Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Max Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="35px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtMaxMarks" runat="server" CssClass="input-large focused" AutoPostBack="true" OnTextChanged="txtMaxMarks_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Min Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Min Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="35px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtMinMarks" runat="server" AutoPostBack="true" CssClass="input-large focused" OnTextChanged="txtMinMarks_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Marks Scored" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
+                        <asp:TemplateField HeaderText="Marks Scored" HeaderStyle-ForeColor="Black" ControlStyle-Width="35px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtMarksScored" CssClass="input-large focused" runat="server"></asp:TextBox>
                             </ItemTemplate>
@@ -197,7 +198,12 @@
                                 <asp:Label ID="lblStudentID" runat="server" CssClass="text" Width="20px" Text='<%# Bind("Column6") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ControlStyle-Width="40px">
+                        <asp:TemplateField HeaderText="Remarks" HeaderStyle-ForeColor="Black" ControlStyle-Width="60px">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtRemarks" CssClass="input-large focused" runat="server"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ControlStyle-Width="35px">
                             <ItemTemplate>
                                 <asp:LinkButton runat="server" ID="Save"
                                     CommandName="Save" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" Text="Save" CssClass="btn btn-info btn-mini" />

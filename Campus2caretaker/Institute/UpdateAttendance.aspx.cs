@@ -181,6 +181,7 @@ namespace Campus2caretaker.Institute
             dt.Columns.Add(new DataColumn("Column7", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Column8", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Column9", typeof(string)));
+            dt.Columns.Add(new DataColumn("Column10", typeof(string)));
 
             dr = dt.NewRow();
             dr["RowNumber"] = 1;
@@ -193,6 +194,7 @@ namespace Campus2caretaker.Institute
             dr["Column7"] = 0;
             dr["Column8"] = 0;
             dr["Column9"] = string.Empty;
+            dr["Column10"] = string.Empty;
 
             dt.Rows.Add(dr);
 
@@ -215,6 +217,10 @@ namespace Campus2caretaker.Institute
 
         private void AddRowsToGrid(DataTable dtStudents)
         {
+            if (dtStudents.Rows.Count > 0)
+            {
+                txtDescription.Text = dtStudents.Rows[0]["colDescription"].ToString();
+            }
 
             for (int p = 0; p < dtStudents.Rows.Count; p++)
             {
@@ -238,6 +244,7 @@ namespace Campus2caretaker.Institute
                         TextBox txt5 = (TextBox)gvAttendance.Rows[rowIndex].Cells[7].FindControl("txtCumClassesAttended");
                         TextBox txt6 = (TextBox)gvAttendance.Rows[rowIndex].Cells[8].FindControl("txtCumPercentage");
                         Label lbl3 = (Label)gvAttendance.Rows[rowIndex].Cells[9].FindControl("lblStudentID");
+                        TextBox txt7 = (TextBox)gvAttendance.Rows[rowIndex].Cells[10].FindControl("txtRemarks");
 
                         drCurrentRow = dtCurrentTable.NewRow();
                         drCurrentRow["RowNumber"] = dtCurrentTable.Rows.Count + 1;
@@ -251,6 +258,7 @@ namespace Campus2caretaker.Institute
                         txt5.Text = dtStudents.Rows[p]["colAccumulatedClassesAttended"].ToString();
                         txt6.Text = dtStudents.Rows[p]["colAccumulatedClassesAttendedPercent"].ToString();
                         lbl3.Text = dtStudents.Rows[p]["colStudentId"].ToString();
+                        txt7.Text = dtStudents.Rows[p]["colRemarks"].ToString();
 
                         dtCurrentTable.Rows[i]["Column1"] = lbl1.Text;
                         dtCurrentTable.Rows[i]["Column2"] = lbl2.Text;
@@ -261,7 +269,7 @@ namespace Campus2caretaker.Institute
                         dtCurrentTable.Rows[i]["Column7"] = txt5.Text;
                         dtCurrentTable.Rows[i]["Column8"] = txt6.Text;
                         dtCurrentTable.Rows[i]["Column9"] = lbl3.Text;
-
+                        dtCurrentTable.Rows[i]["Column10"] = txt7.Text;
                         rowIndex++;
                     }
 
@@ -302,6 +310,7 @@ namespace Campus2caretaker.Institute
                         TextBox txt5 = (TextBox)gvAttendance.Rows[rowIndex].Cells[7].FindControl("txtCumClassesAttended");
                         TextBox txt6 = (TextBox)gvAttendance.Rows[rowIndex].Cells[8].FindControl("txtCumPercentage");
                         Label lbl3 = (Label)gvAttendance.Rows[rowIndex].Cells[9].FindControl("lblStudentID");
+                        TextBox txt7 = (TextBox)gvAttendance.Rows[rowIndex].Cells[10].FindControl("txtRemarks");
 
 
                         lbl1.Text = dt.Rows[i]["Column1"].ToString();
@@ -313,6 +322,7 @@ namespace Campus2caretaker.Institute
                         txt5.Text = dt.Rows[i]["Column7"].ToString();
                         txt6.Text = dt.Rows[i]["Column8"].ToString();
                         lbl3.Text = dt.Rows[i]["Column9"].ToString();
+                        txt7.Text = dt.Rows[i]["Column10"].ToString();
 
                         rowIndex++;
                     }
@@ -346,6 +356,7 @@ namespace Campus2caretaker.Institute
 
                 toAtt.Month = ddlMonth.SelectedValue;
                 toAtt.Year = int.Parse(ddlYear.SelectedValue);
+                toAtt.Description = txtDescription.Text;
 
                 int index = Convert.ToInt32(e.CommandArgument.ToString());
                 Label lblStudentID = (Label)gvAttendance.Rows[index].FindControl("lblStudentID");
@@ -356,6 +367,7 @@ namespace Campus2caretaker.Institute
                 TextBox txtCumClassesHeld = (TextBox)gvAttendance.Rows[index].FindControl("txtCumClassesHeld");
                 TextBox txtCumClassesAttended = (TextBox)gvAttendance.Rows[index].FindControl("txtCumClassesAttended");
                 TextBox txtCumPercentage = (TextBox)gvAttendance.Rows[index].FindControl("txtCumPercentage");
+                TextBox txtReMarks = (TextBox)gvAttendance.Rows[index].FindControl("txtRemarks");
 
                 toAtt.InstituteId = int.Parse(Session["InstituteID"].ToString());
                 toAtt.ClassesAttended = decimal.Parse(txtClassesAttended.Text);
@@ -364,6 +376,7 @@ namespace Campus2caretaker.Institute
                 toAtt.CumClassesHeld = decimal.Parse(txtCumClassesHeld.Text);
                 toAtt.CumClassesAttended = decimal.Parse(txtCumClassesAttended.Text);
                 toAtt.CumClassesPercentage = decimal.Parse(txtCumPercentage.Text);
+                toAtt.Remarks = txtReMarks.Text;
 
                 toAtt.StudentId = int.Parse(lblStudentID.Text);
 

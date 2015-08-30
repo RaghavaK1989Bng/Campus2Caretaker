@@ -67,6 +67,8 @@ namespace DataAccessObject
                 InternalMarks.colMinMarks = toInt.MinMarks;
                 InternalMarks.colStudentId = toInt.StudentId;
                 InternalMarks.colSubjectId = toInt.SubjectId;
+                InternalMarks.colRemarks = toInt.Remarks;
+                InternalMarks.colDescription = toInt.Description;
 
                 dbContext.SubmitChanges();
             }
@@ -83,6 +85,8 @@ namespace DataAccessObject
                 InternalMarks.colMinMarks = toInt.MinMarks;
                 InternalMarks.colStudentId = toInt.StudentId;
                 InternalMarks.colSubjectId = toInt.SubjectId;
+                InternalMarks.colRemarks = toInt.Remarks;
+                InternalMarks.colDescription = toInt.Description;
 
                 dbContext.tblInternalMarks.InsertOnSubmit(InternalMarks);
                 dbContext.SubmitChanges();

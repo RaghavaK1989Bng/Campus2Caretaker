@@ -178,6 +178,7 @@ namespace Campus2caretaker.Institute
             dt.Columns.Add(new DataColumn("Column4", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Column5", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Column6", typeof(string)));
+            dt.Columns.Add(new DataColumn("Column7", typeof(string)));
 
             dr = dt.NewRow();
             dr["RowNumber"] = 1;
@@ -187,6 +188,7 @@ namespace Campus2caretaker.Institute
             dr["Column4"] = 0;
             dr["Column5"] = 0;
             dr["Column6"] = string.Empty;
+            dr["Column7"] = string.Empty;
 
             dt.Rows.Add(dr);
 
@@ -220,6 +222,11 @@ namespace Campus2caretaker.Institute
 
         private void AddRowsToGrid(DataTable dtStudents)
         {
+            if(dtStudents.Rows.Count > 0)
+            {
+                txtDescription.Text = dtStudents.Rows[0]["colDescription"].ToString();
+            }
+
             for (int p = 0; p < dtStudents.Rows.Count; p++)
             {
                 int rowIndex = 0;
@@ -239,6 +246,8 @@ namespace Campus2caretaker.Institute
                         TextBox txt2 = (TextBox)gvInternals.Rows[rowIndex].Cells[4].FindControl("txtMinMarks");
                         TextBox txt3 = (TextBox)gvInternals.Rows[rowIndex].Cells[5].FindControl("txtMarksScored");
                         Label lbl3 = (Label)gvInternals.Rows[rowIndex].Cells[6].FindControl("lblStudentID");
+                        TextBox txt4 = (TextBox)gvInternals.Rows[rowIndex].Cells[7].FindControl("txtRemarks");
+
 
                         drCurrentRow = dtCurrentTable.NewRow();
                         drCurrentRow["RowNumber"] = dtCurrentTable.Rows.Count + 1;
@@ -249,6 +258,7 @@ namespace Campus2caretaker.Institute
                         txt2.Text = dtStudents.Rows[p]["colMinMarks"].ToString();
                         txt3.Text = dtStudents.Rows[p]["colMarksScored"].ToString();
                         lbl3.Text = dtStudents.Rows[p]["colStudentId"].ToString();
+                        txt4.Text = dtStudents.Rows[p]["colRemarks"].ToString();
 
                         dtCurrentTable.Rows[i]["Column1"] = lbl1.Text;
                         dtCurrentTable.Rows[i]["Column2"] = lbl2.Text;
@@ -256,6 +266,7 @@ namespace Campus2caretaker.Institute
                         dtCurrentTable.Rows[i]["Column4"] = txt2.Text;
                         dtCurrentTable.Rows[i]["Column5"] = txt3.Text;
                         dtCurrentTable.Rows[i]["Column6"] = lbl3.Text;
+                        dtCurrentTable.Rows[i]["Column7"] = txt4.Text;
 
                         rowIndex++;
                     }
@@ -293,7 +304,8 @@ namespace Campus2caretaker.Institute
                         TextBox txt1 = (TextBox)gvInternals.Rows[rowIndex].Cells[3].FindControl("txtMaxMarks");
                         TextBox txt2 = (TextBox)gvInternals.Rows[rowIndex].Cells[4].FindControl("txtMinMarks");
                         TextBox txt3 = (TextBox)gvInternals.Rows[rowIndex].Cells[5].FindControl("txtMarksScored");
-                        Label lbl3 = (Label)gvInternals.Rows[rowIndex].Cells[2].FindControl("lblStudentID");
+                        Label lbl3 = (Label)gvInternals.Rows[rowIndex].Cells[6].FindControl("lblStudentID");
+                        TextBox txt4 = (TextBox)gvInternals.Rows[rowIndex].Cells[7].FindControl("txtRemarks");
 
 
                         lbl1.Text = dt.Rows[i]["Column1"].ToString();
@@ -302,6 +314,7 @@ namespace Campus2caretaker.Institute
                         txt2.Text = dt.Rows[i]["Column4"].ToString();
                         txt3.Text = dt.Rows[i]["Column5"].ToString();
                         lbl3.Text = dt.Rows[i]["Column6"].ToString();
+                        txt4.Text = dt.Rows[i]["Column7"].ToString();
 
                         rowIndex++;
                     }
@@ -352,6 +365,7 @@ namespace Campus2caretaker.Institute
                 toInt.Month = ddlMonth.SelectedValue;
                 toInt.Year = ddlYear.SelectedValue;
                 toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+                toInt.Description = txtDescription.Text;
 
                 int index = Convert.ToInt32(e.CommandArgument.ToString());
                 Label lblStudentID = (Label)gvInternals.Rows[index].FindControl("lblStudentID");
@@ -359,12 +373,14 @@ namespace Campus2caretaker.Institute
                 TextBox txtMaxMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMaxMarks");
                 TextBox txtMinMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMinMarks");
                 TextBox txtMarksScored = (TextBox)gvInternals.Rows[index].FindControl("txtMarksScored");
+                TextBox txtReMarks = (TextBox)gvInternals.Rows[index].FindControl("txtRemarks");
 
                 toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
                 toInt.MarksScored = decimal.Parse(txtMarksScored.Text);
                 toInt.MaxMarks = decimal.Parse(txtMaxMarks.Text);
                 toInt.MinMarks = decimal.Parse(txtMinMarks.Text);
                 toInt.StudentId = int.Parse(lblStudentID.Text);
+                toInt.Remarks = txtReMarks.Text;
 
                 new BOInternals().SaveUpdateInternals(toInt);
             }
