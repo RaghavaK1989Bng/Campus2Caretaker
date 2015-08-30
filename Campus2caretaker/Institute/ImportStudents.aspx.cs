@@ -51,6 +51,7 @@ namespace Campus2caretaker.Institute
                         dt.Columns.Add("RollNo", typeof(string));
                         dt.Columns.Add("ParentsMobileNo", typeof(string));
                         dt.Columns.Add("StudentAddress", typeof(string));
+                        dt.Columns.Add("Gender", typeof(string));
                         bool isValidExcelSheet = CheckOptionsExcel(FileName, dt);
                         if (isValidExcelSheet)
                         {
@@ -108,11 +109,11 @@ namespace Campus2caretaker.Institute
                 string RollNo = "";
                 string ParentsMobileNo = "";
                 string StudentAddress = "";
+                string Gender = "";
 
                 #endregion
 
                 string path = string.Concat(Server.MapPath("~/Documents/" + FileName));
-
 
                 FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read);
                 IExcelDataReader excelReader;
@@ -163,6 +164,7 @@ namespace Campus2caretaker.Institute
                         RollNo = valid(result.Tables[0].Rows[i], 8);
                         ParentsMobileNo = valid(result.Tables[0].Rows[i], 9);
                         StudentAddress = valid(result.Tables[0].Rows[i], 10);
+                        Gender = valid(result.Tables[0].Rows[i], 11);
 
                         if (excelReader[0] == DBNull.Value)
                             break;
@@ -192,10 +194,18 @@ namespace Campus2caretaker.Institute
                             break;
                         }
 
+                        string genderValue = valid(result.Tables[0].Rows[i], 11);
+                        if (genderValue == string.Empty || (genderValue != "Male" && genderValue != "Female"))
+                        {
+                            string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Invalid Gender found in Gender column!!; it should be Male or Female!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                            return false;
+                        }
+
                         //Here using this method we are inserting the data into a temporary DataTable
-                        dt.Rows.Add(StudentName, LastName, FatherName, MotherName, DateOfBirth, Semester, BranchId, Section, RollNo, ParentsMobileNo, StudentAddress);
+                        dt.Rows.Add(StudentName, LastName, FatherName, MotherName, DateOfBirth, Semester, BranchId, Section, RollNo, ParentsMobileNo, StudentAddress, Gender);
                     }
-                   
+
                     catch (Exception err)
                     {
                         string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Invalid data found in uploaded excel!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
@@ -222,7 +232,7 @@ namespace Campus2caretaker.Institute
             return isValidExcelSheet;
         }
 
-        protected string valid( DataRow row, int stval)
+        protected string valid(DataRow row, int stval)
         {
             //if any columns are found null then they are replaced by zero
             object val = row[stval];

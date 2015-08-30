@@ -131,6 +131,7 @@ namespace Campus2caretaker.Institute
             btnSave.Enabled = true;
             btnUpdate.Enabled = true;
             btnDelete.Enabled = true;
+            ddlGender.SelectedIndex = 0;
         }
 
         private void RefreshSemesters()
@@ -204,6 +205,7 @@ namespace Campus2caretaker.Institute
                     }
 
                     tostud.StudentName = txtStudentName.Text;
+                    tostud.Gender = ddlGender.SelectedValue;
 
                     if (new BOStudentRegistration().SaveStudentDetails(tostud))
                     {
@@ -257,6 +259,7 @@ namespace Campus2caretaker.Institute
                     }
 
                     tostud.StudentName = txtStudentName.Text;
+                    tostud.Gender = ddlGender.SelectedValue;
 
                     if (new BOStudentRegistration().UpdateStudentDetails(tostud))
                     {
@@ -404,6 +407,7 @@ namespace Campus2caretaker.Institute
                 txtParentsContactNumber.Text = dt.Rows[0][9].ToString();
                 txtStudentAddress.Text = dt.Rows[0][11].ToString();
                 txtParentsEmail.Text = dt.Rows[0][12].ToString();
+                ddlGender.SelectedValue = dt.Rows[0][13].ToString();
             }
             catch
             {

@@ -2,10 +2,10 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-<script type="text/javascript" language="javascript">
-    function pageLoad(sender, args) {
-        $(document).ready(function () {
-            $("#<%=txtDOB.ClientID %>").datepicker(
+    <script type="text/javascript" language="javascript">
+        function pageLoad(sender, args) {
+            $(document).ready(function () {
+                $("#<%=txtDOB.ClientID %>").datepicker(
                                     {
                                         changeMonth: true,
                                         changeYear: true,
@@ -50,10 +50,10 @@
         });
     }
     </script>
-  </asp:Content>
+</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="block">
         <div class="navbar navbar-inner block-header">
             <div class="muted pull-left">Student Details</div>
@@ -73,13 +73,13 @@
                                     ControlToValidate="txtStudentName" ErrorMessage="Student Name is required."
                                     ToolTip="Student Name is required." ValidationGroup="Student"
                                     ForeColor="#FF3300">*</asp:RequiredFieldValidator>
-                               
+
                             </div>
                             <asp:Label runat="server" CssClass="control-label"></asp:Label>
                             <div class="controls">
-                                 <asp:Button ID="btnGetStudentInfo" runat="server" CssClass="btn btn-info" Text="Get"
-                                OnClick="btnGetStudentInfo_Click" />
-                                </div>
+                                <asp:Button ID="btnGetStudentInfo" runat="server" CssClass="btn btn-info" Text="Get"
+                                    OnClick="btnGetStudentInfo_Click" />
+                            </div>
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtStudentAddress">Address <span class="required">*</span></asp:Label>
                             <div class="controls">
 
@@ -129,18 +129,35 @@
                             </div>
 
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass"><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class" : "Branch"%> <span class="required">*</span></asp:Label>
-                                          <div class="controls">
-                        
-                                              <asp:DropDownList ID="ddlClass" ValidationGroup="Student" runat="server" class="chzn-select" DataTextField="colBranchName" DataValueField="colBranchId">
-                                            </asp:DropDownList>
-                                                                
+                            <div class="controls">
 
-                                              <asp:RequiredFieldValidator ID="ClassNameRequired" runat="server" 
-                        ControlToValidate="ddlClass" ErrorMessage="Student Class Selection is required." 
-                        ToolTip="Student Class Selection is required." ValidationGroup="Student" InitialValue="Select"
-                         ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+                                <asp:DropDownList ID="ddlClass" ValidationGroup="Student" runat="server" class="chzn-select" DataTextField="colBranchName" DataValueField="colBranchId">
+                                </asp:DropDownList>
 
-                                          </div>
+
+                                <asp:RequiredFieldValidator ID="ClassNameRequired" runat="server"
+                                    ControlToValidate="ddlClass" ErrorMessage="Student Class Selection is required."
+                                    ToolTip="Student Class Selection is required." ValidationGroup="Student" InitialValue="Select"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlGender">Gender <span class="required">*</span></asp:Label>
+                            <div class="controls">
+
+                                <asp:DropDownList ID="ddlGender" ValidationGroup="Student" runat="server" class="chzn-select">
+                                    <asp:ListItem Text="Select" Value="" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
+                                    <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                                </asp:DropDownList>
+
+
+                                <asp:RequiredFieldValidator ID="GenderRequired" runat="server"
+                                    ControlToValidate="ddlGender" ErrorMessage="Gender Selection is required."
+                                    ToolTip="Gender Selection is required." ValidationGroup="Student" InitialValue="Select"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
+                            </div>
 
                             <div id="dvSemester" runat="server">
                                 <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlSemester">Semester<span class="required">*</span></asp:Label>
@@ -159,10 +176,10 @@
                                     ForeColor="#FF3300">*</asp:RequiredFieldValidator>
                             </div>
 
-                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtParentsEmail">Parents Email ID</asp:Label>
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtParentsEmail">Parents Email ID</asp:Label>
                             <div class="controls">
                                 <asp:TextBox ID="txtParentsEmail" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
-                                                                <asp:RegularExpressionValidator ID="ParentsEmailInvalid" runat="server"
+                                <asp:RegularExpressionValidator ID="ParentsEmailInvalid" runat="server"
                                     ControlToValidate="txtParentsEmail" ErrorMessage="Students Email is not valid."
                                     ToolTip="Students Email is not valid." ValidationGroup="Student"
                                     ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
@@ -181,32 +198,32 @@
                                     ForeColor="#FF3300" ValidationExpression="[0-9]{10}">*</asp:RegularExpressionValidator>
                             </div>
 
-                            </div>
-                            <div class="form-actions">
+                        </div>
+                        <div class="form-actions">
                             <div id="divStatus" runat="server"></div>
-                                 <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info" Text="Save"
+                            <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info" Text="Save"
                                 OnClick="btnSave_Click" ValidationGroup="Student" />
                             &nbsp;
                                           <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-info" Text="Update"
-                                OnClick="btnUpdate_Click" ValidationGroup="Student" />
+                                              OnClick="btnUpdate_Click" ValidationGroup="Student" />
                             &nbsp;
                             <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-info" Text="Delete"
                                 OnClick="btnDelete_Click" ValidationGroup="Student" />
                             &nbsp;
 
                                <asp:Button ID="btnClear" runat="server" CssClass="btn btn-info" Text="Clear"
-                                OnClick="btnClear_Click" />
+                                   OnClick="btnClear_Click" />
 
                             <asp:ValidationSummary ID="ValidationSummary1" runat="server"
                                 ShowMessageBox="false" ValidationGroup="Student" ForeColor="Red"
                                 ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
-                        
-                            </div>
+
+                        </div>
                     </fieldset>
                 </form>
 
             </div>
-            </div>
+        </div>
 
         <div class="block-content collapse in">
             <div class="span12">
@@ -214,8 +231,8 @@
                     <div class="btn-group pull-right">
                         <button data-toggle="dropdown" class="btn dropdown-toggle">Options <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                             <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
-                             <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
+                            <li><a href="#" id="lnkpdfdownload" runat="server">Save as PDF</a></li>
+                            <li><a href="#" id="lnkexceldownload" runat="server">Export to Excel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -224,31 +241,29 @@
                 <asp:GridView ID="gvStudents" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                     ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
                     AllowSorting="false" Width="100%"
-                    CssClass="table table-hover" OnRowCreated="gvStudents_RowCreated" 
-                    onsorting="gvStudents_Sorting" OnPageIndexChanging="gvStudents_PageIndexChanging"
-                    EnableModelValidation="True" >
+                    CssClass="table table-hover" OnRowCreated="gvStudents_RowCreated"
+                    OnSorting="gvStudents_Sorting" OnPageIndexChanging="gvStudents_PageIndexChanging"
+                    EnableModelValidation="True">
 
                     <Columns>
-                        <asp:BoundField DataField="colStudentId" 
-                                                HeaderText="Student ID" 
-                                                SortExpression="colStudentId">
-                                </asp:BoundField>
-                                <asp:BoundField DataField="colStudentName" 
-                                                HeaderText="Student Name" 
-                                                SortExpression="colStudentName">
-                                </asp:BoundField>
-                                <asp:BoundField DataField="colFatherName" 
-                                                HeaderText="Father Name" 
-                                                SortExpression="colFatherName" />
-                                <asp:BoundField DataField="colParentsMobileNo" 
-                                                HeaderText="Parents Mobile No" 
-                                                SortExpression="colParentsMobileNo" />
+                        <asp:BoundField DataField="colStudentId"
+                            HeaderText="Student ID"
+                            SortExpression="colStudentId"></asp:BoundField>
+                        <asp:BoundField DataField="colStudentName"
+                            HeaderText="Student Name"
+                            SortExpression="colStudentName"></asp:BoundField>
+                        <asp:BoundField DataField="colFatherName"
+                            HeaderText="Father Name"
+                            SortExpression="colFatherName" />
+                        <asp:BoundField DataField="colParentsMobileNo"
+                            HeaderText="Parents Mobile No"
+                            SortExpression="colParentsMobileNo" />
                     </Columns>
                 </asp:GridView>
 
             </div>
         </div>
-        
-      </div>
+
+    </div>
     <!-- /block -->
 </asp:Content>

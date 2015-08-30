@@ -43,6 +43,7 @@ namespace DataAccessObject
                 studDetail.colParentsMobileNo = tostudentreg.ParentsMobileNo;
                 studDetail.colParentsEmail = tostudentreg.ParentsEmail;
                 studDetail.colInstituteId = tostudentreg.InstituteId;
+                studDetail.colGender = tostudentreg.Gender;
 
                 dbContext.tblStudentDetails.InsertOnSubmit(studDetail);
                 dbContext.SubmitChanges();
@@ -94,7 +95,8 @@ namespace DataAccessObject
                                 colRollNo = dt.Rows[i][8].ToString(),
                                 colParentsMobileNo = dt.Rows[i][9].ToString(),
                                 colAddress = dt.Rows[i][10].ToString(),
-                                colInstituteId = int.Parse(instituteId)
+                                colInstituteId = int.Parse(instituteId),
+                                colGender = dt.Rows[i][11].ToString(),
                             };
                         db.tblStudentDetails.InsertOnSubmit(table);
                         try
@@ -150,6 +152,7 @@ namespace DataAccessObject
                 studDetail.colParentsMobileNo = tostud.ParentsMobileNo;
                 studDetail.colParentsEmail = tostud.ParentsEmail;
                 studDetail.colInstituteId = tostud.InstituteId;
+                studDetail.colGender = tostud.Gender;
 
                 dbContext.SubmitChanges();
                 return true;

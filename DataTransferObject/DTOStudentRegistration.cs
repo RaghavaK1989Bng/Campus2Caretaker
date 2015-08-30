@@ -112,5 +112,13 @@ namespace DataTransferObject
             get { return _address; }
             set { _address = value; }
         }
+
+        private string _gender;
+
+        public string Gender
+        {
+            get { return _gender; }
+            set { _gender = value; }
+        }
     }
 }

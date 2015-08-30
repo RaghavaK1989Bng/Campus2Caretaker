@@ -45,15 +45,15 @@ namespace DataAccessObject
     partial void InserttblSubjectDetail(tblSubjectDetail instance);
     partial void UpdatetblSubjectDetail(tblSubjectDetail instance);
     partial void DeletetblSubjectDetail(tblSubjectDetail instance);
-    partial void InserttblStudentDetail(tblStudentDetail instance);
-    partial void UpdatetblStudentDetail(tblStudentDetail instance);
-    partial void DeletetblStudentDetail(tblStudentDetail instance);
     partial void InserttblAttendanceDetail(tblAttendanceDetail instance);
     partial void UpdatetblAttendanceDetail(tblAttendanceDetail instance);
     partial void DeletetblAttendanceDetail(tblAttendanceDetail instance);
     partial void InserttblInternalMark(tblInternalMark instance);
     partial void UpdatetblInternalMark(tblInternalMark instance);
     partial void DeletetblInternalMark(tblInternalMark instance);
+    partial void InserttblStudentDetail(tblStudentDetail instance);
+    partial void UpdatetblStudentDetail(tblStudentDetail instance);
+    partial void DeletetblStudentDetail(tblStudentDetail instance);
     #endregion
 		
 		public Campus2CaretakerDataContext() : 
@@ -126,14 +126,6 @@ namespace DataAccessObject
 			}
 		}
 		
-		public System.Data.Linq.Table<tblStudentDetail> tblStudentDetails
-		{
-			get
-			{
-				return this.GetTable<tblStudentDetail>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblSMSTemplate> tblSMSTemplates
 		{
 			get
@@ -158,6 +150,14 @@ namespace DataAccessObject
 			}
 		}
 		
+		public System.Data.Linq.Table<tblStudentDetail> tblStudentDetails
+		{
+			get
+			{
+				return this.GetTable<tblStudentDetail>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetInstituteDetails")]
 		public ISingleResult<GetInstituteDetailsResult> GetInstituteDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid)
 		{
@@ -170,13 +170,6 @@ namespace DataAccessObject
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid, month, year);
 			return ((ISingleResult<GetBarChartInternalsDetailsResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentDetails")]
-		public ISingleResult<GetStudentDetailsResult> GetStudentDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> studentid)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studentid);
-			return ((ISingleResult<GetStudentDetailsResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentsAttendanceDetailsEdit")]
@@ -205,6 +198,13 @@ namespace DataAccessObject
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid, colSubjectId, colMonth, colYear, colSemester, colBranchId);
 			return ((ISingleResult<GetStudentsInternalsDetailsNewEntryResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentDetails")]
+		public ISingleResult<GetStudentDetailsResult> GetStudentDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> studentid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studentid);
+			return ((ISingleResult<GetStudentDetailsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1333,408 +1333,6 @@ namespace DataAccessObject
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblStudentDetails")]
-	public partial class tblStudentDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _colStudentId;
-		
-		private string _colStudentName;
-		
-		private string _colLastName;
-		
-		private string _colFatherName;
-		
-		private string _colMotherName;
-		
-		private System.DateTime _colDOB;
-		
-		private int _colSemesterId;
-		
-		private int _colBranchId;
-		
-		private string _colSection;
-		
-		private string _colRollNo;
-		
-		private string _colParentsMobileNo;
-		
-		private int _colInstituteId;
-		
-		private string _colAddress;
-		
-		private string _colParentsEmail;
-		
-		private EntitySet<tblAttendanceDetail> _tblAttendanceDetails;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OncolStudentIdChanging(int value);
-    partial void OncolStudentIdChanged();
-    partial void OncolStudentNameChanging(string value);
-    partial void OncolStudentNameChanged();
-    partial void OncolLastNameChanging(string value);
-    partial void OncolLastNameChanged();
-    partial void OncolFatherNameChanging(string value);
-    partial void OncolFatherNameChanged();
-    partial void OncolMotherNameChanging(string value);
-    partial void OncolMotherNameChanged();
-    partial void OncolDOBChanging(System.DateTime value);
-    partial void OncolDOBChanged();
-    partial void OncolSemesterIdChanging(int value);
-    partial void OncolSemesterIdChanged();
-    partial void OncolBranchIdChanging(int value);
-    partial void OncolBranchIdChanged();
-    partial void OncolSectionChanging(string value);
-    partial void OncolSectionChanged();
-    partial void OncolRollNoChanging(string value);
-    partial void OncolRollNoChanged();
-    partial void OncolParentsMobileNoChanging(string value);
-    partial void OncolParentsMobileNoChanged();
-    partial void OncolInstituteIdChanging(int value);
-    partial void OncolInstituteIdChanged();
-    partial void OncolAddressChanging(string value);
-    partial void OncolAddressChanged();
-    partial void OncolParentsEmailChanging(string value);
-    partial void OncolParentsEmailChanged();
-    #endregion
-		
-		public tblStudentDetail()
-		{
-			this._tblAttendanceDetails = new EntitySet<tblAttendanceDetail>(new Action<tblAttendanceDetail>(this.attach_tblAttendanceDetails), new Action<tblAttendanceDetail>(this.detach_tblAttendanceDetails));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int colStudentId
-		{
-			get
-			{
-				return this._colStudentId;
-			}
-			set
-			{
-				if ((this._colStudentId != value))
-				{
-					this.OncolStudentIdChanging(value);
-					this.SendPropertyChanging();
-					this._colStudentId = value;
-					this.SendPropertyChanged("colStudentId");
-					this.OncolStudentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string colStudentName
-		{
-			get
-			{
-				return this._colStudentName;
-			}
-			set
-			{
-				if ((this._colStudentName != value))
-				{
-					this.OncolStudentNameChanging(value);
-					this.SendPropertyChanging();
-					this._colStudentName = value;
-					this.SendPropertyChanged("colStudentName");
-					this.OncolStudentNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colLastName", DbType="VarChar(200)")]
-		public string colLastName
-		{
-			get
-			{
-				return this._colLastName;
-			}
-			set
-			{
-				if ((this._colLastName != value))
-				{
-					this.OncolLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._colLastName = value;
-					this.SendPropertyChanged("colLastName");
-					this.OncolLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colFatherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string colFatherName
-		{
-			get
-			{
-				return this._colFatherName;
-			}
-			set
-			{
-				if ((this._colFatherName != value))
-				{
-					this.OncolFatherNameChanging(value);
-					this.SendPropertyChanging();
-					this._colFatherName = value;
-					this.SendPropertyChanged("colFatherName");
-					this.OncolFatherNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMotherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string colMotherName
-		{
-			get
-			{
-				return this._colMotherName;
-			}
-			set
-			{
-				if ((this._colMotherName != value))
-				{
-					this.OncolMotherNameChanging(value);
-					this.SendPropertyChanging();
-					this._colMotherName = value;
-					this.SendPropertyChanged("colMotherName");
-					this.OncolMotherNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDOB", DbType="DateTime NOT NULL")]
-		public System.DateTime colDOB
-		{
-			get
-			{
-				return this._colDOB;
-			}
-			set
-			{
-				if ((this._colDOB != value))
-				{
-					this.OncolDOBChanging(value);
-					this.SendPropertyChanging();
-					this._colDOB = value;
-					this.SendPropertyChanged("colDOB");
-					this.OncolDOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int NOT NULL")]
-		public int colSemesterId
-		{
-			get
-			{
-				return this._colSemesterId;
-			}
-			set
-			{
-				if ((this._colSemesterId != value))
-				{
-					this.OncolSemesterIdChanging(value);
-					this.SendPropertyChanging();
-					this._colSemesterId = value;
-					this.SendPropertyChanged("colSemesterId");
-					this.OncolSemesterIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
-		public int colBranchId
-		{
-			get
-			{
-				return this._colBranchId;
-			}
-			set
-			{
-				if ((this._colBranchId != value))
-				{
-					this.OncolBranchIdChanging(value);
-					this.SendPropertyChanging();
-					this._colBranchId = value;
-					this.SendPropertyChanged("colBranchId");
-					this.OncolBranchIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSection", DbType="VarChar(50)")]
-		public string colSection
-		{
-			get
-			{
-				return this._colSection;
-			}
-			set
-			{
-				if ((this._colSection != value))
-				{
-					this.OncolSectionChanging(value);
-					this.SendPropertyChanging();
-					this._colSection = value;
-					this.SendPropertyChanged("colSection");
-					this.OncolSectionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colRollNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colRollNo
-		{
-			get
-			{
-				return this._colRollNo;
-			}
-			set
-			{
-				if ((this._colRollNo != value))
-				{
-					this.OncolRollNoChanging(value);
-					this.SendPropertyChanging();
-					this._colRollNo = value;
-					this.SendPropertyChanged("colRollNo");
-					this.OncolRollNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsMobileNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colParentsMobileNo
-		{
-			get
-			{
-				return this._colParentsMobileNo;
-			}
-			set
-			{
-				if ((this._colParentsMobileNo != value))
-				{
-					this.OncolParentsMobileNoChanging(value);
-					this.SendPropertyChanging();
-					this._colParentsMobileNo = value;
-					this.SendPropertyChanged("colParentsMobileNo");
-					this.OncolParentsMobileNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", DbType="Int NOT NULL")]
-		public int colInstituteId
-		{
-			get
-			{
-				return this._colInstituteId;
-			}
-			set
-			{
-				if ((this._colInstituteId != value))
-				{
-					this.OncolInstituteIdChanging(value);
-					this.SendPropertyChanging();
-					this._colInstituteId = value;
-					this.SendPropertyChanged("colInstituteId");
-					this.OncolInstituteIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string colAddress
-		{
-			get
-			{
-				return this._colAddress;
-			}
-			set
-			{
-				if ((this._colAddress != value))
-				{
-					this.OncolAddressChanging(value);
-					this.SendPropertyChanging();
-					this._colAddress = value;
-					this.SendPropertyChanged("colAddress");
-					this.OncolAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsEmail", DbType="VarChar(50)")]
-		public string colParentsEmail
-		{
-			get
-			{
-				return this._colParentsEmail;
-			}
-			set
-			{
-				if ((this._colParentsEmail != value))
-				{
-					this.OncolParentsEmailChanging(value);
-					this.SendPropertyChanging();
-					this._colParentsEmail = value;
-					this.SendPropertyChanged("colParentsEmail");
-					this.OncolParentsEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudentDetail_tblAttendanceDetail", Storage="_tblAttendanceDetails", ThisKey="colStudentId", OtherKey="colStudentId")]
-		public EntitySet<tblAttendanceDetail> tblAttendanceDetails
-		{
-			get
-			{
-				return this._tblAttendanceDetails;
-			}
-			set
-			{
-				this._tblAttendanceDetails.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblAttendanceDetails(tblAttendanceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblStudentDetail = this;
-		}
-		
-		private void detach_tblAttendanceDetails(tblAttendanceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblStudentDetail = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblSMSTemplates")]
 	public partial class tblSMSTemplate
 	{
@@ -2747,6 +2345,432 @@ namespace DataAccessObject
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblStudentDetails")]
+	public partial class tblStudentDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _colStudentId;
+		
+		private string _colStudentName;
+		
+		private string _colLastName;
+		
+		private string _colFatherName;
+		
+		private string _colMotherName;
+		
+		private System.DateTime _colDOB;
+		
+		private int _colSemesterId;
+		
+		private int _colBranchId;
+		
+		private string _colSection;
+		
+		private string _colRollNo;
+		
+		private string _colParentsMobileNo;
+		
+		private int _colInstituteId;
+		
+		private string _colAddress;
+		
+		private string _colParentsEmail;
+		
+		private string _colGender;
+		
+		private EntitySet<tblAttendanceDetail> _tblAttendanceDetails;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OncolStudentIdChanging(int value);
+    partial void OncolStudentIdChanged();
+    partial void OncolStudentNameChanging(string value);
+    partial void OncolStudentNameChanged();
+    partial void OncolLastNameChanging(string value);
+    partial void OncolLastNameChanged();
+    partial void OncolFatherNameChanging(string value);
+    partial void OncolFatherNameChanged();
+    partial void OncolMotherNameChanging(string value);
+    partial void OncolMotherNameChanged();
+    partial void OncolDOBChanging(System.DateTime value);
+    partial void OncolDOBChanged();
+    partial void OncolSemesterIdChanging(int value);
+    partial void OncolSemesterIdChanged();
+    partial void OncolBranchIdChanging(int value);
+    partial void OncolBranchIdChanged();
+    partial void OncolSectionChanging(string value);
+    partial void OncolSectionChanged();
+    partial void OncolRollNoChanging(string value);
+    partial void OncolRollNoChanged();
+    partial void OncolParentsMobileNoChanging(string value);
+    partial void OncolParentsMobileNoChanged();
+    partial void OncolInstituteIdChanging(int value);
+    partial void OncolInstituteIdChanged();
+    partial void OncolAddressChanging(string value);
+    partial void OncolAddressChanged();
+    partial void OncolParentsEmailChanging(string value);
+    partial void OncolParentsEmailChanged();
+    partial void OncolGenderChanging(string value);
+    partial void OncolGenderChanged();
+    #endregion
+		
+		public tblStudentDetail()
+		{
+			this._tblAttendanceDetails = new EntitySet<tblAttendanceDetail>(new Action<tblAttendanceDetail>(this.attach_tblAttendanceDetails), new Action<tblAttendanceDetail>(this.detach_tblAttendanceDetails));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int colStudentId
+		{
+			get
+			{
+				return this._colStudentId;
+			}
+			set
+			{
+				if ((this._colStudentId != value))
+				{
+					this.OncolStudentIdChanging(value);
+					this.SendPropertyChanging();
+					this._colStudentId = value;
+					this.SendPropertyChanged("colStudentId");
+					this.OncolStudentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colStudentName
+		{
+			get
+			{
+				return this._colStudentName;
+			}
+			set
+			{
+				if ((this._colStudentName != value))
+				{
+					this.OncolStudentNameChanging(value);
+					this.SendPropertyChanging();
+					this._colStudentName = value;
+					this.SendPropertyChanged("colStudentName");
+					this.OncolStudentNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colLastName", DbType="VarChar(200)")]
+		public string colLastName
+		{
+			get
+			{
+				return this._colLastName;
+			}
+			set
+			{
+				if ((this._colLastName != value))
+				{
+					this.OncolLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._colLastName = value;
+					this.SendPropertyChanged("colLastName");
+					this.OncolLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colFatherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colFatherName
+		{
+			get
+			{
+				return this._colFatherName;
+			}
+			set
+			{
+				if ((this._colFatherName != value))
+				{
+					this.OncolFatherNameChanging(value);
+					this.SendPropertyChanging();
+					this._colFatherName = value;
+					this.SendPropertyChanged("colFatherName");
+					this.OncolFatherNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMotherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colMotherName
+		{
+			get
+			{
+				return this._colMotherName;
+			}
+			set
+			{
+				if ((this._colMotherName != value))
+				{
+					this.OncolMotherNameChanging(value);
+					this.SendPropertyChanging();
+					this._colMotherName = value;
+					this.SendPropertyChanged("colMotherName");
+					this.OncolMotherNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDOB", DbType="DateTime NOT NULL")]
+		public System.DateTime colDOB
+		{
+			get
+			{
+				return this._colDOB;
+			}
+			set
+			{
+				if ((this._colDOB != value))
+				{
+					this.OncolDOBChanging(value);
+					this.SendPropertyChanging();
+					this._colDOB = value;
+					this.SendPropertyChanged("colDOB");
+					this.OncolDOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int NOT NULL")]
+		public int colSemesterId
+		{
+			get
+			{
+				return this._colSemesterId;
+			}
+			set
+			{
+				if ((this._colSemesterId != value))
+				{
+					this.OncolSemesterIdChanging(value);
+					this.SendPropertyChanging();
+					this._colSemesterId = value;
+					this.SendPropertyChanged("colSemesterId");
+					this.OncolSemesterIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
+		public int colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this.OncolBranchIdChanging(value);
+					this.SendPropertyChanging();
+					this._colBranchId = value;
+					this.SendPropertyChanged("colBranchId");
+					this.OncolBranchIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSection", DbType="VarChar(50)")]
+		public string colSection
+		{
+			get
+			{
+				return this._colSection;
+			}
+			set
+			{
+				if ((this._colSection != value))
+				{
+					this.OncolSectionChanging(value);
+					this.SendPropertyChanging();
+					this._colSection = value;
+					this.SendPropertyChanged("colSection");
+					this.OncolSectionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colRollNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colRollNo
+		{
+			get
+			{
+				return this._colRollNo;
+			}
+			set
+			{
+				if ((this._colRollNo != value))
+				{
+					this.OncolRollNoChanging(value);
+					this.SendPropertyChanging();
+					this._colRollNo = value;
+					this.SendPropertyChanged("colRollNo");
+					this.OncolRollNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsMobileNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colParentsMobileNo
+		{
+			get
+			{
+				return this._colParentsMobileNo;
+			}
+			set
+			{
+				if ((this._colParentsMobileNo != value))
+				{
+					this.OncolParentsMobileNoChanging(value);
+					this.SendPropertyChanging();
+					this._colParentsMobileNo = value;
+					this.SendPropertyChanged("colParentsMobileNo");
+					this.OncolParentsMobileNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", DbType="Int NOT NULL")]
+		public int colInstituteId
+		{
+			get
+			{
+				return this._colInstituteId;
+			}
+			set
+			{
+				if ((this._colInstituteId != value))
+				{
+					this.OncolInstituteIdChanging(value);
+					this.SendPropertyChanging();
+					this._colInstituteId = value;
+					this.SendPropertyChanged("colInstituteId");
+					this.OncolInstituteIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string colAddress
+		{
+			get
+			{
+				return this._colAddress;
+			}
+			set
+			{
+				if ((this._colAddress != value))
+				{
+					this.OncolAddressChanging(value);
+					this.SendPropertyChanging();
+					this._colAddress = value;
+					this.SendPropertyChanged("colAddress");
+					this.OncolAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsEmail", DbType="VarChar(50)")]
+		public string colParentsEmail
+		{
+			get
+			{
+				return this._colParentsEmail;
+			}
+			set
+			{
+				if ((this._colParentsEmail != value))
+				{
+					this.OncolParentsEmailChanging(value);
+					this.SendPropertyChanging();
+					this._colParentsEmail = value;
+					this.SendPropertyChanged("colParentsEmail");
+					this.OncolParentsEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colGender", DbType="VarChar(50)")]
+		public string colGender
+		{
+			get
+			{
+				return this._colGender;
+			}
+			set
+			{
+				if ((this._colGender != value))
+				{
+					this.OncolGenderChanging(value);
+					this.SendPropertyChanging();
+					this._colGender = value;
+					this.SendPropertyChanged("colGender");
+					this.OncolGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudentDetail_tblAttendanceDetail", Storage="_tblAttendanceDetails", ThisKey="colStudentId", OtherKey="colStudentId")]
+		public EntitySet<tblAttendanceDetail> tblAttendanceDetails
+		{
+			get
+			{
+				return this._tblAttendanceDetails;
+			}
+			set
+			{
+				this._tblAttendanceDetails.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblAttendanceDetails(tblAttendanceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblStudentDetail = this;
+		}
+		
+		private void detach_tblAttendanceDetails(tblAttendanceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblStudentDetail = null;
+		}
+	}
+	
 	public partial class GetInstituteDetailsResult
 	{
 		
@@ -3028,248 +3052,6 @@ namespace DataAccessObject
 				if ((this._colBranchName != value))
 				{
 					this._colBranchName = value;
-				}
-			}
-		}
-	}
-	
-	public partial class GetStudentDetailsResult
-	{
-		
-		private string _colStudentName;
-		
-		private string _colLastName;
-		
-		private string _colFatherName;
-		
-		private string _colMotherName;
-		
-		private System.DateTime _colDOB;
-		
-		private int _colSemesterId;
-		
-		private int _colBranchId;
-		
-		private string _colSection;
-		
-		private string _colRollNo;
-		
-		private string _colParentsMobileNo;
-		
-		private int _colInstituteId;
-		
-		private string _colAddress;
-		
-		private string _colParentsEmail;
-		
-		public GetStudentDetailsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string colStudentName
-		{
-			get
-			{
-				return this._colStudentName;
-			}
-			set
-			{
-				if ((this._colStudentName != value))
-				{
-					this._colStudentName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colLastName", DbType="VarChar(200)")]
-		public string colLastName
-		{
-			get
-			{
-				return this._colLastName;
-			}
-			set
-			{
-				if ((this._colLastName != value))
-				{
-					this._colLastName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colFatherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string colFatherName
-		{
-			get
-			{
-				return this._colFatherName;
-			}
-			set
-			{
-				if ((this._colFatherName != value))
-				{
-					this._colFatherName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMotherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string colMotherName
-		{
-			get
-			{
-				return this._colMotherName;
-			}
-			set
-			{
-				if ((this._colMotherName != value))
-				{
-					this._colMotherName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDOB", DbType="DateTime NOT NULL")]
-		public System.DateTime colDOB
-		{
-			get
-			{
-				return this._colDOB;
-			}
-			set
-			{
-				if ((this._colDOB != value))
-				{
-					this._colDOB = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int NOT NULL")]
-		public int colSemesterId
-		{
-			get
-			{
-				return this._colSemesterId;
-			}
-			set
-			{
-				if ((this._colSemesterId != value))
-				{
-					this._colSemesterId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
-		public int colBranchId
-		{
-			get
-			{
-				return this._colBranchId;
-			}
-			set
-			{
-				if ((this._colBranchId != value))
-				{
-					this._colBranchId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSection", DbType="VarChar(50)")]
-		public string colSection
-		{
-			get
-			{
-				return this._colSection;
-			}
-			set
-			{
-				if ((this._colSection != value))
-				{
-					this._colSection = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colRollNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colRollNo
-		{
-			get
-			{
-				return this._colRollNo;
-			}
-			set
-			{
-				if ((this._colRollNo != value))
-				{
-					this._colRollNo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsMobileNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colParentsMobileNo
-		{
-			get
-			{
-				return this._colParentsMobileNo;
-			}
-			set
-			{
-				if ((this._colParentsMobileNo != value))
-				{
-					this._colParentsMobileNo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", DbType="Int NOT NULL")]
-		public int colInstituteId
-		{
-			get
-			{
-				return this._colInstituteId;
-			}
-			set
-			{
-				if ((this._colInstituteId != value))
-				{
-					this._colInstituteId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string colAddress
-		{
-			get
-			{
-				return this._colAddress;
-			}
-			set
-			{
-				if ((this._colAddress != value))
-				{
-					this._colAddress = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsEmail", DbType="VarChar(50)")]
-		public string colParentsEmail
-		{
-			get
-			{
-				return this._colParentsEmail;
-			}
-			set
-			{
-				if ((this._colParentsEmail != value))
-				{
-					this._colParentsEmail = value;
 				}
 			}
 		}
@@ -4310,6 +4092,266 @@ namespace DataAccessObject
 				if ((this._colDescription != value))
 				{
 					this._colDescription = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentDetailsResult
+	{
+		
+		private string _colStudentName;
+		
+		private string _colLastName;
+		
+		private string _colFatherName;
+		
+		private string _colMotherName;
+		
+		private System.DateTime _colDOB;
+		
+		private int _colSemesterId;
+		
+		private int _colBranchId;
+		
+		private string _colSection;
+		
+		private string _colRollNo;
+		
+		private string _colParentsMobileNo;
+		
+		private int _colInstituteId;
+		
+		private string _colAddress;
+		
+		private string _colParentsEmail;
+		
+		private string _colGender;
+		
+		public GetStudentDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colStudentName
+		{
+			get
+			{
+				return this._colStudentName;
+			}
+			set
+			{
+				if ((this._colStudentName != value))
+				{
+					this._colStudentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colLastName", DbType="VarChar(200)")]
+		public string colLastName
+		{
+			get
+			{
+				return this._colLastName;
+			}
+			set
+			{
+				if ((this._colLastName != value))
+				{
+					this._colLastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colFatherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colFatherName
+		{
+			get
+			{
+				return this._colFatherName;
+			}
+			set
+			{
+				if ((this._colFatherName != value))
+				{
+					this._colFatherName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMotherName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colMotherName
+		{
+			get
+			{
+				return this._colMotherName;
+			}
+			set
+			{
+				if ((this._colMotherName != value))
+				{
+					this._colMotherName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDOB", DbType="DateTime NOT NULL")]
+		public System.DateTime colDOB
+		{
+			get
+			{
+				return this._colDOB;
+			}
+			set
+			{
+				if ((this._colDOB != value))
+				{
+					this._colDOB = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int NOT NULL")]
+		public int colSemesterId
+		{
+			get
+			{
+				return this._colSemesterId;
+			}
+			set
+			{
+				if ((this._colSemesterId != value))
+				{
+					this._colSemesterId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
+		public int colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this._colBranchId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSection", DbType="VarChar(50)")]
+		public string colSection
+		{
+			get
+			{
+				return this._colSection;
+			}
+			set
+			{
+				if ((this._colSection != value))
+				{
+					this._colSection = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colRollNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colRollNo
+		{
+			get
+			{
+				return this._colRollNo;
+			}
+			set
+			{
+				if ((this._colRollNo != value))
+				{
+					this._colRollNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsMobileNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colParentsMobileNo
+		{
+			get
+			{
+				return this._colParentsMobileNo;
+			}
+			set
+			{
+				if ((this._colParentsMobileNo != value))
+				{
+					this._colParentsMobileNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", DbType="Int NOT NULL")]
+		public int colInstituteId
+		{
+			get
+			{
+				return this._colInstituteId;
+			}
+			set
+			{
+				if ((this._colInstituteId != value))
+				{
+					this._colInstituteId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string colAddress
+		{
+			get
+			{
+				return this._colAddress;
+			}
+			set
+			{
+				if ((this._colAddress != value))
+				{
+					this._colAddress = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colParentsEmail", DbType="VarChar(50)")]
+		public string colParentsEmail
+		{
+			get
+			{
+				return this._colParentsEmail;
+			}
+			set
+			{
+				if ((this._colParentsEmail != value))
+				{
+					this._colParentsEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colGender", DbType="VarChar(50)")]
+		public string colGender
+		{
+			get
+			{
+				return this._colGender;
+			}
+			set
+			{
+				if ((this._colGender != value))
+				{
+					this._colGender = value;
 				}
 			}
 		}

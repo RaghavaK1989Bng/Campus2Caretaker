@@ -56,25 +56,6 @@
       <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblStudentDetails" Member="tblStudentDetails">
-    <Type Name="tblStudentDetail">
-      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="colLastName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="colFatherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="colMotherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="colDOB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colParentsMobileNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="colParentsEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblAttendanceDetail" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblSMSTemplates" Member="tblSMSTemplates">
     <Type Name="tblSMSTemplate">
       <Column Name="TemplateType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
@@ -124,6 +105,26 @@
       <Association Name="tblInstituteDetail_tblInternalMark" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblStudentDetails" Member="tblStudentDetails">
+    <Type Name="tblStudentDetail">
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colLastName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="colFatherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colMotherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colDOB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colParentsMobileNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="colParentsEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colGender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblAttendanceDetail" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <ElementType Name="GetInstituteDetailsResult">
@@ -149,24 +150,6 @@
       <Column Name="colSubjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colBranchName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetStudentDetails" Method="GetStudentDetails">
-    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetStudentDetailsResult">
-      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="colLastName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="colFatherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="colMotherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="colDOB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colParentsMobileNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="colParentsEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.GetStudentsAttendanceDetailsEdit" Method="GetStudentsAttendanceDetailsEdit">
@@ -263,6 +246,25 @@
       <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colRemarks" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="colDescription" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentDetails" Method="GetStudentDetails">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentDetailsResult">
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colLastName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="colFatherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colMotherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colDOB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colParentsMobileNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="colParentsEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colGender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
