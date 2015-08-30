@@ -83,7 +83,7 @@
                             <a href="<%= Page.ResolveUrl("~/Institute/InstituteDefault.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/dashboard.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/AddClass.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Classes</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/AddClass.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;<%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Add Class" : "Add Branch"%></a>
                         </li>
                         <li>
                             <a href="<%= Page.ResolveUrl("~/Institute/AddSubjects.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Subjects</a>

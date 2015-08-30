@@ -128,7 +128,7 @@
 
                             </div>
 
-                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass">Class <span class="required">*</span></asp:Label>
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass"><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class" : "Branch"%> <span class="required">*</span></asp:Label>
                                           <div class="controls">
                         
                                               <asp:DropDownList ID="ddlClass" ValidationGroup="Student" runat="server" class="chzn-select" DataTextField="colBranchName" DataValueField="colBranchId">

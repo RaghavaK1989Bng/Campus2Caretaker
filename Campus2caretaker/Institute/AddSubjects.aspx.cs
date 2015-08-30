@@ -18,6 +18,7 @@ namespace Campus2caretaker.Institute
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            gvSubjects.Columns[0].HeaderText = HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class" : "Branch";
             if (!IsPostBack)
             {
                 Response.Cache.SetNoStore();

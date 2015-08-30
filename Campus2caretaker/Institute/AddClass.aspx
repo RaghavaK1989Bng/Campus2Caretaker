@@ -3,15 +3,15 @@
     <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Class / Branch Details</div>
+                                <div class="muted pull-left"><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class Details" : "Branch Details"%></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
                                      <form class="form-horizontal">
                                       <fieldset>
-                                        <legend>Add Class</legend>
+                                        <legend><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Add Class" : "Add Branch"%></legend>
                                         <div class="control-group">
-                                          <asp:Label runat="server"  CssClass="control-label" AssociatedControlID="txtClassName">Class <span class="required">*</span></asp:Label>
+                                          <asp:Label runat="server"  CssClass="control-label" AssociatedControlID="txtClassName"> <%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class Name" : "Branch Name"%> <span class="required">*</span></asp:Label>
                                           <div class="controls">
                                             <asp:TextBox ID="txtClassName" runat="server" CssClass="input-xlarge focused"
                         ></asp:TextBox>
@@ -23,10 +23,10 @@
                                           </div>
                                             <label class="control-label"></label>
                                             <div class="controls">
-                                                <asp:Button ID="btnAddClass" runat="server" CssClass="btn btn-info" Text="Add Class"
+                                                <asp:Button ID="btnAddClass" runat="server" CssClass="btn btn-info" Text=""
                         OnClick="btnAddClass_Click" ValidationGroup="Class"/>
                                                 &nbsp;
-                    <asp:Button ID="btnRemoveClass" runat="server" CssClass="btn btn-info" Text="Remove Class"
+                    <asp:Button ID="btnRemoveClass" runat="server" CssClass="btn btn-info" Text=""
                         OnClick="btnRemoveClass_Click" />
                                             </div>
                                             <br />
@@ -74,12 +74,12 @@
                             EnableModelValidation="True" OnRowCreated="gvClasses_RowCreated" onsorting="gvClasses_Sorting" OnPageIndexChanging="gvClasses_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="colBranchId" 
-                                                HeaderText="Class / Branch Id"
+                                                HeaderText=""
                                                 SortExpression="colBranchId"
                                                 ReadOnly="True" >
                                 </asp:BoundField>
                                 <asp:BoundField DataField="colBranchName" 
-                                                HeaderText="Class / Branch Name" 
+                                                HeaderText=""
                                                 SortExpression="colBranchName">
                                 </asp:BoundField>
                             </Columns>

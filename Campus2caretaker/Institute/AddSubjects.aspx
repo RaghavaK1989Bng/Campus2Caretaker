@@ -10,7 +10,7 @@
                                       <fieldset>
                                         <legend>Add Subjects</legend>
                                         <div class="control-group">
-                                          <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass">Class <span class="required">*</span></asp:Label>
+                                          <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass"><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class" : "Branch"%> <span class="required">*</span></asp:Label>
                                           <div class="controls">
                         
                                               <asp:DropDownList ID="ddlClass" ValidationGroup="Subject" runat="server" CssClass="chzn-select" DataSourceID="dsClasses" DataTextField="colBranchName" DataValueField="colBranchId">
@@ -20,8 +20,8 @@
                                         SelectCommand="SELECT * FROM [tblBranchDetails]"></asp:SqlDataSource>
 
                                               <asp:RequiredFieldValidator ID="ClassNameRequired" runat="server" 
-                        ControlToValidate="ddlClass" ErrorMessage="Class Selection is required." 
-                        ToolTip="Class Selection is required." ValidationGroup="Subject" InitialValue="Select"
+                        ControlToValidate="ddlClass" ErrorMessage="Class / Branch Selection is required." 
+                        ToolTip="Class / Branch Selection is required." ValidationGroup="Subject" InitialValue="Select"
                          ForeColor="#FF3300">*</asp:RequiredFieldValidator>
 
                                           </div>
@@ -99,7 +99,7 @@
                             EnableModelValidation="True" OnRowCreated="gvSubjects_RowCreated" onsorting="gvSubjects_Sorting" OnPageIndexChanging="gvSubjects_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="colBranchId" 
-                                                HeaderText="Class / Branch" 
+                                                HeaderText="" 
                                                 SortExpression="colBranchId"
                                                 ReadOnly="True" >
                                 </asp:BoundField>

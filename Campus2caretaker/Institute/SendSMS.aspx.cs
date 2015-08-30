@@ -28,6 +28,7 @@ namespace Campus2caretaker.Institute
             {
                 Response.Cache.SetNoStore();
                 clear();
+                lnksemesterwise.Visible = HttpContext.Current.Session["InstituteType"].ToString() == "S" ? false : true;
             }
 
             lnkallstudents.ServerClick += new EventHandler(lnkallstudents_Click);

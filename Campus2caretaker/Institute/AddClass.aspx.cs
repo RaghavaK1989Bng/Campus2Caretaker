@@ -22,6 +22,9 @@ namespace Campus2caretaker.Institute
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            gvClasses.Columns[0].HeaderText = HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class Id" : "Branch Id";
+            gvClasses.Columns[1].HeaderText = HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class Name" : "Branch Name";
+
             if (!IsPostBack)
             {
                 Response.Cache.SetNoStore();
@@ -29,7 +32,12 @@ namespace Campus2caretaker.Institute
 
                 clear();
                 RefreshGridView();
+
+                btnAddClass.Text = HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Add Class" : "Add Branch";
+                btnRemoveClass.Text = HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Remove Class" : "Remove Branch";
             }
+
+           
             if (null != ViewState["_SortExp_"])
             {
                 m_strSortExp = ViewState["_SortExp_"] as String;
@@ -59,12 +67,12 @@ namespace Campus2caretaker.Institute
             HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentType = "application/vnd.ms-excel";
-            HttpContext.Current.Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.xls", String.Concat("ClassDetails",DateTime.Now.Ticks)));
+            HttpContext.Current.Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.xls", String.Concat("ClassDetails", DateTime.Now.Ticks)));
             gvClasses.GridLines = GridLines.Both;
             gvClasses.HeaderStyle.Font.Bold = true;
             gvClasses.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
-            Response.End();      
+            Response.End();
         }
 
         //override the VerifyRenderingInServerForm() to verify the control
@@ -93,7 +101,7 @@ namespace Campus2caretaker.Institute
                     pdfDoc.Close();
 
                     Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-disposition",String.Format("attachment;filename={0}.pdf", String.Concat("ClassDetails",DateTime.Now.Ticks)));
+                    Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.pdf", String.Concat("ClassDetails", DateTime.Now.Ticks)));
                     Response.Cache.SetCacheability(HttpCacheability.NoCache);
                     Response.Write(pdfDoc);
                     Response.End();

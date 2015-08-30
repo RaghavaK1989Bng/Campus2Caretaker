@@ -18,7 +18,7 @@
                                          <button data-toggle="dropdown" class="btn dropdown-toggle">Send SMS To<span class="caret"></span></button>
                                          <ul class="dropdown-menu">
                                             <li><a href="#" id="lnkallstudents" runat="server">All Students</a></li>
-											<li><a href="#" id="lnkbranchwise" runat="server">Branchwise</a></li>
+											<li><a href="#" id="lnkbranchwise" runat="server"><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Classwise" : "Branchwise"%></a></li>
 											<li><a href="#" id="lnksemesterwise" runat="server">Semesterwise</a></li>
 											<li><a href="#" id="lnkindividual" runat="server">Individual</a></li>
                                          </ul>
