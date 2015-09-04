@@ -267,4 +267,46 @@
       <Column Name="colGender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetStudentCount" Method="GetStudentCount">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentCountResult">
+      <Column Name="TotalCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentCountClasswiseGender" Method="GetStudentCountClasswiseGender">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentCountClasswiseGenderResult">
+      <Column Name="TotalCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentsAttendanceDetailsMonthwise" Method="GetStudentsAttendanceDetailsMonthwise">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colMonth" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colYear" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="GetStudentsAttendanceDetailsMonthwiseResult">
+      <Column Name="AttendanceCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="columnname" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentsMarksDetailsMonthwise" Method="GetStudentsMarksDetailsMonthwise">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colMonth" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="colYear" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="GetStudentsMarksDetailsMonthwiseResult">
+      <Column Name="MarksScoredCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colSubjectId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="columnname" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colSubjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

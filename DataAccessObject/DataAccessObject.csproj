@@ -45,6 +45,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Campus2Caretaker.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DAOReport.cs" />
     <Compile Include="DAOSms.cs" />
     <Compile Include="DAOInstituteDetails.cs" />
     <Compile Include="DAOAttendance.cs" />

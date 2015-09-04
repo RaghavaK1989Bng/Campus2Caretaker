@@ -196,17 +196,21 @@
     <Content Include="images\dashboard.png" />
     <Content Include="images\det_pic.jpg" />
     <Content Include="images\emptycups.png" />
+    <Content Include="images\logout.png" />
     <Content Include="images\newlogo.png" />
     <Content Include="images\newlogosmall.png" />
     <Content Include="images\personalizeapplication.png" />
     <Content Include="images\pic1.jpg" />
     <Content Include="images\profile.png" />
+    <Content Include="images\report.png" />
+    <Content Include="images\Sections_Icon.png" />
     <Content Include="images\slider_bg.jpg" />
     <Content Include="images\sms.png" />
     <Content Include="images\social-icons.png" />
     <Content Include="css\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="css\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="images\studentregistration.png" />
+    <Content Include="images\subject_icon.png" />
     <Content Include="images\updateattendance.png" />
     <Content Include="images\updatemarks.png" />
     <Content Include="index.html" />
@@ -216,6 +220,8 @@
     <Content Include="Institute\InstituteDefault.aspx" />
     <Content Include="Institute\InstituteLogin.aspx" />
     <Content Include="Institute\AddClass.aspx" />
+    <Content Include="Institute\GenerateMonthlyReport.aspx" />
+    <Content Include="Institute\ReportPrint.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
     <Content Include="Institute\ImportStudents.aspx" />
     <Content Include="Institute\tick.jpg" />
@@ -411,6 +417,20 @@
     </Compile>
     <Compile Include="Institute\AddClass.aspx.designer.cs">
       <DependentUpon>AddClass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\GenerateMonthlyReport.aspx.cs">
+      <DependentUpon>GenerateMonthlyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\GenerateMonthlyReport.aspx.designer.cs">
+      <DependentUpon>GenerateMonthlyReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\ReportPrint.aspx.cs">
+      <DependentUpon>ReportPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\ReportPrint.aspx.designer.cs">
+      <DependentUpon>ReportPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\SendSMS.aspx.cs">
       <DependentUpon>SendSMS.aspx</DependentUpon>

@@ -206,6 +206,34 @@ namespace DataAccessObject
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studentid);
 			return ((ISingleResult<GetStudentDetailsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentCount")]
+		public ISingleResult<GetStudentCountResult> GetStudentCount([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid);
+			return ((ISingleResult<GetStudentCountResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentCountClasswiseGender")]
+		public ISingleResult<GetStudentCountClasswiseGenderResult> GetStudentCountClasswiseGender([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid);
+			return ((ISingleResult<GetStudentCountClasswiseGenderResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentsAttendanceDetailsMonthwise")]
+		public ISingleResult<GetStudentsAttendanceDetailsMonthwiseResult> GetStudentsAttendanceDetailsMonthwise([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string colMonth, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string colYear)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid, colMonth, colYear);
+			return ((ISingleResult<GetStudentsAttendanceDetailsMonthwiseResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentsMarksDetailsMonthwise")]
+		public ISingleResult<GetStudentsMarksDetailsMonthwiseResult> GetStudentsMarksDetailsMonthwise([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string colMonth, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string colYear)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid, colMonth, colYear);
+			return ((ISingleResult<GetStudentsMarksDetailsMonthwiseResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblSuperAdminLogin")]
@@ -4352,6 +4380,362 @@ namespace DataAccessObject
 				if ((this._colGender != value))
 				{
 					this._colGender = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentCountResult
+	{
+		
+		private System.Nullable<int> _TotalCount;
+		
+		private string _Gender;
+		
+		public GetStudentCountResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalCount", DbType="Int")]
+		public System.Nullable<int> TotalCount
+		{
+			get
+			{
+				return this._TotalCount;
+			}
+			set
+			{
+				if ((this._TotalCount != value))
+				{
+					this._TotalCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		public string Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentCountClasswiseGenderResult
+	{
+		
+		private System.Nullable<int> _TotalCount;
+		
+		private int _colBranchId;
+		
+		private string _Gender;
+		
+		private string _colBranchName;
+		
+		public GetStudentCountClasswiseGenderResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalCount", DbType="Int")]
+		public System.Nullable<int> TotalCount
+		{
+			get
+			{
+				return this._TotalCount;
+			}
+			set
+			{
+				if ((this._TotalCount != value))
+				{
+					this._TotalCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
+		public int colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this._colBranchId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(6) NOT NULL", CanBeNull=false)]
+		public string Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colBranchName
+		{
+			get
+			{
+				return this._colBranchName;
+			}
+			set
+			{
+				if ((this._colBranchName != value))
+				{
+					this._colBranchName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentsAttendanceDetailsMonthwiseResult
+	{
+		
+		private System.Nullable<int> _AttendanceCount;
+		
+		private System.Nullable<int> _colBranchId;
+		
+		private System.Nullable<int> _colSemesterId;
+		
+		private string _columnname;
+		
+		private string _colBranchName;
+		
+		public GetStudentsAttendanceDetailsMonthwiseResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttendanceCount", DbType="Int")]
+		public System.Nullable<int> AttendanceCount
+		{
+			get
+			{
+				return this._AttendanceCount;
+			}
+			set
+			{
+				if ((this._AttendanceCount != value))
+				{
+					this._AttendanceCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int")]
+		public System.Nullable<int> colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this._colBranchId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int")]
+		public System.Nullable<int> colSemesterId
+		{
+			get
+			{
+				return this._colSemesterId;
+			}
+			set
+			{
+				if ((this._colSemesterId != value))
+				{
+					this._colSemesterId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_columnname", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string columnname
+		{
+			get
+			{
+				return this._columnname;
+			}
+			set
+			{
+				if ((this._columnname != value))
+				{
+					this._columnname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colBranchName
+		{
+			get
+			{
+				return this._colBranchName;
+			}
+			set
+			{
+				if ((this._colBranchName != value))
+				{
+					this._colBranchName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentsMarksDetailsMonthwiseResult
+	{
+		
+		private System.Nullable<int> _MarksScoredCount;
+		
+		private System.Nullable<int> _colBranchId;
+		
+		private System.Nullable<int> _colSemesterId;
+		
+		private System.Nullable<int> _colSubjectId;
+		
+		private string _columnname;
+		
+		private string _colBranchName;
+		
+		private string _colSubjectName;
+		
+		public GetStudentsMarksDetailsMonthwiseResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MarksScoredCount", DbType="Int")]
+		public System.Nullable<int> MarksScoredCount
+		{
+			get
+			{
+				return this._MarksScoredCount;
+			}
+			set
+			{
+				if ((this._MarksScoredCount != value))
+				{
+					this._MarksScoredCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int")]
+		public System.Nullable<int> colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this._colBranchId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int")]
+		public System.Nullable<int> colSemesterId
+		{
+			get
+			{
+				return this._colSemesterId;
+			}
+			set
+			{
+				if ((this._colSemesterId != value))
+				{
+					this._colSemesterId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSubjectId", DbType="Int")]
+		public System.Nullable<int> colSubjectId
+		{
+			get
+			{
+				return this._colSubjectId;
+			}
+			set
+			{
+				if ((this._colSubjectId != value))
+				{
+					this._colSubjectId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_columnname", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string columnname
+		{
+			get
+			{
+				return this._columnname;
+			}
+			set
+			{
+				if ((this._columnname != value))
+				{
+					this._columnname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchName", DbType="VarChar(50)")]
+		public string colBranchName
+		{
+			get
+			{
+				return this._colBranchName;
+			}
+			set
+			{
+				if ((this._colBranchName != value))
+				{
+					this._colBranchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSubjectName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colSubjectName
+		{
+			get
+			{
+				return this._colSubjectName;
+			}
+			set
+			{
+				if ((this._colSubjectName != value))
+				{
+					this._colSubjectName = value;
 				}
 			}
 		}

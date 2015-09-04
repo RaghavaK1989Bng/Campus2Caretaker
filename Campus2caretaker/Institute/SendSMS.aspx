@@ -53,7 +53,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <asp:HiddenField ID="hf"
                             <label class="control-label"></label>
                             <div class="table-toolbar">
                                  <div class="btn-group">
