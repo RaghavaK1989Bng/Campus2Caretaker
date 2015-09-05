@@ -36,9 +36,6 @@ namespace DataAccessObject
     partial void InserttblInstituteLogin(tblInstituteLogin instance);
     partial void UpdatetblInstituteLogin(tblInstituteLogin instance);
     partial void DeletetblInstituteLogin(tblInstituteLogin instance);
-    partial void InserttblInstituteDetail(tblInstituteDetail instance);
-    partial void UpdatetblInstituteDetail(tblInstituteDetail instance);
-    partial void DeletetblInstituteDetail(tblInstituteDetail instance);
     partial void InserttblBranchDetail(tblBranchDetail instance);
     partial void UpdatetblBranchDetail(tblBranchDetail instance);
     partial void DeletetblBranchDetail(tblBranchDetail instance);
@@ -54,6 +51,9 @@ namespace DataAccessObject
     partial void InserttblStudentDetail(tblStudentDetail instance);
     partial void UpdatetblStudentDetail(tblStudentDetail instance);
     partial void DeletetblStudentDetail(tblStudentDetail instance);
+    partial void InserttblInstituteDetail(tblInstituteDetail instance);
+    partial void UpdatetblInstituteDetail(tblInstituteDetail instance);
+    partial void DeletetblInstituteDetail(tblInstituteDetail instance);
     #endregion
 		
 		public Campus2CaretakerDataContext() : 
@@ -99,14 +99,6 @@ namespace DataAccessObject
 			get
 			{
 				return this.GetTable<tblInstituteLogin>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblInstituteDetail> tblInstituteDetails
-		{
-			get
-			{
-				return this.GetTable<tblInstituteDetail>();
 			}
 		}
 		
@@ -158,11 +150,12 @@ namespace DataAccessObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetInstituteDetails")]
-		public ISingleResult<GetInstituteDetailsResult> GetInstituteDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid)
+		public System.Data.Linq.Table<tblInstituteDetail> tblInstituteDetails
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid);
-			return ((ISingleResult<GetInstituteDetailsResult>)(result.ReturnValue));
+			get
+			{
+				return this.GetTable<tblInstituteDetail>();
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetBarChartInternalsDetails")]
@@ -233,6 +226,13 @@ namespace DataAccessObject
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid, colMonth, colYear);
 			return ((ISingleResult<GetStudentsMarksDetailsMonthwiseResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetInstituteDetails")]
+		public ISingleResult<GetInstituteDetailsResult> GetInstituteDetails([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid);
+			return ((ISingleResult<GetInstituteDetailsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -494,448 +494,6 @@ namespace DataAccessObject
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblInstituteDetails")]
-	public partial class tblInstituteDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _colInstituteId;
-		
-		private string _colInstituteName;
-		
-		private string _colAddress;
-		
-		private string _colPhone;
-		
-		private string _colLogoPath;
-		
-		private string _colPrincipalName;
-		
-		private string _colPrincipalContact;
-		
-		private string _colInstituteType;
-		
-		private string _colState;
-		
-		private string _colDistrict;
-		
-		private string _colSecondLineAddress;
-		
-		private EntitySet<tblInstituteLogin> _tblInstituteLogins;
-		
-		private EntitySet<tblBranchDetail> _tblBranchDetails;
-		
-		private EntitySet<tblSubjectDetail> _tblSubjectDetails;
-		
-		private EntitySet<tblAttendanceDetail> _tblAttendanceDetails;
-		
-		private EntitySet<tblInternalMark> _tblInternalMarks;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OncolInstituteIdChanging(int value);
-    partial void OncolInstituteIdChanged();
-    partial void OncolInstituteNameChanging(string value);
-    partial void OncolInstituteNameChanged();
-    partial void OncolAddressChanging(string value);
-    partial void OncolAddressChanged();
-    partial void OncolPhoneChanging(string value);
-    partial void OncolPhoneChanged();
-    partial void OncolLogoPathChanging(string value);
-    partial void OncolLogoPathChanged();
-    partial void OncolPrincipalNameChanging(string value);
-    partial void OncolPrincipalNameChanged();
-    partial void OncolPrincipalContactChanging(string value);
-    partial void OncolPrincipalContactChanged();
-    partial void OncolInstituteTypeChanging(string value);
-    partial void OncolInstituteTypeChanged();
-    partial void OncolStateChanging(string value);
-    partial void OncolStateChanged();
-    partial void OncolDistrictChanging(string value);
-    partial void OncolDistrictChanged();
-    partial void OncolSecondLineAddressChanging(string value);
-    partial void OncolSecondLineAddressChanged();
-    #endregion
-		
-		public tblInstituteDetail()
-		{
-			this._tblInstituteLogins = new EntitySet<tblInstituteLogin>(new Action<tblInstituteLogin>(this.attach_tblInstituteLogins), new Action<tblInstituteLogin>(this.detach_tblInstituteLogins));
-			this._tblBranchDetails = new EntitySet<tblBranchDetail>(new Action<tblBranchDetail>(this.attach_tblBranchDetails), new Action<tblBranchDetail>(this.detach_tblBranchDetails));
-			this._tblSubjectDetails = new EntitySet<tblSubjectDetail>(new Action<tblSubjectDetail>(this.attach_tblSubjectDetails), new Action<tblSubjectDetail>(this.detach_tblSubjectDetails));
-			this._tblAttendanceDetails = new EntitySet<tblAttendanceDetail>(new Action<tblAttendanceDetail>(this.attach_tblAttendanceDetails), new Action<tblAttendanceDetail>(this.detach_tblAttendanceDetails));
-			this._tblInternalMarks = new EntitySet<tblInternalMark>(new Action<tblInternalMark>(this.attach_tblInternalMarks), new Action<tblInternalMark>(this.detach_tblInternalMarks));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int colInstituteId
-		{
-			get
-			{
-				return this._colInstituteId;
-			}
-			set
-			{
-				if ((this._colInstituteId != value))
-				{
-					this.OncolInstituteIdChanging(value);
-					this.SendPropertyChanging();
-					this._colInstituteId = value;
-					this.SendPropertyChanged("colInstituteId");
-					this.OncolInstituteIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colInstituteName
-		{
-			get
-			{
-				return this._colInstituteName;
-			}
-			set
-			{
-				if ((this._colInstituteName != value))
-				{
-					this.OncolInstituteNameChanging(value);
-					this.SendPropertyChanging();
-					this._colInstituteName = value;
-					this.SendPropertyChanged("colInstituteName");
-					this.OncolInstituteNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string colAddress
-		{
-			get
-			{
-				return this._colAddress;
-			}
-			set
-			{
-				if ((this._colAddress != value))
-				{
-					this.OncolAddressChanging(value);
-					this.SendPropertyChanging();
-					this._colAddress = value;
-					this.SendPropertyChanged("colAddress");
-					this.OncolAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colPhone", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string colPhone
-		{
-			get
-			{
-				return this._colPhone;
-			}
-			set
-			{
-				if ((this._colPhone != value))
-				{
-					this.OncolPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._colPhone = value;
-					this.SendPropertyChanged("colPhone");
-					this.OncolPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colLogoPath", DbType="VarChar(50)")]
-		public string colLogoPath
-		{
-			get
-			{
-				return this._colLogoPath;
-			}
-			set
-			{
-				if ((this._colLogoPath != value))
-				{
-					this.OncolLogoPathChanging(value);
-					this.SendPropertyChanging();
-					this._colLogoPath = value;
-					this.SendPropertyChanged("colLogoPath");
-					this.OncolLogoPathChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colPrincipalName", DbType="VarChar(50)")]
-		public string colPrincipalName
-		{
-			get
-			{
-				return this._colPrincipalName;
-			}
-			set
-			{
-				if ((this._colPrincipalName != value))
-				{
-					this.OncolPrincipalNameChanging(value);
-					this.SendPropertyChanging();
-					this._colPrincipalName = value;
-					this.SendPropertyChanged("colPrincipalName");
-					this.OncolPrincipalNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colPrincipalContact", DbType="NVarChar(50)")]
-		public string colPrincipalContact
-		{
-			get
-			{
-				return this._colPrincipalContact;
-			}
-			set
-			{
-				if ((this._colPrincipalContact != value))
-				{
-					this.OncolPrincipalContactChanging(value);
-					this.SendPropertyChanging();
-					this._colPrincipalContact = value;
-					this.SendPropertyChanged("colPrincipalContact");
-					this.OncolPrincipalContactChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteType", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
-		public string colInstituteType
-		{
-			get
-			{
-				return this._colInstituteType;
-			}
-			set
-			{
-				if ((this._colInstituteType != value))
-				{
-					this.OncolInstituteTypeChanging(value);
-					this.SendPropertyChanging();
-					this._colInstituteType = value;
-					this.SendPropertyChanged("colInstituteType");
-					this.OncolInstituteTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colState", DbType="VarChar(50)")]
-		public string colState
-		{
-			get
-			{
-				return this._colState;
-			}
-			set
-			{
-				if ((this._colState != value))
-				{
-					this.OncolStateChanging(value);
-					this.SendPropertyChanging();
-					this._colState = value;
-					this.SendPropertyChanged("colState");
-					this.OncolStateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDistrict", DbType="VarChar(50)")]
-		public string colDistrict
-		{
-			get
-			{
-				return this._colDistrict;
-			}
-			set
-			{
-				if ((this._colDistrict != value))
-				{
-					this.OncolDistrictChanging(value);
-					this.SendPropertyChanging();
-					this._colDistrict = value;
-					this.SendPropertyChanged("colDistrict");
-					this.OncolDistrictChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSecondLineAddress", DbType="VarChar(MAX)")]
-		public string colSecondLineAddress
-		{
-			get
-			{
-				return this._colSecondLineAddress;
-			}
-			set
-			{
-				if ((this._colSecondLineAddress != value))
-				{
-					this.OncolSecondLineAddressChanging(value);
-					this.SendPropertyChanging();
-					this._colSecondLineAddress = value;
-					this.SendPropertyChanged("colSecondLineAddress");
-					this.OncolSecondLineAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblInstituteLogin", Storage="_tblInstituteLogins", ThisKey="colInstituteId", OtherKey="colInstituteId")]
-		public EntitySet<tblInstituteLogin> tblInstituteLogins
-		{
-			get
-			{
-				return this._tblInstituteLogins;
-			}
-			set
-			{
-				this._tblInstituteLogins.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblBranchDetail", Storage="_tblBranchDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
-		public EntitySet<tblBranchDetail> tblBranchDetails
-		{
-			get
-			{
-				return this._tblBranchDetails;
-			}
-			set
-			{
-				this._tblBranchDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblSubjectDetail", Storage="_tblSubjectDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
-		public EntitySet<tblSubjectDetail> tblSubjectDetails
-		{
-			get
-			{
-				return this._tblSubjectDetails;
-			}
-			set
-			{
-				this._tblSubjectDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblAttendanceDetail", Storage="_tblAttendanceDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
-		public EntitySet<tblAttendanceDetail> tblAttendanceDetails
-		{
-			get
-			{
-				return this._tblAttendanceDetails;
-			}
-			set
-			{
-				this._tblAttendanceDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblInternalMark", Storage="_tblInternalMarks", ThisKey="colInstituteId", OtherKey="colInstituteId")]
-		public EntitySet<tblInternalMark> tblInternalMarks
-		{
-			get
-			{
-				return this._tblInternalMarks;
-			}
-			set
-			{
-				this._tblInternalMarks.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblInstituteLogins(tblInstituteLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = this;
-		}
-		
-		private void detach_tblInstituteLogins(tblInstituteLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = null;
-		}
-		
-		private void attach_tblBranchDetails(tblBranchDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = this;
-		}
-		
-		private void detach_tblBranchDetails(tblBranchDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = null;
-		}
-		
-		private void attach_tblSubjectDetails(tblSubjectDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = this;
-		}
-		
-		private void detach_tblSubjectDetails(tblSubjectDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = null;
-		}
-		
-		private void attach_tblAttendanceDetails(tblAttendanceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = this;
-		}
-		
-		private void detach_tblAttendanceDetails(tblAttendanceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = null;
-		}
-		
-		private void attach_tblInternalMarks(tblInternalMark entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = this;
-		}
-		
-		private void detach_tblInternalMarks(tblInternalMark entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblInstituteDetail = null;
 		}
 	}
 	
@@ -1446,9 +1004,9 @@ namespace DataAccessObject
 		
 		private string _colRemarks;
 		
-		private EntityRef<tblInstituteDetail> _tblInstituteDetail;
-		
 		private EntityRef<tblStudentDetail> _tblStudentDetail;
+		
+		private EntityRef<tblInstituteDetail> _tblInstituteDetail;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1492,8 +1050,8 @@ namespace DataAccessObject
 		
 		public tblAttendanceDetail()
 		{
-			this._tblInstituteDetail = default(EntityRef<tblInstituteDetail>);
 			this._tblStudentDetail = default(EntityRef<tblStudentDetail>);
+			this._tblInstituteDetail = default(EntityRef<tblInstituteDetail>);
 			OnCreated();
 		}
 		
@@ -1845,40 +1403,6 @@ namespace DataAccessObject
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblAttendanceDetail", Storage="_tblInstituteDetail", ThisKey="colInstituteId", OtherKey="colInstituteId", IsForeignKey=true)]
-		public tblInstituteDetail tblInstituteDetail
-		{
-			get
-			{
-				return this._tblInstituteDetail.Entity;
-			}
-			set
-			{
-				tblInstituteDetail previousValue = this._tblInstituteDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._tblInstituteDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblInstituteDetail.Entity = null;
-						previousValue.tblAttendanceDetails.Remove(this);
-					}
-					this._tblInstituteDetail.Entity = value;
-					if ((value != null))
-					{
-						value.tblAttendanceDetails.Add(this);
-						this._colInstituteId = value.colInstituteId;
-					}
-					else
-					{
-						this._colInstituteId = default(int);
-					}
-					this.SendPropertyChanged("tblInstituteDetail");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStudentDetail_tblAttendanceDetail", Storage="_tblStudentDetail", ThisKey="colStudentId", OtherKey="colStudentId", IsForeignKey=true)]
 		public tblStudentDetail tblStudentDetail
 		{
@@ -1909,6 +1433,40 @@ namespace DataAccessObject
 						this._colStudentId = default(int);
 					}
 					this.SendPropertyChanged("tblStudentDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblAttendanceDetail", Storage="_tblInstituteDetail", ThisKey="colInstituteId", OtherKey="colInstituteId", IsForeignKey=true)]
+		public tblInstituteDetail tblInstituteDetail
+		{
+			get
+			{
+				return this._tblInstituteDetail.Entity;
+			}
+			set
+			{
+				tblInstituteDetail previousValue = this._tblInstituteDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._tblInstituteDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblInstituteDetail.Entity = null;
+						previousValue.tblAttendanceDetails.Remove(this);
+					}
+					this._tblInstituteDetail.Entity = value;
+					if ((value != null))
+					{
+						value.tblAttendanceDetails.Add(this);
+						this._colInstituteId = value.colInstituteId;
+					}
+					else
+					{
+						this._colInstituteId = default(int);
+					}
+					this.SendPropertyChanged("tblInstituteDetail");
 				}
 			}
 		}
@@ -2799,10 +2357,15 @@ namespace DataAccessObject
 		}
 	}
 	
-	public partial class GetInstituteDetailsResult
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblInstituteDetails")]
+	public partial class tblInstituteDetail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
-		private string _colInstitutename;
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _colInstituteId;
+		
+		private string _colInstituteName;
 		
 		private string _colAddress;
 		
@@ -2816,28 +2379,100 @@ namespace DataAccessObject
 		
 		private string _colInstituteType;
 		
-		private string _colUsername;
+		private string _colState;
 		
 		private string _colDistrict;
 		
-		private string _colState;
+		private string _colSecondLineAddress;
 		
-		public GetInstituteDetailsResult()
+		private System.Nullable<long> _colMaxStudents;
+		
+		private EntitySet<tblInstituteLogin> _tblInstituteLogins;
+		
+		private EntitySet<tblBranchDetail> _tblBranchDetails;
+		
+		private EntitySet<tblSubjectDetail> _tblSubjectDetails;
+		
+		private EntitySet<tblAttendanceDetail> _tblAttendanceDetails;
+		
+		private EntitySet<tblInternalMark> _tblInternalMarks;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OncolInstituteIdChanging(int value);
+    partial void OncolInstituteIdChanged();
+    partial void OncolInstituteNameChanging(string value);
+    partial void OncolInstituteNameChanged();
+    partial void OncolAddressChanging(string value);
+    partial void OncolAddressChanged();
+    partial void OncolPhoneChanging(string value);
+    partial void OncolPhoneChanged();
+    partial void OncolLogoPathChanging(string value);
+    partial void OncolLogoPathChanged();
+    partial void OncolPrincipalNameChanging(string value);
+    partial void OncolPrincipalNameChanged();
+    partial void OncolPrincipalContactChanging(string value);
+    partial void OncolPrincipalContactChanged();
+    partial void OncolInstituteTypeChanging(string value);
+    partial void OncolInstituteTypeChanged();
+    partial void OncolStateChanging(string value);
+    partial void OncolStateChanged();
+    partial void OncolDistrictChanging(string value);
+    partial void OncolDistrictChanged();
+    partial void OncolSecondLineAddressChanging(string value);
+    partial void OncolSecondLineAddressChanged();
+    partial void OncolMaxStudentsChanging(System.Nullable<long> value);
+    partial void OncolMaxStudentsChanged();
+    #endregion
+		
+		public tblInstituteDetail()
 		{
+			this._tblInstituteLogins = new EntitySet<tblInstituteLogin>(new Action<tblInstituteLogin>(this.attach_tblInstituteLogins), new Action<tblInstituteLogin>(this.detach_tblInstituteLogins));
+			this._tblBranchDetails = new EntitySet<tblBranchDetail>(new Action<tblBranchDetail>(this.attach_tblBranchDetails), new Action<tblBranchDetail>(this.detach_tblBranchDetails));
+			this._tblSubjectDetails = new EntitySet<tblSubjectDetail>(new Action<tblSubjectDetail>(this.attach_tblSubjectDetails), new Action<tblSubjectDetail>(this.detach_tblSubjectDetails));
+			this._tblAttendanceDetails = new EntitySet<tblAttendanceDetail>(new Action<tblAttendanceDetail>(this.attach_tblAttendanceDetails), new Action<tblAttendanceDetail>(this.detach_tblAttendanceDetails));
+			this._tblInternalMarks = new EntitySet<tblInternalMark>(new Action<tblInternalMark>(this.attach_tblInternalMarks), new Action<tblInternalMark>(this.detach_tblInternalMarks));
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstitutename", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colInstitutename
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int colInstituteId
 		{
 			get
 			{
-				return this._colInstitutename;
+				return this._colInstituteId;
 			}
 			set
 			{
-				if ((this._colInstitutename != value))
+				if ((this._colInstituteId != value))
 				{
-					this._colInstitutename = value;
+					this.OncolInstituteIdChanging(value);
+					this.SendPropertyChanging();
+					this._colInstituteId = value;
+					this.SendPropertyChanged("colInstituteId");
+					this.OncolInstituteIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colInstituteName
+		{
+			get
+			{
+				return this._colInstituteName;
+			}
+			set
+			{
+				if ((this._colInstituteName != value))
+				{
+					this.OncolInstituteNameChanging(value);
+					this.SendPropertyChanging();
+					this._colInstituteName = value;
+					this.SendPropertyChanged("colInstituteName");
+					this.OncolInstituteNameChanged();
 				}
 			}
 		}
@@ -2853,7 +2488,11 @@ namespace DataAccessObject
 			{
 				if ((this._colAddress != value))
 				{
+					this.OncolAddressChanging(value);
+					this.SendPropertyChanging();
 					this._colAddress = value;
+					this.SendPropertyChanged("colAddress");
+					this.OncolAddressChanged();
 				}
 			}
 		}
@@ -2869,7 +2508,11 @@ namespace DataAccessObject
 			{
 				if ((this._colPhone != value))
 				{
+					this.OncolPhoneChanging(value);
+					this.SendPropertyChanging();
 					this._colPhone = value;
+					this.SendPropertyChanged("colPhone");
+					this.OncolPhoneChanged();
 				}
 			}
 		}
@@ -2885,7 +2528,11 @@ namespace DataAccessObject
 			{
 				if ((this._colLogoPath != value))
 				{
+					this.OncolLogoPathChanging(value);
+					this.SendPropertyChanging();
 					this._colLogoPath = value;
+					this.SendPropertyChanged("colLogoPath");
+					this.OncolLogoPathChanged();
 				}
 			}
 		}
@@ -2901,7 +2548,11 @@ namespace DataAccessObject
 			{
 				if ((this._colPrincipalName != value))
 				{
+					this.OncolPrincipalNameChanging(value);
+					this.SendPropertyChanging();
 					this._colPrincipalName = value;
+					this.SendPropertyChanged("colPrincipalName");
+					this.OncolPrincipalNameChanged();
 				}
 			}
 		}
@@ -2917,7 +2568,11 @@ namespace DataAccessObject
 			{
 				if ((this._colPrincipalContact != value))
 				{
+					this.OncolPrincipalContactChanging(value);
+					this.SendPropertyChanging();
 					this._colPrincipalContact = value;
+					this.SendPropertyChanged("colPrincipalContact");
+					this.OncolPrincipalContactChanged();
 				}
 			}
 		}
@@ -2933,39 +2588,11 @@ namespace DataAccessObject
 			{
 				if ((this._colInstituteType != value))
 				{
+					this.OncolInstituteTypeChanging(value);
+					this.SendPropertyChanging();
 					this._colInstituteType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colUsername", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string colUsername
-		{
-			get
-			{
-				return this._colUsername;
-			}
-			set
-			{
-				if ((this._colUsername != value))
-				{
-					this._colUsername = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDistrict", DbType="VarChar(50)")]
-		public string colDistrict
-		{
-			get
-			{
-				return this._colDistrict;
-			}
-			set
-			{
-				if ((this._colDistrict != value))
-				{
-					this._colDistrict = value;
+					this.SendPropertyChanged("colInstituteType");
+					this.OncolInstituteTypeChanged();
 				}
 			}
 		}
@@ -2981,9 +2608,218 @@ namespace DataAccessObject
 			{
 				if ((this._colState != value))
 				{
+					this.OncolStateChanging(value);
+					this.SendPropertyChanging();
 					this._colState = value;
+					this.SendPropertyChanged("colState");
+					this.OncolStateChanged();
 				}
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDistrict", DbType="VarChar(50)")]
+		public string colDistrict
+		{
+			get
+			{
+				return this._colDistrict;
+			}
+			set
+			{
+				if ((this._colDistrict != value))
+				{
+					this.OncolDistrictChanging(value);
+					this.SendPropertyChanging();
+					this._colDistrict = value;
+					this.SendPropertyChanged("colDistrict");
+					this.OncolDistrictChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSecondLineAddress", DbType="VarChar(MAX)")]
+		public string colSecondLineAddress
+		{
+			get
+			{
+				return this._colSecondLineAddress;
+			}
+			set
+			{
+				if ((this._colSecondLineAddress != value))
+				{
+					this.OncolSecondLineAddressChanging(value);
+					this.SendPropertyChanging();
+					this._colSecondLineAddress = value;
+					this.SendPropertyChanged("colSecondLineAddress");
+					this.OncolSecondLineAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMaxStudents", DbType="BigInt")]
+		public System.Nullable<long> colMaxStudents
+		{
+			get
+			{
+				return this._colMaxStudents;
+			}
+			set
+			{
+				if ((this._colMaxStudents != value))
+				{
+					this.OncolMaxStudentsChanging(value);
+					this.SendPropertyChanging();
+					this._colMaxStudents = value;
+					this.SendPropertyChanged("colMaxStudents");
+					this.OncolMaxStudentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblInstituteLogin", Storage="_tblInstituteLogins", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblInstituteLogin> tblInstituteLogins
+		{
+			get
+			{
+				return this._tblInstituteLogins;
+			}
+			set
+			{
+				this._tblInstituteLogins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblBranchDetail", Storage="_tblBranchDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblBranchDetail> tblBranchDetails
+		{
+			get
+			{
+				return this._tblBranchDetails;
+			}
+			set
+			{
+				this._tblBranchDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblSubjectDetail", Storage="_tblSubjectDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblSubjectDetail> tblSubjectDetails
+		{
+			get
+			{
+				return this._tblSubjectDetails;
+			}
+			set
+			{
+				this._tblSubjectDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblAttendanceDetail", Storage="_tblAttendanceDetails", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblAttendanceDetail> tblAttendanceDetails
+		{
+			get
+			{
+				return this._tblAttendanceDetails;
+			}
+			set
+			{
+				this._tblAttendanceDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblInstituteDetail_tblInternalMark", Storage="_tblInternalMarks", ThisKey="colInstituteId", OtherKey="colInstituteId")]
+		public EntitySet<tblInternalMark> tblInternalMarks
+		{
+			get
+			{
+				return this._tblInternalMarks;
+			}
+			set
+			{
+				this._tblInternalMarks.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblInstituteLogins(tblInstituteLogin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = this;
+		}
+		
+		private void detach_tblInstituteLogins(tblInstituteLogin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = null;
+		}
+		
+		private void attach_tblBranchDetails(tblBranchDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = this;
+		}
+		
+		private void detach_tblBranchDetails(tblBranchDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = null;
+		}
+		
+		private void attach_tblSubjectDetails(tblSubjectDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = this;
+		}
+		
+		private void detach_tblSubjectDetails(tblSubjectDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = null;
+		}
+		
+		private void attach_tblAttendanceDetails(tblAttendanceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = this;
+		}
+		
+		private void detach_tblAttendanceDetails(tblAttendanceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = null;
+		}
+		
+		private void attach_tblInternalMarks(tblInternalMark entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = this;
+		}
+		
+		private void detach_tblInternalMarks(tblInternalMark entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblInstituteDetail = null;
 		}
 	}
 	
@@ -4736,6 +4572,212 @@ namespace DataAccessObject
 				if ((this._colSubjectName != value))
 				{
 					this._colSubjectName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetInstituteDetailsResult
+	{
+		
+		private string _colInstitutename;
+		
+		private string _colAddress;
+		
+		private string _colPhone;
+		
+		private string _colLogoPath;
+		
+		private string _colPrincipalName;
+		
+		private string _colPrincipalContact;
+		
+		private string _colInstituteType;
+		
+		private string _colUsername;
+		
+		private string _colDistrict;
+		
+		private string _colState;
+		
+		private System.Nullable<long> _colMaxStudents;
+		
+		public GetInstituteDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstitutename", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colInstitutename
+		{
+			get
+			{
+				return this._colInstitutename;
+			}
+			set
+			{
+				if ((this._colInstitutename != value))
+				{
+					this._colInstitutename = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colAddress", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string colAddress
+		{
+			get
+			{
+				return this._colAddress;
+			}
+			set
+			{
+				if ((this._colAddress != value))
+				{
+					this._colAddress = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colPhone", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string colPhone
+		{
+			get
+			{
+				return this._colPhone;
+			}
+			set
+			{
+				if ((this._colPhone != value))
+				{
+					this._colPhone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colLogoPath", DbType="VarChar(50)")]
+		public string colLogoPath
+		{
+			get
+			{
+				return this._colLogoPath;
+			}
+			set
+			{
+				if ((this._colLogoPath != value))
+				{
+					this._colLogoPath = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colPrincipalName", DbType="VarChar(50)")]
+		public string colPrincipalName
+		{
+			get
+			{
+				return this._colPrincipalName;
+			}
+			set
+			{
+				if ((this._colPrincipalName != value))
+				{
+					this._colPrincipalName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colPrincipalContact", DbType="NVarChar(50)")]
+		public string colPrincipalContact
+		{
+			get
+			{
+				return this._colPrincipalContact;
+			}
+			set
+			{
+				if ((this._colPrincipalContact != value))
+				{
+					this._colPrincipalContact = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colInstituteType", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string colInstituteType
+		{
+			get
+			{
+				return this._colInstituteType;
+			}
+			set
+			{
+				if ((this._colInstituteType != value))
+				{
+					this._colInstituteType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colUsername", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colUsername
+		{
+			get
+			{
+				return this._colUsername;
+			}
+			set
+			{
+				if ((this._colUsername != value))
+				{
+					this._colUsername = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colDistrict", DbType="VarChar(50)")]
+		public string colDistrict
+		{
+			get
+			{
+				return this._colDistrict;
+			}
+			set
+			{
+				if ((this._colDistrict != value))
+				{
+					this._colDistrict = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colState", DbType="VarChar(50)")]
+		public string colState
+		{
+			get
+			{
+				return this._colState;
+			}
+			set
+			{
+				if ((this._colState != value))
+				{
+					this._colState = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMaxStudents", DbType="BigInt")]
+		public System.Nullable<long> colMaxStudents
+		{
+			get
+			{
+				return this._colMaxStudents;
+			}
+			set
+			{
+				if ((this._colMaxStudents != value))
+				{
+					this._colMaxStudents = value;
 				}
 			}
 		}

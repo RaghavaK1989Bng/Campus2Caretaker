@@ -15,6 +15,12 @@
                     }
                 });
 
+            $("#<%=txtMaxStudents.ClientID %>").keypress(function (event) {
+                if (event.which > 31 && (event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
+            });
+
             $("[name*='txtInstituteName']").autocomplete({
                 source: function (request, response) {
                     $.ajax({
@@ -154,6 +160,17 @@
                                     ControlToValidate="txtInstituteEmail" ErrorMessage="Institute Email is not valid."
                                     ToolTip="Institute Email is not valid." ValidationGroup="Institute"
                                     ForeColor="#FF3300" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+                            </div>
+
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtMaxStudents">Maximum Number of Students<span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:TextBox ID="txtMaxStudents" runat="server" CssClass="input-xlarge focused"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="MaxStudentsRequired" runat="server"
+                                    ControlToValidate="txtMaxStudents" ErrorMessage="Maximum Number of Students is required."
+                                    ToolTip="Maximum Number of Students is required." ValidationGroup="Institute"
+                                    ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+
                             </div>
 
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtPrincipalName">Principal Name <span class="required">*</span></asp:Label>

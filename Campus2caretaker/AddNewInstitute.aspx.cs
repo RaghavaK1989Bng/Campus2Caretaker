@@ -122,6 +122,7 @@ namespace Campus2caretaker
             imgInstituteLogo.Src = null;
             txtDistrict.Text = "";
             txtState.Text = "";
+            txtMaxStudents.Text = "";
 
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
@@ -182,6 +183,7 @@ namespace Campus2caretaker
                     toinst.PrincipalName = txtPrincipalName.Text;
                     toinst.State = txtState.Text;
                     toinst.District = txtDistrict.Text;
+                    toinst.MaxStudents = int.Parse(txtMaxStudents.Text);
 
                     RandomStringGenerator randstring = new RandomStringGenerator();
                     string DefaultPwd = randstring.Generate(8);
@@ -252,6 +254,7 @@ namespace Campus2caretaker
                     toinst.PrincipalName = txtPrincipalName.Text;
                     toinst.State = txtState.Text;
                     toinst.District = txtDistrict.Text;
+                    toinst.MaxStudents = int.Parse(txtMaxStudents.Text);
 
                     if (new BOInstituteDetails().UpdateInstituteDetails(toinst))
                     {
@@ -380,6 +383,7 @@ namespace Campus2caretaker
                 txtInstitutePhoneNumber.Text = dt.Rows[0][2].ToString();
                 txtState.Text = dt.Rows[0][9].ToString();
                 txtDistrict.Text = dt.Rows[0][8].ToString();
+                txtMaxStudents.Text = dt.Rows[0][10].ToString();
 
                 if (dt.Rows[0][6].ToString().Equals("S"))
                 {

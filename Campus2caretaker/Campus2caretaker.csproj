@@ -159,6 +159,11 @@
     <Content Include="css\styles.css" />
     <Content Include="css\uniform.default.css" />
     <Content Include="css\wysiwyg\bootstrap-wysihtml5.css" />
+    <Content Include="easypiechart\examples\excanvas.js" />
+    <Content Include="easypiechart\examples\index.html" />
+    <Content Include="easypiechart\examples\style.css" />
+    <Content Include="easypiechart\jquery.easy-pie-chart.css" />
+    <Content Include="easypiechart\jquery.easy-pie-chart.js" />
     <Content Include="faq.html" />
     <Content Include="fonts\css\font-awesome.css" />
     <Content Include="fonts\css\font-awesome.min.css" />

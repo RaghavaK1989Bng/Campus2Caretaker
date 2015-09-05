@@ -42,6 +42,7 @@ namespace Campus2caretaker.Institute
                     Session["LogoPath"] = dt.Rows[0][3].ToString();
                     Session["InstituteName"] = dt.Rows[0][0].ToString();
                     Session["InstituteType"] = dt.Rows[0][6].ToString();
+                    Session["MaxStudentsInstitute"] = dt.Rows[0][10].ToString();
 
                     Response.Redirect("InstituteDefault.aspx");
                 }

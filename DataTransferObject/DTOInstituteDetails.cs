@@ -97,5 +97,12 @@ namespace DataTransferObject
             get { return state; }
             set { state = value; }
         }
+
+        private int maxstudents;
+        public int MaxStudents
+        {
+            get { return maxstudents; }
+            set { maxstudents = value; }
+        }
     }
 }

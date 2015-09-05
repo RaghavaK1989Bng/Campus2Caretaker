@@ -62,6 +62,7 @@ namespace DataAccessObject
                 InstDetail.colPrincipalName = toins.PrincipalName;
                 InstDetail.colState = toins.State;
                 InstDetail.colDistrict = toins.District;
+                InstDetail.colMaxStudents = toins.MaxStudents;
 
                 dbContext.tblInstituteDetails.InsertOnSubmit(InstDetail);
                 dbContext.SubmitChanges();
@@ -111,6 +112,7 @@ namespace DataAccessObject
                 InstDetail.colPrincipalName = toins.PrincipalName;
                 InstDetail.colState = toins.State;
                 InstDetail.colDistrict = toins.District;
+                InstDetail.colMaxStudents = toins.MaxStudents;
 
                 dbContext.SubmitChanges();
                 return true;

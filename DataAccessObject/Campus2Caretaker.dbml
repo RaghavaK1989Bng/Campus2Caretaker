@@ -15,26 +15,6 @@
       <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblInstituteDetails" Member="tblInstituteDetails">
-    <Type Name="tblInstituteDetail">
-      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="colInstituteName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="colPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colLogoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colPrincipalName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colPrincipalContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="colInstituteType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="colState" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="colSecondLineAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteLogins" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteLogin" />
-      <Association Name="tblInstituteDetail_tblBranchDetail" Member="tblBranchDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblBranchDetail" />
-      <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblSubjectDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblSubjectDetail" />
-      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblAttendanceDetail" />
-      <Association Name="tblInstituteDetail_tblInternalMark" Member="tblInternalMarks" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInternalMark" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblBranchDetails" Member="tblBranchDetails">
     <Type Name="tblBranchDetail">
       <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -81,8 +61,8 @@
       <Column Name="colSubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="colDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="colRemarks" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
       <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblStudentDetail" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblStudentDetail" IsForeignKey="true" />
+      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblInstituteDetail" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblInternalMarks" Member="tblInternalMarks">
@@ -125,21 +105,27 @@
       <Association Name="tblStudentDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colStudentId" OtherKey="colStudentId" Type="tblAttendanceDetail" />
     </Type>
   </Table>
-  <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">
-    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetInstituteDetailsResult">
-      <Column Name="colInstitutename" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.tblInstituteDetails" Member="tblInstituteDetails">
+    <Type Name="tblInstituteDetail">
+      <Column Name="colInstituteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colInstituteName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="colPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="colLogoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colPrincipalName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colPrincipalContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="colInstituteType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colState" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
+      <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colSecondLineAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="colMaxStudents" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="tblInstituteDetail_tblInstituteLogin" Member="tblInstituteLogins" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInstituteLogin" />
+      <Association Name="tblInstituteDetail_tblBranchDetail" Member="tblBranchDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblBranchDetail" />
+      <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblSubjectDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblSubjectDetail" />
+      <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblAttendanceDetail" />
+      <Association Name="tblInstituteDetail_tblInternalMark" Member="tblInternalMarks" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInternalMark" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetBarChartInternalsDetails" Method="GetBarChartInternalsDetails">
     <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
     <Parameter Name="month" Type="System.String" DbType="VarChar(50)" />
@@ -307,6 +293,22 @@
       <Column Name="columnname" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
       <Column Name="colBranchName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colSubjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetInstituteDetails" Method="GetInstituteDetails">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetInstituteDetailsResult">
+      <Column Name="colInstitutename" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="colPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colLogoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="colInstituteType" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colState" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colMaxStudents" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
