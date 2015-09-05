@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="c2c" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=wp.cronnet.co.in;Initial Catalog=c2c;Persist Security Info=True;User ID=raghavak" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
+  <!--<Connection Mode="AppSettings" ConnectionString="Data Source=wp.cronnet.co.in;Initial Catalog=c2c;Persist Security Info=True;User ID=raghavak" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />-->
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-UKCG5FD;Initial Catalog=c2c;Persist Security Info=True;User ID=sa" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblSuperAdminLogin" Member="tblSuperAdminLogins">
     <Type Name="tblSuperAdminLogin">
       <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

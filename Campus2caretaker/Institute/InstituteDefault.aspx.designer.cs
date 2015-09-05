@@ -92,5 +92,23 @@ namespace Campus2caretaker.Institute {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFemaleCountText;
+        
+        /// <summary>
+        /// gvClasswiseStrength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvClasswiseStrength;
+        
+        /// <summary>
+        /// chrtStudentsStrengthvsClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart chrtStudentsStrengthvsClass;
     }
 }
