@@ -15,7 +15,7 @@ namespace Campus2caretaker.Institute
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Response.Cache.SetNoStore();
                 clear();
@@ -35,6 +35,12 @@ namespace Campus2caretaker.Institute
 
             ddlAttendanceMonth.SelectedIndex = 0;
             ddlAttendanceYear.SelectedIndex = 0;
+
+            ddlInternalsMonth.Items.Insert(0, selectItem);
+            ddlInternalsYear.Items.Insert(0, selectItem);
+
+            ddlInternalsMonth.SelectedIndex = 0;
+            ddlInternalsYear.SelectedIndex = 0;
         }
 
         private void LoadStudentsCount(string instituteId)
@@ -171,7 +177,6 @@ namespace Campus2caretaker.Institute
             gvAttendanceMonth.DataSource = dt;
             gvAttendanceMonth.DataBind();
 
-
             for (int i = 1; i < dt.Columns.Count; i++)
             {
                 Series attseries = new Series();
@@ -190,6 +195,89 @@ namespace Campus2caretaker.Institute
         protected void gvAttendanceMonth_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        protected void btnGenerateInternalsStatistics_Click(object sender, EventArgs e)
+        {
+            LoadInternalsMarksMonthwise(Session["InstituteID"].ToString(), ddlInternalsMonth.SelectedValue, ddlInternalsYear.SelectedValue);
+        }
+
+        private void LoadInternalsMarksMonthwise(string instituteId, string month, string year)
+        {
+            DataTable branches = new BOPersonalizeApplication().GetClassesList(instituteId);
+
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[6] { new DataColumn("colBranchName", typeof(string)),
+                            new DataColumn("colSubjectName", typeof(string)),
+                            new DataColumn("col0", typeof(string)),
+                            new DataColumn("col35",typeof(string)),
+                            new DataColumn("col60",typeof(string)),
+                            new DataColumn("col85",typeof(string)) });
+
+            for (int j = 0; j < branches.Rows.Count; j++)
+            {
+                DataTable subjects = new BOPersonalizeApplication().GetSubjectsList(instituteId, int.Parse(branches.Rows[j][0].ToString()));
+
+                for (int p = 0; p < subjects.Rows.Count; p++)
+                {
+                    List<DTOClasswiseCount> col0Count = new BOReport().GetStudentInternalsCountClasswiseReport(Convert.ToInt32(instituteId), "col0", int.Parse(branches.Rows[j][0].ToString()), month, year, int.Parse(subjects.Rows[p][0].ToString()));
+                    List<DTOClasswiseCount> col35Count = new BOReport().GetStudentInternalsCountClasswiseReport(Convert.ToInt32(instituteId), "col35", int.Parse(branches.Rows[j][0].ToString()), month, year, int.Parse(subjects.Rows[p][0].ToString()));
+                    List<DTOClasswiseCount> col60Count = new BOReport().GetStudentInternalsCountClasswiseReport(Convert.ToInt32(instituteId), "col60", int.Parse(branches.Rows[j][0].ToString()), month, year, int.Parse(subjects.Rows[p][0].ToString()));
+                    List<DTOClasswiseCount> col85Count = new BOReport().GetStudentInternalsCountClasswiseReport(Convert.ToInt32(instituteId), "col85", int.Parse(branches.Rows[j][0].ToString()), month, year, int.Parse(subjects.Rows[p][0].ToString()));
+
+                    int count = Max(col0Count.Count, col35Count.Count, col60Count.Count, col85Count.Count);
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        string finalcol0Count = "0";
+                        if (col0Count.Count > i)
+                        {
+                            finalcol0Count = col0Count[i].Count.ToString();
+                        }
+
+                        string finalcol35Count = "0";
+                        if (col35Count.Count > i)
+                        {
+                            finalcol35Count = col35Count[i].Count.ToString();
+                        }
+
+                        string finalcol60Count = "0";
+                        if (col60Count.Count > i)
+                        {
+                            finalcol60Count = col60Count[i].Count.ToString();
+                        }
+
+                        string finalcol85Count = "0";
+                        if (col85Count.Count > i)
+                        {
+                            finalcol85Count = col85Count[i].Count.ToString();
+                        }
+
+                        dt.Rows.Add(branches.Rows[j][1].ToString(), subjects.Rows[p][3].ToString(), finalcol0Count, finalcol35Count, finalcol60Count, finalcol85Count);
+                    }
+                }
+            }
+
+            gvInternalsMonth.DataSource = dt;
+            gvInternalsMonth.DataBind();
+
+            for (int i = 2; i < dt.Columns.Count; i++)
+            {
+                Series attseries = new Series();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    object y = dr[i];
+                    attseries.Points.AddXY(String.Concat(dr["colBranchName"].ToString(), dr["colSubjectName"].ToString()), y);
+                }
+
+                chrtInternalsMonth.Series.Add(attseries);
+            }
+        }
+
+        public static int Max(int w, int x, int y, int z)
+        {
+            return Math.Max(w, Math.Max(x, Math.Max(y, z)));
         }
     }
 }
