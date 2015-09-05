@@ -15,11 +15,26 @@ namespace Campus2caretaker.Institute
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if(!IsPostBack)
             {
-                LoadStudentsCount(Session["InstituteID"].ToString());
-                LoadStudentsCountClasswise(Session["InstituteID"].ToString());
+                Response.Cache.SetNoStore();
+                clear();
             }
+
+            LoadStudentsCount(Session["InstituteID"].ToString());
+            LoadStudentsCountClasswise(Session["InstituteID"].ToString());
+        }
+
+        private void clear()
+        {
+            System.Web.UI.WebControls.ListItem selectItem = new System.Web.UI.WebControls.ListItem();
+            selectItem.Text = "Select";
+            selectItem.Value = "Select";
+            ddlAttendanceMonth.Items.Insert(0, selectItem);
+            ddlAttendanceYear.Items.Insert(0, selectItem);
+
+            ddlAttendanceMonth.SelectedIndex = 0;
+            ddlAttendanceYear.SelectedIndex = 0;
         }
 
         private void LoadStudentsCount(string instituteId)
@@ -106,6 +121,75 @@ namespace Campus2caretaker.Institute
             }
             gvClasswiseStrength.DataSource = dt;
             gvClasswiseStrength.DataBind();
+        }
+
+        protected void btnGenerateAttendanceStatistics_Click(object sender, EventArgs e)
+        {
+            LoadStudentsAttendanceClasswise(Session["InstituteID"].ToString(), ddlAttendanceMonth.SelectedValue, ddlAttendanceYear.SelectedValue);
+        }
+
+        private void LoadStudentsAttendanceClasswise(string instituteId, string month, string year)
+        {
+            DataTable branches = new BOPersonalizeApplication().GetClassesList(instituteId);
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[3] { new DataColumn("colBranchName", typeof(string)),
+                            new DataColumn("col35", typeof(string)),
+                            new DataColumn("col85",typeof(string)) });
+            for (int j = 0; j < branches.Rows.Count; j++)
+            {
+                List<DTOClasswiseCount> lt85Count = new BOReport().GetStudentAttendanceCountClasswiseReport(Convert.ToInt32(instituteId), "lt85", int.Parse(branches.Rows[j][0].ToString()), month, year);
+                List<DTOClasswiseCount> gt85Count = new BOReport().GetStudentAttendanceCountClasswiseReport(Convert.ToInt32(instituteId), "gt85", int.Parse(branches.Rows[j][0].ToString()), month, year);
+
+                int count = 0;
+                if (lt85Count.Count > 0)
+                {
+                    count = lt85Count.Count;
+                }
+                else
+                {
+                    count = gt85Count.Count;
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    string finallt85Count = "0";
+                    if (lt85Count.Count > i)
+                    {
+                        finallt85Count = lt85Count[i].Count.ToString();
+                    }
+
+                    string finalgt85Count = "0";
+                    if (gt85Count.Count > i)
+                    {
+                        finalgt85Count = gt85Count[i].Count.ToString();
+                    }
+
+                    dt.Rows.Add(branches.Rows[j][1].ToString(), finallt85Count, finalgt85Count);
+                }
+            }
+
+            gvAttendanceMonth.DataSource = dt;
+            gvAttendanceMonth.DataBind();
+
+
+            for (int i = 1; i < dt.Columns.Count; i++)
+            {
+                Series attseries = new Series();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    int y = Convert.ToInt32(dr[i]);
+
+                    attseries.Points.AddXY(dr["colBranchName"].ToString(), y);
+                }
+
+                chrtAttendanceMonth.Series.Add(attseries);
+            }
+        }
+
+        protected void gvAttendanceMonth_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }
