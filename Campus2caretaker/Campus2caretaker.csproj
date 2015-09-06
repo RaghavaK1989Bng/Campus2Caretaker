@@ -198,6 +198,7 @@
     <Content Include="images\c2.jpg" />
     <Content Include="images\c3.jpg" />
     <Content Include="images\c4.jpg" />
+    <Content Include="images\changepassword.png" />
     <Content Include="images\dashboard.png" />
     <Content Include="images\det_pic.jpg" />
     <Content Include="images\emptycups.png" />
@@ -221,6 +222,7 @@
     <Content Include="index.html" />
     <Content Include="Institute\AddNewStudent.aspx" />
     <Content Include="Institute\AddSubjects.aspx" />
+    <Content Include="Institute\ChangePassword.aspx" />
     <Content Include="Institute\cross.jpg" />
     <Content Include="Institute\InstituteDefault.aspx" />
     <Content Include="Institute\InstituteLogin.aspx" />
@@ -401,6 +403,13 @@
     </Compile>
     <Compile Include="Institute\AddSubjects.aspx.designer.cs">
       <DependentUpon>AddSubjects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\Institute.Master.cs">
       <DependentUpon>Institute.Master</DependentUpon>
