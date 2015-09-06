@@ -57,6 +57,25 @@ namespace DataAccessObject
                 return false;
             }
         }
+
+        public bool ChangeInstituteUserPassword(DTOLogin tologin)
+        {
+            try
+            {
+                using (Campus2CaretakerDataContext ctx = new Campus2CaretakerDataContext())
+                {
+
+                    var user = (from u in ctx.tblInstituteLogins where u.colUsername == tologin.UserID select u).FirstOrDefault();
+                    user.colPassword = tologin.Password;
+                    ctx.SubmitChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
     public static class myExtension
     {

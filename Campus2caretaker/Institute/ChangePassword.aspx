@@ -26,6 +26,12 @@
                                     ControlToValidate="txtNewPassword" ErrorMessage="New Password is required."
                                     ToolTip="New Password is required." ValidationGroup="ChangePassword"
                                     ForeColor="#FF3300">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionFieldValidator1" runat="server"
+                                    ControlToValidate="txtNewPassword" 
+                                    ErrorMessage="The password supplied does not meet the minimum complexity requirements. <br /> The password length must be greater than or equal to 8 <br/> The password must contain one or more uppercase characters<br/> The password must contain one or more lowercase characters <br/> The password must contain one or more numeric values <br/> The password must contain one or more special characters "
+                                    ToolTip="The password supplied does not meet the minimum complexity requirements. <br /> The password length must be greater than or equal to 8 <br/> The password must contain one or more uppercase characters<br/> The password must contain one or more lowercase characters <br/> The password must contain one or more numeric values <br/> The password must contain one or more special characters " ValidationGroup="ChangePassword"
+                                    ForeColor="#FF3300" ValidationExpression="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">*</asp:RegularExpressionValidator>
+                                
                             </div>
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtConfirmPassword" > Confirm Password <span class="required">*</span></asp:Label>
                             <div class="controls">

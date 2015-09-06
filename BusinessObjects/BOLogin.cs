@@ -22,5 +22,10 @@ namespace BusinessObjects
         {
             return new DAOLogin().CheckInstituteUser(tologin);
         }
+
+        public bool ChangeInstituteUserPassword(DTOLogin tologin)
+        {
+            return new DAOLogin().ChangeInstituteUserPassword(tologin);
+        }
     }
 }
