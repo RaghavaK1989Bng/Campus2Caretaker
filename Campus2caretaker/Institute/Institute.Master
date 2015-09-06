@@ -86,7 +86,7 @@
                                 <img src="../images/dashboard.png" />&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a>
                         </li>
                       
-                        <li><a><img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;Personalise Application<i class="icon-chevron-right"></i></a>
+                        <li><a><img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;Personalise Application</a>
                             <ul style="display: block;" data-index="1"  class="nav nav-list nav-collapse collapse">
                                 <li>
                                     <a href="<%= Page.ResolveUrl("~/Institute/AddClass.aspx")%>"><i class="icon-chevron-right"></i>
