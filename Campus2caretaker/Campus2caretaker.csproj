@@ -226,6 +226,7 @@
     <Content Include="Institute\InstituteLogin.aspx" />
     <Content Include="Institute\AddClass.aspx" />
     <Content Include="Institute\GenerateMonthlyReport.aspx" />
+    <Content Include="Institute\InstituteProfile.aspx" />
     <Content Include="Institute\ReportPrint.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
     <Content Include="Institute\ImportStudents.aspx" />
@@ -429,6 +430,13 @@
     </Compile>
     <Compile Include="Institute\GenerateMonthlyReport.aspx.designer.cs">
       <DependentUpon>GenerateMonthlyReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\InstituteProfile.aspx.cs">
+      <DependentUpon>InstituteProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\InstituteProfile.aspx.designer.cs">
+      <DependentUpon>InstituteProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\ReportPrint.aspx.cs">
       <DependentUpon>ReportPrint.aspx</DependentUpon>

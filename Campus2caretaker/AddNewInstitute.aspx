@@ -78,7 +78,7 @@
                                 </div>
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="txtInstituteAddress">Institute Address <span class="required">*</span></asp:Label>
                             <div class="controls">
-                                <asp:TextBox ID="txtInstituteAddress" runat="server" CssClass="input-xlarge focused" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtInstituteAddress" runat="server" CssClass="input-xlarge focused"  TextMode="MultiLine" Rows="3" Columns="30"></asp:TextBox>
 
                                 <asp:RequiredFieldValidator ID="InstituteAddressRequired" runat="server"
                                     ControlToValidate="txtInstituteAddress" ErrorMessage="Institute Address is required."

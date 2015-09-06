@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Institute.master.cs" Inherits="Campus2caretaker.Institute.Institute"%>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Institute.master.cs" Inherits="Campus2caretaker.Institute.Institute" %>
 
 <!DOCTYPE HTML>
 <html class="no-js">
@@ -58,7 +58,7 @@
                     <a class="brand" href="#" style="margin-left: 450px;">
                         <img alt="" runat="server" id="imgInstituteLogo" class="img-polaroid" style="height: 50px; width: 50px;"></a>
 
-                        <label ID="InstituteName" runat="server" class="brand" style="font-style:oblique;vertical-align:middle;margin-top:10px;"></label>
+                    <label id="InstituteName" runat="server" class="brand" style="font-style: oblique; vertical-align: middle; margin-top: 10px;"></label>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown" style="visibility: hidden;">
@@ -82,34 +82,48 @@
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                         <li class="active">
-                            <a href="<%= Page.ResolveUrl("~/Institute/InstituteDefault.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/dashboard.png"/>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/InstituteDefault.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/dashboard.png" />&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/AddClass.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;<%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Add Class" : "Add Branch"%></a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/AddClass.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/personalizeapplication.png" />&nbsp;&nbsp;&nbsp;&nbsp;<%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Add Class" : "Add Branch"%></a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/AddSubjects.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/subject_icon.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Subjects</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/AddSubjects.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/subject_icon.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Subjects</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/AddNewStudent.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/studentregistration.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Student</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/AddNewStudent.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/studentregistration.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Student</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/ImportStudents.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/studentregistration.png" />&nbsp;&nbsp;&nbsp;&nbsp;Import Students</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/ImportStudents.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/studentregistration.png" />&nbsp;&nbsp;&nbsp;&nbsp;Import Students</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/UpdateAttendance.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/updateattendance.png" />&nbsp;&nbsp;&nbsp;&nbsp;Update Attendance</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/UpdateAttendance.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/updateattendance.png" />&nbsp;&nbsp;&nbsp;&nbsp;Update Attendance</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/UpdateInternals.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/updatemarks.png" />&nbsp;&nbsp;&nbsp;&nbsp;Update Internals</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/UpdateInternals.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/updatemarks.png" />&nbsp;&nbsp;&nbsp;&nbsp;Update Internals</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/sms.png" />&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/sms.png" />&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/GenerateMonthlyReport.aspx")%>"><i class="icon-chevron-right"></i><img src="../images/report.png" />&nbsp;&nbsp;&nbsp;&nbsp;Monthly Report</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/InstituteProfile.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/profile.png" />&nbsp;&nbsp;&nbsp;&nbsp;Institute Profile</a>
                         </li>
                         <li>
-                            <a runat="server" id="lnkLogout"><i class="icon-chevron-right"></i><img src="../images/logout.png" />&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
+                            <a href="<%= Page.ResolveUrl("~/Institute/GenerateMonthlyReport.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/report.png" />&nbsp;&nbsp;&nbsp;&nbsp;Monthly Report</a>
+                        </li>
+                        <li>
+                            <a runat="server" id="lnkLogout"><i class="icon-chevron-right"></i>
+                                <img src="../images/logout.png" />&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
                         </li>
                     </ul>
                 </div>
