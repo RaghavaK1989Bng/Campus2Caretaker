@@ -229,7 +229,6 @@
     <Content Include="Institute\InstituteProfile.aspx" />
     <Content Include="Institute\ReportPrint.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
-    <Content Include="Institute\ImportStudents.aspx" />
     <Content Include="Institute\tick.jpg" />
     <Content Include="Institute\UpdateInternals.aspx" />
     <Content Include="Institute\UpdateAttendance.aspx" />
@@ -451,13 +450,6 @@
     </Compile>
     <Compile Include="Institute\SendSMS.aspx.designer.cs">
       <DependentUpon>SendSMS.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Institute\ImportStudents.aspx.cs">
-      <DependentUpon>ImportStudents.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Institute\ImportStudents.aspx.designer.cs">
-      <DependentUpon>ImportStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\UpdateInternals.aspx.cs">
       <DependentUpon>UpdateInternals.aspx</DependentUpon>

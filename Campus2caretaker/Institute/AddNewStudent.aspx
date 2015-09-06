@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         function pageLoad(sender, args) {
             $(document).ready(function () {
                 $("#<%=txtDOB.ClientID %>").datepicker(
@@ -15,40 +15,40 @@
                                         yearRange: "-30:+0",
                                     }
                                 );
-            $("#<%=txtDOB.ClientID %>").attr('readonly', true);
+                $("#<%=txtDOB.ClientID %>").attr('readonly', true);
 
-            $("[name*='txtStudentName']").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "/Auto/GetStudentNames.aspx",
-                        dataType: "json",
-                        data: {
-                            startsWith: request.term
-                        }
-                        , success: function (data) {
-                            response($.map(data, function (item) {
-                                return {
-                                    label: item.value,
-                                    value: item.value,
-                                    id: item.id
-                                }
-                            }));
-                        }
-                    });
-                },
-                minLength: 1,
-                select: function (event, ui) {
-                    $("[name*='txtStudentName']").val(ui.item.label);
-                    $("[name*='hfStudentID']").val(ui.item.id);
-                }
-            });
+                $("[name*='txtStudentName']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/Auto/GetStudentNames.aspx",
+                            dataType: "json",
+                            data: {
+                                startsWith: request.term
+                            }
+                            , success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item.value,
+                                        value: item.value,
+                                        id: item.id
+                                    }
+                                }));
+                            }
+                        });
+                    },
+                    minLength: 1,
+                    select: function (event, ui) {
+                        $("[name*='txtStudentName']").val(ui.item.label);
+                        $("[name*='hfStudentID']").val(ui.item.id);
+                    }
+                });
 
-            $("#<%=txtParentsContactNumber.ClientID %>").bind('copy paste cut', function (e) {
-                e.preventDefault(); //disable cut,copy,paste
-                alert('cut,copy & paste options are disabled !!');
+                $("#<%=txtParentsContactNumber.ClientID %>").bind('copy paste cut', function (e) {
+                    e.preventDefault(); //disable cut,copy,paste
+                    alert('cut,copy & paste options are disabled !!');
+                });
             });
-        });
-    }
+        }
     </script>
 </asp:Content>
 
@@ -199,6 +199,7 @@
                             </div>
 
                         </div>
+
                         <div class="form-actions">
                             <div id="divStatus" runat="server"></div>
                             <asp:Button ID="btnSave" runat="server" CssClass="btn btn-info" Text="Save"
@@ -219,6 +220,28 @@
                                 ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
 
                         </div>
+
+                        <div style="text-align:center;">
+                            <h3>OR</h3>
+                        </div>
+
+                        <div class="control-group">
+                            <asp:Label runat="server" CssClass="control-label" AssociatedControlID="FlUploadcsv">Import From File <span class="required">*</span></asp:Label>
+                            <div class="controls">
+                                <asp:FileUpload ID="FlUploadcsv" runat="server" CssClass="input-file uniform_on" />
+
+                                <a href="../Template/StudentRegistrationSample.xlsx" id="LinkstudentRegistrationSample" target="_blank">Download sample file</a>
+
+
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div id="dvUploadStatus" runat="server"></div>
+                            <asp:Button ID="btnUpload" runat="server" CssClass="btn btn-info" Text="Upload"
+                                OnClick="btnUpload_Click" />
+                        </div>
+
+
                     </fieldset>
                 </form>
 

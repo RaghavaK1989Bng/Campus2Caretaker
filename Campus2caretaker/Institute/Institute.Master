@@ -98,10 +98,6 @@
                                 <img src="../images/studentregistration.png" />&nbsp;&nbsp;&nbsp;&nbsp;Add Student</a>
                         </li>
                         <li>
-                            <a href="<%= Page.ResolveUrl("~/Institute/ImportStudents.aspx")%>"><i class="icon-chevron-right"></i>
-                                <img src="../images/studentregistration.png" />&nbsp;&nbsp;&nbsp;&nbsp;Import Students</a>
-                        </li>
-                        <li>
                             <a href="<%= Page.ResolveUrl("~/Institute/UpdateAttendance.aspx")%>"><i class="icon-chevron-right"></i>
                                 <img src="../images/updateattendance.png" />&nbsp;&nbsp;&nbsp;&nbsp;Update Attendance</a>
                         </li>
