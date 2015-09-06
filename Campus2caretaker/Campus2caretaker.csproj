@@ -202,6 +202,7 @@
     <Content Include="images\dashboard.png" />
     <Content Include="images\det_pic.jpg" />
     <Content Include="images\emptycups.png" />
+    <Content Include="images\iconclass.png" />
     <Content Include="images\logout.png" />
     <Content Include="images\newlogo.png" />
     <Content Include="images\newlogosmall.png" />
