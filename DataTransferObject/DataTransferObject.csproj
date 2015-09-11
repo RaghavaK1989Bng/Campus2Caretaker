@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOClasswiseCount.cs" />
+    <Compile Include="DTOParentsLoginDetails.cs" />
     <Compile Include="DTOInstituteDetails.cs" />
     <Compile Include="DTOAttendance.cs" />
     <Compile Include="DTOInternals.cs" />

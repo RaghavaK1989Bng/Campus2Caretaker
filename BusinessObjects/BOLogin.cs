@@ -27,5 +27,10 @@ namespace BusinessObjects
         {
             return new DAOLogin().ChangeInstituteUserPassword(tologin);
         }
+
+        public bool CheckParentsMobileNumber(DTOLogin tologin)
+        {
+            return new DAOLogin().CheckParentsMobileNumber(tologin);
+        }
     }
 }

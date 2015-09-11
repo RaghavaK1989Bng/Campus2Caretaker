@@ -19,7 +19,7 @@
     <td><a href="Institute/InstituteLogin.aspx">Institute Login</a></td>
     </tr>
         <tr>
-    <td><a href="http://coffeecup.com">Parents Login</a></td>
+    <td><a href="Parents/ParentsLogin.aspx">Parents Login</a></td>
     </tr>
     </table>
     </div>

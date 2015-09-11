@@ -270,6 +270,8 @@
     <Content Include="js\wysiwyg\bootstrap-wysihtml5.js" />
     <Content Include="js\wysiwyg\wysihtml5-0.3.0.js" />
     <Content Include="packages.config" />
+    <Content Include="Parents\ParentsDefault.aspx" />
+    <Content Include="Parents\ParentsLogin.aspx" />
     <Content Include="tick.jpg" />
     <Content Include="validator\arrowv.png" />
     <Content Include="validator\jquery.validator-0.3.6.min.js" />
@@ -474,6 +476,20 @@
     </Compile>
     <Compile Include="Institute\UpdateAttendance.aspx.designer.cs">
       <DependentUpon>UpdateAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Parents\ParentsDefault.aspx.cs">
+      <DependentUpon>ParentsDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Parents\ParentsDefault.aspx.designer.cs">
+      <DependentUpon>ParentsDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Parents\ParentsLogin.aspx.cs">
+      <DependentUpon>ParentsLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Parents\ParentsLogin.aspx.designer.cs">
+      <DependentUpon>ParentsLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="RandomStringGenerator.cs" />
     <Content Include="App_Code\Util.cs" />

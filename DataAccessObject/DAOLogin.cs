@@ -76,6 +76,27 @@ namespace DataAccessObject
                 return false;
             }
         }
+
+        public bool CheckParentsMobileNumber(DTOLogin tologin)
+        {
+            try
+            {
+                using (Campus2CaretakerDataContext ctx = new Campus2CaretakerDataContext())
+                {
+
+                    var count = (from u in ctx.tblStudentDetails where u.colParentsMobileNo == tologin.UserID select u).Count();
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
     public static class myExtension
     {

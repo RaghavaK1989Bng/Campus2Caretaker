@@ -63,40 +63,46 @@
         <elementListCompartment Id="4cb54ddf-567f-4967-a5b5-4502e95592e9" absoluteBounds="4.015, 1.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6 : 2.91429768880208); (6.75 : 2.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6 : 3.23484537760417); (6.75 : 3.23484537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblInstituteLogin" />
       <nodes>
         <classShapeMoniker Id="ce6dc95c-fcf6-44f2-9a86-256c6b738ddb" />
         <classShapeMoniker Id="fea698c2-447c-4d8c-8e36-d0899c65a371" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4 : 3.62100341796875); (2.875 : 3.62100341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4 : 3.62100341796875); (2.875 : 3.62100341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblBranchDetail" />
       <nodes>
         <classShapeMoniker Id="ce6dc95c-fcf6-44f2-9a86-256c6b738ddb" />
         <classShapeMoniker Id="3698d9e1-7966-442a-9ee6-a2954833bca6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6 : 3.92714680989583); (8.88541666666667 : 3.92714680989583 : JumpStart); (9.05208333333333 : 3.92714680989583 : JumpEnd); (9.38541666666667 : 3.92714680989583 : JumpStart); (9.55208333333333 : 3.92714680989583 : JumpEnd); (9.75 : 3.92714680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6 : 3.92714680989583); (9.75 : 3.92714680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblSubjectDetail" />
       <nodes>
         <classShapeMoniker Id="ce6dc95c-fcf6-44f2-9a86-256c6b738ddb" />
         <classShapeMoniker Id="449721c0-eb5d-449a-934d-1cb47aac9216" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6 : 1.53125); (8.96875 : 1.53125); (8.96875 : 7.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6 : 3.94155060677083); (9.09375 : 3.94155060677083); (9.09375 : 7.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblAttendanceDetail" />
       <nodes>
         <classShapeMoniker Id="ce6dc95c-fcf6-44f2-9a86-256c6b738ddb" />
         <classShapeMoniker Id="a4b68e62-46e6-4f19-a520-c584ae0a7d55" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6 : 1.8281275); (8.88541666666667 : 1.8281275 : JumpStart); (9.05208333333333 : 1.8281275 : JumpEnd); (9.46875 : 1.8281275); (9.46875 : 7.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6 : 1.03125); (9.46875 : 1.03125); (9.46875 : 7.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/Campus2CaretakerDataContext/tblInstituteDetail/tblInstituteDetail_tblInternalMark" />
       <nodes>
         <classShapeMoniker Id="ce6dc95c-fcf6-44f2-9a86-256c6b738ddb" />
         <classShapeMoniker Id="32959568-13ab-45d6-a5a4-1442a9368487" />
       </nodes>
     </associationConnector>
+    <classShape Id="5fd1d35f-c4b2-40f9-aa10-b1c710cd4508" absoluteBounds="6.5, 1.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Campus2CaretakerDataContext/tblParentsLoginOTP" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f29902d-cff5-4aad-9381-5b7ac50e9a26" absoluteBounds="6.515, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

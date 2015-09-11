@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="c2c" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <!--<Connection Mode="AppSettings" ConnectionString="Data Source=wp.cronnet.co.in;Initial Catalog=c2c;Persist Security Info=True;User ID=raghavak" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />-->
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-UKCG5FD;Initial Catalog=c2c;Persist Security Info=True;User ID=sa" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblSuperAdminLogin" Member="tblSuperAdminLogins">
     <Type Name="tblSuperAdminLogin">
@@ -125,6 +124,14 @@
       <Association Name="tblInstituteDetail_tblSubjectDetail" Member="tblSubjectDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblSubjectDetail" />
       <Association Name="tblInstituteDetail_tblAttendanceDetail" Member="tblAttendanceDetails" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblAttendanceDetail" />
       <Association Name="tblInstituteDetail_tblInternalMark" Member="tblInternalMarks" ThisKey="colInstituteId" OtherKey="colInstituteId" Type="tblInternalMark" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblParentsLoginOTP" Member="tblParentsLoginOTPs">
+    <Type Name="tblParentsLoginOTP">
+      <Column Name="colId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colMobileNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colOTP" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colisUsed" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.GetBarChartInternalsDetails" Method="GetBarChartInternalsDetails">
@@ -310,6 +317,31 @@
       <Column Name="colDistrict" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colState" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="colMaxStudents" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentDetailsParentsLogin" Method="GetStudentDetailsParentsLogin">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentDetailsParentsLoginResult">
+      <Column Name="colBranchName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colInstituteName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colPrincipalContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="colSemesterName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colFatherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colMotherName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentInternalDetailsParentsLogin" Method="GetStudentInternalDetailsParentsLogin">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentInternalDetailsParentsLoginResult">
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="colSubjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colMonth" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colYear" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colMaxMarks" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="colMarksScored" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
