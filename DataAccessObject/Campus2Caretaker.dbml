@@ -344,4 +344,16 @@
       <Column Name="colMarksScored" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetStudentAttendanceDetailsParentsLogin" Method="GetStudentAttendanceDetailsParentsLogin">
+    <Parameter Name="studentid" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentAttendanceDetailsParentsLoginResult">
+      <Column Name="Row" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="colSubjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colMonth" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="colClassesHeldMonth" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="colClassesAttendedMonth" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="colClassesAttendedMonthPercent" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

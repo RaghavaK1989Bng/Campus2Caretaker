@@ -259,6 +259,13 @@ namespace DataAccessObject
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studentid);
 			return ((ISingleResult<GetStudentInternalDetailsParentsLoginResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentAttendanceDetailsParentsLogin")]
+		public ISingleResult<GetStudentAttendanceDetailsParentsLoginResult> GetStudentAttendanceDetailsParentsLogin([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> studentid)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studentid);
+			return ((ISingleResult<GetStudentAttendanceDetailsParentsLoginResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblSuperAdminLogin")]
@@ -5223,6 +5230,140 @@ namespace DataAccessObject
 				if ((this._colMarksScored != value))
 				{
 					this._colMarksScored = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentAttendanceDetailsParentsLoginResult
+	{
+		
+		private System.Nullable<long> _Row;
+		
+		private string _colSubjectName;
+		
+		private string _colMonth;
+		
+		private System.Nullable<int> _colYear;
+		
+		private System.Nullable<decimal> _colClassesHeldMonth;
+		
+		private System.Nullable<decimal> _colClassesAttendedMonth;
+		
+		private System.Nullable<decimal> _colClassesAttendedMonthPercent;
+		
+		public GetStudentAttendanceDetailsParentsLoginResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Row", DbType="BigInt")]
+		public System.Nullable<long> Row
+		{
+			get
+			{
+				return this._Row;
+			}
+			set
+			{
+				if ((this._Row != value))
+				{
+					this._Row = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSubjectName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colSubjectName
+		{
+			get
+			{
+				return this._colSubjectName;
+			}
+			set
+			{
+				if ((this._colSubjectName != value))
+				{
+					this._colSubjectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colMonth", DbType="VarChar(50)")]
+		public string colMonth
+		{
+			get
+			{
+				return this._colMonth;
+			}
+			set
+			{
+				if ((this._colMonth != value))
+				{
+					this._colMonth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colYear", DbType="Int")]
+		public System.Nullable<int> colYear
+		{
+			get
+			{
+				return this._colYear;
+			}
+			set
+			{
+				if ((this._colYear != value))
+				{
+					this._colYear = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colClassesHeldMonth", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> colClassesHeldMonth
+		{
+			get
+			{
+				return this._colClassesHeldMonth;
+			}
+			set
+			{
+				if ((this._colClassesHeldMonth != value))
+				{
+					this._colClassesHeldMonth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colClassesAttendedMonth", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> colClassesAttendedMonth
+		{
+			get
+			{
+				return this._colClassesAttendedMonth;
+			}
+			set
+			{
+				if ((this._colClassesAttendedMonth != value))
+				{
+					this._colClassesAttendedMonth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colClassesAttendedMonthPercent", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> colClassesAttendedMonthPercent
+		{
+			get
+			{
+				return this._colClassesAttendedMonthPercent;
+			}
+			set
+			{
+				if ((this._colClassesAttendedMonthPercent != value))
+				{
+					this._colClassesAttendedMonthPercent = value;
 				}
 			}
 		}

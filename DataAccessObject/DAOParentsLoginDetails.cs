@@ -144,5 +144,22 @@ namespace DataAccessObject
                 return null;
             }
         }
+
+        public DataTable GetStudentAttendanceDetails(int StudentID)
+        {
+            try
+            {
+                using (Campus2CaretakerDataContext ctx = new Campus2CaretakerDataContext())
+                {
+
+                    var sdet = (from u in ctx.GetStudentAttendanceDetailsParentsLogin(StudentID) select u).ToDataTable();
+                    return sdet;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

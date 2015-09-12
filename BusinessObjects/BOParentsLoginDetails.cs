@@ -44,5 +44,10 @@ namespace BusinessObjects
         {
             return new DAOParentsLoginDetails().GetStudentInternalDetails(StudentID);
         }
+
+        public DataTable GetStudentAttendanceDetails(int StudentID)
+        {
+            return new DAOParentsLoginDetails().GetStudentAttendanceDetails(StudentID);
+        }
     }
 }

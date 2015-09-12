@@ -142,12 +142,9 @@
                                     </div>
                                     <div class="block-content collapse in">
                                       <asp:GridView CssClass="table table-striped" ID="gvInternalsMonth" runat="server" AutoGenerateColumns="False" AllowPaging="true"
-                                            ShowHeaderWhenEmpty="True" EmptyDataText="No records Found" GridLines="None"
+                                            ShowHeaderWhenEmpty="True" EmptyDataText="No records Found" GridLines="Both"
                                             AllowSorting="false" Width="100%" EnableModelValidation="True" OnPageIndexChanging="gvInternalsMonth_PageIndexChanging">
                                             <Columns>
-                                                <asp:BoundField DataField="Row"
-                                                    HeaderText="#"
-                                                    ReadOnly="True"></asp:BoundField>
                                                 <asp:BoundField DataField="colSubjectName"
                                                     HeaderText="Subject Name"
                                                     ReadOnly="True"></asp:BoundField>
@@ -169,43 +166,32 @@
                                 <!-- block -->
                                 <div class="block">
                                     <div class="navbar navbar-inner block-header">
-                                        <div class="muted pull-left">Orders</div>
+                                        <div class="muted pull-left">Attendance Details</div>
                                         <div class="pull-right">
-                                            <span class="badge badge-info">752</span>
+                                            <span class="badge badge-info"></span>
 
                                         </div>
                                     </div>
                                     <div class="block-content collapse in">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Product</th>
-                                                    <th>Date</th>
-                                                    <th>Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Coat</td>
-                                                    <td>02/02/2013</td>
-                                                    <td>$25.12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Jacket</td>
-                                                    <td>01/02/2013</td>
-                                                    <td>$335.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Shoes</td>
-                                                    <td>01/02/2013</td>
-                                                    <td>$29.99</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <asp:GridView CssClass="table table-striped" ID="gvAttendanceDetails" runat="server" AutoGenerateColumns="False" AllowPaging="true"
+                                            ShowHeaderWhenEmpty="True" EmptyDataText="No records Found" GridLines="Both"
+                                            AllowSorting="false" Width="100%" EnableModelValidation="True" OnPageIndexChanging="gvAttendanceDetails_PageIndexChanging">
+                                            <Columns>
+                                                <asp:BoundField DataField="colSubjectName"
+                                                    HeaderText="Subject Name"
+                                                    ReadOnly="True"></asp:BoundField>
+                                                <asp:BoundField DataField="colMonth"
+                                                    HeaderText="Month"></asp:BoundField>
+                                                <asp:BoundField DataField="colYear"
+                                                    HeaderText="Year"></asp:BoundField>
+                                                 <asp:BoundField DataField="colClassesHeldMonth"
+                                                    HeaderText="Classes Held"></asp:BoundField>
+                                                <asp:BoundField DataField="colClassesAttendedMonth"
+                                                    HeaderText="Classes Attended"></asp:BoundField>
+                                                <asp:BoundField DataField="colClassesAttendedMonthPercent"
+                                                    HeaderText="Classes Attended(%)"></asp:BoundField>
+                                            </Columns>
+                                        </asp:GridView>
                                     </div>
                                 </div>
                                 <!-- /block -->

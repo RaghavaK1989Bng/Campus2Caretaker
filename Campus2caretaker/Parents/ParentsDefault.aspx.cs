@@ -52,6 +52,7 @@ namespace Campus2caretaker.Parents
             }
 
             RefreshStudentInternalsDetails(studentId);
+            RefreshStudentAttendanceDetails(studentId);
         }
 
         private void RefreshStudentInternalsDetails(string studentId)
@@ -65,6 +66,19 @@ namespace Campus2caretaker.Parents
         {
             gvInternalsMonth.PageIndex = e.NewPageIndex;
             RefreshStudentInternalsDetails(studentId);
+        }
+
+        private void RefreshStudentAttendanceDetails(string studentId)
+        {
+            DataTable dtStudentAttendanceDetails = new BOParentsLoginDetails().GetStudentAttendanceDetails(Convert.ToInt32(studentId));
+            gvAttendanceDetails.DataSource = dtStudentAttendanceDetails;
+            gvAttendanceDetails.DataBind();
+        }
+
+        protected void gvAttendanceDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAttendanceDetails.PageIndex = e.NewPageIndex;
+            RefreshStudentAttendanceDetails(studentId);
         }
     }
 }
