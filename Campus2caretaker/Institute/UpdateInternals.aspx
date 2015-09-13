@@ -131,23 +131,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
-                            <asp:Button ID="btnSaveInternals" runat="server" CssClass="btn btn-info" Text="Save Internals"
-                                OnClick="btnSaveInternals_Click" />
-                            &nbsp;
-                                          <asp:Button ID="btnClear" runat="server" CssClass="btn btn-info"
-                                              Text="Cancel" OnClick="btnClear_Click" />
-                            <asp:ValidationSummary ID="ValidationSummary1" runat="server"
-                                ShowMessageBox="false" ValidationGroup="Internals" ForeColor="Red"
-                                ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
-                        </div>
-                    </fieldset>
-                </form>
-
-            </div>
-        </div>
-        <div class="block-content collapse in">
+                        <div class="block-content collapse in">
             <div class="span12">
                 <div class="table-toolbar">
                     <div class="btn-group pull-right">
@@ -164,10 +148,10 @@
                     ShowHeaderWhenEmpty="True" EmptyDataText="No records Found"
                     AllowSorting="false" Width="100%"
                     CssClass="table table-hover"
-                    EnableModelValidation="True" OnRowCommand="gvInternals_RowCommand"
+                    EnableModelValidation="True"
                     OnDataBound="gvInternals_DataBound">
                     <Columns>
-                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="25px" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="30px" />
                         <asp:TemplateField HeaderText="Student Name" HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
                                 <asp:Label ID="lblStudentName" runat="server" CssClass="text" Width="90px" Text='<%# Bind("Column1") %>'></asp:Label>
@@ -178,17 +162,17 @@
                                 <asp:Label ID="lblRollNo" runat="server" Width="90px" CssClass="text" Text='<%# Bind("Column2") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Max Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="35px">
+                        <asp:TemplateField HeaderText="Max Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtMaxMarks" runat="server" CssClass="input-large focused" AutoPostBack="true" OnTextChanged="txtMaxMarks_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Min Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="35px">
+                        <asp:TemplateField HeaderText="Min Marks" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtMinMarks" runat="server" AutoPostBack="true" CssClass="input-large focused" OnTextChanged="txtMinMarks_TextChanged"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Marks Scored" HeaderStyle-ForeColor="Black" ControlStyle-Width="35px">
+                        <asp:TemplateField HeaderText="Marks Scored" HeaderStyle-ForeColor="Black" ControlStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtMarksScored" CssClass="input-large focused" runat="server"></asp:TextBox>
                             </ItemTemplate>
@@ -198,15 +182,9 @@
                                 <asp:Label ID="lblStudentID" runat="server" CssClass="text" Width="20px" Text='<%# Bind("Column6") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Remarks" HeaderStyle-ForeColor="Black" ControlStyle-Width="60px">
+                        <asp:TemplateField HeaderText="Remarks" HeaderStyle-ForeColor="Black" ControlStyle-Width="80px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtRemarks" CssClass="input-large focused" runat="server"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField ControlStyle-Width="35px">
-                            <ItemTemplate>
-                                <asp:LinkButton runat="server" ID="Save"
-                                    CommandName="Save" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" Text="Save" CssClass="btn btn-info btn-mini" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -214,9 +192,22 @@
 
             </div>
         </div>
+                        <div class="form-actions">
+                            <div id="divStatus" runat="server"></div>
+                            <asp:Button ID="btnSaveInternals" runat="server" CssClass="btn btn-info" Text="Save Internals" ValidationGroup="Internals"
+                                OnClick="btnSaveInternals_Click" />
+                            &nbsp;
+                                          <asp:Button ID="btnClear" runat="server" CssClass="btn btn-info"
+                                              Text="Cancel" OnClick="btnClear_Click" />
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+                                ShowMessageBox="false" ValidationGroup="Internals" ForeColor="Red"
+                                ShowSummary="true" meta:resourcekey="ValidationSummary1Resource1" HeaderText="Please fix the following errors :" />
+                        </div>
+                    </fieldset>
+                </form>
 
-
-
+            </div>
+        </div>
     </div>
     <!-- /block -->
 </asp:Content>

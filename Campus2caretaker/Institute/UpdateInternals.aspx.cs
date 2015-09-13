@@ -348,44 +348,6 @@ namespace Campus2caretaker.Institute
 
         }
 
-        protected void gvInternals_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Save")
-            {
-                DTOInternals toInt = new DTOInternals();
-                toInt.BranchId = int.Parse(ddlClass.SelectedValue);
-                if (Session["InstituteType"].ToString() == "S")
-                {
-                    toInt.SemesterId = 0;
-                }
-                else
-                {
-                    toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
-                }
-                toInt.Month = ddlMonth.SelectedValue;
-                toInt.Year = ddlYear.SelectedValue;
-                toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
-                toInt.Description = txtDescription.Text;
-
-                int index = Convert.ToInt32(e.CommandArgument.ToString());
-                Label lblStudentID = (Label)gvInternals.Rows[index].FindControl("lblStudentID");
-                Label lblStudentName = (Label)gvInternals.Rows[index].FindControl("lblStudentName");
-                TextBox txtMaxMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMaxMarks");
-                TextBox txtMinMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMinMarks");
-                TextBox txtMarksScored = (TextBox)gvInternals.Rows[index].FindControl("txtMarksScored");
-                TextBox txtReMarks = (TextBox)gvInternals.Rows[index].FindControl("txtRemarks");
-
-                toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
-                toInt.MarksScored = decimal.Parse(txtMarksScored.Text);
-                toInt.MaxMarks = decimal.Parse(txtMaxMarks.Text);
-                toInt.MinMarks = decimal.Parse(txtMinMarks.Text);
-                toInt.StudentId = int.Parse(lblStudentID.Text);
-                toInt.Remarks = txtReMarks.Text;
-
-                new BOInternals().SaveUpdateInternals(toInt);
-            }
-        }
-
         protected void btnGetStudentsListEdit_Click(object sender, EventArgs e)
         {
             DTOInternals toInt = new DTOInternals();
@@ -443,7 +405,49 @@ namespace Campus2caretaker.Institute
 
         protected void btnSaveInternals_Click(object sender, EventArgs e)
         {
+            for (int index = 0; index < gvInternals.Rows.Count - 1; index++)
+            {
+                DTOInternals toInt = new DTOInternals();
+                toInt.BranchId = int.Parse(ddlClass.SelectedValue);
+                if (Session["InstituteType"].ToString() == "S")
+                {
+                    toInt.SemesterId = 0;
+                }
+                else
+                {
+                    toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                }
+                toInt.Month = ddlMonth.SelectedValue;
+                toInt.Year = ddlYear.SelectedValue;
+                toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+                toInt.Description = txtDescription.Text;
 
+                Label lblStudentID = (Label)gvInternals.Rows[index].FindControl("lblStudentID");
+                Label lblStudentName = (Label)gvInternals.Rows[index].FindControl("lblStudentName");
+                TextBox txtMaxMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMaxMarks");
+                TextBox txtMinMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMinMarks");
+                TextBox txtMarksScored = (TextBox)gvInternals.Rows[index].FindControl("txtMarksScored");
+                TextBox txtReMarks = (TextBox)gvInternals.Rows[index].FindControl("txtRemarks");
+
+                toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+                toInt.MarksScored = decimal.Parse(txtMarksScored.Text);
+                toInt.MaxMarks = decimal.Parse(txtMaxMarks.Text);
+                toInt.MinMarks = decimal.Parse(txtMinMarks.Text);
+                toInt.StudentId = int.Parse(lblStudentID.Text);
+                toInt.Remarks = txtReMarks.Text;
+
+                if (new BOInternals().SaveUpdateInternals(toInt))
+                {
+                    string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    clear();
+                }
+                else
+                {
+                    string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                }
+            }
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

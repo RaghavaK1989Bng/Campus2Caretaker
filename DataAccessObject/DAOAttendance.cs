@@ -43,53 +43,61 @@ namespace DataAccessObject
            throw new NotImplementedException();
        }
 
-       public void SaveUpdateAttendance(DTOAttendance toAtt)
+       public bool SaveUpdateAttendance(DTOAttendance toAtt)
        {
            Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
-          if(dbContext.tblAttendanceDetails.Where(x => x.colStudentId == toAtt.StudentId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year).ToList().Count > 0)
-          {
-              tblAttendanceDetail Attendance = dbContext.tblAttendanceDetails.Where(x => x.colStudentId == toAtt.StudentId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year).FirstOrDefault();
-              Attendance.colBranchId = toAtt.BranchId;
-              Attendance.colSemesterId = toAtt.SemesterId;
-              Attendance.colMonth = toAtt.Month;
-              Attendance.colYear = toAtt.Year;
-              Attendance.colInstituteId = toAtt.InstituteId;
-              Attendance.colClassesAttendedMonth = toAtt.ClassesAttended;
-              Attendance.colClassesAttendedMonthPercent = toAtt.ClassesPercentage;
-              Attendance.colClassesHeldMonth = toAtt.ClassesHeld;
-              Attendance.colAccumulatedClassesAttended = toAtt.CumClassesAttended;
-              Attendance.colAccumulatedClassesHeld = toAtt.CumClassesHeld;
-              Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
-              Attendance.colStudentId = toAtt.StudentId;
-              Attendance.colSubjectId = toAtt.SubjectId;
-              Attendance.colRemarks = toAtt.Remarks;
-              Attendance.colDescription = toAtt.Description;
+           try
+           {
+               if (dbContext.tblAttendanceDetails.Where(x => x.colStudentId == toAtt.StudentId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year).ToList().Count > 0)
+               {
+                   tblAttendanceDetail Attendance = dbContext.tblAttendanceDetails.Where(x => x.colStudentId == toAtt.StudentId && x.colMonth == toAtt.Month && x.colYear == toAtt.Year).FirstOrDefault();
+                   Attendance.colBranchId = toAtt.BranchId;
+                   Attendance.colSemesterId = toAtt.SemesterId;
+                   Attendance.colMonth = toAtt.Month;
+                   Attendance.colYear = toAtt.Year;
+                   Attendance.colInstituteId = toAtt.InstituteId;
+                   Attendance.colClassesAttendedMonth = toAtt.ClassesAttended;
+                   Attendance.colClassesAttendedMonthPercent = toAtt.ClassesPercentage;
+                   Attendance.colClassesHeldMonth = toAtt.ClassesHeld;
+                   Attendance.colAccumulatedClassesAttended = toAtt.CumClassesAttended;
+                   Attendance.colAccumulatedClassesHeld = toAtt.CumClassesHeld;
+                   Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
+                   Attendance.colStudentId = toAtt.StudentId;
+                   Attendance.colSubjectId = toAtt.SubjectId;
+                   Attendance.colRemarks = toAtt.Remarks;
+                   Attendance.colDescription = toAtt.Description;
 
-              dbContext.SubmitChanges();
-          }
-          else
-          {
-              tblAttendanceDetail Attendance = new tblAttendanceDetail();
-              Attendance.colBranchId = toAtt.BranchId;
-              Attendance.colSemesterId = toAtt.SemesterId;
-              Attendance.colMonth = toAtt.Month;
-              Attendance.colYear = toAtt.Year;
-              Attendance.colInstituteId = toAtt.InstituteId;
-              Attendance.colClassesAttendedMonth = toAtt.ClassesAttended;
-              Attendance.colClassesAttendedMonthPercent = toAtt.ClassesPercentage;
-              Attendance.colClassesHeldMonth = toAtt.ClassesHeld;
-              Attendance.colAccumulatedClassesAttended = toAtt.CumClassesAttended;
-              Attendance.colAccumulatedClassesHeld = toAtt.CumClassesHeld;
-              Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
-              Attendance.colStudentId = toAtt.StudentId;
-              Attendance.colSubjectId = toAtt.SubjectId;
-              Attendance.colRemarks = toAtt.Remarks;
-              Attendance.colDescription = toAtt.Description;
+                   dbContext.SubmitChanges();
+                   return true;
+               }
+               else
+               {
+                   tblAttendanceDetail Attendance = new tblAttendanceDetail();
+                   Attendance.colBranchId = toAtt.BranchId;
+                   Attendance.colSemesterId = toAtt.SemesterId;
+                   Attendance.colMonth = toAtt.Month;
+                   Attendance.colYear = toAtt.Year;
+                   Attendance.colInstituteId = toAtt.InstituteId;
+                   Attendance.colClassesAttendedMonth = toAtt.ClassesAttended;
+                   Attendance.colClassesAttendedMonthPercent = toAtt.ClassesPercentage;
+                   Attendance.colClassesHeldMonth = toAtt.ClassesHeld;
+                   Attendance.colAccumulatedClassesAttended = toAtt.CumClassesAttended;
+                   Attendance.colAccumulatedClassesHeld = toAtt.CumClassesHeld;
+                   Attendance.colAccumulatedClassesAttendedPercent = toAtt.CumClassesPercentage;
+                   Attendance.colStudentId = toAtt.StudentId;
+                   Attendance.colSubjectId = toAtt.SubjectId;
+                   Attendance.colRemarks = toAtt.Remarks;
+                   Attendance.colDescription = toAtt.Description;
 
-              dbContext.tblAttendanceDetails.InsertOnSubmit(Attendance);
-              dbContext.SubmitChanges();
-          }
-
+                   dbContext.tblAttendanceDetails.InsertOnSubmit(Attendance);
+                   dbContext.SubmitChanges();
+                   return true;
+               }
+           }
+           catch
+           {
+               return false;
+           }
        }
     }
 }

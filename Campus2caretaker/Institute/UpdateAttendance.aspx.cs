@@ -330,60 +330,6 @@ namespace Campus2caretaker.Institute
             }
         }
 
-        protected void gvAttendance_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Save")
-            {
-                DTOAttendance toAtt = new DTOAttendance();
-                toAtt.BranchId = int.Parse(ddlClass.SelectedValue);
-                if (Session["InstituteType"].ToString() == "S")
-                {
-                    toAtt.SemesterId = 0;
-                }
-                else
-                {
-                    toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
-                }
-
-                if (Session["InstituteType"].ToString() == "S")
-                {
-                    toAtt.SubjectId = 0;
-                }
-                else
-                {
-                    toAtt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
-                }
-
-                toAtt.Month = ddlMonth.SelectedValue;
-                toAtt.Year = int.Parse(ddlYear.SelectedValue);
-                toAtt.Description = txtDescription.Text;
-
-                int index = Convert.ToInt32(e.CommandArgument.ToString());
-                Label lblStudentID = (Label)gvAttendance.Rows[index].FindControl("lblStudentID");
-                Label lblStudentName = (Label)gvAttendance.Rows[index].FindControl("lblStudentName");
-                TextBox txtClassesHeld = (TextBox)gvAttendance.Rows[index].FindControl("txtClassesHeld");
-                TextBox txtClassesAttended = (TextBox)gvAttendance.Rows[index].FindControl("txtClassesAttended");
-                TextBox txtPercentage = (TextBox)gvAttendance.Rows[index].FindControl("txtPercentage");
-                TextBox txtCumClassesHeld = (TextBox)gvAttendance.Rows[index].FindControl("txtCumClassesHeld");
-                TextBox txtCumClassesAttended = (TextBox)gvAttendance.Rows[index].FindControl("txtCumClassesAttended");
-                TextBox txtCumPercentage = (TextBox)gvAttendance.Rows[index].FindControl("txtCumPercentage");
-                TextBox txtReMarks = (TextBox)gvAttendance.Rows[index].FindControl("txtRemarks");
-
-                toAtt.InstituteId = int.Parse(Session["InstituteID"].ToString());
-                toAtt.ClassesAttended = decimal.Parse(txtClassesAttended.Text);
-                toAtt.ClassesHeld = decimal.Parse(txtClassesHeld.Text);
-                toAtt.ClassesPercentage = decimal.Parse(txtPercentage.Text);
-                toAtt.CumClassesHeld = decimal.Parse(txtCumClassesHeld.Text);
-                toAtt.CumClassesAttended = decimal.Parse(txtCumClassesAttended.Text);
-                toAtt.CumClassesPercentage = decimal.Parse(txtCumPercentage.Text);
-                toAtt.Remarks = txtReMarks.Text;
-
-                toAtt.StudentId = int.Parse(lblStudentID.Text);
-
-                new BOAttendance().SaveUpdateAttendance(toAtt);
-            }
-        }
-
         protected void gvAttendance_DataBound(object sender, EventArgs e)
         {
 
@@ -487,7 +433,65 @@ namespace Campus2caretaker.Institute
 
         protected void btnSaveAttendance_Click(object sender, EventArgs e)
         {
+            for (int index = 0; index < gvAttendance.Rows.Count - 1; index++)
+            {
+                DTOAttendance toAtt = new DTOAttendance();
+                toAtt.BranchId = int.Parse(ddlClass.SelectedValue);
+                if (Session["InstituteType"].ToString() == "S")
+                {
+                    toAtt.SemesterId = 0;
+                }
+                else
+                {
+                    toAtt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                }
 
+                if (Session["InstituteType"].ToString() == "S")
+                {
+                    toAtt.SubjectId = 0;
+                }
+                else
+                {
+                    toAtt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+                }
+
+                toAtt.Month = ddlMonth.SelectedValue;
+                toAtt.Year = int.Parse(ddlYear.SelectedValue);
+                toAtt.Description = txtDescription.Text;
+
+                Label lblStudentID = (Label)gvAttendance.Rows[index].FindControl("lblStudentID");
+                Label lblStudentName = (Label)gvAttendance.Rows[index].FindControl("lblStudentName");
+                TextBox txtClassesHeld = (TextBox)gvAttendance.Rows[index].FindControl("txtClassesHeld");
+                TextBox txtClassesAttended = (TextBox)gvAttendance.Rows[index].FindControl("txtClassesAttended");
+                TextBox txtPercentage = (TextBox)gvAttendance.Rows[index].FindControl("txtPercentage");
+                TextBox txtCumClassesHeld = (TextBox)gvAttendance.Rows[index].FindControl("txtCumClassesHeld");
+                TextBox txtCumClassesAttended = (TextBox)gvAttendance.Rows[index].FindControl("txtCumClassesAttended");
+                TextBox txtCumPercentage = (TextBox)gvAttendance.Rows[index].FindControl("txtCumPercentage");
+                TextBox txtReMarks = (TextBox)gvAttendance.Rows[index].FindControl("txtRemarks");
+
+                toAtt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+                toAtt.ClassesAttended = decimal.Parse(txtClassesAttended.Text);
+                toAtt.ClassesHeld = decimal.Parse(txtClassesHeld.Text);
+                toAtt.ClassesPercentage = decimal.Parse(txtPercentage.Text);
+                toAtt.CumClassesHeld = decimal.Parse(txtCumClassesHeld.Text);
+                toAtt.CumClassesAttended = decimal.Parse(txtCumClassesAttended.Text);
+                toAtt.CumClassesPercentage = decimal.Parse(txtCumPercentage.Text);
+                toAtt.Remarks = txtReMarks.Text;
+
+                toAtt.StudentId = int.Parse(lblStudentID.Text);
+
+                if(new BOAttendance().SaveUpdateAttendance(toAtt))
+                {
+                    string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    clear();
+                }
+                else
+                {
+                    string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                }
+            }
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

@@ -15,9 +15,9 @@ namespace BusinessObjects
             return new DAOInternals().GetStudentsList(toint);
         }
 
-        public void SaveUpdateInternals(DTOInternals toInt)
+        public bool SaveUpdateInternals(DTOInternals toInt)
         {
-            new DAOInternals().SaveUpdateInternals(toInt);
+            return new DAOInternals().SaveUpdateInternals(toInt);
         }
 
         public DataTable GetStudentsListEdit(DTOInternals toInt)

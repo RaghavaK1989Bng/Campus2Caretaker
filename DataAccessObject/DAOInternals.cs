@@ -51,47 +51,55 @@ namespace DataAccessObject
                                                                  toint.BranchId).ToDataTable();
         }
 
-        public void SaveUpdateInternals(DTOInternals toInt)
+        public bool SaveUpdateInternals(DTOInternals toInt)
         {
             Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
-            if (dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year && x.colSubjectId == toInt.SubjectId).ToList().Count > 0)
+            try
             {
-                tblInternalMark InternalMarks = dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year && x.colSubjectId == toInt.SubjectId).FirstOrDefault();
-                InternalMarks.colBranchId = toInt.BranchId;
-                InternalMarks.colSemesterId = toInt.SemesterId;
-                InternalMarks.colMonth = toInt.Month;
-                InternalMarks.colYear = toInt.Year;
-                InternalMarks.colInstituteId = toInt.InstituteId;
-                InternalMarks.colMarksScored = toInt.MarksScored;
-                InternalMarks.colMaxMarks = toInt.MaxMarks;
-                InternalMarks.colMinMarks = toInt.MinMarks;
-                InternalMarks.colStudentId = toInt.StudentId;
-                InternalMarks.colSubjectId = toInt.SubjectId;
-                InternalMarks.colRemarks = toInt.Remarks;
-                InternalMarks.colDescription = toInt.Description;
+                if (dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year && x.colSubjectId == toInt.SubjectId).ToList().Count > 0)
+                {
+                    tblInternalMark InternalMarks = dbContext.tblInternalMarks.Where(x => x.colStudentId == toInt.StudentId && x.colMonth == toInt.Month && x.colYear == toInt.Year && x.colSubjectId == toInt.SubjectId).FirstOrDefault();
+                    InternalMarks.colBranchId = toInt.BranchId;
+                    InternalMarks.colSemesterId = toInt.SemesterId;
+                    InternalMarks.colMonth = toInt.Month;
+                    InternalMarks.colYear = toInt.Year;
+                    InternalMarks.colInstituteId = toInt.InstituteId;
+                    InternalMarks.colMarksScored = toInt.MarksScored;
+                    InternalMarks.colMaxMarks = toInt.MaxMarks;
+                    InternalMarks.colMinMarks = toInt.MinMarks;
+                    InternalMarks.colStudentId = toInt.StudentId;
+                    InternalMarks.colSubjectId = toInt.SubjectId;
+                    InternalMarks.colRemarks = toInt.Remarks;
+                    InternalMarks.colDescription = toInt.Description;
 
-                dbContext.SubmitChanges();
+                    dbContext.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    tblInternalMark InternalMarks = new tblInternalMark();
+                    InternalMarks.colBranchId = toInt.BranchId;
+                    InternalMarks.colSemesterId = toInt.SemesterId;
+                    InternalMarks.colMonth = toInt.Month;
+                    InternalMarks.colYear = toInt.Year;
+                    InternalMarks.colInstituteId = toInt.InstituteId;
+                    InternalMarks.colMarksScored = toInt.MarksScored;
+                    InternalMarks.colMaxMarks = toInt.MaxMarks;
+                    InternalMarks.colMinMarks = toInt.MinMarks;
+                    InternalMarks.colStudentId = toInt.StudentId;
+                    InternalMarks.colSubjectId = toInt.SubjectId;
+                    InternalMarks.colRemarks = toInt.Remarks;
+                    InternalMarks.colDescription = toInt.Description;
+
+                    dbContext.tblInternalMarks.InsertOnSubmit(InternalMarks);
+                    dbContext.SubmitChanges();
+                    return true;
+                }
             }
-            else
+            catch
             {
-                tblInternalMark InternalMarks = new tblInternalMark();
-                InternalMarks.colBranchId = toInt.BranchId;
-                InternalMarks.colSemesterId = toInt.SemesterId;
-                InternalMarks.colMonth = toInt.Month;
-                InternalMarks.colYear = toInt.Year;
-                InternalMarks.colInstituteId = toInt.InstituteId;
-                InternalMarks.colMarksScored = toInt.MarksScored;
-                InternalMarks.colMaxMarks = toInt.MaxMarks;
-                InternalMarks.colMinMarks = toInt.MinMarks;
-                InternalMarks.colStudentId = toInt.StudentId;
-                InternalMarks.colSubjectId = toInt.SubjectId;
-                InternalMarks.colRemarks = toInt.Remarks;
-                InternalMarks.colDescription = toInt.Description;
-
-                dbContext.tblInternalMarks.InsertOnSubmit(InternalMarks);
-                dbContext.SubmitChanges();
+                return false;
             }
-
         }
 
         public DataTable GetInternalsChartDetails(DTOInternals toint)

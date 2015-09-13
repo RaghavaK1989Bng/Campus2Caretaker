@@ -15,9 +15,9 @@ namespace BusinessObjects
             return new DAOAttendance().GetStudentsList(toAtt);
         }
 
-        public void SaveUpdateAttendance(DTOAttendance toAtt)
+        public bool SaveUpdateAttendance(DTOAttendance toAtt)
         {
-            new DAOAttendance().SaveUpdateAttendance(toAtt);
+           return new DAOAttendance().SaveUpdateAttendance(toAtt);
         }
 
         public DataTable GetStudentsListEdit(DTOAttendance toAtt)
