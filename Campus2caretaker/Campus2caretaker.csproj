@@ -392,6 +392,7 @@
     <Compile Include="Auto\GetInstituteNames.aspx.designer.cs">
       <DependentUpon>GetInstituteNames.aspx</DependentUpon>
     </Compile>
+    <Compile Include="C2CSMS.cs" />
     <Compile Include="GetSemesters.cs" />
     <Compile Include="Institute\AddNewStudent.aspx.cs">
       <DependentUpon>AddNewStudent.aspx</DependentUpon>
@@ -492,6 +493,7 @@
       <DependentUpon>ParentsLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="RandomStringGenerator.cs" />
+    <Compile Include="RegexUtilities.cs" />
     <Content Include="App_Code\Util.cs" />
     <Content Include="App_Code\Validation.cs" />
     <Compile Include="C2CEmail.cs" />

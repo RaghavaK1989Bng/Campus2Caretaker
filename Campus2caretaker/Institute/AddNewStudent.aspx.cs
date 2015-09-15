@@ -140,7 +140,7 @@ namespace Campus2caretaker.Institute
             ddlSemester.Items.Clear();
             List<ListItem> items = GetSemesters.GetSemester(Session["InstituteType"].ToString());
 
-            for(int i=0;i < items.Count;i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 ListItem Item = new ListItem(items[i].Text, items[i].Value);
                 ddlSemester.Items.Add(Item);
@@ -212,6 +212,29 @@ namespace Campus2caretaker.Institute
                     {
                         string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record inserted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                        #region SMS
+                        string _messageTemplate = new BOSms().GetSMSTemplate("NEWSTUDENTADDED");
+                        C2CSMS.SendSMS(_messageTemplate.Replace("##STUDENTNAME##", tostud.StudentName).Replace("##InstituteName##", Session["InstituteName"].ToString()), tostud.ParentsMobileNo);
+                        #endregion
+
+                        #region E-Mail
+
+                        //Send mail
+                        if (!string.IsNullOrEmpty(tostud.ParentsEmail))
+                        {
+                            string s_subject = "Information From Campus2Caretaker";
+                            string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
+                            //s_msg += "You have been shared with some documents." + Environment.NewLine;
+                            s_msg += String.Concat("Greetings from Campus2Caretaker.", _messageTemplate.Replace("##STUDENTNAME##", tostud.StudentName).Replace("##InstituteName##", Session["InstituteName"].ToString())) + Environment.NewLine + Environment.NewLine;
+
+
+                            s_msg += "Thank You" + Environment.NewLine;
+
+                            C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, tostud.ParentsEmail, null, null);
+                        }
+
+                        #endregion
 
                         clear();
                         RefreshGridView();
@@ -446,11 +469,42 @@ namespace Campus2caretaker.Institute
                         dt.Columns.Add("ParentsMobileNo", typeof(string));
                         dt.Columns.Add("StudentAddress", typeof(string));
                         dt.Columns.Add("Gender", typeof(string));
-                        bool isValidExcelSheet = CheckOptionsExcel(FileName, dt);
+                        dt.Columns.Add("ParentsEmail", typeof(string));
+
+                        bool isValidExcelSheet = CheckExcelSheet(FileName, dt);
                         if (isValidExcelSheet)
                         {
                             if (new BOStudentRegistration().SaveStudentRegistrationExcel(dt, Session["InstituteID"].ToString()))
                             {
+                                string _messageTemplate = new BOSms().GetSMSTemplate("NEWSTUDENTADDED");
+
+                                #region SMS
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    C2CSMS.SendSMS(_messageTemplate.Replace("##STUDENTNAME##", dt.Rows[i][0].ToString()).Replace("##InstituteName##", Session["InstituteName"].ToString()), dt.Rows[i][9].ToString());
+                                }
+                                #endregion
+
+                                #region E-Mail
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    //Send mail
+                                    if (!string.IsNullOrEmpty(dt.Rows[i][12].ToString()))
+                                    {
+                                        string s_subject = "Information From Campus2Caretaker";
+                                        string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
+                                        //s_msg += "You have been shared with some documents." + Environment.NewLine;
+                                        s_msg += String.Concat("Greetings from Campus2Caretaker.", _messageTemplate.Replace("##STUDENTNAME##", dt.Rows[i][0].ToString()).Replace("##InstituteName##", Session["InstituteName"].ToString())) + Environment.NewLine + Environment.NewLine;
+
+
+                                        s_msg += "Thank You" + Environment.NewLine;
+
+                                        C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, dt.Rows[i][12].ToString(), null, null);
+                                    }
+                                }
+
+                                #endregion
+
                                 string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Excel uploaded successfully..';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Green';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
                             }
@@ -485,7 +539,7 @@ namespace Campus2caretaker.Institute
             }
         }
 
-        private bool CheckOptionsExcel(string FileName, DataTable dt)
+        private bool CheckExcelSheet(string FileName, DataTable dt)
         {
             bool isValidExcelSheet = true;
             try
@@ -504,6 +558,7 @@ namespace Campus2caretaker.Institute
                 string ParentsMobileNo = "";
                 string StudentAddress = "";
                 string Gender = "";
+                string ParentsEmail = "";
 
                 #endregion
 
@@ -559,7 +614,8 @@ namespace Campus2caretaker.Institute
                         ParentsMobileNo = valid(result.Tables[0].Rows[i], 9);
                         StudentAddress = valid(result.Tables[0].Rows[i], 10);
                         Gender = valid(result.Tables[0].Rows[i], 11);
-
+                        ParentsEmail = valid(result.Tables[0].Rows[i], 12);
+                        
                         if (excelReader[0] == DBNull.Value)
                             break;
                         string BranchId = new BOStudentRegistration().GetBranchId(valid(result.Tables[0].Rows[i], 6));
@@ -596,8 +652,19 @@ namespace Campus2caretaker.Institute
                             return false;
                         }
 
+                        string parentsEmailValue = valid(result.Tables[0].Rows[i], 12);
+                        RegexUtilities util = new RegexUtilities();
+                        if (parentsEmailValue != string.Empty)
+                        {
+                             if(!util.IsValidEmail(parentsEmailValue))
+                             {
+                                 string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid email found in parents email column!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                 return false;
+                             }
+                        }
                         //Here using this method we are inserting the data into a temporary DataTable
-                        dt.Rows.Add(StudentName, LastName, FatherName, MotherName, DateOfBirth, Semester, BranchId, Section, RollNo, ParentsMobileNo, StudentAddress, Gender);
+                        dt.Rows.Add(StudentName, LastName, FatherName, MotherName, DateOfBirth, Semester, BranchId, Section, RollNo, ParentsMobileNo, StudentAddress, Gender,ParentsEmail);
                     }
 
                     catch (Exception err)

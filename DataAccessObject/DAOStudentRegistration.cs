@@ -97,6 +97,7 @@ namespace DataAccessObject
                                 colAddress = dt.Rows[i][10].ToString(),
                                 colInstituteId = int.Parse(instituteId),
                                 colGender = dt.Rows[i][11].ToString(),
+                                colParentsEmail = dt.Rows[i][12].ToString(),
                             };
                         db.tblStudentDetails.InsertOnSubmit(table);
                         try
