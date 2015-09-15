@@ -59,7 +59,7 @@ a.LoginLink:hover, a.LoginLink:active {
     width:187px;
     height:130px;
     text-indent:-9999px;
-
+     background-repeat:no-repeat;
 }
 
 .logo1 h1 a{
@@ -73,7 +73,7 @@ a.LoginLink:hover, a.LoginLink:active {
     width:162px;
     height:38px;
     text-indent:-9999px;
-
+     background-repeat:no-repeat;
 }
 
 /* search */
@@ -781,11 +781,13 @@ a.LoginLink:hover, a.LoginLink:active {
 	.logo{
 		text-align:center;
         background: url('../../images/newlogo.png');
+        background-repeat:no-repeat;
 	}
 
     .logo1{
 		text-align:center;
         background: url('../../images/emptycups.png');
+         background-repeat:no-repeat;
 	}
 
 	.h_search {
