@@ -19,7 +19,7 @@ namespace DataAccessObject
                 using (Campus2CaretakerDataContext ctx = new Campus2CaretakerDataContext())
                 {
 
-                    var count = (from u in ctx.tblSuperAdminLogins where u.colUsername == tologin.UserID && u.colPassword == tologin.Password select u).Count();
+                    var count = (from u in ctx.tblSuperAdminLogins where u.colUsername.ToLower() == tologin.UserID.ToLower() && u.colPassword == tologin.Password select u).Count();
                     if (count > 0)
                     {
                         return true;
@@ -44,7 +44,7 @@ namespace DataAccessObject
                 using (Campus2CaretakerDataContext ctx = new Campus2CaretakerDataContext())
                 {
 
-                    var count = (from u in ctx.tblInstituteLogins where u.colUsername == tologin.UserID && u.colPassword == tologin.Password select u).Count();
+                    var count = (from u in ctx.tblInstituteLogins where u.colUsername.ToLower() == tologin.UserID.ToLower() && u.colPassword == tologin.Password select u).Count();
                     if (count > 0)
                     {
                         return true;
