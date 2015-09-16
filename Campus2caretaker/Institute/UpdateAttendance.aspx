@@ -154,15 +154,15 @@
                     EnableModelValidation="True"
                     OnDataBound="gvAttendance_DataBound">
                     <Columns>
-                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="25px" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" ItemStyle-CssClass="text" HeaderStyle-ForeColor="Black" ItemStyle-Width="20px" />
                         <asp:TemplateField HeaderText="Student Name" HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
                                 <asp:Label ID="lblStudentName" runat="server" CssClass="text" Width="90px" Text='<%# Bind("Column1") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Roll No" HeaderStyle-ForeColor="Black" ControlStyle-Width="85px">
+                        <asp:TemplateField HeaderText="Roll No" HeaderStyle-ForeColor="Black" ControlStyle-Width="70px">
                             <ItemTemplate>
-                                <asp:Label ID="lblRollNo" runat="server" Width="85px" CssClass="text" Text='<%# Bind("Column2") %>'></asp:Label>
+                                <asp:Label ID="lblRollNo" runat="server" Width="70px" CssClass="text" Text='<%# Bind("Column2") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Classes Held (Month)" HeaderStyle-ForeColor="Black" ControlStyle-Width="45px">
@@ -200,7 +200,7 @@
                                 <asp:Label ID="lblStudentID" runat="server" CssClass="text" Width="20px" Text='<%# Bind("Column6") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Remarks" HeaderStyle-ForeColor="Black" ControlStyle-Width="70px">
+                        <asp:TemplateField HeaderText="Remarks" HeaderStyle-ForeColor="Black" ControlStyle-Width="55px">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtRemarks" CssClass="input-large focused" runat="server"></asp:TextBox>
                             </ItemTemplate>

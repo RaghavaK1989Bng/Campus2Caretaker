@@ -22,8 +22,7 @@ namespace Campus2caretaker.Institute
             if (!IsPostBack)
             {
                 Response.Cache.SetNoStore();
-                clear();
-
+                
                 if (rbNew.Checked == true)
                 {
                     btnGetStudentsList.Visible = true;
@@ -35,6 +34,16 @@ namespace Campus2caretaker.Institute
                     btnGetStudentsList.Visible = false;
                     btnGetStudentsListEdit.Visible = true;
                 }
+
+                System.Web.UI.WebControls.ListItem selectItem = new System.Web.UI.WebControls.ListItem();
+                selectItem.Text = "Select";
+                selectItem.Value = "Select";
+
+                ddlMonth.Items.Insert(0, selectItem);
+                ddlYear.Items.Insert(0, selectItem);
+                
+                clear();
+
             }
 
             if (Session["InstituteType"].ToString() == "S")
@@ -133,15 +142,6 @@ namespace Campus2caretaker.Institute
             BindClassList();
             RefreshSemesters();
 
-            System.Web.UI.WebControls.ListItem selectItem = new System.Web.UI.WebControls.ListItem();
-            selectItem.Text = "Select";
-            selectItem.Value = "Select";
-            //cmbComissionNo.Items.Insert(0, selectItem);
-            // ddlClass.Items.Insert(0, selectItem);
-            ddlMonth.Items.Insert(0, selectItem);
-            ddlYear.Items.Insert(0, selectItem);
-            //ddlSemester.Items.Insert(0, selectItem);
-
             ddlClass.SelectedIndex = 0;
             ddlMonth.SelectedIndex = 0;
             ddlYear.SelectedIndex = 0;
@@ -222,7 +222,7 @@ namespace Campus2caretaker.Institute
 
         private void AddRowsToGrid(DataTable dtStudents)
         {
-            if(dtStudents.Rows.Count > 0)
+            if (dtStudents.Rows.Count > 0)
             {
                 txtDescription.Text = dtStudents.Rows[0]["colDescription"].ToString();
             }
@@ -407,47 +407,79 @@ namespace Campus2caretaker.Institute
         {
             for (int index = 0; index < gvInternals.Rows.Count - 1; index++)
             {
-                DTOInternals toInt = new DTOInternals();
-                toInt.BranchId = int.Parse(ddlClass.SelectedValue);
-                if (Session["InstituteType"].ToString() == "S")
+                if (int.Parse(((TextBox)gvInternals.Rows[index].FindControl("txtMarksScored")).Text) > 0)
                 {
-                    toInt.SemesterId = 0;
-                }
-                else
-                {
-                    toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
-                }
-                toInt.Month = ddlMonth.SelectedValue;
-                toInt.Year = ddlYear.SelectedValue;
-                toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
-                toInt.Description = txtDescription.Text;
+                    DTOInternals toInt = new DTOInternals();
+                    toInt.BranchId = int.Parse(ddlClass.SelectedValue);
+                    if (Session["InstituteType"].ToString() == "S")
+                    {
+                        toInt.SemesterId = 0;
+                    }
+                    else
+                    {
+                        toInt.SemesterId = int.Parse(ddlSemester.SelectedValue);
+                    }
+                    toInt.Month = ddlMonth.SelectedValue;
+                    toInt.Year = ddlYear.SelectedValue;
+                    toInt.SubjectId = int.Parse(ddlSubjects.SelectedValue);
+                    toInt.Description = txtDescription.Text;
 
-                Label lblStudentID = (Label)gvInternals.Rows[index].FindControl("lblStudentID");
-                Label lblStudentName = (Label)gvInternals.Rows[index].FindControl("lblStudentName");
-                TextBox txtMaxMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMaxMarks");
-                TextBox txtMinMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMinMarks");
-                TextBox txtMarksScored = (TextBox)gvInternals.Rows[index].FindControl("txtMarksScored");
-                TextBox txtReMarks = (TextBox)gvInternals.Rows[index].FindControl("txtRemarks");
+                    Label lblStudentID = (Label)gvInternals.Rows[index].FindControl("lblStudentID");
+                    Label lblStudentName = (Label)gvInternals.Rows[index].FindControl("lblStudentName");
+                    TextBox txtMaxMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMaxMarks");
+                    TextBox txtMinMarks = (TextBox)gvInternals.Rows[index].FindControl("txtMinMarks");
+                    TextBox txtMarksScored = (TextBox)gvInternals.Rows[index].FindControl("txtMarksScored");
+                    TextBox txtReMarks = (TextBox)gvInternals.Rows[index].FindControl("txtRemarks");
 
-                toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
-                toInt.MarksScored = decimal.Parse(txtMarksScored.Text);
-                toInt.MaxMarks = decimal.Parse(txtMaxMarks.Text);
-                toInt.MinMarks = decimal.Parse(txtMinMarks.Text);
-                toInt.StudentId = int.Parse(lblStudentID.Text);
-                toInt.Remarks = txtReMarks.Text;
+                    toInt.InstituteId = int.Parse(Session["InstituteID"].ToString());
+                    toInt.MarksScored = decimal.Parse(txtMarksScored.Text);
+                    toInt.MaxMarks = decimal.Parse(txtMaxMarks.Text);
+                    toInt.MinMarks = decimal.Parse(txtMinMarks.Text);
+                    toInt.StudentId = int.Parse(lblStudentID.Text);
+                    toInt.Remarks = txtReMarks.Text;
 
-                if (new BOInternals().SaveUpdateInternals(toInt))
-                {
-                    string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
-                    clear();
-                }
-                else
-                {
-                    string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    DTOStudentRegistration tostu = new DTOStudentRegistration();
+                    tostu.StudentId = int.Parse(lblStudentID.Text);
+                    DataTable dtStudDet = new BOStudentRegistration().GetStudentDetails(tostu);
+
+                    if (new BOInternals().SaveUpdateInternals(toInt))
+                    {
+                        #region SMS
+                        string _messageTemplate = new BOSms().GetSMSTemplate("INTERNALMARKSINTIMATION");
+                        C2CSMS.SendSMS(_messageTemplate.Replace("##STUDENTNAME##", dtStudDet.Rows[0][0].ToString()).Replace("##INTERNALSMARKS##", String.Concat(toInt.MarksScored, " Out of ", toInt.MaxMarks)).Replace("##SUBJECTNAME##", ddlSubjects.SelectedItem.Text).Replace("##MONTHYEAR##", String.Concat(ddlMonth.SelectedItem.Text, string.Empty, ddlYear.SelectedItem.Text)).Replace("##InstituteName##", Session["InstituteName"].ToString()), dtStudDet.Rows[0][9].ToString());
+                        #endregion
+
+                        #region E-Mail
+
+                        //Send mail
+                        if (!string.IsNullOrEmpty(dtStudDet.Rows[0][12].ToString()))
+                        {
+                            string s_subject = "Information From Campus2Caretaker";
+                            string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
+                            //s_msg += "You have been shared with some documents." + Environment.NewLine;
+                            s_msg += String.Concat("Greetings from Campus2Caretaker.", _messageTemplate.Replace("##STUDENTNAME##", dtStudDet.Rows[0][0].ToString()).Replace("##INTERNALSMARKS##", String.Concat(toInt.MarksScored, " Out of ", toInt.MaxMarks)).Replace("##SUBJECTNAME##", ddlSubjects.SelectedItem.Text).Replace("##MONTHYEAR##", String.Concat(ddlMonth.SelectedItem.Text, string.Empty, ddlYear.SelectedItem.Text)).Replace("##InstituteName##", Session["InstituteName"].ToString())) + Environment.NewLine + Environment.NewLine;
+
+
+                            s_msg += "Thank You" + Environment.NewLine;
+
+                            C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, dtStudDet.Rows[0][12].ToString(), null, null);
+                        }
+
+                        #endregion
+
+                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                    }
+                    else
+                    {
+                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    }
                 }
             }
+
+            clear();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

@@ -18,8 +18,7 @@ namespace Campus2caretaker.Institute
             if (!IsPostBack)
             {
                 Response.Cache.SetNoStore();
-                clear();
-
+                
                 if (rbNew.Checked == true)
                 {
                     btnGetStudentsList.Visible = true;
@@ -31,6 +30,14 @@ namespace Campus2caretaker.Institute
                     btnGetStudentsList.Visible = false;
                     btnGetStudentsListEdit.Visible = true;
                 }
+
+                ListItem selectItem = new ListItem();
+                selectItem.Text = "Select";
+                selectItem.Value = "Select";
+                ddlMonth.Items.Insert(0, selectItem);
+                ddlYear.Items.Insert(0, selectItem);
+
+                clear();
             }
 
             if (Session["InstituteType"].ToString() == "S")
@@ -132,15 +139,6 @@ namespace Campus2caretaker.Institute
             RefreshSemesters();
             //dsCommissionNo.DataBind();
             //cmbComissionNo.DataBind();
-
-            ListItem selectItem = new ListItem();
-            selectItem.Text = "Select";
-            selectItem.Value = "Select";
-            //cmbComissionNo.Items.Insert(0, selectItem);
-            // ddlClass.Items.Insert(0, selectItem);
-            ddlMonth.Items.Insert(0, selectItem);
-            ddlYear.Items.Insert(0, selectItem);
-            //ddlSemester.Items.Insert(0, selectItem);
 
             ddlClass.SelectedIndex = 0;
             ddlMonth.SelectedIndex = 0;
@@ -480,8 +478,44 @@ namespace Campus2caretaker.Institute
 
                 toAtt.StudentId = int.Parse(lblStudentID.Text);
 
-                if(new BOAttendance().SaveUpdateAttendance(toAtt))
+                DTOStudentRegistration tostu = new DTOStudentRegistration();
+                tostu.StudentId = int.Parse(lblStudentID.Text);
+                DataTable dtStudDet = new BOStudentRegistration().GetStudentDetails(tostu);
+
+                if (new BOAttendance().SaveUpdateAttendance(toAtt))
                 {
+                    #region SMS
+                    string _messageTemplate;
+                    if (Session["InstituteType"].ToString() == "S")
+                    {
+                        _messageTemplate = new BOSms().GetSMSTemplate("ATTENDANCEINTIMATION");
+                    }
+                    else
+                    {
+                        _messageTemplate = new BOSms().GetSMSTemplate("ATTENDANCEINTIMATIONWITHSUBJECT");
+                    }
+
+                    C2CSMS.SendSMS(_messageTemplate.Replace("##STUDENTNAME##", dtStudDet.Rows[0][0].ToString()).Replace("##ATTENDEDDAYS##", String.Concat(toAtt.ClassesAttended, " Out of ", toAtt.ClassesHeld)).Replace("##SUBJECTNAME##", ddlSubjects.SelectedItem.Text).Replace("##MONTHYEAR##", String.Concat(ddlMonth.SelectedItem.Text, string.Empty, ddlYear.SelectedItem.Text)).Replace("##InstituteName##", Session["InstituteName"].ToString()), dtStudDet.Rows[0][9].ToString());
+                    #endregion
+
+                    #region E-Mail
+
+                    //Send mail
+                    if (!string.IsNullOrEmpty(dtStudDet.Rows[0][12].ToString()))
+                    {
+                        string s_subject = "Information From Campus2Caretaker";
+                        string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
+                        //s_msg += "You have been shared with some documents." + Environment.NewLine;
+                        s_msg += String.Concat("Greetings from Campus2Caretaker.", _messageTemplate.Replace("##STUDENTNAME##", dtStudDet.Rows[0][0].ToString()).Replace("##ATTENDEDDAYS##", String.Concat(toAtt.ClassesAttended, " Out of ", toAtt.ClassesHeld)).Replace("##SUBJECTNAME##", ddlSubjects.SelectedItem.Text).Replace("##MONTHYEAR##", String.Concat(ddlMonth.SelectedItem.Text, string.Empty, ddlYear.SelectedItem.Text)).Replace("##InstituteName##", Session["InstituteName"].ToString())) + Environment.NewLine + Environment.NewLine;
+
+
+                        s_msg += "Thank You" + Environment.NewLine;
+
+                        C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, dtStudDet.Rows[0][12].ToString(), null, null);
+                    }
+
+                    #endregion
+
                     string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
                     clear();
