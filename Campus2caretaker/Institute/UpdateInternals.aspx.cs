@@ -455,12 +455,7 @@ namespace Campus2caretaker.Institute
                         if (!string.IsNullOrEmpty(dtStudDet.Rows[0][12].ToString()))
                         {
                             string s_subject = "Information From Campus2Caretaker";
-                            string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
-                            //s_msg += "You have been shared with some documents." + Environment.NewLine;
-                            s_msg += String.Concat("Greetings from Campus2Caretaker.", _messageTemplate.Replace("##STUDENTNAME##", dtStudDet.Rows[0][0].ToString()).Replace("##INTERNALSMARKS##", String.Concat(toInt.MarksScored, " Out of ", toInt.MaxMarks)).Replace("##SUBJECTNAME##", ddlSubjects.SelectedItem.Text).Replace("##MONTHYEAR##", String.Concat(ddlMonth.SelectedItem.Text, string.Empty, ddlYear.SelectedItem.Text)).Replace("##InstituteName##", Session["InstituteName"].ToString())) + Environment.NewLine + Environment.NewLine;
-
-
-                            s_msg += "Thank You" + Environment.NewLine;
+                            string s_msg = String.Concat("Greetings from Campus2Caretaker.", Environment.NewLine, Environment.NewLine, _messageTemplate.Replace("##STUDENTNAME##", dtStudDet.Rows[0][0].ToString()).Replace("##INTERNALSMARKS##", String.Concat(toInt.MarksScored, " Out of ", toInt.MaxMarks)).Replace("##SUBJECTNAME##", ddlSubjects.SelectedItem.Text).Replace("##MONTHYEAR##", String.Concat(ddlMonth.SelectedItem.Text, string.Empty, ddlYear.SelectedItem.Text)).Replace("##InstituteName##", Session["InstituteName"].ToString())) + Environment.NewLine + Environment.NewLine;
 
                             C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, dtStudDet.Rows[0][12].ToString(), null, null);
                         }

@@ -91,29 +91,28 @@ namespace Campus2caretaker.Parents
                 {
                     sendotp = new BOParentsLoginDetails().InsertParentsLoginOTP(topLogin);
                 }
+
                 if ((string.IsNullOrEmpty(existingotp) && sendotp) || !string.IsNullOrEmpty(existingotp))
                 {
+                    string _messageTemplate;
+                    _messageTemplate = new BOSms().GetSMSTemplate("OTPPARENTS");
+
+
+                    #region E-Mail
                     if (!string.IsNullOrEmpty(email))
                     {
-                        #region E-Mail
-
                         //Send mail
 
-                        string s_subject = "OTP From Campus2Caretaker";
-                        string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
-                        //s_msg += "You have been shared with some documents." + Environment.NewLine;
-                        s_msg += "Greetings from Campus2Caretaker.Please use the below OTP to login to Campus2Caretaker account." + Environment.NewLine + Environment.NewLine;
-
-
-                        s_msg += "OTP to Login to account is" + otp + Environment.NewLine + Environment.NewLine;
-
-
-                        s_msg += "Thank You" + Environment.NewLine;
-
+                        string s_subject = "Information From Campus2Caretaker";
+                        string s_msg = String.Concat("Greetings from Campus2Caretaker.", Environment.NewLine, Environment.NewLine, _messageTemplate.Replace("##OTP##", otp)) + Environment.NewLine + Environment.NewLine; 
+                        
                         C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, email, null, null);
-
-                        #endregion
                     }
+                    #endregion
+
+                    #region SMS
+                    C2CSMS.SendSMS(_messageTemplate.Replace("##OTP##", otp), MobileNumber.Text);
+                    #endregion
 
                     btnNext.Visible = false;
                     Password.Visible = true;

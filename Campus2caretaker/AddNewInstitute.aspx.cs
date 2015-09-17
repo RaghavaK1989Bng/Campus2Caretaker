@@ -200,9 +200,7 @@ namespace Campus2caretaker
                         //Send mail
 
                         string s_subject = "Institute Account Details From Campus2Caretaker";
-                        string s_msg = "Hi," + Environment.NewLine + Environment.NewLine;
-                        //s_msg += "You have been shared with some documents." + Environment.NewLine;
-                        s_msg += "Please use the below details for managing your institute account in Campus2Caretaker." + Environment.NewLine + Environment.NewLine;
+                        string s_msg = "Please use the below details for managing your institute account in Campus2Caretaker." + Environment.NewLine + Environment.NewLine;
 
 
                         string s_link = "http://" + Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/Institute/InstituteLogin.aspx";
@@ -210,10 +208,6 @@ namespace Campus2caretaker
                         s_msg += "Username and Password to Login to account is" + Environment.NewLine + Environment.NewLine;
                         s_msg += "Username :" + string.Empty + toinst.InstituteEmail + Environment.NewLine + Environment.NewLine;
                         s_msg += "Password :" + string.Empty + DefaultPwd + Environment.NewLine + Environment.NewLine + Environment.NewLine;
-
-
-                        s_msg += "Thank You" + Environment.NewLine;
-
                         bool res = C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, toinst.InstituteEmail, null, null);
 
                         #endregion

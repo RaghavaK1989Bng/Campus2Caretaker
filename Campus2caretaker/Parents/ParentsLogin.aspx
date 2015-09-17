@@ -56,7 +56,7 @@
         <asp:Button ID="btnNext" runat="server" Text="Send OTP"
                         ValidationGroup="Login1" CssClass="btn btn-large btn-primary" 
                          OnClick="btnNext_Click" />
-         <label for="Password" runat="server" id="lblPassword">Password <span class="required" runat="server" id="spnPassword">*</span></label>
+         <label for="Password" runat="server" id="lblPassword">OTP <span class="required" runat="server" id="spnPassword">*</span></label>
         <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="input-block-level"
                         meta:resourcekey="PasswordResource1"></asp:TextBox>
         
