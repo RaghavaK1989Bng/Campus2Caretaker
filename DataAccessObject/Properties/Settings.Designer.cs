@@ -26,8 +26,8 @@ namespace DataAccessObject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-UKCG5FD;Initial Catalog=c2c;Persist Security Info=True;User I" +
-            "D=sa;Password=super@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=campus2caretaker.mssql.somee.com;Initial Catalog=campus2caretaker;Per" +
+            "sist Security Info=True;User ID=Campus2Caretaker_SQLLogin_1;Password=b1r2js18xt")]
         public string DB_9CBDC5_campus2caretakerConnectionString {
             get {
                 return ((string)(this["DB_9CBDC5_campus2caretakerConnectionString"]));

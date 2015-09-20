@@ -22,7 +22,7 @@ namespace DataAccessObject
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="c2c")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="campus2caretaker")]
 	public partial class Campus2CaretakerDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -265,6 +265,13 @@ namespace DataAccessObject
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), studentid);
 			return ((ISingleResult<GetStudentAttendanceDetailsParentsLoginResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetStudentsListPromotion")]
+		public ISingleResult<GetStudentsListPromotionResult> GetStudentsListPromotion([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> instituteid, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> colSemester, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> colBranchId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteid, colSemester, colBranchId);
+			return ((ISingleResult<GetStudentsListPromotionResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5364,6 +5371,122 @@ namespace DataAccessObject
 				if ((this._colClassesAttendedMonthPercent != value))
 				{
 					this._colClassesAttendedMonthPercent = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetStudentsListPromotionResult
+	{
+		
+		private int _colStudentId;
+		
+		private string _colStudentName;
+		
+		private int _colSemesterId;
+		
+		private int _colBranchId;
+		
+		private string _colSection;
+		
+		private string _colRollNo;
+		
+		public GetStudentsListPromotionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentId", DbType="Int NOT NULL")]
+		public int colStudentId
+		{
+			get
+			{
+				return this._colStudentId;
+			}
+			set
+			{
+				if ((this._colStudentId != value))
+				{
+					this._colStudentId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colStudentName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string colStudentName
+		{
+			get
+			{
+				return this._colStudentName;
+			}
+			set
+			{
+				if ((this._colStudentName != value))
+				{
+					this._colStudentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSemesterId", DbType="Int NOT NULL")]
+		public int colSemesterId
+		{
+			get
+			{
+				return this._colSemesterId;
+			}
+			set
+			{
+				if ((this._colSemesterId != value))
+				{
+					this._colSemesterId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colBranchId", DbType="Int NOT NULL")]
+		public int colBranchId
+		{
+			get
+			{
+				return this._colBranchId;
+			}
+			set
+			{
+				if ((this._colBranchId != value))
+				{
+					this._colBranchId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colSection", DbType="VarChar(50)")]
+		public string colSection
+		{
+			get
+			{
+				return this._colSection;
+			}
+			set
+			{
+				if ((this._colSection != value))
+				{
+					this._colSection = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colRollNo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string colRollNo
+		{
+			get
+			{
+				return this._colRollNo;
+			}
+			set
+			{
+				if ((this._colRollNo != value))
+				{
+					this._colRollNo = value;
 				}
 			}
 		}

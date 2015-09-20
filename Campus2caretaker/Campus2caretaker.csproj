@@ -209,6 +209,7 @@
     <Content Include="images\personalizeapplication.png" />
     <Content Include="images\pic1.jpg" />
     <Content Include="images\profile.png" />
+    <Content Include="images\promotion.png" />
     <Content Include="images\report.png" />
     <Content Include="images\Sections_Icon.png" />
     <Content Include="images\slider_bg.jpg" />
@@ -233,6 +234,7 @@
     <Content Include="Institute\ReportPrint.aspx" />
     <Content Include="Institute\SendSMS.aspx" />
     <Content Include="Institute\tick.jpg" />
+    <Content Include="Institute\PromoteStudents.aspx" />
     <Content Include="Institute\UpdateInternals.aspx" />
     <Content Include="Institute\UpdateAttendance.aspx" />
     <Content Include="js\bootstrap-datepicker.js" />
@@ -463,6 +465,13 @@
     </Compile>
     <Compile Include="Institute\SendSMS.aspx.designer.cs">
       <DependentUpon>SendSMS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institute\PromoteStudents.aspx.cs">
+      <DependentUpon>PromoteStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Institute\PromoteStudents.aspx.designer.cs">
+      <DependentUpon>PromoteStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Institute\UpdateInternals.aspx.cs">
       <DependentUpon>UpdateInternals.aspx</DependentUpon>

@@ -112,6 +112,10 @@
                                 <img src="../images/updatemarks.png" />&nbsp;&nbsp;&nbsp;&nbsp;Update Internals</a>
                         </li>
                         <li>
+                            <a href="<%= Page.ResolveUrl("~/Institute/PromoteStudents.aspx")%>"><i class="icon-chevron-right"></i>
+                                <img src="../images/promotion.png" />&nbsp;&nbsp;&nbsp;&nbsp;Promote Students</a>
+                        </li>
+                        <li>
                             <a href="<%= Page.ResolveUrl("~/Institute/SendSMS.aspx")%>"><i class="icon-chevron-right"></i>
                                 <img src="../images/sms.png" />&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a>
                         </li>

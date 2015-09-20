@@ -206,6 +206,11 @@ namespace Campus2caretaker.Institute
 
         private void clearSubjects()
         {
+            ddlClass.Items.Clear();
+
+            RefreshClasses();
+
+            ddlClass.SelectedIndex = 0;
             RefreshClasses();
             RefreshSemesters();
             txtSubjectName.Text = "";
@@ -215,11 +220,12 @@ namespace Campus2caretaker.Institute
 
         private void RefreshClasses()
         {
-            dsClasses.DataBind();
+            DataTable dt = new BOStudentRegistration().GetClassesList(Session["InstituteID"].ToString());
+            ddlClass.DataSource = dt;
             ddlClass.DataBind();
 
-            ddlClass.Items.Insert(0, "Select");
-
+            ListItem Item = new ListItem("Select", "Select");
+            ddlClass.Items.Insert(0, Item);
             ddlClass.SelectedIndex = 0;
         }
 

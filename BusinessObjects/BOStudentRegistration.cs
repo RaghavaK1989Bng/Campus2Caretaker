@@ -61,5 +61,15 @@ namespace BusinessObjects
         {
             return new DAOStudentRegistration().GetAutoCompleteStudentNames(reqString);
         }
+
+        public DataTable GetStudentsListPromotion(int _pInstituteId, int _pSemesterId, int _pBranchId)
+        {
+            return new DAOStudentRegistration().GetStudentsListPromotion(_pInstituteId, _pSemesterId, _pBranchId);
+        }
+
+        public bool SavePromoteStudents(int pstudentId, int ptoClass, int ptoSemester)
+        {
+            return new DAOStudentRegistration().SavePromoteStudents(pstudentId, ptoClass, ptoSemester);
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="c2c" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-UKCG5FD;Initial Catalog=c2c;Persist Security Info=True;User ID=sa" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="campus2caretaker" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=campus2caretaker.mssql.somee.com;Initial Catalog=campus2caretaker;Persist Security Info=True;User ID=Campus2Caretaker_SQLLogin_1" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblSuperAdminLogin" Member="tblSuperAdminLogins">
     <Type Name="tblSuperAdminLogin">
       <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -354,6 +354,19 @@
       <Column Name="colClassesHeldMonth" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="colClassesAttendedMonth" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="colClassesAttendedMonthPercent" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetStudentsListPromotion" Method="GetStudentsListPromotion">
+    <Parameter Name="instituteid" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colSemester" Type="System.Int32" DbType="Int" />
+    <Parameter Name="colBranchId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetStudentsListPromotionResult">
+      <Column Name="colStudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colStudentName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="colSemesterId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colBranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="colSection" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="colRollNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

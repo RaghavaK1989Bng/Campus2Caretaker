@@ -204,5 +204,31 @@ namespace DataAccessObject
                         }).ToList();
             }
         }
+
+        public DataTable GetStudentsListPromotion(int _pInstituteId, int _pSemesterId, int _pBranchId)
+        {
+            using (Campus2CaretakerDataContext dbcontext = new Campus2CaretakerDataContext())
+            {
+                return dbcontext.GetStudentsListPromotion(_pInstituteId,_pSemesterId,_pBranchId).ToDataTable();
+            }
+        }
+
+        public bool SavePromoteStudents(int pstudentId, int ptoClass, int ptoSemester)
+        {
+            try
+            {
+                Campus2CaretakerDataContext dbContext = new Campus2CaretakerDataContext();
+
+                // Student Details
+
+                tblStudentDetail studDetail = dbContext.tblStudentDetails.Where(x => x.colStudentId == pstudentId).FirstOrDefault();
+                studDetail.colSemesterId = ptoSemester;
+                studDetail.colBranchId = ptoClass;
+
+                dbContext.SubmitChanges();
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }

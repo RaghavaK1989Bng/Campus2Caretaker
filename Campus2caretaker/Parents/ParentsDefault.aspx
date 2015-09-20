@@ -46,10 +46,10 @@
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                         <li class="active">
-                            <a href="ParentsDefault.aspx"><i class="icon-chevron-right"></i>Dashboard</a>
+                            <a href="ParentsDefault.aspx"><i class="icon-chevron-right"></i><img src="../images/dashboard.png" />&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a>
                         </li>
                         <li>
-                            <a href="ParentsLogin.aspx"><i class="icon-chevron-right"></i>Logout</a>
+                            <a href="ParentsLogin.aspx"><i class="icon-chevron-right"></i><img src="../images/logout.png" />&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
                         </li>
                     </ul>
                 </div>

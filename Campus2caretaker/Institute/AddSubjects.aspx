@@ -14,11 +14,8 @@
                             <asp:Label runat="server" CssClass="control-label" AssociatedControlID="ddlClass"><%= HttpContext.Current.Session["InstituteType"].ToString() == "S" ? "Class" : "Branch"%> <span class="required">*</span></asp:Label>
                             <div class="controls">
 
-                                <asp:DropDownList ID="ddlClass" ValidationGroup="Subject" runat="server" CssClass="chzn-select" DataSourceID="dsClasses" DataTextField="colBranchName" DataValueField="colBranchId">
+                                <asp:DropDownList ID="ddlClass" ValidationGroup="Subject" runat="server" CssClass="chzn-select" DataTextField="colBranchName" DataValueField="colBranchId">
                                 </asp:DropDownList>
-                                <asp:SqlDataSource ID="dsClasses" runat="server"
-                                    ConnectionString="<%$ ConnectionStrings:C2CConnectionString %>"
-                                    SelectCommand="SELECT * FROM [tblBranchDetails]"></asp:SqlDataSource>
 
                                 <asp:RequiredFieldValidator ID="ClassNameRequired" runat="server"
                                     ControlToValidate="ddlClass" ErrorMessage="Class / Branch Selection is required."
