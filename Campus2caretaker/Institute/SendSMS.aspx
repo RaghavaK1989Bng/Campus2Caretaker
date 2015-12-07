@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
+                            <%--<div id="divStatus" runat="server"></div>--%>
                             <asp:Button ID="btnSend" runat="server" CssClass="btn btn-info" Text="Send"
                                 OnClick="btnSend_Click" ValidationGroup="SMS" />
                              <asp:ValidationSummary ID="ValidationSummary1" runat="server" 

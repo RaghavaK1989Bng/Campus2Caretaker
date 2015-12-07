@@ -63,7 +63,7 @@
                         </div>
                             </div>
                         <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
+                            <%--<div id="divStatus" runat="server"></div>--%>
                             <asp:Button ID="btnGenerateReport" runat="server" CssClass="btn btn-info" Text="Generate Report"
                                 OnClick="btnGenerateReport_Click" ValidationGroup="Report" />
                              <asp:ValidationSummary ID="ValidationSummary1" runat="server" 

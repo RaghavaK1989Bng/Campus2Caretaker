@@ -175,15 +175,6 @@ namespace Campus2caretaker.Institute {
         protected global::System.Web.UI.WebControls.GridView gvInternals;
         
         /// <summary>
-        /// divStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStatus;
-        
-        /// <summary>
         /// btnSaveInternals control.
         /// </summary>
         /// <remarks>

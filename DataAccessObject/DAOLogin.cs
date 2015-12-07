@@ -28,7 +28,7 @@ namespace DataAccessObject
                 }
 
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

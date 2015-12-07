@@ -12,7 +12,7 @@ namespace DataAccessObject.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,9 @@ namespace DataAccessObject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=campus2caretaker.mssql.somee.com;Initial Catalog=campus2caretaker;Per" +
-            "sist Security Info=True;User ID=Campus2Caretaker_SQLLogin_1;Password=b1r2js18xt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:w44ep124ho.database.windows.net,1433;Initial Catalog=Campus2Caret" +
+            "aker;Persist Security Info=True;User ID=campus2caretaker@w44ep124ho;Password=c2c" +
+            "@2015")]
         public string DB_9CBDC5_campus2caretakerConnectionString {
             get {
                 return ((string)(this["DB_9CBDC5_campus2caretakerConnectionString"]));

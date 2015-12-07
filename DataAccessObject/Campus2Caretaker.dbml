@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="campus2caretaker" Class="Campus2CaretakerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=campus2caretaker.mssql.somee.com;Initial Catalog=campus2caretaker;Persist Security Info=True;User ID=Campus2Caretaker_SQLLogin_1" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=tcp:w44ep124ho.database.windows.net,1433;Initial Catalog=Campus2Caretaker;Persist Security Info=True;User ID=campus2caretaker@w44ep124ho" SettingsObjectName="DataAccessObject.Properties.Settings" SettingsPropertyName="DB_9CBDC5_campus2caretakerConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblSuperAdminLogin" Member="tblSuperAdminLogins">
     <Type Name="tblSuperAdminLogin">
       <Column Name="colUsername" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

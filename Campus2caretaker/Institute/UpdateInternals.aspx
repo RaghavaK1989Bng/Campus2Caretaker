@@ -193,7 +193,7 @@
             </div>
         </div>
                         <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
+                            <%--<div id="divStatus" runat="server"></div>--%>
                             <asp:Button ID="btnSaveInternals" runat="server" CssClass="btn btn-info" Text="Save Internals" ValidationGroup="Internals"
                                 OnClick="btnSaveInternals_Click" />
                             &nbsp;

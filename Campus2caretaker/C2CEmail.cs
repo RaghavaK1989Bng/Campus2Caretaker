@@ -26,78 +26,74 @@ namespace Campus2caretaker
 
             _from = from;
             _to = to;
-            if(pdfstream != null)
-              _attachment =   new Attachment(pdfstream, fname);;
-             
+            if (pdfstream != null)
+                _attachment = new Attachment(pdfstream, fname); ;
 
-        }        
-        
+
+        }
+
         public void SendC2CMail()
         {
             MailMessage mm = new MailMessage(_from, _to);
             mm.Body = _body;
             mm.Subject = _subject;
             mm.IsBodyHtml = true;
-             if(_attachment != null)
-            mm.Attachments.Add(_attachment);
+            if (_attachment != null)
+                mm.Attachments.Add(_attachment);
 
             SmtpClient SMTPServer = GetSMTPServer();
             try
-            {     
-                SMTPServer.Send(mm);                
+            {
+                SMTPServer.Send(mm);
             }
-         
+
             catch
-            { 
-              // send to mailqueue
+            {
+                // send to mailqueue
             }
         }
 
         public static bool SendC2CMail(string _body, string _subject, string _from, string _to, MemoryStream _pdfstream, string _fname)
         {
-            try
+            MailMessage msg = new MailMessage();
+            msg.BodyEncoding = UTF8Encoding.UTF8;
+            msg.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+            if (string.IsNullOrEmpty(_from)) _from = "c2cmailer@gmail.com";
+            msg.From = new MailAddress(_from);
+            msg.To.Add(_to);
+            msg.IsBodyHtml = true;
+            msg.Body = Regex.Replace(_body, Environment.NewLine, "<br/>");
+            msg.Subject = _subject;
+
+            var client = new SmtpClient("smtp.gmail.com", 587)
             {
-                MailMessage msg = new MailMessage();
-                if (string.IsNullOrEmpty(_from)) _from = "c2cmailer@gmail.com";
-                msg.From = new MailAddress(_from);
-                msg.To.Add(_to);
-                msg.IsBodyHtml = true;
-                msg.Body = Regex.Replace(_body, Environment.NewLine, "<br/>");
-                msg.Subject = _subject;
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("c2cmailer@gmail.com", "Campus2Caretaker@2015"),
+                EnableSsl = true,
+                Timeout = 10000,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
 
-                var client = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("c2cmailer@gmail.com", "uytredfgh@King55"),
-                    EnableSsl = true
-                };
-                StringBuilder sbBody = new StringBuilder();
+            };
+            StringBuilder sbBody = new StringBuilder();
 
-                //System.IO.MemoryStream imgContent = new System.IO.MemoryStream();
-                //CCDaemon.Properties.Resources.CC_Logo.Save(imgContent, System.Drawing.Imaging.ImageFormat.Png);
-                //System.IO.File.AppendAllText(@"E:\sam.txt", "adding FILE " + DateTime.Now.ToString() + Environment.NewLine);            
+            var inlineLogo = new LinkedResource(HttpContext.Current.Server.MapPath(@"~\images\newlogo.png"));
+            inlineLogo.ContentId = Guid.NewGuid().ToString();
 
-                var inlineLogo = new LinkedResource(HttpContext.Current.Server.MapPath(@"~\images\newlogo.png"));
-                inlineLogo.ContentId = Guid.NewGuid().ToString();
+            sbBody.Append(string.Format("<img src='cid:{0}' /><br/><br/>", inlineLogo.ContentId));
+            sbBody.Append(msg.Body);
+            sbBody.AppendLine("<br/>");
+            sbBody.AppendLine("*****************************DISCLAIMER*****************************");
+            sbBody.AppendLine("<br/>");
+            sbBody.AppendLine("Some copy right information here...");
 
-                sbBody.Append(string.Format("<img src='cid:{0}' /><br/><br/>", inlineLogo.ContentId));
-                sbBody.Append(msg.Body);
-                sbBody.AppendLine("<br/>");
-                sbBody.AppendLine("*****************************DISCLAIMER*****************************");
-                sbBody.AppendLine("<br/>");
-                sbBody.AppendLine("Some copy right information here...");
+            var view = AlternateView.CreateAlternateViewFromString(sbBody.ToString(), null, "text/html");
+            //view.LinkedResources.Add(inlineLogo);
+            msg.AlternateViews.Add(view);
 
-                var view = AlternateView.CreateAlternateViewFromString(sbBody.ToString(), null, "text/html");
-                view.LinkedResources.Add(inlineLogo);
-                msg.AlternateViews.Add(view);
+            //System.IO.File.AppendAllText(@"E:\sam.txt", "READY FOR SENDING " + DateTime.Now.ToString() + Environment.NewLine);            
 
-                //System.IO.File.AppendAllText(@"E:\sam.txt", "READY FOR SENDING " + DateTime.Now.ToString() + Environment.NewLine);            
+            client.Send(msg);
 
-                client.Send(msg);
-            }
-            catch {
-                return false;
-            }
             return true;
         }
 
@@ -109,7 +105,7 @@ namespace Campus2caretaker
             //SmtpClient SMTPServer = new SmtpClient("smtpout.secureserver.net", 80);
 
             string userName = "c2cmailer@gmail.com";
-            string password = "mailer@123";
+            string password = "Campus2Caretaker@2015";
             SmtpClient SMTPServer = new SmtpClient("smtp.gmail.com", 587);
             SMTPServer.EnableSsl = true;
 

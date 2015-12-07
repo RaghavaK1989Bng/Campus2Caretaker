@@ -47,7 +47,7 @@
                                     ForeColor="#FF3300" ControlToCompare="txtNewPassword">*</asp:CompareValidator>
                         </div>
                                                 <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
+                            <%--<div id="divStatus" runat="server"></div>--%>
                             <asp:Button ID="btnChangePassword" runat="server" CssClass="btn btn-info" Text="Change Password" ValidationGroup="ChangePassword"
                                 OnClick="btnChangePassword_Click" />
                             &nbsp;

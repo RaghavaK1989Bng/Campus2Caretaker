@@ -277,7 +277,7 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
+                            <%--<div id="divStatus" runat="server"></div>--%>
                             <asp:Button ID="btnSavePromoteStudents" runat="server" CssClass="btn btn-info" Text="Save" ValidationGroup="PromoteStudents"
                                 OnClick="btnSavePromoteStudents_Click" />
                             &nbsp;

@@ -159,69 +159,73 @@ namespace Campus2caretaker
 
             if (Page.IsValid)
             {
-                try
+                DTOInstituteDetails toinst = new DTOInstituteDetails();
+                toinst.InstituteName = txtInstituteName.Text;
+                toinst.InstituteEmail = txtInstituteEmail.Text;
+
+                if (new BOInstituteDetails().IsInstituteNameExists(toinst) || new BOInstituteDetails().IsInstituteEmailExists(toinst))
                 {
-                    DTOInstituteDetails toinst = new DTOInstituteDetails();
-                    toinst.InstituteName = txtInstituteName.Text;
-                    toinst.InstituteEmail = txtInstituteEmail.Text;
-
-                    if (new BOInstituteDetails().IsInstituteNameExists(toinst) || new BOInstituteDetails().IsInstituteEmailExists(toinst))
-                    {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Institute already exists!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
-                        return;
-                    }
-
-                    if (imgInstituteLogo.Src != null)
-                    {
-                        toinst.LogoPath = Session["LogoPhoto"].ToString();
-                    }
-                    toinst.InstituteAddress = txtInstituteAddress.Text;
-                    toinst.InstitutePhoneNo = txtInstitutePhoneNumber.Text;
-                    toinst.InstituteType = ddlInstituteType.SelectedValue;
-                    toinst.PrincipalContact = txtPrincipalContactNumber.Text;
-                    toinst.PrincipalName = txtPrincipalName.Text;
-                    toinst.State = txtState.Text;
-                    toinst.District = txtDistrict.Text;
-                    toinst.MaxStudents = int.Parse(txtMaxStudents.Text);
-
-                    RandomStringGenerator randstring = new RandomStringGenerator();
-                    string DefaultPwd = randstring.Generate(8);
-                    toinst.InstituteDefaultPwd = PasswordEncDec.EncodePasswordToBase64(DefaultPwd);
-                    toinst.InstituteUserType = "Usr";
-
-                    if (new BOInstituteDetails().InsertInstituteDetails(toinst))
-                    {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record inserted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
-
-                        #region E-Mail
-
-                        //Send mail
-
-                        string s_subject = "Institute Account Details From Campus2Caretaker";
-                        string s_msg = "Please use the below details for managing your institute account in Campus2Caretaker." + Environment.NewLine + Environment.NewLine;
-
-
-                        string s_link = "http://" + Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/Institute/InstituteLogin.aspx";
-                        s_msg += s_link + Environment.NewLine + Environment.NewLine;
-                        s_msg += "Username and Password to Login to account is" + Environment.NewLine + Environment.NewLine;
-                        s_msg += "Username :" + string.Empty + toinst.InstituteEmail + Environment.NewLine + Environment.NewLine;
-                        s_msg += "Password :" + string.Empty + DefaultPwd + Environment.NewLine + Environment.NewLine + Environment.NewLine;
-                        bool res = C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, toinst.InstituteEmail, null, null);
-
-                        #endregion
-
-                        RefreshGridView();
-                        clear();
-                    }
-                    else
-                    {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
-                    }
+                    //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Institute already exists!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    string alertScript = "jAlert('Institute already exists', 'Campus2Caretaker');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
+                    return;
                 }
-                catch { }
+
+                if (imgInstituteLogo.Src != null)
+                {
+                    toinst.LogoPath = Session["LogoPhoto"].ToString();
+                }
+                toinst.InstituteAddress = txtInstituteAddress.Text;
+                toinst.InstitutePhoneNo = txtInstitutePhoneNumber.Text;
+                toinst.InstituteType = ddlInstituteType.SelectedValue;
+                toinst.PrincipalContact = txtPrincipalContactNumber.Text;
+                toinst.PrincipalName = txtPrincipalName.Text;
+                toinst.State = txtState.Text;
+                toinst.District = txtDistrict.Text;
+                toinst.MaxStudents = int.Parse(txtMaxStudents.Text);
+
+                RandomStringGenerator randstring = new RandomStringGenerator();
+                string DefaultPwd = randstring.Generate(8);
+                toinst.InstituteDefaultPwd = PasswordEncDec.EncodePasswordToBase64(DefaultPwd);
+                toinst.InstituteUserType = "Usr";
+
+                if (new BOInstituteDetails().InsertInstituteDetails(toinst))
+                {
+                    //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record inserted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                    string alertScript = "jAlert('Institute Details Saved Successfully', 'Campus2Caretaker');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
+
+                    #region E-Mail
+
+                    //Send mail
+
+                    string s_subject = "Institute Account Details From Campus2Caretaker";
+                    string s_msg = "Please use the below details for managing your institute account in Campus2Caretaker." + Environment.NewLine + Environment.NewLine;
+
+
+                    string s_link = "http://" + Request.ServerVariables["SERVER_NAME"] + ":" + Request.ServerVariables["SERVER_PORT"] + "/Institute/InstituteLogin.aspx";
+                    s_msg += s_link + Environment.NewLine + Environment.NewLine;
+                    s_msg += "Username and Password to Login to account is" + Environment.NewLine + Environment.NewLine;
+                    s_msg += "Username :" + string.Empty + toinst.InstituteEmail + Environment.NewLine + Environment.NewLine;
+                    s_msg += "Password :" + string.Empty + DefaultPwd + Environment.NewLine + Environment.NewLine + Environment.NewLine;
+                    bool res = C2CEmail.SendC2CMail(s_msg, s_subject, string.Empty, toinst.InstituteEmail, null, null);
+
+                    #endregion
+
+                    RefreshGridView();
+                    clear();
+                }
+                else
+                {
+                    //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                    string alertScript = "jAlert('Error', 'Campus2Caretaker');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
+                }
             }
         }
 
@@ -252,15 +256,21 @@ namespace Campus2caretaker
 
                     if (new BOInstituteDetails().UpdateInstituteDetails(toinst))
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                        string alertScript = "jAlert('Institute Details Updated Successfully', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
+
                         RefreshGridView();
                         clear();
                     }
                     else
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Error', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                     }
                 }
                 catch { }
@@ -278,15 +288,19 @@ namespace Campus2caretaker
 
                     if (new BOInstituteDetails().DeleteInstituteDetails(toins))
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record deleted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record deleted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Institute Details Deleted Successfully', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                         RefreshGridView();
                         clear();
                     }
                     else
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Error', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                     }
                 }
                 catch { }

@@ -210,8 +210,11 @@ namespace Campus2caretaker.Institute
 
                     if (new BOStudentRegistration().SaveStudentDetails(tostud))
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record inserted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record inserted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+
+                        string alertScript = "jAlert('Student Details Saved Sucessfully', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
 
                         #region SMS
                         string _messageTemplate = new BOSms().GetSMSTemplate("NEWSTUDENTADDED");
@@ -236,8 +239,10 @@ namespace Campus2caretaker.Institute
                     }
                     else
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Error', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                     }
                 }
                 catch { }
@@ -248,8 +253,10 @@ namespace Campus2caretaker.Institute
         {
             if (string.IsNullOrEmpty(hfStudentID.Value.ToString()))
             {
-                string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error.Please select a student';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error.Please select a student';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                string alertScript = "jAlert('Please Select Student', 'Campus2Caretaker');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                 return;
             }
 
@@ -282,16 +289,20 @@ namespace Campus2caretaker.Institute
 
                     if (new BOStudentRegistration().UpdateStudentDetails(tostud))
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record updated';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Student Details Updated Sucessfully', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
 
                         clear();
                         RefreshGridView();
                     }
                     else
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Error', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                     }
                 }
                 catch { }
@@ -302,8 +313,10 @@ namespace Campus2caretaker.Institute
         {
             if (string.IsNullOrEmpty(hfStudentID.Value.ToString()))
             {
-                string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error.Please select a student';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error.Please select a student';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                string alertScript = "jAlert('Please Select a Student', 'Campus2Caretaker');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                 return;
             }
 
@@ -316,15 +329,19 @@ namespace Campus2caretaker.Institute
 
                     if (new BOStudentRegistration().DeleteStudentDetails(tostu))
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record deleted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Record deleted';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Green';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Student Details Deleted Sucessfully', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                         RefreshGridView();
                         clear();
                     }
                     else
                     {
-                        string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        //string script = @"document.getElementById('" + divStatus.ClientID + "').innerHTML='Error';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + divStatus.ClientID + "').appendChild(elem);document.getElementById('" + divStatus.ClientID + "').style.color = 'Red';document.getElementById('" + divStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + divStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + divStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Error', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                     }
                 }
                 catch { }
@@ -495,13 +512,17 @@ namespace Campus2caretaker.Institute
 
                                 #endregion
 
-                                string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Excel uploaded successfully..';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Green';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Excel uploaded successfully..';var elem = document.createElement('img');elem.setAttribute('src', 'tick.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Green';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                                //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                string alertScript = "jAlert('Excel Uploaded Successfully', 'Campus2Caretaker');";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                             }
                             else
                             {
-                                string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Error in saving Excel!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Error in saving Excel!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                                //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                string alertScript = "jAlert('Error in saving Excel', 'Campus2Caretaker');";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                                 System.IO.File.Delete(Server.MapPath("~/Documents/").Replace("\\", "/") + FileName);
                             }
                         }
@@ -512,15 +533,18 @@ namespace Campus2caretaker.Institute
                     }
                     else
                     {
-                        string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Please select a valid excel file';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
-
+                        //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Please select a valid excel file';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                        string alertScript = "jAlert('Please Select a Valid Excel File', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                     }
                 }
                 else
                 {
-                    string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Please select the excel file';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Please select the excel file';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                    string alertScript = "jAlert('Please Select Excel File', 'Campus2Caretaker');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                 }
             }
             catch
@@ -611,16 +635,20 @@ namespace Campus2caretaker.Institute
                         string BranchId = new BOStudentRegistration().GetBranchId(valid(result.Tables[0].Rows[i], 6));
                         if (BranchId == string.Empty)
                         {
-                            string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid Branch Name found in Branch column!!; it should be number!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                            //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid Branch Name found in Branch column!!; it should be number!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                            string alertScript = "jAlert('Invalid Branch Name found in Branch column', 'Campus2Caretaker');";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                             return false;
                         }
 
                         int intvalue;
                         if (!int.TryParse(Semester.ToString(), out intvalue))
                         {
-                            string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid Semester Id found in Semester column!!; it should be numeric!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true); isValidExcelSheet = false;
+                            //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid Semester Id found in Semester column!!; it should be numeric!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true); isValidExcelSheet = false;
+                            string alertScript = "jAlert('Invalid Semester Id found in Semester column', 'Campus2Caretaker');";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                             isValidExcelSheet = false;
                             break;
                         }
@@ -628,8 +656,10 @@ namespace Campus2caretaker.Institute
                         DateTime dateTimeValue;
                         if (!DateTime.TryParse(DateOfBirth.ToString(), out dateTimeValue))
                         {
-                            string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid DOB found in DOB column!!; it should be numeric!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true); isValidExcelSheet = false;
+                            //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid DOB found in DOB column!!; it should be numeric!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                            string alertScript = "jAlert('Invalid DOB found in DOB column', 'Campus2Caretaker');";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                             isValidExcelSheet = false;
                             break;
                         }
@@ -637,8 +667,10 @@ namespace Campus2caretaker.Institute
                         string genderValue = valid(result.Tables[0].Rows[i], 11);
                         if (genderValue == string.Empty || (genderValue != "Male" && genderValue != "Female"))
                         {
-                            string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid Gender found in Gender column!!; it should be Male or Female!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                            //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid Gender found in Gender column!!; it should be Male or Female!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                            string alertScript = "jAlert('Invalid Gender found in Gender column', 'Campus2Caretaker');";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                             return false;
                         }
 
@@ -648,8 +680,10 @@ namespace Campus2caretaker.Institute
                         {
                             if (!util.IsValidEmail(parentsEmailValue))
                             {
-                                string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid email found in parents email column!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid email found in parents email column!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                                //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                                string alertScript = "jAlert('Invalid email found in parents email column', 'Campus2Caretaker');";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                                 return false;
                             }
                         }
@@ -659,8 +693,10 @@ namespace Campus2caretaker.Institute
 
                     catch (Exception err)
                     {
-                        string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid data found in uploaded excel!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true); isValidExcelSheet = false;
+                        //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='Invalid data found in uploaded excel!!';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true); isValidExcelSheet = false;
+                        string alertScript = "jAlert('Invalid data found in uploaded excel', 'Campus2Caretaker');";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                         isValidExcelSheet = false;
                         break;
                     }
@@ -671,8 +707,10 @@ namespace Campus2caretaker.Institute
             }
             catch (DataException ee)
             {
-                string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='" + ee.Message + "';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                //string script = @"document.getElementById('" + dvUploadStatus.ClientID + "').innerHTML='" + ee.Message + "';var elem = document.createElement('img');elem.setAttribute('src', 'cross.jpg');document.getElementById('" + dvUploadStatus.ClientID + "').appendChild(elem);document.getElementById('" + dvUploadStatus.ClientID + "').style.color = 'Red';document.getElementById('" + dvUploadStatus.ClientID + "').style.fontSize = '1em' ;document.getElementById('" + dvUploadStatus.ClientID + "').style.fontWeight = 'bold' ;setTimeout(function(){document.getElementById('" + dvUploadStatus.ClientID + "').style.display='none';},4500);";
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "script", script, true);
+                string alertScript = "jAlert('"+ ee.Message +"', 'Campus2Caretaker');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", alertScript, true);
                 isValidExcelSheet = false;
             }
             finally

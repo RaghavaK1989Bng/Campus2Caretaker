@@ -60,7 +60,7 @@
 
                         </div>
                         <div class="form-actions">
-                            <div id="divStatus" runat="server"></div>
+                            <%--<div id="divStatus" runat="server"></div>--%>
                             <asp:Button ID="btnSaveSubjects" runat="server" CssClass="btn btn-info" Text="Save"
                                 OnClick="btnSaveSubjects_Click" />
                             &nbsp;
